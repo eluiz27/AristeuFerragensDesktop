@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="gs_aristeusDataSet1" targetNamespace="http://tempuri.org/gs_aristeusDataSet1.xsd" xmlns:mstns="http://tempuri.org/gs_aristeusDataSet1.xsd" xmlns="http://tempuri.org/gs_aristeusDataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gs_aristeusConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="gs_aristeusConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.processosAdministrativos.Properties.Settings.GlobalReference.Default.gs_aristeusConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="assistencias_tecnicasTableAdapter" GeneratorDataComponentClassName="assistencias_tecnicasTableAdapter" Name="assistencias_tecnicas" UserDataComponentName="assistencias_tecnicasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT codigo_assistTec, nome_assistTec, fnc_nome FROM assistencias_tecnicas INNER JOIN fornecedores ON assistencias_tecnicas.fornecedor_assistTec = fornecedores.fnc_codigo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="gs_aristeusDataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="gs_aristeusDataSet1" msprop:Generator_UserDSName="gs_aristeusDataSet1">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="assistencias_tecnicas" msprop:Generator_TableClassName="assistencias_tecnicasDataTable" msprop:Generator_TableVarName="tableassistencias_tecnicas" msprop:Generator_RowChangedName="assistencias_tecnicasRowChanged" msprop:Generator_TablePropName="assistencias_tecnicas" msprop:Generator_RowDeletingName="assistencias_tecnicasRowDeleting" msprop:Generator_RowChangingName="assistencias_tecnicasRowChanging" msprop:Generator_RowEvHandlerName="assistencias_tecnicasRowChangeEventHandler" msprop:Generator_RowDeletedName="assistencias_tecnicasRowDeleted" msprop:Generator_RowClassName="assistencias_tecnicasRow" msprop:Generator_UserTableName="assistencias_tecnicas" msprop:Generator_RowEvArgName="assistencias_tecnicasRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

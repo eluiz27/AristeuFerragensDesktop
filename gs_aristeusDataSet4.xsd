@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="gs_aristeusDataSet4" targetNamespace="http://tempuri.org/gs_aristeusDataSet4.xsd" xmlns:mstns="http://tempuri.org/gs_aristeusDataSet4.xsd" xmlns="http://tempuri.org/gs_aristeusDataSet4.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gs_aristeusConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="gs_aristeusConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.processosAdministrativos.Properties.Settings.GlobalReference.Default.gs_aristeusConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="itensTableAdapter" GeneratorDataComponentClassName="itensTableAdapter" Name="itens" UserDataComponentName="itensTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.itens" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT itm_codigo, itm_descricao FROM itens</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="gs_aristeusDataSet4" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="gs_aristeusDataSet4" msprop:Generator_UserDSName="gs_aristeusDataSet4">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="itens" msprop:Generator_TableClassName="itensDataTable" msprop:Generator_TableVarName="tableitens" msprop:Generator_RowChangedName="itensRowChanged" msprop:Generator_TablePropName="itens" msprop:Generator_RowDeletingName="itensRowDeleting" msprop:Generator_RowChangingName="itensRowChanging" msprop:Generator_RowEvHandlerName="itensRowChangeEventHandler" msprop:Generator_RowDeletedName="itensRowDeleted" msprop:Generator_RowClassName="itensRow" msprop:Generator_UserTableName="itens" msprop:Generator_RowEvArgName="itensRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

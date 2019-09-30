@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="gs_aristeusDataSet2" targetNamespace="http://tempuri.org/gs_aristeusDataSet2.xsd" xmlns:mstns="http://tempuri.org/gs_aristeusDataSet2.xsd" xmlns="http://tempuri.org/gs_aristeusDataSet2.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gs_aristeusConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="gs_aristeusConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.processosAdministrativos.Properties.Settings.GlobalReference.Default.gs_aristeusConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="controle_entregaTableAdapter" GeneratorDataComponentClassName="controle_entregaTableAdapter" Name="controle_entrega" UserDataComponentName="controle_entregaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.controle_entrega" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT `cod_contEntre`, `pedido_contEntre`, `vendedor_contEntre`, `cliente_contEntre`, `motoboy_contEntre`, `situacao_contEntre`, `dt_expedicao`, `dt_aCaminho`, `dt_entregue` FROM `controle_entrega`</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="gs_aristeusDataSet2" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="gs_aristeusDataSet2" msprop:Generator_UserDSName="gs_aristeusDataSet2">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="controle_entrega" msprop:Generator_TableClassName="controle_entregaDataTable" msprop:Generator_TableVarName="tablecontrole_entrega" msprop:Generator_TablePropName="controle_entrega" msprop:Generator_RowDeletingName="controle_entregaRowDeleting" msprop:Generator_RowChangingName="controle_entregaRowChanging" msprop:Generator_RowEvHandlerName="controle_entregaRowChangeEventHandler" msprop:Generator_RowDeletedName="controle_entregaRowDeleted" msprop:Generator_UserTableName="controle_entrega" msprop:Generator_RowChangedName="controle_entregaRowChanged" msprop:Generator_RowEvArgName="controle_entregaRowChangeEvent" msprop:Generator_RowClassName="controle_entregaRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

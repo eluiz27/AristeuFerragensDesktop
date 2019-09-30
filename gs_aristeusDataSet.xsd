@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="gs_aristeusDataSet" targetNamespace="http://tempuri.org/gs_aristeusDataSet.xsd" xmlns:mstns="http://tempuri.org/gs_aristeusDataSet.xsd" xmlns="http://tempuri.org/gs_aristeusDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="gs_aristeusConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="gs_aristeusConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.processosAdministrativos.Properties.Settings.GlobalReference.Default.gs_aristeusConnectionString" Provider="MySql.Data.MySqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="fornecedoresTableAdapter" GeneratorDataComponentClassName="fornecedoresTableAdapter" Name="fornecedores" UserDataComponentName="fornecedoresTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select fnc_codigo, fnc_nome, fnc_telefone from fornecedores where fnc_pessoa = 'J' and fnc_cgc &lt;&gt; '__.___.___/____-__' and fnc_inscricao &lt;&gt; '' and fnc_nome not like 'trans%' and fnc_situacao = 'N';</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="banner_rotativoTableAdapter" GeneratorDataComponentClassName="banner_rotativoTableAdapter" Name="banner_rotativo" UserDataComponentName="banner_rotativoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT banrot_codigo, banrot_campanha FROM banner_rotativo ORDER BY banrot_codigo;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="assistencias_tecnicasTableAdapter" GeneratorDataComponentClassName="assistencias_tecnicasTableAdapter" Name="assistencias_tecnicas" UserDataComponentName="assistencias_tecnicasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.fornecedores" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT codigo_assistTec, nome_assistTec, fnc_nome FROM assistencias_tecnicas INNER JOIN fornecedores ON assistencias_tecnicas.fornecedor_assistTec = fornecedores.fnc_codigo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="controle_entregaTableAdapter" GeneratorDataComponentClassName="controle_entregaTableAdapter" Name="controle_entrega" UserDataComponentName="controle_entregaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.controle_entrega" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT pedido_contEntre, vendedor_contEntre, cliente_contEntre, motoboy_contEntre, situacao_contEntre, dt_expedicao, dt_aCaminho, dt_entregue FROM controle_entrega</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="estoquistaTableAdapter" GeneratorDataComponentClassName="estoquistaTableAdapter" Name="estoquista" UserDataComponentName="estoquistaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.estoquista" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT est_codigo, est_nome FROM estoquista order by est_nome</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="itensTableAdapter" GeneratorDataComponentClassName="itensTableAdapter" Name="itens" UserDataComponentName="itensTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.itens" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT itm_codigo, itm_descricao FROM itens</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="lote_validadeTableAdapter" GeneratorDataComponentClassName="lote_validadeTableAdapter" Name="lote_validade" UserDataComponentName="lote_validadeTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ltv_numLote, itm_descricao FROM lote_validade INNER JOIN itens ON lote_validade.ltv_produto = itens.itm_codigo;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="consulta_loteTableAdapter" GeneratorDataComponentClassName="consulta_loteTableAdapter" Name="consulta_lote" UserDataComponentName="consulta_loteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ltv_codigo, ltv_numLote, ltv_codBarras, itm_descricao, ltv_qtde, DATE_FORMAT(ltv_validade, '%d/%m/%Y') as 'validade' FROM lote_validade INNER JOIN itens ON lote_validade.ltv_produto = itens.itm_codigo ORDER BY ltv_dataCriacao</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="loe_consultaTableAdapter" GeneratorDataComponentClassName="loe_consultaTableAdapter" Name="loe_consulta" UserDataComponentName="loe_consultaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT loe_codigo, vdd_nome, opcao_loe_descricao, CONCAT(itm_codigo, ' - ', itm_descricao) AS 'produt', loe_qtde, loe_preco, if(loe_comentario &lt;&gt; '', 'sim', 'não') AS 'comentario', DATE_FORMAT(loe_data, '%d/%m/%Y') AS 'data'
+FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) INNER JOIN loe_opcao itens ON loe.loe_id_produto = itens.itm_codigo;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ordem_compraTableAdapter" GeneratorDataComponentClassName="ordem_compraTableAdapter" Name="ordem_compra" UserDataComponentName="ordem_compraTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ocp_numero, ocp_nmfornecedor FROM gs_aristeus.ordcompra where ocp_situacao = 'p';</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="fallowupsitTableAdapter" GeneratorDataComponentClassName="fallowupsitTableAdapter" Name="fallowupsit" UserDataComponentName="fallowupsitTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT * FROM fallowupsit ORDER BY fups_codigo DESC;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="procuraFalowUpTableAdapter" GeneratorDataComponentClassName="procuraFalowUpTableAdapter" Name="procuraFalowUp" UserDataComponentName="procuraFalowUpTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT fup_codigo, fup_ordCompra, fnc_nome FROM gs_aristeus.fallowup inner join fornecedores on fallowup.fup_fornecedor = fornecedores.fnc_codigo;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="fallowUpTableAdapter" GeneratorDataComponentClassName="fallowUpTableAdapter" Name="fallowUp" UserDataComponentName="fallowUpTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ocp_numero,  DATE_FORMAT(ocp_data, '%d/%m/%Y') as 'pedido', fnc_nome, cpr_nome, 
+DATE_FORMAT(OCP_Prevent, '%d/%m/%Y') as 'entrega', fups_nome, 
+DATE_FORMAT(fup_dataAlteracao, '%H:%m:%s - %d/%m/%Y') as 'alteracao' 
+FROM (((ordcompra INNER JOIN fornecedores ON ordcompra.ocp_fornecedor = fornecedores.fnc_codigo)
+INNER JOIN compradores ON ordcompra.ocp_comprador = compradores.cpr_codigo)
+LEFT OUTER JOIN fallowup ON ordcompra.ocp_numero = fallowup.fup_ordCompra)
+LEFT OUTER JOIN fallowupsit ON fallowup.fup_ordCompra = fallowupsit.fups_codigo where ocp_situacao = 'p' ORDER BY OCP_Prevent</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="notasTableAdapter" GeneratorDataComponentClassName="notasTableAdapter" Name="notas" UserDataComponentName="notasTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.notas" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT notas.nt_documento, notas.nt_agente, notas.nt_nmagente, notas.nt_empresa FROM notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo WHERE (tipomovi.tmv_grupo = 'c')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="nSerieTableAdapter" GeneratorDataComponentClassName="nSerieTableAdapter" Name="nSerie" UserDataComponentName="nSerieTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ns_produto, itm_descricao, ns_nSerie, ns_pedido, DATE_FORMAT(ns_data, '%d/%m/%Y') as 'data'
+FROM (n_serie INNER JOIN itens ON n_serie.ns_produto = itens.itm_codigo) 
+INNER JOIN notas ON concat('01-', n_serie.ns_pedido) = notas.nt_pedido;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="consultCodificacaoTableAdapter" GeneratorDataComponentClassName="consultCodificacaoTableAdapter" Name="consultCodificacao" UserDataComponentName="consultCodificacaoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT codf_nota, fnc_nome, a.est_nome as 'estoq1', b.est_nome as 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') as 'data' 
+from ((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) 
+LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo)
+LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo;</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="grupo_emailsTableAdapter" GeneratorDataComponentClassName="grupo_emailsTableAdapter" Name="grupo_emails" UserDataComponentName="grupo_emailsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="gs_aristeusConnectionString (Settings)" DbObjectName="gs_aristeus.grupo_emails" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails ORDER BY grpe_dono, grpe_grupo, grpe_email</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings />
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="gs_aristeusDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="gs_aristeusDataSet" msprop:Generator_UserDSName="gs_aristeusDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="fornecedores" msprop:Generator_TableClassName="fornecedoresDataTable" msprop:Generator_TableVarName="tablefornecedores" msprop:Generator_TablePropName="fornecedores" msprop:Generator_RowDeletingName="fornecedoresRowDeleting" msprop:Generator_RowChangingName="fornecedoresRowChanging" msprop:Generator_RowEvHandlerName="fornecedoresRowChangeEventHandler" msprop:Generator_RowDeletedName="fornecedoresRowDeleted" msprop:Generator_UserTableName="fornecedores" msprop:Generator_RowChangedName="fornecedoresRowChanged" msprop:Generator_RowEvArgName="fornecedoresRowChangeEvent" msprop:Generator_RowClassName="fornecedoresRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="banner_rotativo" msprop:Generator_TableClassName="banner_rotativoDataTable" msprop:Generator_TableVarName="tablebanner_rotativo" msprop:Generator_TablePropName="banner_rotativo" msprop:Generator_RowDeletingName="banner_rotativoRowDeleting" msprop:Generator_RowChangingName="banner_rotativoRowChanging" msprop:Generator_RowEvHandlerName="banner_rotativoRowChangeEventHandler" msprop:Generator_RowDeletedName="banner_rotativoRowDeleted" msprop:Generator_UserTableName="banner_rotativo" msprop:Generator_RowChangedName="banner_rotativoRowChanged" msprop:Generator_RowEvArgName="banner_rotativoRowChangeEvent" msprop:Generator_RowClassName="banner_rotativoRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="assistencias_tecnicas" msprop:Generator_TableClassName="assistencias_tecnicasDataTable" msprop:Generator_TableVarName="tableassistencias_tecnicas" msprop:Generator_RowChangedName="assistencias_tecnicasRowChanged" msprop:Generator_TablePropName="assistencias_tecnicas" msprop:Generator_RowDeletingName="assistencias_tecnicasRowDeleting" msprop:Generator_RowChangingName="assistencias_tecnicasRowChanging" msprop:Generator_RowEvHandlerName="assistencias_tecnicasRowChangeEventHandler" msprop:Generator_RowDeletedName="assistencias_tecnicasRowDeleted" msprop:Generator_RowClassName="assistencias_tecnicasRow" msprop:Generator_UserTableName="assistencias_tecnicas" msprop:Generator_RowEvArgName="assistencias_tecnicasRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="controle_entrega" msprop:Generator_TableClassName="controle_entregaDataTable" msprop:Generator_TableVarName="tablecontrole_entrega" msprop:Generator_TablePropName="controle_entrega" msprop:Generator_RowDeletingName="controle_entregaRowDeleting" msprop:Generator_RowChangingName="controle_entregaRowChanging" msprop:Generator_RowEvHandlerName="controle_entregaRowChangeEventHandler" msprop:Generator_RowDeletedName="controle_entregaRowDeleted" msprop:Generator_UserTableName="controle_entrega" msprop:Generator_RowChangedName="controle_entregaRowChanged" msprop:Generator_RowEvArgName="controle_entregaRowChangeEvent" msprop:Generator_RowClassName="controle_entregaRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="estoquista" msprop:Generator_TableClassName="estoquistaDataTable" msprop:Generator_TableVarName="tableestoquista" msprop:Generator_TablePropName="estoquista" msprop:Generator_RowDeletingName="estoquistaRowDeleting" msprop:Generator_RowChangingName="estoquistaRowChanging" msprop:Generator_RowEvHandlerName="estoquistaRowChangeEventHandler" msprop:Generator_RowDeletedName="estoquistaRowDeleted" msprop:Generator_UserTableName="estoquista" msprop:Generator_RowChangedName="estoquistaRowChanged" msprop:Generator_RowEvArgName="estoquistaRowChangeEvent" msprop:Generator_RowClassName="estoquistaRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="itens" msprop:Generator_TableClassName="itensDataTable" msprop:Generator_TableVarName="tableitens" msprop:Generator_TablePropName="itens" msprop:Generator_RowDeletingName="itensRowDeleting" msprop:Generator_RowChangingName="itensRowChanging" msprop:Generator_RowEvHandlerName="itensRowChangeEventHandler" msprop:Generator_RowDeletedName="itensRowDeleted" msprop:Generator_UserTableName="itens" msprop:Generator_RowChangedName="itensRowChanged" msprop:Generator_RowEvArgName="itensRowChangeEvent" msprop:Generator_RowClassName="itensRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="lote_validade" msprop:Generator_TableClassName="lote_validadeDataTable" msprop:Generator_TableVarName="tablelote_validade" msprop:Generator_RowChangedName="lote_validadeRowChanged" msprop:Generator_TablePropName="lote_validade" msprop:Generator_RowDeletingName="lote_validadeRowDeleting" msprop:Generator_RowChangingName="lote_validadeRowChanging" msprop:Generator_RowEvHandlerName="lote_validadeRowChangeEventHandler" msprop:Generator_RowDeletedName="lote_validadeRowDeleted" msprop:Generator_RowClassName="lote_validadeRow" msprop:Generator_UserTableName="lote_validade" msprop:Generator_RowEvArgName="lote_validadeRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="consulta_lote" msprop:Generator_TableClassName="consulta_loteDataTable" msprop:Generator_TableVarName="tableconsulta_lote" msprop:Generator_TablePropName="consulta_lote" msprop:Generator_RowDeletingName="consulta_loteRowDeleting" msprop:Generator_RowChangingName="consulta_loteRowChanging" msprop:Generator_RowEvHandlerName="consulta_loteRowChangeEventHandler" msprop:Generator_RowDeletedName="consulta_loteRowDeleted" msprop:Generator_UserTableName="consulta_lote" msprop:Generator_RowChangedName="consulta_loteRowChanged" msprop:Generator_RowEvArgName="consulta_loteRowChangeEvent" msprop:Generator_RowClassName="consulta_loteRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ordem_compra" msprop:Generator_TableClassName="ordem_compraDataTable" msprop:Generator_TableVarName="tableordem_compra" msprop:Generator_TablePropName="ordem_compra" msprop:Generator_RowDeletingName="ordem_compraRowDeleting" msprop:Generator_RowChangingName="ordem_compraRowChanging" msprop:Generator_RowEvHandlerName="ordem_compraRowChangeEventHandler" msprop:Generator_RowDeletedName="ordem_compraRowDeleted" msprop:Generator_UserTableName="ordem_compra" msprop:Generator_RowChangedName="ordem_compraRowChanged" msprop:Generator_RowEvArgName="ordem_compraRowChangeEvent" msprop:Generator_RowClassName="ordem_compraRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="fallowupsit" msprop:Generator_TableClassName="fallowupsitDataTable" msprop:Generator_TableVarName="tablefallowupsit" msprop:Generator_RowChangedName="fallowupsitRowChanged" msprop:Generator_TablePropName="fallowupsit" msprop:Generator_RowDeletingName="fallowupsitRowDeleting" msprop:Generator_RowChangingName="fallowupsitRowChanging" msprop:Generator_RowEvHandlerName="fallowupsitRowChangeEventHandler" msprop:Generator_RowDeletedName="fallowupsitRowDeleted" msprop:Generator_RowClassName="fallowupsitRow" msprop:Generator_UserTableName="fallowupsit" msprop:Generator_RowEvArgName="fallowupsitRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="procuraFalowUp" msprop:Generator_TableClassName="procuraFalowUpDataTable" msprop:Generator_TableVarName="tableprocuraFalowUp" msprop:Generator_RowChangedName="procuraFalowUpRowChanged" msprop:Generator_TablePropName="procuraFalowUp" msprop:Generator_RowDeletingName="procuraFalowUpRowDeleting" msprop:Generator_RowChangingName="procuraFalowUpRowChanging" msprop:Generator_RowEvHandlerName="procuraFalowUpRowChangeEventHandler" msprop:Generator_RowDeletedName="procuraFalowUpRowDeleted" msprop:Generator_RowClassName="procuraFalowUpRow" msprop:Generator_UserTableName="procuraFalowUp" msprop:Generator_RowEvArgName="procuraFalowUpRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="fallowUp" msprop:Generator_TableClassName="fallowUpDataTable" msprop:Generator_TableVarName="tablefallowUp" msprop:Generator_TablePropName="fallowUp" msprop:Generator_RowDeletingName="fallowUpRowDeleting" msprop:Generator_RowChangingName="fallowUpRowChanging" msprop:Generator_RowEvHandlerName="fallowUpRowChangeEventHandler" msprop:Generator_RowDeletedName="fallowUpRowDeleted" msprop:Generator_UserTableName="fallowUp" msprop:Generator_RowChangedName="fallowUpRowChanged" msprop:Generator_RowEvArgName="fallowUpRowChangeEvent" msprop:Generator_RowClassName="fallowUpRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="loe_consulta" msprop:Generator_TableClassName="loe_consultaDataTable" msprop:Generator_TableVarName="tableloe_consulta" msprop:Generator_TablePropName="loe_consulta" msprop:Generator_RowDeletingName="loe_consultaRowDeleting" msprop:Generator_RowChangingName="loe_consultaRowChanging" msprop:Generator_RowEvHandlerName="loe_consultaRowChangeEventHandler" msprop:Generator_RowDeletedName="loe_consultaRowDeleted" msprop:Generator_UserTableName="loe_consulta" msprop:Generator_RowChangedName="loe_consultaRowChanged" msprop:Generator_RowEvArgName="loe_consultaRowChangeEvent" msprop:Generator_RowClassName="loe_consultaRow">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="notas" msprop:Generator_TableClassName="notasDataTable" msprop:Generator_TableVarName="tablenotas" msprop:Generator_RowChangedName="notasRowChanged" msprop:Generator_TablePropName="notas" msprop:Generator_RowDeletingName="notasRowDeleting" msprop:Generator_RowChangingName="notasRowChanging" msprop:Generator_RowEvHandlerName="notasRowChangeEventHandler" msprop:Generator_RowDeletedName="notasRowDeleted" msprop:Generator_RowClassName="notasRow" msprop:Generator_UserTableName="notas" msprop:Generator_RowEvArgName="notasRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="nSerie" msprop:Generator_TableClassName="nSerieDataTable" msprop:Generator_TableVarName="tablenSerie" msprop:Generator_RowChangedName="nSerieRowChanged" msprop:Generator_TablePropName="nSerie" msprop:Generator_RowDeletingName="nSerieRowDeleting" msprop:Generator_RowChangingName="nSerieRowChanging" msprop:Generator_RowEvHandlerName="nSerieRowChangeEventHandler" msprop:Generator_RowDeletedName="nSerieRowDeleted" msprop:Generator_RowClassName="nSerieRow" msprop:Generator_UserTableName="nSerie" msprop:Generator_RowEvArgName="nSerieRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="consultCodificacao" msprop:Generator_TableClassName="consultCodificacaoDataTable" msprop:Generator_TableVarName="tableconsultCodificacao" msprop:Generator_RowChangedName="consultCodificacaoRowChanged" msprop:Generator_TablePropName="consultCodificacao" msprop:Generator_RowDeletingName="consultCodificacaoRowDeleting" msprop:Generator_RowChangingName="consultCodificacaoRowChanging" msprop:Generator_RowEvHandlerName="consultCodificacaoRowChangeEventHandler" msprop:Generator_RowDeletedName="consultCodificacaoRowDeleted" msprop:Generator_RowClassName="consultCodificacaoRow" msprop:Generator_UserTableName="consultCodificacao" msprop:Generator_RowEvArgName="consultCodificacaoRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="grupo_emails" msprop:Generator_TableClassName="grupo_emailsDataTable" msprop:Generator_TableVarName="tablegrupo_emails" msprop:Generator_RowChangedName="grupo_emailsRowChanged" msprop:Generator_TablePropName="grupo_emails" msprop:Generator_RowDeletingName="grupo_emailsRowDeleting" msprop:Generator_RowChangingName="grupo_emailsRowChanging" msprop:Generator_RowEvHandlerName="grupo_emailsRowChangeEventHandler" msprop:Generator_RowDeletedName="grupo_emailsRowDeleted" msprop:Generator_RowClassName="grupo_emailsRow" msprop:Generator_UserTableName="grupo_emails" msprop:Generator_RowEvArgName="grupo_emailsRowChangeEvent">
+          <xs:complexType>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

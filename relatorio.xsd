@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="relatorio" targetNamespace="http://tempuri.org/relatorio.xsd" xmlns:mstns="http://tempuri.org/relatorio.xsd" xmlns="http://tempuri.org/relatorio.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="relatorio" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="relatorio" msprop:Generator_UserDSName="relatorio">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="etiqueta" msprop:Generator_TableClassName="etiquetaDataTable" msprop:Generator_TableVarName="tableetiqueta" msprop:Generator_RowChangedName="etiquetaRowChanged" msprop:Generator_TablePropName="etiqueta" msprop:Generator_RowDeletingName="etiquetaRowDeleting" msprop:Generator_RowChangingName="etiquetaRowChanging" msprop:Generator_RowEvHandlerName="etiquetaRowChangeEventHandler" msprop:Generator_RowDeletedName="etiquetaRowDeleted" msprop:Generator_RowClassName="etiquetaRow" msprop:Generator_UserTableName="etiqueta" msprop:Generator_RowEvArgName="etiquetaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idEtiqueta" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidEtiqueta" msprop:Generator_ColumnPropNameInRow="idEtiqueta" msprop:Generator_ColumnPropNameInTable="idEtiquetaColumn" msprop:Generator_UserColumnName="idEtiqueta" type="xs:int" />
+              <xs:element name="nome" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome" type="xs:string" minOccurs="0" />
+              <xs:element name="codItem" msprop:Generator_ColumnVarNameInTable="columncodItem" msprop:Generator_ColumnPropNameInRow="codItem" msprop:Generator_ColumnPropNameInTable="codItemColumn" msprop:Generator_UserColumnName="codItem" type="xs:string" minOccurs="0" />
+              <xs:element name="codForn" msprop:Generator_ColumnVarNameInTable="columncodForn" msprop:Generator_ColumnPropNameInRow="codForn" msprop:Generator_ColumnPropNameInTable="codFornColumn" msprop:Generator_UserColumnName="codForn" type="xs:string" minOccurs="0" />
+              <xs:element name="preco" msprop:Generator_ColumnVarNameInTable="columnpreco" msprop:Generator_ColumnPropNameInRow="preco" msprop:Generator_ColumnPropNameInTable="precoColumn" msprop:Generator_UserColumnName="preco" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="teste" msprop:Generator_TableClassName="testeDataTable" msprop:Generator_TableVarName="tableteste" msprop:Generator_TablePropName="teste" msprop:Generator_RowDeletingName="testeRowDeleting" msprop:Generator_RowChangingName="testeRowChanging" msprop:Generator_RowEvHandlerName="testeRowChangeEventHandler" msprop:Generator_RowDeletedName="testeRowDeleted" msprop:Generator_UserTableName="teste" msprop:Generator_RowChangedName="testeRowChanged" msprop:Generator_RowEvArgName="testeRowChangeEvent" msprop:Generator_RowClassName="testeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="idTeste" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnidTeste" msprop:Generator_ColumnPropNameInRow="idTeste" msprop:Generator_ColumnPropNameInTable="idTesteColumn" msprop:Generator_UserColumnName="idTeste" type="xs:int" minOccurs="0" />
+              <xs:element name="nome" msprop:Generator_ColumnVarNameInTable="columnnome" msprop:Generator_ColumnPropNameInRow="nome" msprop:Generator_ColumnPropNameInTable="nomeColumn" msprop:Generator_UserColumnName="nome" type="xs:string" minOccurs="0" />
+              <xs:element name="codItem" msprop:Generator_ColumnVarNameInTable="columncodItem" msprop:Generator_ColumnPropNameInRow="codItem" msprop:Generator_ColumnPropNameInTable="codItemColumn" msprop:Generator_UserColumnName="codItem" type="xs:string" minOccurs="0" />
+              <xs:element name="codForn" msprop:Generator_ColumnVarNameInTable="columncodForn" msprop:Generator_ColumnPropNameInRow="codForn" msprop:Generator_ColumnPropNameInTable="codFornColumn" msprop:Generator_UserColumnName="codForn" type="xs:string" minOccurs="0" />
+              <xs:element name="preco" msprop:Generator_ColumnVarNameInTable="columnpreco" msprop:Generator_ColumnPropNameInRow="preco" msprop:Generator_ColumnPropNameInTable="precoColumn" msprop:Generator_UserColumnName="preco" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="etiquetaKey1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:etiqueta" />
+      <xs:field xpath="mstns:idEtiqueta" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
