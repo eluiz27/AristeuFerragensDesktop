@@ -29,44 +29,44 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle77 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle78 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle79 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle80 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle81 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle82 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle83 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle84 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle85 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle86 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle87 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle88 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle89 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle90 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle91 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle92 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle93 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle97 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle98 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle99 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle100 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle101 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle102 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle103 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle104 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle105 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle106 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle107 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle108 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle109 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle110 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle111 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle112 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle113 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle114 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle25 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle26 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle27 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle28 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle29 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle30 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle34 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle35 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mapaVendasCompleto));
             this.excelBt = new System.Windows.Forms.Button();
             this.enviarBt = new System.Windows.Forms.Button();
@@ -215,9 +215,9 @@
             // 
             this.qtMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.qtMv.DataPropertyName = "qt";
-            dataGridViewCellStyle77.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle77.ForeColor = System.Drawing.Color.Blue;
-            this.qtMv.DefaultCellStyle = dataGridViewCellStyle77;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.Blue;
+            this.qtMv.DefaultCellStyle = dataGridViewCellStyle1;
             this.qtMv.HeaderText = "QT";
             this.qtMv.Name = "qtMv";
             this.qtMv.ReadOnly = true;
@@ -227,8 +227,8 @@
             // 
             this.dtMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.dtMv.DataPropertyName = "dt";
-            dataGridViewCellStyle78.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtMv.DefaultCellStyle = dataGridViewCellStyle78;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtMv.DefaultCellStyle = dataGridViewCellStyle2;
             this.dtMv.HeaderText = "DT";
             this.dtMv.Name = "dtMv";
             this.dtMv.ReadOnly = true;
@@ -238,8 +238,8 @@
             // 
             this.diaMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCellsExceptHeader;
             this.diaMv.DataPropertyName = "dia";
-            dataGridViewCellStyle79.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.diaMv.DefaultCellStyle = dataGridViewCellStyle79;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.diaMv.DefaultCellStyle = dataGridViewCellStyle3;
             this.diaMv.HeaderText = "Dia";
             this.diaMv.Name = "diaMv";
             this.diaMv.ReadOnly = true;
@@ -249,9 +249,9 @@
             // 
             this.caMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.caMv.DataPropertyName = "ca";
-            dataGridViewCellStyle80.BackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle80.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.caMv.DefaultCellStyle = dataGridViewCellStyle80;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.caMv.DefaultCellStyle = dataGridViewCellStyle4;
             this.caMv.HeaderText = "CA";
             this.caMv.Name = "caMv";
             this.caMv.ReadOnly = true;
@@ -261,9 +261,9 @@
             // 
             this.acMv1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv1.DataPropertyName = "ac1";
-            dataGridViewCellStyle81.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle81.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv1.DefaultCellStyle = dataGridViewCellStyle81;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv1.DefaultCellStyle = dataGridViewCellStyle5;
             this.acMv1.HeaderText = "AC";
             this.acMv1.Name = "acMv1";
             this.acMv1.ReadOnly = true;
@@ -273,9 +273,9 @@
             // 
             this.ccMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ccMv.DataPropertyName = "cc";
-            dataGridViewCellStyle82.BackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle82.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ccMv.DefaultCellStyle = dataGridViewCellStyle82;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ccMv.DefaultCellStyle = dataGridViewCellStyle6;
             this.ccMv.HeaderText = "CC";
             this.ccMv.Name = "ccMv";
             this.ccMv.ReadOnly = true;
@@ -285,9 +285,9 @@
             // 
             this.acMv2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv2.DataPropertyName = "ac2";
-            dataGridViewCellStyle83.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle83.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv2.DefaultCellStyle = dataGridViewCellStyle83;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv2.DefaultCellStyle = dataGridViewCellStyle7;
             this.acMv2.HeaderText = "AC";
             this.acMv2.Name = "acMv2";
             this.acMv2.ReadOnly = true;
@@ -296,9 +296,9 @@
             // mvCcAcMv
             // 
             this.mvCcAcMv.DataPropertyName = "mvCcAc";
-            dataGridViewCellStyle84.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(180)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle84.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mvCcAcMv.DefaultCellStyle = dataGridViewCellStyle84;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(180)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mvCcAcMv.DefaultCellStyle = dataGridViewCellStyle8;
             this.mvCcAcMv.HeaderText = "MV. CC. AC";
             this.mvCcAcMv.Name = "mvCcAcMv";
             this.mvCcAcMv.ReadOnly = true;
@@ -308,8 +308,8 @@
             // 
             this.txcMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.txcMv.DataPropertyName = "txc";
-            dataGridViewCellStyle85.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txcMv.DefaultCellStyle = dataGridViewCellStyle85;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txcMv.DefaultCellStyle = dataGridViewCellStyle9;
             this.txcMv.HeaderText = "TxC.";
             this.txcMv.Name = "txcMv";
             this.txcMv.ReadOnly = true;
@@ -319,9 +319,9 @@
             // 
             this.acMv3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv3.DataPropertyName = "ac3";
-            dataGridViewCellStyle86.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle86.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv3.DefaultCellStyle = dataGridViewCellStyle86;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv3.DefaultCellStyle = dataGridViewCellStyle10;
             this.acMv3.HeaderText = "AC";
             this.acMv3.Name = "acMv3";
             this.acMv3.ReadOnly = true;
@@ -331,9 +331,9 @@
             // 
             this.objMv1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.objMv1.DataPropertyName = "obj1";
-            dataGridViewCellStyle87.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle87.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.objMv1.DefaultCellStyle = dataGridViewCellStyle87;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.objMv1.DefaultCellStyle = dataGridViewCellStyle11;
             this.objMv1.HeaderText = "OBJ";
             this.objMv1.Name = "objMv1";
             this.objMv1.ReadOnly = true;
@@ -343,9 +343,9 @@
             // 
             this.ppoMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.ppoMv.DataPropertyName = "ppo";
-            dataGridViewCellStyle88.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle88.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ppoMv.DefaultCellStyle = dataGridViewCellStyle88;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ppoMv.DefaultCellStyle = dataGridViewCellStyle12;
             this.ppoMv.HeaderText = "PPO";
             this.ppoMv.Name = "ppoMv";
             this.ppoMv.ReadOnly = true;
@@ -355,9 +355,9 @@
             // 
             this.acMv4.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv4.DataPropertyName = "ac4";
-            dataGridViewCellStyle89.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle89.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv4.DefaultCellStyle = dataGridViewCellStyle89;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv4.DefaultCellStyle = dataGridViewCellStyle13;
             this.acMv4.HeaderText = "AC";
             this.acMv4.Name = "acMv4";
             this.acMv4.ReadOnly = true;
@@ -367,9 +367,9 @@
             // 
             this.mPpoMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.mPpoMv.DataPropertyName = "mPpo";
-            dataGridViewCellStyle90.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle90.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.mPpoMv.DefaultCellStyle = dataGridViewCellStyle90;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.mPpoMv.DefaultCellStyle = dataGridViewCellStyle14;
             this.mPpoMv.HeaderText = "M. PPO";
             this.mPpoMv.Name = "mPpoMv";
             this.mPpoMv.ReadOnly = true;
@@ -379,10 +379,10 @@
             // 
             this.loeMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.loeMv.DataPropertyName = "loe";
-            dataGridViewCellStyle91.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle91.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle91.ForeColor = System.Drawing.Color.White;
-            this.loeMv.DefaultCellStyle = dataGridViewCellStyle91;
+            dataGridViewCellStyle15.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.White;
+            this.loeMv.DefaultCellStyle = dataGridViewCellStyle15;
             this.loeMv.HeaderText = "LOE";
             this.loeMv.Name = "loeMv";
             this.loeMv.ReadOnly = true;
@@ -392,10 +392,10 @@
             // 
             this.acMv5.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv5.DataPropertyName = "ac5";
-            dataGridViewCellStyle92.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle92.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle92.ForeColor = System.Drawing.Color.White;
-            this.acMv5.DefaultCellStyle = dataGridViewCellStyle92;
+            dataGridViewCellStyle16.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.Color.White;
+            this.acMv5.DefaultCellStyle = dataGridViewCellStyle16;
             this.acMv5.HeaderText = "AC";
             this.acMv5.Name = "acMv5";
             this.acMv5.ReadOnly = true;
@@ -405,10 +405,10 @@
             // 
             this.medLoeMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.medLoeMv.DataPropertyName = "medLoe";
-            dataGridViewCellStyle93.BackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle93.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle93.ForeColor = System.Drawing.Color.White;
-            this.medLoeMv.DefaultCellStyle = dataGridViewCellStyle93;
+            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
+            this.medLoeMv.DefaultCellStyle = dataGridViewCellStyle17;
             this.medLoeMv.HeaderText = "MÉD. LOE";
             this.medLoeMv.Name = "medLoeMv";
             this.medLoeMv.ReadOnly = true;
@@ -418,9 +418,9 @@
             // 
             this.qtOMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.qtOMv.DataPropertyName = "qtOMv";
-            dataGridViewCellStyle94.BackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle94.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.qtOMv.DefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle18.BackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qtOMv.DefaultCellStyle = dataGridViewCellStyle18;
             this.qtOMv.HeaderText = "QT. O.";
             this.qtOMv.Name = "qtOMv";
             this.qtOMv.ReadOnly = true;
@@ -430,9 +430,9 @@
             // 
             this.vOrcMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.vOrcMv.DataPropertyName = "vOrc";
-            dataGridViewCellStyle95.BackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle95.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vOrcMv.DefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle19.BackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vOrcMv.DefaultCellStyle = dataGridViewCellStyle19;
             this.vOrcMv.HeaderText = "V. ORC";
             this.vOrcMv.Name = "vOrcMv";
             this.vOrcMv.ReadOnly = true;
@@ -442,9 +442,9 @@
             // 
             this.vBalMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.vBalMv.DataPropertyName = "vBal";
-            dataGridViewCellStyle96.BackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle96.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vBalMv.DefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle20.BackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vBalMv.DefaultCellStyle = dataGridViewCellStyle20;
             this.vBalMv.HeaderText = "V. BAL";
             this.vBalMv.Name = "vBalMv";
             this.vBalMv.ReadOnly = true;
@@ -454,9 +454,9 @@
             // 
             this.vtlMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.vtlMv.DataPropertyName = "vtl";
-            dataGridViewCellStyle97.BackColor = System.Drawing.Color.Yellow;
-            dataGridViewCellStyle97.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vtlMv.DefaultCellStyle = dataGridViewCellStyle97;
+            dataGridViewCellStyle21.BackColor = System.Drawing.Color.Yellow;
+            dataGridViewCellStyle21.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vtlMv.DefaultCellStyle = dataGridViewCellStyle21;
             this.vtlMv.HeaderText = "VTL";
             this.vtlMv.Name = "vtlMv";
             this.vtlMv.ReadOnly = true;
@@ -466,9 +466,9 @@
             // 
             this.acMv6.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv6.DataPropertyName = "ac6";
-            dataGridViewCellStyle98.BackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle98.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv6.DefaultCellStyle = dataGridViewCellStyle98;
+            dataGridViewCellStyle22.BackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle22.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv6.DefaultCellStyle = dataGridViewCellStyle22;
             this.acMv6.HeaderText = "AC";
             this.acMv6.Name = "acMv6";
             this.acMv6.ReadOnly = true;
@@ -478,9 +478,9 @@
             // 
             this.obj2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.obj2.DataPropertyName = "obj2";
-            dataGridViewCellStyle99.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle99.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.obj2.DefaultCellStyle = dataGridViewCellStyle99;
+            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.obj2.DefaultCellStyle = dataGridViewCellStyle23;
             this.obj2.HeaderText = "OBJ";
             this.obj2.Name = "obj2";
             this.obj2.ReadOnly = true;
@@ -490,9 +490,9 @@
             // 
             this.acMv7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv7.DataPropertyName = "ac7";
-            dataGridViewCellStyle100.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle100.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv7.DefaultCellStyle = dataGridViewCellStyle100;
+            dataGridViewCellStyle24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv7.DefaultCellStyle = dataGridViewCellStyle24;
             this.acMv7.HeaderText = "AC";
             this.acMv7.Name = "acMv7";
             this.acMv7.ReadOnly = true;
@@ -502,10 +502,10 @@
             // 
             this.saldoMv1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.saldoMv1.DataPropertyName = "saldo1";
-            dataGridViewCellStyle101.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle101.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle101.ForeColor = System.Drawing.Color.White;
-            this.saldoMv1.DefaultCellStyle = dataGridViewCellStyle101;
+            dataGridViewCellStyle25.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle25.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle25.ForeColor = System.Drawing.Color.White;
+            this.saldoMv1.DefaultCellStyle = dataGridViewCellStyle25;
             this.saldoMv1.HeaderText = "SALDO";
             this.saldoMv1.Name = "saldoMv1";
             this.saldoMv1.ReadOnly = true;
@@ -515,9 +515,9 @@
             // 
             this.previsaoMv1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.previsaoMv1.DataPropertyName = "previsao1";
-            dataGridViewCellStyle102.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle102.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previsaoMv1.DefaultCellStyle = dataGridViewCellStyle102;
+            dataGridViewCellStyle26.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle26.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previsaoMv1.DefaultCellStyle = dataGridViewCellStyle26;
             this.previsaoMv1.HeaderText = "PREVISÃO";
             this.previsaoMv1.Name = "previsaoMv1";
             this.previsaoMv1.ReadOnly = true;
@@ -527,9 +527,9 @@
             // 
             this.pMv1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.pMv1.DataPropertyName = "p1";
-            dataGridViewCellStyle103.BackColor = System.Drawing.Color.Aqua;
-            dataGridViewCellStyle103.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pMv1.DefaultCellStyle = dataGridViewCellStyle103;
+            dataGridViewCellStyle27.BackColor = System.Drawing.Color.Aqua;
+            dataGridViewCellStyle27.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pMv1.DefaultCellStyle = dataGridViewCellStyle27;
             this.pMv1.HeaderText = "P %";
             this.pMv1.Name = "pMv1";
             this.pMv1.ReadOnly = true;
@@ -539,9 +539,9 @@
             // 
             this.aMv1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.aMv1.DataPropertyName = "a1";
-            dataGridViewCellStyle104.BackColor = System.Drawing.Color.Aqua;
-            dataGridViewCellStyle104.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aMv1.DefaultCellStyle = dataGridViewCellStyle104;
+            dataGridViewCellStyle28.BackColor = System.Drawing.Color.Aqua;
+            dataGridViewCellStyle28.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aMv1.DefaultCellStyle = dataGridViewCellStyle28;
             this.aMv1.HeaderText = "A %";
             this.aMv1.Name = "aMv1";
             this.aMv1.ReadOnly = true;
@@ -551,9 +551,9 @@
             // 
             this.objMv3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.objMv3.DataPropertyName = "obj3";
-            dataGridViewCellStyle105.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle105.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.objMv3.DefaultCellStyle = dataGridViewCellStyle105;
+            dataGridViewCellStyle29.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle29.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.objMv3.DefaultCellStyle = dataGridViewCellStyle29;
             this.objMv3.HeaderText = "OBJ";
             this.objMv3.Name = "objMv3";
             this.objMv3.ReadOnly = true;
@@ -563,9 +563,9 @@
             // 
             this.acMv8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.acMv8.DataPropertyName = "ac8";
-            dataGridViewCellStyle106.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle106.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.acMv8.DefaultCellStyle = dataGridViewCellStyle106;
+            dataGridViewCellStyle30.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle30.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.acMv8.DefaultCellStyle = dataGridViewCellStyle30;
             this.acMv8.HeaderText = "AC";
             this.acMv8.Name = "acMv8";
             this.acMv8.ReadOnly = true;
@@ -575,10 +575,10 @@
             // 
             this.saldoMv2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.saldoMv2.DataPropertyName = "saldo2";
-            dataGridViewCellStyle107.BackColor = System.Drawing.Color.Red;
-            dataGridViewCellStyle107.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle107.ForeColor = System.Drawing.Color.White;
-            this.saldoMv2.DefaultCellStyle = dataGridViewCellStyle107;
+            dataGridViewCellStyle31.BackColor = System.Drawing.Color.Red;
+            dataGridViewCellStyle31.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle31.ForeColor = System.Drawing.Color.White;
+            this.saldoMv2.DefaultCellStyle = dataGridViewCellStyle31;
             this.saldoMv2.HeaderText = "SALDO";
             this.saldoMv2.Name = "saldoMv2";
             this.saldoMv2.ReadOnly = true;
@@ -588,9 +588,9 @@
             // 
             this.previsaoMv2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.previsaoMv2.DataPropertyName = "previsao2";
-            dataGridViewCellStyle108.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle108.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.previsaoMv2.DefaultCellStyle = dataGridViewCellStyle108;
+            dataGridViewCellStyle32.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle32.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.previsaoMv2.DefaultCellStyle = dataGridViewCellStyle32;
             this.previsaoMv2.HeaderText = "PREVISÃO";
             this.previsaoMv2.Name = "previsaoMv2";
             this.previsaoMv2.ReadOnly = true;
@@ -600,9 +600,9 @@
             // 
             this.pMv2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.pMv2.DataPropertyName = "p2";
-            dataGridViewCellStyle109.BackColor = System.Drawing.Color.Aqua;
-            dataGridViewCellStyle109.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.pMv2.DefaultCellStyle = dataGridViewCellStyle109;
+            dataGridViewCellStyle33.BackColor = System.Drawing.Color.Aqua;
+            dataGridViewCellStyle33.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pMv2.DefaultCellStyle = dataGridViewCellStyle33;
             this.pMv2.HeaderText = "P %";
             this.pMv2.Name = "pMv2";
             this.pMv2.ReadOnly = true;
@@ -612,9 +612,9 @@
             // 
             this.aMv2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.aMv2.DataPropertyName = "a2";
-            dataGridViewCellStyle110.BackColor = System.Drawing.Color.Aqua;
-            dataGridViewCellStyle110.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.aMv2.DefaultCellStyle = dataGridViewCellStyle110;
+            dataGridViewCellStyle34.BackColor = System.Drawing.Color.Aqua;
+            dataGridViewCellStyle34.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aMv2.DefaultCellStyle = dataGridViewCellStyle34;
             this.aMv2.HeaderText = "A %";
             this.aMv2.Name = "aMv2";
             this.aMv2.ReadOnly = true;
@@ -624,9 +624,9 @@
             // 
             this.tmAcMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.tmAcMv.DataPropertyName = "tmAc";
-            dataGridViewCellStyle111.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(180)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle111.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tmAcMv.DefaultCellStyle = dataGridViewCellStyle111;
+            dataGridViewCellStyle35.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(180)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle35.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tmAcMv.DefaultCellStyle = dataGridViewCellStyle35;
             this.tmAcMv.HeaderText = "TM - AC";
             this.tmAcMv.Name = "tmAcMv";
             this.tmAcMv.ReadOnly = true;
@@ -636,9 +636,9 @@
             // 
             this.vmAcMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.vmAcMv.DataPropertyName = "vmAc";
-            dataGridViewCellStyle112.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(180)))), ((int)(((byte)(226)))));
-            dataGridViewCellStyle112.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vmAcMv.DefaultCellStyle = dataGridViewCellStyle112;
+            dataGridViewCellStyle36.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(180)))), ((int)(((byte)(226)))));
+            dataGridViewCellStyle36.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vmAcMv.DefaultCellStyle = dataGridViewCellStyle36;
             this.vmAcMv.HeaderText = "VM - AC";
             this.vmAcMv.Name = "vmAcMv";
             this.vmAcMv.ReadOnly = true;
@@ -648,9 +648,9 @@
             // 
             this.metaMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.metaMv.DataPropertyName = "meta";
-            dataGridViewCellStyle113.BackColor = System.Drawing.Color.Lime;
-            dataGridViewCellStyle113.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.metaMv.DefaultCellStyle = dataGridViewCellStyle113;
+            dataGridViewCellStyle37.BackColor = System.Drawing.Color.Lime;
+            dataGridViewCellStyle37.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metaMv.DefaultCellStyle = dataGridViewCellStyle37;
             this.metaMv.HeaderText = "META";
             this.metaMv.Name = "metaMv";
             this.metaMv.ReadOnly = true;
@@ -660,9 +660,9 @@
             // 
             this.sMetaMv.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.sMetaMv.DataPropertyName = "sMeta";
-            dataGridViewCellStyle114.BackColor = System.Drawing.Color.Magenta;
-            dataGridViewCellStyle114.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sMetaMv.DefaultCellStyle = dataGridViewCellStyle114;
+            dataGridViewCellStyle38.BackColor = System.Drawing.Color.Magenta;
+            dataGridViewCellStyle38.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.sMetaMv.DefaultCellStyle = dataGridViewCellStyle38;
             this.sMetaMv.HeaderText = "S. META";
             this.sMetaMv.Name = "sMetaMv";
             this.sMetaMv.ReadOnly = true;

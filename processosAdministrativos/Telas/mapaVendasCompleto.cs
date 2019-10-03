@@ -18,6 +18,7 @@ namespace processosAdministrativos.Telas
     public partial class mapaVendasCompleto : Form
     {
         DAO dao = new DAO();
+        controlTelaAberta cta = new controlTelaAberta();
         DataTable tb = new DataTable();
         string caminhosMVTxt = Path.GetFullPath("Caminhos\\MapaVendas.txt");
         string caminhosIndTxt = Path.GetFullPath("Caminhos\\Indicadores.txt");
@@ -583,6 +584,8 @@ namespace processosAdministrativos.Telas
                     mail.Importance = Outlook.OlImportance.olImportanceNormal;
                     mail.Attachments.Add(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
                     ((Outlook.MailItem)mail).Send();
+                    cta.TelaMapaVendas = 0;
+                    this.Close();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de MV cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -625,6 +628,8 @@ namespace processosAdministrativos.Telas
                     mail.Importance = Outlook.OlImportance.olImportanceNormal;
                     mail.Attachments.Add(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
                     ((Outlook.MailItem)mail).Send();
+                    cta.TelaMapaVendas = 0;
+                    this.Close();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de indicadores cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1193,7 +1198,6 @@ namespace processosAdministrativos.Telas
 
         private void mapaVendasCompleto_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
             cta.TelaMapaVendas = 0;
         }
     }
