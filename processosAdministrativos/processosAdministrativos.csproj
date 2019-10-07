@@ -156,6 +156,7 @@
     <Compile Include="Classes\controlTelaAberta.cs" />
     <Compile Include="Classes\controlTmpMeta.cs" />
     <Compile Include="Classes\controlUsuarios.cs" />
+    <Compile Include="Classes\CopiaVendas.cs" />
     <Compile Include="Classes\DAO.cs" />
     <Compile Include="Classes\VerificaIp.cs" />
     <Compile Include="Dao\Conexao.cs" />
