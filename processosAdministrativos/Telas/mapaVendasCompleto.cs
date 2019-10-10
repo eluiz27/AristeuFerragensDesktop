@@ -585,7 +585,7 @@ namespace processosAdministrativos.Telas
                     mail.Attachments.Add(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
                     ((Outlook.MailItem)mail).Send();
                     cta.TelaMapaVendas = 0;
-                    this.Close();
+                    //this.Close();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de MV cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -629,7 +629,7 @@ namespace processosAdministrativos.Telas
                     mail.Attachments.Add(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
                     ((Outlook.MailItem)mail).Send();
                     cta.TelaMapaVendas = 0;
-                    this.Close();
+                    //this.Close();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de indicadores cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -782,10 +782,10 @@ namespace processosAdministrativos.Telas
             x2[0] = 8;
             x2[1] = 9;
             x2[2] = 15;
-            x2[3] = 26;
-            x2[4] = 28;
-            x2[5] = 36;
-            x2[6] = 37;
+            x2[3] = 27;
+            x2[4] = 29;
+            x2[5] = 37;
+            x2[6] = 38;
             x2[7] = 18;
 
             int mes;
