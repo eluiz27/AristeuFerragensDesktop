@@ -875,6 +875,8 @@ namespace processosAdministrativos.Telas
             String strCaminhoNomeArquivo2 = @""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             //System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
             //System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
+            CopiaVendas cv = new CopiaVendas();
+            cv.Copia();
             Envia();
         }
 

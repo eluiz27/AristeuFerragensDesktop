@@ -705,11 +705,7 @@ namespace processosAdministrativos.Telas
 
         private void Timer4_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.ToString("HH:mm:ss") == "18:25:00")
-            {
-                CopiaVendas cv = new CopiaVendas();
-                cv.Copia();
-            }
+
         }
 
         private void timer2_Tick(object sender, EventArgs e)
