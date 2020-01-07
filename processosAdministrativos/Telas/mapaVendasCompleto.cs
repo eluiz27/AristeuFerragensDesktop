@@ -583,7 +583,7 @@ namespace processosAdministrativos.Telas
                     mail.HTMLBody = "<font face='Arial'>Bom dia, segue em anexo MV-dia " + inf.ToString("dd") + "-" + inf.ToString("MM") + "</font>" + mail.HTMLBody;
                     mail.Importance = Outlook.OlImportance.olImportanceNormal;
                     mail.Attachments.Add(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-                    ((Outlook.MailItem)mail).Send();
+                   // ((Outlook.MailItem)mail).Send();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de MV cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -625,7 +625,7 @@ namespace processosAdministrativos.Telas
                     mail.HTMLBody = "<font face='Arial'>Bom dia, segue em anexo indicadores de vendas " + inf.ToString("dd") + "-" + inf.ToString("MM") + "</font>" + mail.HTMLBody;
                     mail.Importance = Outlook.OlImportance.olImportanceNormal;
                     mail.Attachments.Add(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-                    ((Outlook.MailItem)mail).Send();
+                   // ((Outlook.MailItem)mail).Send();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de indicadores cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -873,10 +873,10 @@ namespace processosAdministrativos.Telas
             ex.Close();
             String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             String strCaminhoNomeArquivo2 = @""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
-            //System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
-            //System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
+            System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
+            System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
             CopiaVendas cv = new CopiaVendas();
-            cv.Copia();
+            //cv.Copia();
             Envia();
         }
 
@@ -920,17 +920,6 @@ namespace processosAdministrativos.Telas
                 periodoPercent = periodo["tmet_dia"].ToString();
             }
             periodo.Close();
-            dao.desconecta();
-
-            Sql = "select distinct(vmet_periodo) as 'vmet_periodo' from valor_meta";
-            dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
-            MySqlDataReader periodo2 = dao.Query.ExecuteReader();
-            while (periodo2.Read())
-            {
-                periodoMeta = periodo2["vmet_periodo"].ToString();
-            }
-            periodo2.Close();
             dao.desconecta();
         }
 
@@ -986,7 +975,7 @@ namespace processosAdministrativos.Telas
             {
                 try
                 {
-                    if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM") || periodoMeta == DateTime.Now.ToString("MM"))
+                    if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
                     {
                         MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         excelBt.Enabled = false;
@@ -1008,7 +997,7 @@ namespace processosAdministrativos.Telas
             }
             else
             {
-                if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM") || periodoMeta == DateTime.Now.ToString("MM"))
+                if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
                 {
                     excelBt.Enabled = true;
                     enviarBt.Enabled = true;
