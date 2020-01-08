@@ -583,7 +583,7 @@ namespace processosAdministrativos.Telas
                     mail.HTMLBody = "<font face='Arial'>Bom dia, segue em anexo MV-dia " + inf.ToString("dd") + "-" + inf.ToString("MM") + "</font>" + mail.HTMLBody;
                     mail.Importance = Outlook.OlImportance.olImportanceNormal;
                     mail.Attachments.Add(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-                   // ((Outlook.MailItem)mail).Send();
+                    ((Outlook.MailItem)mail).Send();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de MV cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -625,7 +625,7 @@ namespace processosAdministrativos.Telas
                     mail.HTMLBody = "<font face='Arial'>Bom dia, segue em anexo indicadores de vendas " + inf.ToString("dd") + "-" + inf.ToString("MM") + "</font>" + mail.HTMLBody;
                     mail.Importance = Outlook.OlImportance.olImportanceNormal;
                     mail.Attachments.Add(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", Outlook.OlAttachmentType.olByValue, Type.Missing, Type.Missing);
-                   // ((Outlook.MailItem)mail).Send();
+                    ((Outlook.MailItem)mail).Send();
                 }
                 else
                     MessageBox.Show("Nenhum e-mail de indicadores cadastrado", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -876,7 +876,7 @@ namespace processosAdministrativos.Telas
             System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
             System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
             CopiaVendas cv = new CopiaVendas();
-            //cv.Copia();
+            cv.Copia();
             Envia();
         }
 
