@@ -140,3 +140,4 @@ C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\pro
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.Entregadores.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.CaminhosMV.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.ConfiguracaoRede.resources
+C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.ClienteForaEstado.resources

@@ -48,7 +48,9 @@ namespace processosAdministrativos.Classes
         private static int telaEntrega = 0;
         private static int telaChamadas = 0;
         private static int telaConfRede = 0;
+        private static int telaCliForaEstado = 0;
 
+        public int TelaCliForaEstado { get => telaCliForaEstado; set => telaCliForaEstado = value; }
         public int TelaConfRede { get => telaConfRede; set => telaConfRede = value; }
 
         public int TelaChamadas { get => telaChamadas; set => telaChamadas = value; }

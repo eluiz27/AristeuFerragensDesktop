@@ -554,6 +554,20 @@ namespace processosAdministrativos.Telas
                 Application.OpenForms["Ligacoes"].BringToFront();
             }
         }
+        private void clientesForaEstadoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cta.TelaCliForaEstado == 0)
+            {
+                ClienteForaEstado cfe = new ClienteForaEstado();
+                cta.TelaCliForaEstado = 1;
+                cfe.Show();
+            }
+            else
+            {
+                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.OpenForms["ClienteForaEstado"].BringToFront();
+            }
+        }
         private void ConfiguraçãoDeRedeToolStripMenuItem_Click(object sender, EventArgs e)
         {
 

@@ -192,6 +192,12 @@
     <Compile Include="Telas\campanhas.Designer.cs">
       <DependentUpon>campanhas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\ClienteForaEstado.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\ClienteForaEstado.Designer.cs">
+      <DependentUpon>ClienteForaEstado.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\comprar.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -517,6 +523,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\campanhas.resx">
       <DependentUpon>campanhas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\ClienteForaEstado.resx">
+      <DependentUpon>ClienteForaEstado.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\comprar.resx">
       <DependentUpon>comprar.cs</DependentUpon>
