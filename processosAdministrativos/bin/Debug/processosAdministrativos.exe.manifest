@@ -763,14 +763,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="processosAdministrativos.exe" size="2094080">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="processosAdministrativos.exe" size="2112512">
       <assemblyIdentity name="processosAdministrativos" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>qjALBGiacOS4otgBFSGQOOMLP3nQ45E6qysW/mrQriw=</dsig:DigestValue>
+        <dsig:DigestValue>E+wnNxwozbp8JdpBDWxOuQjthIgGHzgdxVUIWyLIErk=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -782,7 +782,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>MWvWkZcVGoBgaKK08gZd5FZSAUNmH9Z07R+opyX+f1g=</dsig:DigestValue>
+        <dsig:DigestValue>95wnKiQLlsqeGDZHb12FreeUSpBOUgT6wDUvQo1LQSE=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -850,6 +850,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>PWyR2nOAcH95Ewip8KszZ97WjuujTjH3BIB1vUJr2ig=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\header.jpg" size="21478">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>Ck77Bp3yxVjtEwsK4BPZUIjC0j7Gzev98Z4Kk8d3PY0=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

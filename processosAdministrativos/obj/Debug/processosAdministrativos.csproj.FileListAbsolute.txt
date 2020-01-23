@@ -127,7 +127,6 @@ C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\pro
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.cadastroCampanha.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.controladoria.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.procuraCampanha.resources
-C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.login.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.restricoes.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.procuraUsuarios.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.mapaVendasCompleto.resources

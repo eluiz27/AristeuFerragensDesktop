@@ -10,36 +10,195 @@ namespace processosAdministrativos.Telas
 {
     public partial class processosAdm : Form
     {
-        DAO dao = new DAO();
         controlTelaAberta cta = new controlTelaAberta();
-        int aux, aux2 = 0;
-        private string Sql = String.Empty;
-        List<string> banner = new List<string>();
+        ValoresGraficos vg = new ValoresGraficos();
+        List<double> varsFatValor = new List<double>();
+        List<double> varsPedValor = new List<double>();
+        List<double> varsMeta = new List<double>();
+        List<double> linhas = new List<double>();
 
-        private static string codUsuario = string.Empty;
-
-        public string CodUsuario { get => codUsuario; set => codUsuario = value; }
-
-        public void consultaBanco()
+        public void DadosGraficoFatValor()
         {
-            Sql = "SELECT banrot_img FROM banner_rotativo WHERE banrot_validade > '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss") + "'";
-            try
-            {
-                dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
-                MySqlDataReader vdd = dao.Query.ExecuteReader();
-                banner.Clear();
-                while (vdd.Read())
-                {
-                    banner.Add(vdd["banrot_img"].ToString());
-                }
-                dao.desconecta();
-            }
-            catch (Exception error)
-            {
-                MessageBox.Show("Erro, contate o suporte!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+            double a = vg.graficoFatDia()[0];
+            double b = vg.graficoFatMes()[0];
+            double total = a + b;
 
+            varsFatValor.Add(a);
+            varsFatValor.Add(b);
+            varsFatValor.Add(total);
+        }
+
+        public void PreencheGraficoFatValor()
+        {
+            totalFatLb.Text = "Total: ";
+
+            graficoFat.Series["valor"].Points.Clear();
+
+            graficoFat.Series["valor"].IsValueShownAsLabel = true;
+
+            graficoFat.Series["valor"].Points.AddXY("Dia", varsFatValor[0].ToString("C2"));
+            graficoFat.Series["valor"].Points.AddXY("Mês", varsFatValor[1]);
+
+            graficoFat.Series["valor"].Points[0].Color = Color.IndianRed;
+            graficoFat.Series["valor"].Points[0].LabelForeColor = Color.Black;
+            graficoFat.Series["valor"].Points[1].Color = Color.DodgerBlue;
+            graficoFat.Series["valor"].Points[1].LabelForeColor = Color.Black;
+
+            graficoFat.Series["valor"].LabelFormat = "C2";
+
+            totalFatLb.Text = (totalFatLb.Text + varsFatValor[2].ToString("C2")).ToString();
+
+            varsFatValor.Clear();
+        }
+
+        public void GraficoFaturamentoQtde()
+        {
+            totalFatLb.Text = "Total: ";
+
+            double a = vg.graficoFatDia()[1];
+            int b = Convert.ToInt32(vg.graficoFatMes()[1]);
+            double total = a + b;
+
+            graficoFat.Series["valor"].Points.Clear();
+
+            graficoFat.Series["valor"].IsValueShownAsLabel = true;
+
+            graficoFat.Series["valor"].Points.AddXY("Dia", a);
+            graficoFat.Series["valor"].Points.AddXY("Mês", b);
+
+            graficoFat.Series["valor"].Points[0].Color = Color.IndianRed;
+            graficoFat.Series["valor"].Points[0].LabelForeColor = Color.Black;
+            graficoFat.Series["valor"].Points[1].Color = Color.DodgerBlue;
+            graficoFat.Series["valor"].Points[1].LabelForeColor = Color.Black;
+
+            totalFatLb.Text = totalFatLb.Text + total;
+        }
+
+        public void DadosGraficoPedValor()
+        {
+            double a = vg.graficoPedAprov()[0];
+            double b = vg.graficoPedCanc()[0];
+            double c = vg.graficoPedDev()[0];
+            double total = b + c;
+
+            varsPedValor.Add(a);
+            varsPedValor.Add(b);
+            varsPedValor.Add(c);
+            varsPedValor.Add(total);
+        }
+
+        public void PreencheGraficoPedValor()
+        {
+            aprovLb.Text = "Aprovados: ";
+            cancDevLb.Text = "Canc/Devolu: ";
+
+            graficoPed.Series["valor"].Points.Clear();
+
+            graficoPed.Series["valor"].IsValueShownAsLabel = true;
+
+            graficoPed.Series["valor"].Points.AddXY("Canceladas", varsPedValor[1]);
+            graficoPed.Series["valor"].Points.AddXY("Devolvidas", varsPedValor[2]);
+
+            graficoPed.Series["valor"].Points[0].Color = Color.Red;
+            graficoPed.Series["valor"].Points[0].LabelForeColor = Color.Black;
+            graficoPed.Series["valor"].Points[1].Color = Color.Gold;
+            graficoPed.Series["valor"].Points[1].LabelForeColor = Color.Black;
+
+            graficoPed.Series["valor"].LabelFormat = "C2";
+
+            aprovLb.Text = (aprovLb.Text + varsPedValor[0].ToString("C2")).ToString();
+            cancDevLb.Text = (cancDevLb.Text + varsPedValor[3].ToString("C2")).ToString();
+
+            varsPedValor.Clear();
+        }
+
+        public void GraficoPedidosQtde()
+        {
+            aprovLb.Text = "Aprovados: ";
+            cancDevLb.Text = "Canc/Devolu: ";
+
+            double a = vg.graficoPedAprov()[1];
+            double b = vg.graficoPedCanc()[1];
+            double c = vg.graficoPedDev()[1];
+            double total = b + c;
+            graficoPed.Series["valor"].Points.Clear();
+
+            graficoPed.Series["valor"].IsValueShownAsLabel = true;
+
+            graficoPed.Series["valor"].Points.AddXY("Canceladas", b);
+            graficoPed.Series["valor"].Points.AddXY("Devolvidas", c);
+
+            graficoPed.Series["valor"].Points[0].Color = Color.Red;
+            graficoPed.Series["valor"].Points[0].LabelForeColor = Color.Black;
+            graficoPed.Series["valor"].Points[1].Color = Color.Gold;
+            graficoPed.Series["valor"].Points[1].LabelForeColor = Color.Black;
+
+            aprovLb.Text = aprovLb.Text + a;
+            cancDevLb.Text = cancDevLb.Text + total;
+        }
+
+        public void DadosGraficoMeta()
+        {
+            double a = vg.graficoMetaFeito();
+            double b = vg.graficoMetaSaldo() - a;
+            double total = a + b;
+
+            varsMeta.Add(a);
+            varsMeta.Add(b);
+            varsMeta.Add(total);
+        }
+
+        public void PreencheGraficoMeta()
+        {
+            metaLb.Text = "Meta: ";
+
+            graficoMeta.Series["valor"].Points.Clear();
+
+            graficoMeta.Series["valor"].IsValueShownAsLabel = true;
+
+            graficoMeta.Series["valor"].Points.AddXY("Realizado", varsMeta[0]);
+            graficoMeta.Series["valor"].Points.AddXY("Saldo", varsMeta[1]);
+
+            graficoMeta.Series["valor"].Points[0].Color = Color.Green;
+            graficoMeta.Series["valor"].Points[0].LabelForeColor = Color.Black;
+            graficoMeta.Series["valor"].Points[1].Color = Color.Red;
+            graficoMeta.Series["valor"].Points[1].LabelForeColor = Color.Black;
+
+            graficoMeta.Series["valor"].LabelFormat = "C2";
+
+            metaLb.Text = (metaLb.Text + (varsMeta[2]).ToString("C2")).ToString();
+
+            varsMeta.Clear();
+        }
+
+        public void DadosGraficoLine()
+        {
+            vg.graficoLinha();
+            for(int i = 0; i < 6; i++)
+            {
+                linhas.Add(vg.Valores[i]);
+            }
+            vg.Valores.Clear();
+        }
+
+        public void PreencheGraficoLinha()
+        {
+            graficoIndic.Series["valor"].Points.Clear();
+
+            graficoIndic.Series[0].Points.AddXY("30/12", linhas[0]);
+            graficoIndic.Series[0].Points.AddXY("05/01", linhas[1]);
+            graficoIndic.Series[0].Points.AddXY("10/01", linhas[2]);
+            graficoIndic.Series[0].Points.AddXY("15/01", linhas[3]);
+            graficoIndic.Series[0].Points.AddXY("20/01", linhas[4]);
+            graficoIndic.Series[0].Points.AddXY("25/01", linhas[5]);
+            graficoIndic.Series["valor"].Color = Color.Purple;
+
+            graficoIndic.Series["valor"].LabelFormat = "C2";
+
+            var chart = graficoIndic.ChartAreas[0];
+            chart.AxisX.IntervalType = System.Windows.Forms.DataVisualization.Charting.DateTimeIntervalType.Days;
+
+            linhas.Clear();
         }
 
         public processosAdm()
@@ -47,7 +206,51 @@ namespace processosAdministrativos.Telas
             InitializeComponent();
         }
 
+        private void processosAdm_Load(object sender, EventArgs e)
+        {
+            timer3.Start();
+            backgroundWorker1.RunWorkerAsync();
+            timer1.Start();
+        }
 
+        private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            DadosGraficoFatValor();
+        }
+        private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            DadosGraficoPedValor();
+        }
+        private void backgroundWorker3_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            DadosGraficoMeta();
+        }
+        private void backgroundWorker4_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            DadosGraficoLine();
+        }
+        private void backgroundWorker1_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            PreencheGraficoFatValor();
+            backgroundWorker2.RunWorkerAsync();
+        }
+
+        private void backgroundWorker2_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            PreencheGraficoPedValor();
+            backgroundWorker3.RunWorkerAsync();
+        }
+        private void backgroundWorker3_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            PreencheGraficoMeta();
+            backgroundWorker4.RunWorkerAsync();
+        }
+        private void backgroundWorker4_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            PreencheGraficoLinha();
+            qtdeFatBt.Enabled = true;
+            qtdePedBt.Enabled = true;
+        }
         private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (cta.TelaCadAssistTec == 0)
@@ -568,121 +771,6 @@ namespace processosAdministrativos.Telas
                 Application.OpenForms["ClienteForaEstado"].BringToFront();
             }
         }
-        private void ConfiguraçãoDeRedeToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            if(banner.Count > 0)
-            {
-                if (aux2 < (banner.Count - 1))
-                {
-                    aux2++;
-                    novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-                }
-                else
-                {
-                    aux2 = 0;
-                    novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-                }
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            if(aux == 0)
-            {
-                timer1.Stop();
-                timer2.Stop();
-                aux = 1;
-            }
-            else
-            {
-                timer1.Start();
-                timer2.Start();
-                aux = 0;
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (banner.Count > 0)
-            {
-                if (aux2 < banner.Count - 1)
-                {
-                    aux2++;
-                    novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-                }
-                else
-                {
-                    aux2 = 0;
-                    novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-                }
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (banner.Count > 0)
-            { 
-                if (aux2 > 0)
-                {
-                    aux2--;
-                    novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-                }
-                else
-                {
-                    aux2 = banner.Count - 1;
-                    novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-                }
-            }
-        }
-
-        private void processosAdm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (MessageBox.Show("Tem certeza que deseja fechar?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
-                e.Cancel = true;
-        }
-
-        private void salvarImagemToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            saveFileDialog1.Filter = "JPEG Image|*.jpg|PNG Image|*.png";
-            saveFileDialog1.Title = "Salvar um arquivo de imagem";
-            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                if (saveFileDialog1.FileName != "")
-                {
-                    FileStream fs = (System.IO.FileStream)saveFileDialog1.OpenFile();
-                    switch (saveFileDialog1.FilterIndex)
-                    {
-                        case 1:
-                            this.novidadePb.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            break;
-
-                        case 2:
-                            this.novidadePb.Image.Save(fs, System.Drawing.Imaging.ImageFormat.Png);
-                            break;
-                    }
-                    fs.Close();
-                    saveFileDialog1.FileName = "";
-                }
-                MessageBox.Show("Imagem salva com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            timer1.Start();
-        }
-
-        private void processosAdm_Load(object sender, EventArgs e)
-        {
-            consultaBanco();
-            timer2.Start();
-            if(banner.Count > 0)
-                novidadePb.Image = new Bitmap(@"\\poseidon\sistemas\Processos Administrativos\Banners\" + banner[aux2]);
-            timer1.Start();
-            timer3.Start();
-        }
 
         private void ConfiguraçãoDeRedeToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -698,6 +786,13 @@ namespace processosAdministrativos.Telas
                 Application.OpenForms["ConfiguracaoRede"].BringToFront();
             }
         }
+
+        private void processosAdm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Tem certeza que deseja fechar?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                e.Cancel = true;
+        }
+
 
         private void Timer3_Tick(object sender, EventArgs e)
         {
@@ -717,15 +812,54 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        private void Timer4_Tick(object sender, EventArgs e)
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            qtdeFatBt.Enabled = false;
+            qtdePedBt.Enabled = false;
+            valorFatBt.Enabled = false;
+            valorPedBt.Enabled = false;
+            backgroundWorker1.RunWorkerAsync();
+        }
+
+        private void panel9_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void timer2_Tick(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            consultaBanco();
-            novidadePb.Refresh();
+            valorFatBt.Enabled = false;
+            DadosGraficoFatValor();
+            PreencheGraficoFatValor();
+            graficoFat.Series["valor"].LabelFormat = "C2";
+            qtdeFatBt.Enabled = true;
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            qtdeFatBt.Enabled = false;
+            GraficoFaturamentoQtde();
+            graficoFat.Series["valor"].LabelFormat = "";
+            valorFatBt.Enabled = true;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            valorPedBt.Enabled = false;
+            DadosGraficoPedValor();
+            PreencheGraficoPedValor();
+            graficoPed.Series["valor"].LabelFormat = "C2";
+            qtdePedBt.Enabled = true;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            qtdePedBt.Enabled = false;
+            GraficoPedidosQtde();
+            graficoPed.Series["valor"].LabelFormat = "";
+            valorPedBt.Enabled = true;
+        }
+
+
     }
 }

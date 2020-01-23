@@ -29,14 +29,19 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(processosAdm));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.salvarImagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.comprasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.assistenciasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastrarToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -71,6 +76,7 @@
             this.indicadoresDePerformânceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasFuncionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controladoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.clientesForaEstadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.vendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lOEToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.consultaLOEToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
@@ -85,18 +91,52 @@
             this.chamadasTelefoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoDeRedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
-            this.timer4 = new System.Windows.Forms.Timer(this.components);
-            this.clientesForaEstadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.novidadePb = new System.Windows.Forms.PictureBox();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.graficoIndic = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cancDevLb = new System.Windows.Forms.Label();
+            this.aprovLb = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.graficoPed = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.qtdePedBt = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.valorPedBt = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.metaLb = new System.Windows.Forms.Label();
+            this.graficoMeta = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.totalFatLb = new System.Windows.Forms.Label();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.graficoFat = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.qtdeFatBt = new System.Windows.Forms.Button();
+            this.valorFatBt = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
+            this.backgroundWorker4 = new System.ComponentModel.BackgroundWorker();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip1.SuspendLayout();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.novidadePb)).BeginInit();
+            this.panel1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoIndic)).BeginInit();
+            this.panel4.SuspendLayout();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoPed)).BeginInit();
+            this.panel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoMeta)).BeginInit();
+            this.panel3.SuspendLayout();
+            this.panel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoFat)).BeginInit();
             this.SuspendLayout();
             // 
             // contextMenuStrip1
@@ -104,47 +144,12 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.salvarImagemToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 26);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(68, 26);
             // 
             // salvarImagemToolStripMenuItem
             // 
             this.salvarImagemToolStripMenuItem.Name = "salvarImagemToolStripMenuItem";
-            this.salvarImagemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salvarImagemToolStripMenuItem.Text = "Salvar imagem";
-            this.salvarImagemToolStripMenuItem.Click += new System.EventHandler(this.salvarImagemToolStripMenuItem_Click);
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 4000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // timer2
-            // 
-            this.timer2.Interval = 600000;
-            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.flowLayoutPanel1.Controls.Add(this.button2);
-            this.flowLayoutPanel1.Controls.Add(this.button3);
-            this.flowLayoutPanel1.Controls.Add(this.button1);
-            this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(446, 557);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(153, 48);
-            this.flowLayoutPanel1.TabIndex = 7;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.novidadePb);
-            this.panel1.Location = new System.Drawing.Point(12, 27);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1004, 524);
-            this.panel1.TabIndex = 6;
+            this.salvarImagemToolStripMenuItem.Size = new System.Drawing.Size(67, 22);
             // 
             // comprasToolStripMenuItem
             // 
@@ -159,7 +164,6 @@
             this.médiaDeVendasToolStripMenuItem,
             this.compraToolStripMenuItem,
             this.etiquetaDePreçoToolStripMenuItem1});
-            this.comprasToolStripMenuItem.Enabled = false;
             this.comprasToolStripMenuItem.Name = "comprasToolStripMenuItem";
             this.comprasToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
             this.comprasToolStripMenuItem.Text = "Compras";
@@ -302,7 +306,6 @@
             // 
             this.expediçãoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.controleDeEntregasToolStripMenuItem});
-            this.expediçãoToolStripMenuItem.Enabled = false;
             this.expediçãoToolStripMenuItem.Name = "expediçãoToolStripMenuItem";
             this.expediçãoToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.expediçãoToolStripMenuItem.Text = "Expedição";
@@ -324,7 +327,6 @@
             this.codificaçãoToolStripMenuItem,
             this.etiquetaDePreçoToolStripMenuItem,
             this.contagemToolStripMenuItem});
-            this.estoqueToolStripMenuItem.Enabled = false;
             this.estoqueToolStripMenuItem.Name = "estoqueToolStripMenuItem";
             this.estoqueToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.estoqueToolStripMenuItem.Text = "Estoque";
@@ -418,6 +420,13 @@
             this.controladoriaToolStripMenuItem.Text = "Controladoria";
             this.controladoriaToolStripMenuItem.Click += new System.EventHandler(this.controladoriaToolStripMenuItem_Click);
             // 
+            // clientesForaEstadoToolStripMenuItem
+            // 
+            this.clientesForaEstadoToolStripMenuItem.Name = "clientesForaEstadoToolStripMenuItem";
+            this.clientesForaEstadoToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
+            this.clientesForaEstadoToolStripMenuItem.Text = "Clientes Fora Estado";
+            this.clientesForaEstadoToolStripMenuItem.Click += new System.EventHandler(this.clientesForaEstadoToolStripMenuItem_Click);
+            // 
             // vendasToolStripMenuItem
             // 
             this.vendasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -427,7 +436,6 @@
             this.assistênciasTécnicasToolStripMenuItem,
             this.nDeSérieToolStripMenuItem,
             this.metaToolStripMenuItem});
-            this.vendasToolStripMenuItem.Enabled = false;
             this.vendasToolStripMenuItem.Name = "vendasToolStripMenuItem";
             this.vendasToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.vendasToolStripMenuItem.Text = "Vendas";
@@ -478,7 +486,6 @@
             // 
             this.utilitáriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroDeBannersToolStripMenuItem});
-            this.utilitáriosToolStripMenuItem.Enabled = false;
             this.utilitáriosToolStripMenuItem.Name = "utilitáriosToolStripMenuItem";
             this.utilitáriosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.utilitáriosToolStripMenuItem.Text = "Marketing";
@@ -486,7 +493,7 @@
             // cadastroDeBannersToolStripMenuItem
             // 
             this.cadastroDeBannersToolStripMenuItem.Name = "cadastroDeBannersToolStripMenuItem";
-            this.cadastroDeBannersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroDeBannersToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.cadastroDeBannersToolStripMenuItem.Text = "Campanhas";
             this.cadastroDeBannersToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeBannersToolStripMenuItem_Click);
             // 
@@ -496,7 +503,6 @@
             this.restriçõesToolStripMenuItem,
             this.chamadasTelefoneToolStripMenuItem,
             this.configuraçãoDeRedeToolStripMenuItem});
-            this.utilitáriosToolStripMenuItem1.Enabled = false;
             this.utilitáriosToolStripMenuItem1.Name = "utilitáriosToolStripMenuItem1";
             this.utilitáriosToolStripMenuItem1.Size = new System.Drawing.Size(69, 20);
             this.utilitáriosToolStripMenuItem1.Text = "Utilitários";
@@ -545,62 +551,327 @@
             this.timer3.Interval = 1000;
             this.timer3.Tick += new System.EventHandler(this.Timer3_Tick);
             // 
-            // timer4
+            // panel1
             // 
-            this.timer4.Interval = 1000;
-            this.timer4.Tick += new System.EventHandler(this.Timer4_Tick);
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.panel5);
+            this.panel1.Controls.Add(this.cancDevLb);
+            this.panel1.Controls.Add(this.aprovLb);
+            this.panel1.Controls.Add(this.panel4);
+            this.panel1.Controls.Add(this.panel6);
+            this.panel1.Controls.Add(this.panel3);
+            this.panel1.Controls.Add(this.panel2);
+            this.panel1.Location = new System.Drawing.Point(0, 24);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1028, 586);
+            this.panel1.TabIndex = 1;
             // 
-            // clientesForaEstadoToolStripMenuItem
+            // panel5
             // 
-            this.clientesForaEstadoToolStripMenuItem.Name = "clientesForaEstadoToolStripMenuItem";
-            this.clientesForaEstadoToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.clientesForaEstadoToolStripMenuItem.Text = "Clientes Fora Estado";
-            this.clientesForaEstadoToolStripMenuItem.Click += new System.EventHandler(this.clientesForaEstadoToolStripMenuItem_Click);
+            this.panel5.BackColor = System.Drawing.SystemColors.Window;
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel5.Controls.Add(this.panel10);
+            this.panel5.Controls.Add(this.label4);
+            this.panel5.Location = new System.Drawing.Point(523, 325);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(485, 249);
+            this.panel5.TabIndex = 4;
             // 
-            // novidadePb
+            // panel10
             // 
-            this.novidadePb.ContextMenuStrip = this.contextMenuStrip1;
-            this.novidadePb.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.novidadePb.Location = new System.Drawing.Point(0, 0);
-            this.novidadePb.Name = "novidadePb";
-            this.novidadePb.Size = new System.Drawing.Size(1004, 524);
-            this.novidadePb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.novidadePb.TabIndex = 0;
-            this.novidadePb.TabStop = false;
+            this.panel10.Controls.Add(this.graficoIndic);
+            this.panel10.Location = new System.Drawing.Point(11, 32);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(458, 212);
+            this.panel10.TabIndex = 13;
             // 
-            // button2
+            // graficoIndic
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.button2.Image = global::processosAdministrativos.Properties.Resources.next_12876___Copia;
-            this.button2.Location = new System.Drawing.Point(3, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(45, 40);
-            this.button2.TabIndex = 3;
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            chartArea9.AxisX.MajorGrid.Enabled = false;
+            chartArea9.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea9.Name = "ChartArea1";
+            this.graficoIndic.ChartAreas.Add(chartArea9);
+            this.graficoIndic.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graficoIndic.Location = new System.Drawing.Point(0, 0);
+            this.graficoIndic.Name = "graficoIndic";
+            series9.BorderWidth = 3;
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series9.IsValueShownAsLabel = true;
+            series9.Name = "valor";
+            this.graficoIndic.Series.Add(series9);
+            this.graficoIndic.Size = new System.Drawing.Size(458, 212);
+            this.graficoIndic.TabIndex = 0;
+            this.graficoIndic.Text = "graficoIndic";
             // 
-            // button3
+            // label4
             // 
-            this.button3.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button3.Image = global::processosAdministrativos.Properties.Resources.pause;
-            this.button3.Location = new System.Drawing.Point(54, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(45, 40);
-            this.button3.TabIndex = 2;
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(130, 3);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(220, 25);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Valores a cada 5 dias";
             // 
-            // button1
+            // cancDevLb
             // 
-            this.button1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.button1.Image = global::processosAdministrativos.Properties.Resources.next_12876;
-            this.button1.Location = new System.Drawing.Point(105, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(45, 40);
-            this.button1.TabIndex = 5;
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.cancDevLb.BackColor = System.Drawing.SystemColors.Window;
+            this.cancDevLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cancDevLb.Location = new System.Drawing.Point(789, 289);
+            this.cancDevLb.Name = "cancDevLb";
+            this.cancDevLb.Size = new System.Drawing.Size(185, 19);
+            this.cancDevLb.TabIndex = 3;
+            this.cancDevLb.Text = "Canc/Devolu: ";
+            // 
+            // aprovLb
+            // 
+            this.aprovLb.BackColor = System.Drawing.SystemColors.Window;
+            this.aprovLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.aprovLb.Location = new System.Drawing.Point(597, 289);
+            this.aprovLb.Name = "aprovLb";
+            this.aprovLb.Size = new System.Drawing.Size(185, 19);
+            this.aprovLb.TabIndex = 2;
+            this.aprovLb.Text = "Aprovados: ";
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.SystemColors.Window;
+            this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Controls.Add(this.qtdePedBt);
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.valorPedBt);
+            this.panel4.Location = new System.Drawing.Point(523, 61);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(485, 249);
+            this.panel4.TabIndex = 2;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.graficoPed);
+            this.panel8.Location = new System.Drawing.Point(71, 31);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(380, 203);
+            this.panel8.TabIndex = 7;
+            // 
+            // graficoPed
+            // 
+            chartArea10.AxisX.MajorGrid.Enabled = false;
+            chartArea10.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea10.Name = "ChartArea1";
+            this.graficoPed.ChartAreas.Add(chartArea10);
+            this.graficoPed.Location = new System.Drawing.Point(0, -1);
+            this.graficoPed.Name = "graficoPed";
+            series10.ChartArea = "ChartArea1";
+            series10.Name = "valor";
+            this.graficoPed.Series.Add(series10);
+            this.graficoPed.Size = new System.Drawing.Size(398, 194);
+            this.graficoPed.TabIndex = 4;
+            this.graficoPed.Text = "chart1";
+            // 
+            // qtdePedBt
+            // 
+            this.qtdePedBt.Enabled = false;
+            this.qtdePedBt.Location = new System.Drawing.Point(11, 60);
+            this.qtdePedBt.Name = "qtdePedBt";
+            this.qtdePedBt.Size = new System.Drawing.Size(48, 23);
+            this.qtdePedBt.TabIndex = 6;
+            this.qtdePedBt.Text = "Qtde";
+            this.qtdePedBt.UseVisualStyleBackColor = true;
+            this.qtdePedBt.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(190, 3);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(90, 25);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Pedidos";
+            // 
+            // valorPedBt
+            // 
+            this.valorPedBt.Enabled = false;
+            this.valorPedBt.Location = new System.Drawing.Point(11, 31);
+            this.valorPedBt.Name = "valorPedBt";
+            this.valorPedBt.Size = new System.Drawing.Size(48, 23);
+            this.valorPedBt.TabIndex = 5;
+            this.valorPedBt.Text = "Valor";
+            this.valorPedBt.UseVisualStyleBackColor = true;
+            this.valorPedBt.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.SystemColors.Window;
+            this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.metaLb);
+            this.panel6.Controls.Add(this.graficoMeta);
+            this.panel6.Controls.Add(this.label3);
+            this.panel6.Location = new System.Drawing.Point(19, 325);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(485, 249);
+            this.panel6.TabIndex = 3;
+            // 
+            // metaLb
+            // 
+            this.metaLb.BackColor = System.Drawing.SystemColors.Window;
+            this.metaLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.metaLb.Location = new System.Drawing.Point(316, 229);
+            this.metaLb.Name = "metaLb";
+            this.metaLb.Size = new System.Drawing.Size(141, 19);
+            this.metaLb.TabIndex = 2;
+            this.metaLb.Text = "Meta: ";
+            this.metaLb.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // graficoMeta
+            // 
+            chartArea11.Name = "ChartArea1";
+            this.graficoMeta.ChartAreas.Add(chartArea11);
+            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend5.Name = "Legend1";
+            this.graficoMeta.Legends.Add(legend5);
+            this.graficoMeta.Location = new System.Drawing.Point(11, 30);
+            this.graficoMeta.Name = "graficoMeta";
+            series11.ChartArea = "ChartArea1";
+            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series11.CustomProperties = "PieLabelStyle=Outside";
+            series11.Legend = "Legend1";
+            series11.Name = "valor";
+            this.graficoMeta.Series.Add(series11);
+            this.graficoMeta.Size = new System.Drawing.Size(457, 200);
+            this.graficoMeta.TabIndex = 3;
+            this.graficoMeta.Text = "chart1";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(198, 4);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(60, 25);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Meta";
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.SystemColors.Window;
+            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel3.Controls.Add(this.totalFatLb);
+            this.panel3.Controls.Add(this.panel7);
+            this.panel3.Controls.Add(this.qtdeFatBt);
+            this.panel3.Controls.Add(this.valorFatBt);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Location = new System.Drawing.Point(19, 61);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(485, 249);
+            this.panel3.TabIndex = 1;
+            // 
+            // totalFatLb
+            // 
+            this.totalFatLb.BackColor = System.Drawing.SystemColors.Window;
+            this.totalFatLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.totalFatLb.Location = new System.Drawing.Point(303, 229);
+            this.totalFatLb.Name = "totalFatLb";
+            this.totalFatLb.Size = new System.Drawing.Size(154, 19);
+            this.totalFatLb.TabIndex = 1;
+            this.totalFatLb.Text = "Total: ";
+            this.totalFatLb.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.graficoFat);
+            this.panel7.Location = new System.Drawing.Point(71, 30);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(380, 203);
+            this.panel7.TabIndex = 4;
+            // 
+            // graficoFat
+            // 
+            chartArea12.Name = "ChartArea1";
+            this.graficoFat.ChartAreas.Add(chartArea12);
+            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend6.Name = "Legend1";
+            this.graficoFat.Legends.Add(legend6);
+            this.graficoFat.Location = new System.Drawing.Point(0, 0);
+            this.graficoFat.Name = "graficoFat";
+            series12.ChartArea = "ChartArea1";
+            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series12.CustomProperties = "PieLabelStyle=Outside";
+            series12.Legend = "Legend1";
+            series12.Name = "valor";
+            this.graficoFat.Series.Add(series12);
+            this.graficoFat.Size = new System.Drawing.Size(397, 200);
+            this.graficoFat.TabIndex = 0;
+            this.graficoFat.Text = "chart1";
+            // 
+            // qtdeFatBt
+            // 
+            this.qtdeFatBt.Enabled = false;
+            this.qtdeFatBt.Location = new System.Drawing.Point(11, 59);
+            this.qtdeFatBt.Name = "qtdeFatBt";
+            this.qtdeFatBt.Size = new System.Drawing.Size(48, 23);
+            this.qtdeFatBt.TabIndex = 3;
+            this.qtdeFatBt.Text = "Qtde";
+            this.qtdeFatBt.UseVisualStyleBackColor = true;
+            this.qtdeFatBt.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // valorFatBt
+            // 
+            this.valorFatBt.Enabled = false;
+            this.valorFatBt.Location = new System.Drawing.Point(11, 30);
+            this.valorFatBt.Name = "valorFatBt";
+            this.valorFatBt.Size = new System.Drawing.Size(48, 23);
+            this.valorFatBt.TabIndex = 2;
+            this.valorFatBt.Text = "Valor";
+            this.valorFatBt.UseVisualStyleBackColor = true;
+            this.valorFatBt.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(175, 3);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(116, 24);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Faturamento";
+            // 
+            // panel2
+            // 
+            this.panel2.BackgroundImage = global::processosAdministrativos.Properties.Resources.header1;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1028, 42);
+            this.panel2.TabIndex = 0;
+            // 
+            // backgroundWorker1
+            // 
+            this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // backgroundWorker2
+            // 
+            this.backgroundWorker2.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker2_DoWork);
+            this.backgroundWorker2.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker2_RunWorkerCompleted);
+            // 
+            // backgroundWorker3
+            // 
+            this.backgroundWorker3.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker3_DoWork);
+            this.backgroundWorker3.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker3_RunWorkerCompleted);
+            // 
+            // backgroundWorker4
+            // 
+            this.backgroundWorker4.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker4_DoWork);
+            this.backgroundWorker4.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker4_RunWorkerCompleted);
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 10000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // processosAdm
             // 
@@ -609,7 +880,6 @@
             this.ClientSize = new System.Drawing.Size(1028, 610);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.flowLayoutPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
@@ -619,27 +889,32 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.processosAdm_FormClosing);
             this.Load += new System.EventHandler(this.processosAdm_Load);
             this.contextMenuStrip1.ResumeLayout(false);
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.novidadePb)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.graficoIndic)).EndInit();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.graficoPed)).EndInit();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.graficoMeta)).EndInit();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.graficoFat)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem salvarImagemToolStripMenuItem;
-        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
-        private System.Windows.Forms.Timer timer2;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.ToolStripMenuItem comprasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assistenciasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastrarToolStripMenuItem;
@@ -687,11 +962,39 @@
         private System.Windows.Forms.ToolStripMenuItem etiquetaDePreçoToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem chamadasTelefoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restriçõesToolStripMenuItem;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.PictureBox novidadePb;
         private System.Windows.Forms.ToolStripMenuItem configuraçãoDeRedeToolStripMenuItem;
-        private System.Windows.Forms.Timer timer3;
-        private System.Windows.Forms.Timer timer4;
         private System.Windows.Forms.ToolStripMenuItem clientesForaEstadoToolStripMenuItem;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Panel panel10;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Button qtdePedBt;
+        private System.Windows.Forms.Button valorPedBt;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Button qtdeFatBt;
+        private System.Windows.Forms.Button valorFatBt;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoIndic;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoFat;
+        private System.Windows.Forms.Label totalFatLb;
+        private System.Windows.Forms.Label aprovLb;
+        private System.Windows.Forms.Label cancDevLb;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+        private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.ComponentModel.BackgroundWorker backgroundWorker3;
+        private System.Windows.Forms.Label metaLb;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoMeta;
+        private System.Windows.Forms.DataVisualization.Charting.Chart graficoPed;
+        private System.ComponentModel.BackgroundWorker backgroundWorker4;
+        private System.Windows.Forms.Timer timer1;
     }
 }

@@ -1,4 +1,4 @@
-﻿    using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +11,11 @@ namespace processosAdministrativos.Classes
     {
         DAO dao = new DAO();
         static MySqlCommand cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7, cmd8, cmd9, cmdAux;
+        static MySqlCommand cmdValor1, cmdValor2, cmdValor3, cmdMeta, cmdDev, cmdCanc;
         static string Sql1, Sql2, Sql3, Sql4, Sql5, Sql6, Sql7, Sql8, Sql9, SqlAux = string.Empty;
-
+        static string sqlValor1, sqlValor2, sqlValor3, sqlMeta, sqlDev, sqlCanc = string.Empty;
+        
+        List<double> meta = new List<double>();
         String nVendas;
         String nOrcam;
         double orcam;
@@ -128,6 +131,7 @@ namespace processosAdministrativos.Classes
 
         public string NItens { get => nItens; set => nItens = value; }
         public string NItensLoja { get => nItensLoja; set => nItensLoja = value; }
+        public List<double> Meta { get => meta; set => meta = value; }
 
         public void selecao(String inferior, String superior, int vendedor)
         {
@@ -282,13 +286,13 @@ namespace processosAdministrativos.Classes
 
         public void indcaLoja(String inferior, String superior, int vendInf, int vendSup)
         {
-            Sql1 = "SELECT count(vendedores.vdd_nome) as 'nome' FROM ((((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join pedidos on notas.nt_numpedido = pedidos.ped_numero) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
+            Sql1 = "SELECT count(vendedores.vdd_nome) as 'nome' FROM ((((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join pedidos on notas.nt_numpedido = pedidos.ped_numero  and notas.nt_vendedor = pedidos.ped_vendedor and notas.nt_empresa = pedidos.ped_empresa) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
                     "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
                     "WHERE vdd_codigo between " + vendInf + " and " + vendSup + " and notas.nt_data between '" + inferior + "' and '" + superior + "' and pedidos.ped_cancelado = 1 AND empresas.emp_codigo <> 91 and tipomovi.tmv_grupo = 'v' and notas.nt_cancelada = 1;";
 
-            Sql2 = "SELECT ifnull(sum(notas.nt_total), 0) as 'total' FROM ((((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join pedidos on notas.nt_numpedido = pedidos.ped_numero) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
-                    "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
-                    "WHERE vdd_codigo between " + vendInf + " and " + vendSup + " and notas.nt_data between '" + inferior + "' and '" + superior + "' and pedidos.ped_cancelado = 1 AND empresas.emp_codigo <> 91 and tipomovi.tmv_grupo = 'v' and notas.nt_cancelada = 1;";
+            Sql2 = "SELECT ifnull(sum(notas.nt_total), 0) as 'total' FROM (((notas inner join pedidos on notas.nt_numpedido = pedidos.ped_numero) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
+                    "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) " +
+                    "WHERE notas.nt_data between '" + inferior + "' and '" + superior + "' and pedidos.ped_cancelado = 1 AND nt_empresa <> 91 and tipomovi.tmv_grupo = 'v' and notas.nt_cancelada = 1;";
            
             Sql3 = "SELECT count(vendedores.vdd_nome) as 'nome' FROM (((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
                     "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
@@ -330,6 +334,95 @@ namespace processosAdministrativos.Classes
             DescIten = Convert.ToDouble(aux5);
             DescPed = Convert.ToDouble(aux6);
             dao.desconecta();
+        }
+
+        public void CanceladosLoja(String inferior, String superior)
+        {
+            sqlCanc = "SELECT ifnull(sum(notas.nt_total), 0) as 'total', count(vendedores.vdd_nome) as 'nome' FROM (((notas inner join pedidos on notas.nt_numpedido = pedidos.ped_numero) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
+                    "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
+                    "WHERE notas.nt_data between '" + inferior + "' and '" + superior + "' and pedidos.ped_cancelado = 1 AND nt_empresa <> 91 and tipomovi.tmv_grupo = 'v' and notas.nt_cancelada = 1;";
+
+            cmdCanc = new MySqlCommand(sqlCanc, dao.Conexao2);
+
+            dao.conecta2();
+
+            MySqlDataReader aux = cmdCanc.ExecuteReader();
+            while (aux.Read())
+            {
+                NCancelado = aux["nome"].ToString();
+                Cancelado = Convert.ToDouble(aux["total"]);
+            }
+            aux.Close();
+            dao.desconecta2();
+        }
+
+        public void DevolucaoLoja(String inferior, String superior)
+        {
+            sqlDev = "SELECT ifnull(sum(notas.nt_total), 0) as 'total', count(vendedores.vdd_nome) as 'nome' FROM (((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
+                    "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
+                    "WHERE notas.nt_data between '" + inferior + "' and '" + superior + "' AND notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'D' AND tipomovi.tmv_tipo = 'E'";
+            cmdDev = new MySqlCommand(sqlDev, dao.Conexao2);
+            dao.conecta2();
+            MySqlDataReader aux = cmdDev.ExecuteReader();
+            while (aux.Read())
+            {
+                NDevolu = aux["nome"].ToString();
+                Devolu = Convert.ToDouble(aux["total"]);
+            }
+            aux.Close();
+            dao.desconecta2();
+        }
+        public void MetaLoja()
+        {
+            sqlMeta = "select vmet_meta from valor_meta";
+            cmdMeta = new MySqlCommand(sqlMeta, dao.Conexao2);
+            dao.conecta2();
+            MySqlDataReader aux = cmdMeta.ExecuteReader();
+            while (aux.Read())
+            {
+                Meta.Add(Convert.ToDouble(aux["vmet_meta"]));
+            }
+            aux.Close();
+            dao.desconecta2();
+        }
+
+        public void Valor(String inferior, String superior)
+        {
+            double totalVendas;
+
+            sqlValor1 = "SELECT COUNT(Notas.nt_numero) FROM (Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
+                   "WHERE notas.nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND notas.nt_cancelada = 0 AND tmv_grupo = 'V' and nt_empresa <> 91 " +
+                   "ORDER BY Notas.nt_vendedor ASC, Notas.nt_data ASC, Notas.nt_empresa ASC, Notas.nt_documento ASC";
+
+            sqlValor2 = "SELECT SUM(Notas.nt_total) FROM Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo " +
+                    "WHERE notas.nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND notas.nt_cancelada = 0 AND tmv_grupo = 'V' and tmv_codigo <> 77 " +
+                    "ORDER BY Notas.nt_vendedor ASC, Notas.nt_data ASC, Notas.nt_empresa ASC, Notas.nt_documento ASC";
+
+            sqlValor3 = "SELECT SUM(Notas.nt_total) FROM Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo " +
+                    "WHERE notas.nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND notas.nt_cancelada = 0 AND tmv_grupo = 'D' and tmv_tipo = 'E' " +
+                    "ORDER BY Notas.nt_vendedor ASC, Notas.nt_data ASC, Notas.nt_empresa ASC, Notas.nt_documento ASC";
+
+            cmdValor1 = new MySqlCommand(sqlValor1, dao.Conexao2);
+            cmdValor2 = new MySqlCommand(sqlValor2, dao.Conexao2);
+            cmdValor3 = new MySqlCommand(sqlValor3, dao.Conexao2);
+            dao.conecta2();
+            object aux1 = cmdValor1.ExecuteScalar();
+            object aux4 = cmdValor2.ExecuteScalar();
+            object auxVendas = cmdValor3.ExecuteScalar();
+            if (aux4.ToString() == "")
+            {
+                aux4 = 0;
+            }
+            if (auxVendas.ToString() == "")
+            {
+                auxVendas = 0;
+            }
+
+            totalVendas = Convert.ToDouble(aux4) - Convert.ToDouble(auxVendas);
+
+            NVendasL = aux1.ToString();
+            VendasL = totalVendas.ToString();
+            dao.desconecta2();
         }
 
         public string selecJustific(String inferior, String superior, int opcao)

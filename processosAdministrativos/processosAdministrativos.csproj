@@ -158,6 +158,7 @@
     <Compile Include="Classes\controlUsuarios.cs" />
     <Compile Include="Classes\CopiaVendas.cs" />
     <Compile Include="Classes\DAO.cs" />
+    <Compile Include="Classes\ValoresGraficos.cs" />
     <Compile Include="Classes\VerificaIp.cs" />
     <Compile Include="Dao\Conexao.cs" />
     <Compile Include="Classes\excel.cs" />
@@ -289,12 +290,6 @@
     </Compile>
     <Compile Include="Telas\Ligacoes.Designer.cs">
       <DependentUpon>Ligacoes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\login.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Telas\login.Designer.cs">
-      <DependentUpon>login.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\mapaVendasCompleto.cs">
       <SubType>Form</SubType>
@@ -569,9 +564,6 @@
     <EmbeddedResource Include="Telas\Ligacoes.resx">
       <DependentUpon>Ligacoes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\login.resx">
-      <DependentUpon>login.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Telas\mapaVendasCompleto.resx">
       <DependentUpon>mapaVendasCompleto.cs</DependentUpon>
     </EmbeddedResource>
@@ -740,6 +732,9 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\header.jpg" />
+    <None Include="Resources\header2.jpg" />
+    <None Include="Resources\header1.jpg" />
     <None Include="Resources\accept.png" />
     <None Include="Resources\cancel_1.png" />
     <Content Include="Resources\favicon_cPz_icon.ico" />

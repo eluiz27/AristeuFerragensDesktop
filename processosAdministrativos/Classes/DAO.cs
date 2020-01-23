@@ -9,19 +9,37 @@ namespace processosAdministrativos.Classes
         ConexaoRede cr = new ConexaoRede();
 
         private static MySqlConnection conexaoInterna = new MySqlConnection("server=" + ConexaoRede.RecuperaConexao()[0] + ";port="+ConexaoRede.RecuperaConexao()[1]+ ";database="+ ConexaoRede.RecuperaConexao()[2] + ";userid="+ ConexaoRede.RecuperaConexao()[3] + ";password="+ ConexaoRede.RecuperaConexao()[4] + ";");
+        private static MySqlConnection conexaoInterna2 = new MySqlConnection("server=" + ConexaoRede.RecuperaConexao()[0] + ";port=" + ConexaoRede.RecuperaConexao()[1] + ";database=" + ConexaoRede.RecuperaConexao()[2] + ";userid=" + ConexaoRede.RecuperaConexao()[3] + ";password=" + ConexaoRede.RecuperaConexao()[4] + ";");
+
         private static MySqlCommand query;
 
         public MySqlConnection Conexao { get => conexaoInterna; set => conexaoInterna = value; }
+        public MySqlConnection Conexao2 { get => conexaoInterna2; set => conexaoInterna2 = value; }
+
         public MySqlCommand Query { get => query; set => query = value; }
 
         public void conecta()
         {
-            Conexao.Open();
+            if(Conexao.State == System.Data.ConnectionState.Closed)
+                Conexao.Open();
         }
 
         public void desconecta()
         {
-            Conexao.Close();
+            if (Conexao.State == System.Data.ConnectionState.Open)
+                Conexao.Close();
+        }
+
+        public void conecta2()
+        {
+            if (Conexao2.State == System.Data.ConnectionState.Closed)
+                Conexao2.Open();
+        }
+
+        public void desconecta2()
+        {
+            if (Conexao2.State == System.Data.ConnectionState.Open)
+                Conexao2.Close();
         }
 
         public int TesteConexao(string servidor, string porta, string baseDados, string usuario, string senha)
