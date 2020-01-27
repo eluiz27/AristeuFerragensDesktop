@@ -139,5 +139,15 @@ namespace processosAdministrativos.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sem_Título_2_Recuperado {
+            get {
+                object obj = ResourceManager.GetObject("Sem Título-2-Recuperado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

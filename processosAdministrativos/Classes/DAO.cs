@@ -17,6 +17,8 @@ namespace processosAdministrativos.Classes
         public MySqlConnection Conexao2 { get => conexaoInterna2; set => conexaoInterna2 = value; }
 
         public MySqlCommand Query { get => query; set => query = value; }
+        public MySqlCommand Query2 { get => query; set => query = value; }
+
 
         public void conecta()
         {

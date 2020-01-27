@@ -1,9 +1,8 @@
-﻿using MySql.Data.MySqlClient;
-using processosAdministrativos.Classes;
+﻿using processosAdministrativos.Classes;
+using processosAdministrativos.Config;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
@@ -16,11 +15,52 @@ namespace processosAdministrativos.Telas
         List<double> varsPedValor = new List<double>();
         List<double> varsMeta = new List<double>();
         List<double> linhas = new List<double>();
+        List<string> testeSp = new List<string>();
+
+        public List<int> Setor { get; set; }
+
+        int vdd1 = 0;
+        int vdd2 = 0;
+
+        int fecharTela = 1;
+
+        int cont = 0;
+
+        public void restricao()
+        {
+            RestricaoConfig res = new RestricaoConfig();
+            List<int> aux = new List<int>();
+            
+            foreach(int lista in res.RestricMenu())
+            {
+                aux.Add(lista);
+            }
+
+            if (aux[0] == 0)
+                comprasToolStripMenuItem.Enabled = false;
+            if (aux[1] == 0)
+                expediçãoToolStripMenuItem.Enabled = false;
+            if (aux[2] == 0)
+                estoqueToolStripMenuItem.Enabled = false;
+            if (aux[3] == 0)
+                financeiroToolStripMenuItem.Enabled = false;
+            if (aux[4] == 0)
+                vendasToolStripMenuItem.Enabled = false;
+            if (aux[5] == 0)
+                marketingToolStripMenuItem.Enabled = false;
+            if (aux[6] == 0)
+                atendimentoToolStripMenuItem.Enabled = false;
+            if (aux[7] == 0)
+                utilitáriosToolStripMenuItem.Enabled = false;
+
+            if (res.Dash == "1")
+                lojaBt.Enabled = true;
+        }
 
         public void DadosGraficoFatValor()
         {
-            double a = vg.graficoFatDia()[0];
-            double b = vg.graficoFatMes()[0];
+            double a = vg.graficoFatDia(vdd1, vdd2)[0];
+            double b = vg.graficoFatMes(vdd1, vdd2)[0];
             double total = a + b;
 
             varsFatValor.Add(a);
@@ -55,8 +95,8 @@ namespace processosAdministrativos.Telas
         {
             totalFatLb.Text = "Total: ";
 
-            double a = vg.graficoFatDia()[1];
-            int b = Convert.ToInt32(vg.graficoFatMes()[1]);
+            double a = vg.graficoFatDia(vdd1, vdd2)[1];
+            int b = Convert.ToInt32(vg.graficoFatMes(vdd1, vdd2)[1]);
             double total = a + b;
 
             graficoFat.Series["valor"].Points.Clear();
@@ -76,9 +116,9 @@ namespace processosAdministrativos.Telas
 
         public void DadosGraficoPedValor()
         {
-            double a = vg.graficoPedAprov()[0];
-            double b = vg.graficoPedCanc()[0];
-            double c = vg.graficoPedDev()[0];
+            double a = vg.graficoPedAprov(vdd1, vdd2)[0];
+            double b = vg.graficoPedCanc(vdd1, vdd2)[0];
+            double c = vg.graficoPedDev(vdd1, vdd2)[0];
             double total = b + c;
 
             varsPedValor.Add(a);
@@ -117,9 +157,9 @@ namespace processosAdministrativos.Telas
             aprovLb.Text = "Aprovados: ";
             cancDevLb.Text = "Canc/Devolu: ";
 
-            double a = vg.graficoPedAprov()[1];
-            double b = vg.graficoPedCanc()[1];
-            double c = vg.graficoPedDev()[1];
+            double a = vg.graficoPedAprov(vdd1, vdd2)[1];
+            double b = vg.graficoPedCanc(vdd1, vdd2)[1];
+            double c = vg.graficoPedDev(vdd1, vdd2)[1];
             double total = b + c;
             graficoPed.Series["valor"].Points.Clear();
 
@@ -139,8 +179,8 @@ namespace processosAdministrativos.Telas
 
         public void DadosGraficoMeta()
         {
-            double a = vg.graficoMetaFeito();
-            double b = vg.graficoMetaSaldo() - a;
+            double a = vg.graficoMetaFeito(vdd1, vdd2);
+            double b = vg.graficoMetaSaldo(vdd1, vdd2) - a;
             double total = a + b;
 
             varsMeta.Add(a);
@@ -156,13 +196,22 @@ namespace processosAdministrativos.Telas
 
             graficoMeta.Series["valor"].IsValueShownAsLabel = true;
 
-            graficoMeta.Series["valor"].Points.AddXY("Realizado", varsMeta[0]);
-            graficoMeta.Series["valor"].Points.AddXY("Saldo", varsMeta[1]);
+            if (varsMeta[1] < 0)
+            {
+                graficoMeta.Series["valor"].Points.AddXY("Realizado", varsMeta[0]);
+                graficoMeta.Series["valor"].Points[0].Color = Color.Green;
+                graficoMeta.Series["valor"].Points[0].LabelForeColor = Color.Black;
+            }
+            else
+            {
+                graficoMeta.Series["valor"].Points.AddXY("Realizado", varsMeta[0]);
+                graficoMeta.Series["valor"].Points.AddXY("Saldo", varsMeta[1]);
 
-            graficoMeta.Series["valor"].Points[0].Color = Color.Green;
-            graficoMeta.Series["valor"].Points[0].LabelForeColor = Color.Black;
-            graficoMeta.Series["valor"].Points[1].Color = Color.Red;
-            graficoMeta.Series["valor"].Points[1].LabelForeColor = Color.Black;
+                graficoMeta.Series["valor"].Points[0].Color = Color.Green;
+                graficoMeta.Series["valor"].Points[0].LabelForeColor = Color.Black;
+                graficoMeta.Series["valor"].Points[1].Color = Color.Red;
+                graficoMeta.Series["valor"].Points[1].LabelForeColor = Color.Black;
+            }
 
             graficoMeta.Series["valor"].LabelFormat = "C2";
 
@@ -173,7 +222,7 @@ namespace processosAdministrativos.Telas
 
         public void DadosGraficoLine()
         {
-            vg.graficoLinha();
+            vg.graficoLinha(vdd1, vdd2);
             for(int i = 0; i < 6; i++)
             {
                 linhas.Add(vg.Valores[i]);
@@ -208,13 +257,22 @@ namespace processosAdministrativos.Telas
 
         private void processosAdm_Load(object sender, EventArgs e)
         {
+            restricao();
             timer3.Start();
-            backgroundWorker1.RunWorkerAsync();
-            timer1.Start();
+            if(vg.LeVendedor() != "")
+            {
+                textBox1.Text = vg.LeVendedor();
+                vdd1 = Convert.ToInt32(textBox1.Text);
+                vdd2 = Convert.ToInt32(textBox1.Text);
+                backgroundWorker1.RunWorkerAsync();
+                timer1.Start();
+                vg.EscreveVendedor(textBox1.Text);
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
+            fecharTela = 1;
             DadosGraficoFatValor();
         }
         private void backgroundWorker2_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -250,6 +308,9 @@ namespace processosAdministrativos.Telas
             PreencheGraficoLinha();
             qtdeFatBt.Enabled = true;
             qtdePedBt.Enabled = true;
+            if(cont == 8)
+                lojaBt.Enabled = true;
+            fecharTela = 0;
         }
         private void cadastrarToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -351,21 +412,6 @@ namespace processosAdministrativos.Telas
             {
                 MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Application.OpenForms["controleEst"].BringToFront();
-            }
-        }
-
-        private void mapaDeVendasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (cta.TelaMapaVendas == 0)
-            {
-                mapaVendasCompleto mv = new mapaVendasCompleto();
-                mv.Show();
-                cta.TelaMapaVendas = 1;
-            }
-            else
-            {
-                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.OpenForms["mapaVendasCompleto"].BringToFront();
             }
         }
         private void cadastroDeBannersToolStripMenuItem_Click(object sender, EventArgs e)
@@ -609,20 +655,6 @@ namespace processosAdministrativos.Telas
                 Application.OpenForms["consultaCodificacao"].BringToFront();
             }
         }
-        private void indicadoresDePerformânceToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (cta.TelaIndicVendas == 0)
-            {
-                indicadoresVendas iv = new indicadoresVendas();
-                iv.Show();
-                cta.TelaIndicVendas = 1;
-            }
-            else
-            {
-                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.OpenForms["indicadoresVendas"].BringToFront();
-            }
-        }
         private void ordemDeCompraToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (cta.TelaOdemCompra == 0)
@@ -699,7 +731,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaRestricoes == 0)
             {
-                restricoes res = new restricoes();
+                Restricoes res = new Restricoes();
                 res.Show();
                 cta.TelaRestricoes = 1;
             }
@@ -742,21 +774,6 @@ namespace processosAdministrativos.Telas
                 Application.OpenForms["etiquetaPreco"].BringToFront();
             }
         }
-
-        private void ChamadasTelefoneToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (cta.TelaChamadas == 0)
-            {
-                Ligacoes li = new Ligacoes();
-                cta.TelaChamadas = 1;
-                li.Show();
-            }
-            else
-            {
-                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                Application.OpenForms["Ligacoes"].BringToFront();
-            }
-        }
         private void clientesForaEstadoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (cta.TelaCliForaEstado == 0)
@@ -786,11 +803,32 @@ namespace processosAdministrativos.Telas
                 Application.OpenForms["ConfiguracaoRede"].BringToFront();
             }
         }
+        private void chamadasDeTelefoneToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cta.TelaChamadas == 0)
+            {
+                Ligacoes li = new Ligacoes();
+                cta.TelaChamadas = 1;
+                li.Show();
+            }
+            else
+            {
+                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.OpenForms["Ligacoes"].BringToFront();
+            }
+        }
 
         private void processosAdm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Tem certeza que deseja fechar?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+            if(fecharTela == 0)
+            {
+                if (MessageBox.Show("Tem certeza que deseja fechar?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No)
+                    e.Cancel = true;
+            }
+            else
+            {
                 e.Cancel = true;
+            }
         }
 
 
@@ -809,6 +847,34 @@ namespace processosAdministrativos.Telas
                     MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Application.OpenForms["mapaVendasCompleto"].BringToFront();
                 }
+            }
+        }
+        private void mapaDeVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cta.TelaMapaVendas == 0)
+            {
+                mapaVendasCompleto mv = new mapaVendasCompleto();
+                mv.Show();
+                cta.TelaMapaVendas = 1;
+            }
+            else
+            {
+                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.OpenForms["mapaVendasCompleto"].BringToFront();
+            }
+        }
+        private void indicadoresDeVendasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (cta.TelaIndicVendas == 0)
+            {
+                indicadoresVendas iv = new indicadoresVendas();
+                iv.Show();
+                cta.TelaIndicVendas = 1;
+            }
+            else
+            {
+                MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Application.OpenForms["indicadoresVendas"].BringToFront();
             }
         }
 
@@ -860,6 +926,30 @@ namespace processosAdministrativos.Telas
             valorPedBt.Enabled = true;
         }
 
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (vg.Vendedor(Convert.ToInt32(textBox1.Text)) == false)
+                    MessageBox.Show("Código de vendedor incorreto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    vdd1 = Convert.ToInt32(textBox1.Text);
+                    vdd2 = Convert.ToInt32(textBox1.Text);
+                    backgroundWorker1.RunWorkerAsync();
+                    timer1.Start();
+                    vg.EscreveVendedor(textBox1.Text);
+                }
+            }
+        }
 
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            lojaBt.Enabled = false;
+            vdd1 = 1;
+            vdd2 = 99;
+            backgroundWorker1.RunWorkerAsync();
+            timer1.Start();
+        }
     }
 }

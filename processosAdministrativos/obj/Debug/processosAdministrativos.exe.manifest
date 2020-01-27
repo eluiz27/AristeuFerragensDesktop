@@ -763,14 +763,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="processosAdministrativos.exe" size="2112512">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="processosAdministrativos.exe" size="2093568">
       <assemblyIdentity name="processosAdministrativos" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>E+wnNxwozbp8JdpBDWxOuQjthIgGHzgdxVUIWyLIErk=</dsig:DigestValue>
+        <dsig:DigestValue>d1cpd5LrwsgbTik6fn1UrnCd1EP2gTy4hAQf3m1FiKY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -782,7 +782,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>95wnKiQLlsqeGDZHb12FreeUSpBOUgT6wDUvQo1LQSE=</dsig:DigestValue>
+        <dsig:DigestValue>S91J01B6yzSuxdU+uJAStronkHUSo15wNWESSJoeWZ8=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -859,6 +859,15 @@
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
       <dsig:DigestValue>Ck77Bp3yxVjtEwsK4BPZUIjC0j7Gzev98Z4Kk8d3PY0=</dsig:DigestValue>
+    </hash>
+  </file>
+  <file name="Resources\Sem Título-2-Recuperado.jpg" size="10737">
+    <hash>
+      <dsig:Transforms>
+        <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
+      </dsig:Transforms>
+      <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
+      <dsig:DigestValue>g5VZZ2KTHzwmQDmZaVDKhJaIw+q1KtHuj/fPun1FnzY=</dsig:DigestValue>
     </hash>
   </file>
 </asmv1:assembly>

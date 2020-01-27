@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -336,13 +337,16 @@ namespace processosAdministrativos.Classes
             dao.desconecta();
         }
 
-        public void CanceladosLoja(String inferior, String superior)
+        public void CanceladosLoja(String inferior, String superior, int vdd, int vdd2)
         {
-            sqlCanc = "SELECT ifnull(sum(notas.nt_total), 0) as 'total', count(vendedores.vdd_nome) as 'nome' FROM (((notas inner join pedidos on notas.nt_numpedido = pedidos.ped_numero) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
-                    "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
-                    "WHERE notas.nt_data between '" + inferior + "' and '" + superior + "' and pedidos.ped_cancelado = 1 AND nt_empresa <> 91 and tipomovi.tmv_grupo = 'v' and notas.nt_cancelada = 1;";
-
-            cmdCanc = new MySqlCommand(sqlCanc, dao.Conexao2);
+            cmdCanc = new MySqlCommand();
+            cmdCanc.Connection = dao.Conexao2;
+            cmdCanc.CommandType = CommandType.StoredProcedure;
+            cmdCanc.Parameters.AddWithValue("dataInf", inferior);
+            cmdCanc.Parameters.AddWithValue("dataSup", superior);
+            cmdCanc.Parameters.AddWithValue("vdd", vdd);
+            cmdCanc.Parameters.AddWithValue("vdd2", vdd2);
+            cmdCanc.CommandText = "sp_Cancelados";
 
             dao.conecta2();
 
@@ -356,12 +360,18 @@ namespace processosAdministrativos.Classes
             dao.desconecta2();
         }
 
-        public void DevolucaoLoja(String inferior, String superior)
+        public void DevolucaoLoja(String inferior, String superior, int vdd, int vdd2)
         {
-            sqlDev = "SELECT ifnull(sum(notas.nt_total), 0) as 'total', count(vendedores.vdd_nome) as 'nome' FROM (((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
-                    "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
-                    "WHERE notas.nt_data between '" + inferior + "' and '" + superior + "' AND notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'D' AND tipomovi.tmv_tipo = 'E'";
-            cmdDev = new MySqlCommand(sqlDev, dao.Conexao2);
+            cmdDev = new MySqlCommand();
+            cmdDev.Connection = dao.Conexao2;
+            cmdDev.Parameters.AddWithValue("@inferior", inferior);
+            cmdDev.Parameters.AddWithValue("@superior", superior);
+            cmdDev.Parameters.AddWithValue("@vdd", vdd);
+            cmdDev.Parameters.AddWithValue("@vdd2", vdd2);
+            cmdDev.CommandText = "SELECT ifnull(sum(notas.nt_total), 0) as 'total', count(vendedores.vdd_nome) as 'nome' FROM (((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
+                                 "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
+                                 "WHERE notas.nt_data between @inferior and @superior AND vdd_codigo between @vdd and @vdd2 and notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'D' AND tipomovi.tmv_tipo = 'E'";
+
             dao.conecta2();
             MySqlDataReader aux = cmdDev.ExecuteReader();
             while (aux.Read())
@@ -372,10 +382,13 @@ namespace processosAdministrativos.Classes
             aux.Close();
             dao.desconecta2();
         }
-        public void MetaLoja()
+        public void MetaLoja(int vdd, int vdd2)
         {
-            sqlMeta = "select vmet_meta from valor_meta";
-            cmdMeta = new MySqlCommand(sqlMeta, dao.Conexao2);
+            cmdMeta = new MySqlCommand();
+            cmdMeta.Connection = dao.Conexao2;
+            cmdMeta.Parameters.AddWithValue("@vdd", vdd);
+            cmdMeta.Parameters.AddWithValue("@vdd2", vdd2);
+            cmdMeta.CommandText = "select vmet_meta from valor_meta where vmet_vendedor between @vdd and @vdd2";
             dao.conecta2();
             MySqlDataReader aux = cmdMeta.ExecuteReader();
             while (aux.Read())
@@ -386,42 +399,44 @@ namespace processosAdministrativos.Classes
             dao.desconecta2();
         }
 
-        public void Valor(String inferior, String superior)
+        public void Valor(String inferior, String superior, int vdd, int vdd2)
         {
-            double totalVendas;
+            cmdValor1 = new MySqlCommand();
+            cmdValor3 = new MySqlCommand();
 
-            sqlValor1 = "SELECT COUNT(Notas.nt_numero) FROM (Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
-                   "WHERE notas.nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND notas.nt_cancelada = 0 AND tmv_grupo = 'V' and nt_empresa <> 91 " +
-                   "ORDER BY Notas.nt_vendedor ASC, Notas.nt_data ASC, Notas.nt_empresa ASC, Notas.nt_documento ASC";
+            cmdValor1.Connection = dao.Conexao2;
+            cmdValor1.Parameters.AddWithValue("@inferior", inferior);
+            cmdValor1.Parameters.AddWithValue("@superior", superior);
+            cmdValor1.Parameters.AddWithValue("@vdd", vdd);
+            cmdValor1.Parameters.AddWithValue("@vdd2", vdd2);
 
-            sqlValor2 = "SELECT SUM(Notas.nt_total) FROM Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo " +
-                    "WHERE notas.nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND notas.nt_cancelada = 0 AND tmv_grupo = 'V' and tmv_codigo <> 77 " +
-                    "ORDER BY Notas.nt_vendedor ASC, Notas.nt_data ASC, Notas.nt_empresa ASC, Notas.nt_documento ASC";
+            cmdValor3.Connection = dao.Conexao2;
+            cmdValor3.Parameters.AddWithValue("@inferior", inferior);
+            cmdValor3.Parameters.AddWithValue("@superior", superior);
+            cmdValor3.Parameters.AddWithValue("@vdd", vdd);
+            cmdValor3.Parameters.AddWithValue("@vdd2", vdd2);
 
-            sqlValor3 = "SELECT SUM(Notas.nt_total) FROM Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo " +
-                    "WHERE notas.nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND notas.nt_cancelada = 0 AND tmv_grupo = 'D' and tmv_tipo = 'E' " +
-                    "ORDER BY Notas.nt_vendedor ASC, Notas.nt_data ASC, Notas.nt_empresa ASC, Notas.nt_documento ASC";
+            cmdValor1.CommandText = "SELECT COUNT(Notas.nt_numero) as 'qtde', ifnull(SUM(Notas.nt_total), 0) as 'valor'  FROM (Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
+                                    "WHERE notas.nt_data BETWEEN @inferior AND @superior AND vdd_codigo BETWEEN @vdd and @vdd2 and notas.nt_cancelada = 0 AND tmv_grupo = 'V' and tmv_codigo <> 77 ";
 
-            cmdValor1 = new MySqlCommand(sqlValor1, dao.Conexao2);
-            cmdValor2 = new MySqlCommand(sqlValor2, dao.Conexao2);
-            cmdValor3 = new MySqlCommand(sqlValor3, dao.Conexao2);
+            cmdValor3.CommandText = "SELECT SUM(Notas.nt_total) FROM (Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
+                                    "WHERE notas.nt_data BETWEEN @inferior AND @superior AND vdd_codigo BETWEEN @vdd and @vdd2 and notas.nt_cancelada = 0 AND tmv_grupo = 'D' and tmv_tipo = 'E' ";
+
             dao.conecta2();
-            object aux1 = cmdValor1.ExecuteScalar();
-            object aux4 = cmdValor2.ExecuteScalar();
+
             object auxVendas = cmdValor3.ExecuteScalar();
-            if (aux4.ToString() == "")
-            {
-                aux4 = 0;
-            }
             if (auxVendas.ToString() == "")
             {
                 auxVendas = 0;
             }
 
-            totalVendas = Convert.ToDouble(aux4) - Convert.ToDouble(auxVendas);
-
-            NVendasL = aux1.ToString();
-            VendasL = totalVendas.ToString();
+            MySqlDataReader aux1 = cmdValor1.ExecuteReader();
+            while (aux1.Read())
+            {
+                VendasL = (Convert.ToDouble(aux1["valor"]) - Convert.ToDouble(auxVendas)).ToString();
+                NVendasL = aux1["qtde"].ToString();
+            }
+            aux1.Close();
             dao.desconecta2();
         }
 

@@ -8,7 +8,7 @@ using processosAdministrativos.Model;
 
 namespace processosAdministrativos.Dao
 {
-    public class LoteDAO : Conexao
+    public class LoteDao : Conexao
     {
         MySqlCommand cmd = null;
 
@@ -16,9 +16,9 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                AbrirConexao();
+                conecta();
 
-                cmd = new MySqlCommand("INSERT INTO lote_validade(ltv_numLote, ltv_codBarras, ltv_produto, ltv_qtde, ltv_validade, ltv_dataCriacao, ltv_dataAlteracao) VALUES(@ltv_numLote, @ltv_codBarras, @ltv_produto, @ltv_qtde, @ltv_validade, @ltv_dataCriacao, @ltv_dataAlteracao)", conexao);
+                cmd = new MySqlCommand("INSERT INTO lote_validade(ltv_numLote, ltv_codBarras, ltv_produto, ltv_qtde, ltv_validade, ltv_dataCriacao, ltv_dataAlteracao) VALUES(@ltv_numLote, @ltv_codBarras, @ltv_produto, @ltv_qtde, @ltv_validade, @ltv_dataCriacao, @ltv_dataAlteracao)", Conec);
 
                 cmd.Parameters.AddWithValue("@ltv_numLote", lote.Ltv_numLote);
                 cmd.Parameters.AddWithValue("@ltv_codBarras", lote.Ltv_codBarras);
@@ -36,7 +36,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                FecharConexao();
+                desconecta();
             }
         }
 
@@ -44,9 +44,9 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                AbrirConexao();
+                conecta();
 
-                cmd = new MySqlCommand("UPDATE lote_validade SET ltv_numLote = @ltv_numLote, ltv_codBarras = @ltv_codBarras, ltv_produto = @ltv_produto, ltv_qtde = @ltv_qtde, ltv_validade = @ltv_validade, ltv_dataAlteracao = @ltv_dataAlteracao WHERE ltv_codigo = @ltv_codigo", conexao);
+                cmd = new MySqlCommand("UPDATE lote_validade SET ltv_numLote = @ltv_numLote, ltv_codBarras = @ltv_codBarras, ltv_produto = @ltv_produto, ltv_qtde = @ltv_qtde, ltv_validade = @ltv_validade, ltv_dataAlteracao = @ltv_dataAlteracao WHERE ltv_codigo = @ltv_codigo", Conec);
 
                 cmd.Parameters.AddWithValue("@ltv_codigo", lote.Ltv_codigo);
                 cmd.Parameters.AddWithValue("@ltv_numLote", lote.Ltv_numLote);
@@ -64,7 +64,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                FecharConexao();
+                desconecta();
             }
         }
 
@@ -72,9 +72,9 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                AbrirConexao();
+                conecta();
 
-                cmd = new MySqlCommand(query, conexao);
+                cmd = new MySqlCommand(query, Conec);
                 object objeto = cmd.ExecuteScalar();
 
                 if(objeto is null)
@@ -89,7 +89,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                FecharConexao();
+                desconecta();
             }
         }
 
@@ -97,9 +97,9 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                AbrirConexao();
+                conecta();
 
-                cmd = new MySqlCommand(query, conexao);
+                cmd = new MySqlCommand(query, Conec);
                 MySqlDataReader vetor = cmd.ExecuteReader();
 
                 return vetor;
@@ -110,7 +110,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                FecharConexao();
+                desconecta();
             }
         }
     }

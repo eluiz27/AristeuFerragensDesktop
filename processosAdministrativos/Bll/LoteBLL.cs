@@ -7,7 +7,7 @@ namespace processosAdministrativos.Bll
 {
     public class LoteBLL
     {
-        LoteDAO lotedao = new LoteDAO();
+        LoteDao lotedao = new LoteDao();
 
         public void Salvar(LoteM lotem)
         {

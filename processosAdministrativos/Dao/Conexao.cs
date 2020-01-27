@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using processosAdministrativos.Classes;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -10,32 +11,34 @@ namespace processosAdministrativos.Dao
 {
     public class Conexao
     {
-        string conecta = "server=1; database=gs_aristeus; uid=Luiz; password=GEN@#0996";
-        protected MySqlConnection conexao = null;
+        private static MySqlConnection conexaoInterna = new MySqlConnection("server=" + ConexaoRede.RecuperaConexao()[0] + ";port=" + ConexaoRede.RecuperaConexao()[1] + ";database=" + ConexaoRede.RecuperaConexao()[2] + ";userid=" + ConexaoRede.RecuperaConexao()[3] + ";password=" + ConexaoRede.RecuperaConexao()[4] + ";");
 
-        public void AbrirConexao()
+        public MySqlConnection Conec { get => conexaoInterna; set => conexaoInterna = value; }
+
+        public void conecta()
         {
-            try
-            {
-                conexao = new MySqlConnection(conecta);
-                conexao.Open();
-            }
-            catch(Exception erro)
-            {
-                throw erro;
-            }
+            if (Conec.State == System.Data.ConnectionState.Closed)
+                Conec.Open();
         }
 
-        public void FecharConexao()
+        public void desconecta()
         {
+            if (Conec.State == System.Data.ConnectionState.Open)
+                Conec.Close();
+        }
+
+        public int TesteConexao(string servidor, string porta, string baseDados, string usuario, string senha)
+        {
+            MySqlConnection teste = new MySqlConnection("server=" + servidor + ";port=" + porta + ";database=" + baseDados + ";userid=" + usuario + ";password=" + senha + ";");
             try
             {
-                conexao = new MySqlConnection(conecta);
-                conexao.Close();
+                teste.Open();
+                teste.Close();
+                return 1;
             }
-            catch (Exception erro)
+            catch (Exception error)
             {
-                throw erro;
+                return 0;
             }
         }
     }

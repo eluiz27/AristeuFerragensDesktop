@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend5 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend6 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(processosAdm));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.salvarImagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -72,8 +72,6 @@
             this.etiquetaDePreçoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contagemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.financeiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mapaDeVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.indicadoresDePerformânceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comprasFuncionáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.controladoriaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientesForaEstadoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -84,16 +82,21 @@
             this.assistênciasTécnicasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nDeSérieToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.metaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.utilitáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.marketingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cadastroDeBannersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.utilitáriosToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.utilitáriosToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.restriçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chamadasTelefoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoDeRedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mapaDeVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.atendimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chamadasDeTelefoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lojaBt = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.vendedorLb = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.graficoIndic = new System.Windows.Forms.DataVisualization.Charting.Chart();
@@ -123,6 +126,7 @@
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker4 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.indicadoresDeVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -383,28 +387,12 @@
             // financeiroToolStripMenuItem
             // 
             this.financeiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mapaDeVendasToolStripMenuItem,
-            this.indicadoresDePerformânceToolStripMenuItem,
             this.comprasFuncionáriosToolStripMenuItem,
             this.controladoriaToolStripMenuItem,
             this.clientesForaEstadoToolStripMenuItem});
             this.financeiroToolStripMenuItem.Name = "financeiroToolStripMenuItem";
             this.financeiroToolStripMenuItem.Size = new System.Drawing.Size(74, 20);
             this.financeiroToolStripMenuItem.Text = "Financeiro";
-            // 
-            // mapaDeVendasToolStripMenuItem
-            // 
-            this.mapaDeVendasToolStripMenuItem.Name = "mapaDeVendasToolStripMenuItem";
-            this.mapaDeVendasToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.mapaDeVendasToolStripMenuItem.Text = "Mapa de Vendas";
-            this.mapaDeVendasToolStripMenuItem.Click += new System.EventHandler(this.mapaDeVendasToolStripMenuItem_Click);
-            // 
-            // indicadoresDePerformânceToolStripMenuItem
-            // 
-            this.indicadoresDePerformânceToolStripMenuItem.Name = "indicadoresDePerformânceToolStripMenuItem";
-            this.indicadoresDePerformânceToolStripMenuItem.Size = new System.Drawing.Size(193, 22);
-            this.indicadoresDePerformânceToolStripMenuItem.Text = "Indicadores de Vendas";
-            this.indicadoresDePerformânceToolStripMenuItem.Click += new System.EventHandler(this.indicadoresDePerformânceToolStripMenuItem_Click);
             // 
             // comprasFuncionáriosToolStripMenuItem
             // 
@@ -482,45 +470,38 @@
             this.metaToolStripMenuItem.Text = "Meta";
             this.metaToolStripMenuItem.Click += new System.EventHandler(this.metaToolStripMenuItem_Click);
             // 
-            // utilitáriosToolStripMenuItem
+            // marketingToolStripMenuItem
             // 
-            this.utilitáriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.marketingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cadastroDeBannersToolStripMenuItem});
-            this.utilitáriosToolStripMenuItem.Name = "utilitáriosToolStripMenuItem";
-            this.utilitáriosToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.utilitáriosToolStripMenuItem.Text = "Marketing";
+            this.marketingToolStripMenuItem.Name = "marketingToolStripMenuItem";
+            this.marketingToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.marketingToolStripMenuItem.Text = "Marketing";
             // 
             // cadastroDeBannersToolStripMenuItem
             // 
             this.cadastroDeBannersToolStripMenuItem.Name = "cadastroDeBannersToolStripMenuItem";
-            this.cadastroDeBannersToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
+            this.cadastroDeBannersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cadastroDeBannersToolStripMenuItem.Text = "Campanhas";
             this.cadastroDeBannersToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeBannersToolStripMenuItem_Click);
             // 
-            // utilitáriosToolStripMenuItem1
+            // utilitáriosToolStripMenuItem
             // 
-            this.utilitáriosToolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.utilitáriosToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.restriçõesToolStripMenuItem,
-            this.chamadasTelefoneToolStripMenuItem,
-            this.configuraçãoDeRedeToolStripMenuItem});
-            this.utilitáriosToolStripMenuItem1.Name = "utilitáriosToolStripMenuItem1";
-            this.utilitáriosToolStripMenuItem1.Size = new System.Drawing.Size(69, 20);
-            this.utilitáriosToolStripMenuItem1.Text = "Utilitários";
+            this.configuraçãoDeRedeToolStripMenuItem,
+            this.mapaDeVendasToolStripMenuItem,
+            this.indicadoresDeVendasToolStripMenuItem});
+            this.utilitáriosToolStripMenuItem.Name = "utilitáriosToolStripMenuItem";
+            this.utilitáriosToolStripMenuItem.Size = new System.Drawing.Size(69, 20);
+            this.utilitáriosToolStripMenuItem.Text = "Utilitários";
             // 
             // restriçõesToolStripMenuItem
             // 
-            this.restriçõesToolStripMenuItem.Enabled = false;
             this.restriçõesToolStripMenuItem.Name = "restriçõesToolStripMenuItem";
             this.restriçõesToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.restriçõesToolStripMenuItem.Text = "Restrições";
             this.restriçõesToolStripMenuItem.Click += new System.EventHandler(this.restriçõesToolStripMenuItem_Click);
-            // 
-            // chamadasTelefoneToolStripMenuItem
-            // 
-            this.chamadasTelefoneToolStripMenuItem.Name = "chamadasTelefoneToolStripMenuItem";
-            this.chamadasTelefoneToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.chamadasTelefoneToolStripMenuItem.Text = "Chamadas Telefone";
-            this.chamadasTelefoneToolStripMenuItem.Click += new System.EventHandler(this.ChamadasTelefoneToolStripMenuItem_Click);
             // 
             // configuraçãoDeRedeToolStripMenuItem
             // 
@@ -528,6 +509,13 @@
             this.configuraçãoDeRedeToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.configuraçãoDeRedeToolStripMenuItem.Text = "Configuração de Rede";
             this.configuraçãoDeRedeToolStripMenuItem.Click += new System.EventHandler(this.ConfiguraçãoDeRedeToolStripMenuItem_Click_1);
+            // 
+            // mapaDeVendasToolStripMenuItem
+            // 
+            this.mapaDeVendasToolStripMenuItem.Name = "mapaDeVendasToolStripMenuItem";
+            this.mapaDeVendasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.mapaDeVendasToolStripMenuItem.Text = "Mapa de Vendas";
+            this.mapaDeVendasToolStripMenuItem.Click += new System.EventHandler(this.mapaDeVendasToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -537,14 +525,30 @@
             this.estoqueToolStripMenuItem,
             this.financeiroToolStripMenuItem,
             this.vendasToolStripMenuItem,
-            this.utilitáriosToolStripMenuItem,
-            this.utilitáriosToolStripMenuItem1});
+            this.marketingToolStripMenuItem,
+            this.atendimentoToolStripMenuItem,
+            this.utilitáriosToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             this.menuStrip1.Size = new System.Drawing.Size(1028, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // atendimentoToolStripMenuItem
+            // 
+            this.atendimentoToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chamadasDeTelefoneToolStripMenuItem});
+            this.atendimentoToolStripMenuItem.Name = "atendimentoToolStripMenuItem";
+            this.atendimentoToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+            this.atendimentoToolStripMenuItem.Text = "Atendimento";
+            // 
+            // chamadasDeTelefoneToolStripMenuItem
+            // 
+            this.chamadasDeTelefoneToolStripMenuItem.Name = "chamadasDeTelefoneToolStripMenuItem";
+            this.chamadasDeTelefoneToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.chamadasDeTelefoneToolStripMenuItem.Text = "Chamadas de telefone";
+            this.chamadasDeTelefoneToolStripMenuItem.Click += new System.EventHandler(this.chamadasDeTelefoneToolStripMenuItem_Click);
             // 
             // timer3
             // 
@@ -556,6 +560,9 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lojaBt);
+            this.panel1.Controls.Add(this.textBox1);
+            this.panel1.Controls.Add(this.vendedorLb);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.cancDevLb);
             this.panel1.Controls.Add(this.aprovLb);
@@ -568,13 +575,45 @@
             this.panel1.Size = new System.Drawing.Size(1028, 586);
             this.panel1.TabIndex = 1;
             // 
+            // lojaBt
+            // 
+            this.lojaBt.Enabled = false;
+            this.lojaBt.Location = new System.Drawing.Point(933, 47);
+            this.lojaBt.Name = "lojaBt";
+            this.lojaBt.Size = new System.Drawing.Size(75, 23);
+            this.lojaBt.TabIndex = 7;
+            this.lojaBt.Text = "Loja";
+            this.lojaBt.UseVisualStyleBackColor = true;
+            this.lojaBt.Click += new System.EventHandler(this.button1_Click_1);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(91, 48);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(63, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
+            // 
+            // vendedorLb
+            // 
+            this.vendedorLb.AutoSize = true;
+            this.vendedorLb.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.vendedorLb.Location = new System.Drawing.Point(17, 50);
+            this.vendedorLb.Name = "vendedorLb";
+            this.vendedorLb.Size = new System.Drawing.Size(74, 16);
+            this.vendedorLb.TabIndex = 5;
+            this.vendedorLb.Text = "Vendedor: ";
+            // 
             // panel5
             // 
+            this.panel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel5.BackColor = System.Drawing.SystemColors.Window;
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel5.Controls.Add(this.panel10);
             this.panel5.Controls.Add(this.label4);
-            this.panel5.Location = new System.Drawing.Point(523, 325);
+            this.panel5.Location = new System.Drawing.Point(523, 329);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(485, 249);
             this.panel5.TabIndex = 4;
@@ -589,19 +628,19 @@
             // 
             // graficoIndic
             // 
-            chartArea9.AxisX.MajorGrid.Enabled = false;
-            chartArea9.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea9.Name = "ChartArea1";
-            this.graficoIndic.ChartAreas.Add(chartArea9);
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea1.Name = "ChartArea1";
+            this.graficoIndic.ChartAreas.Add(chartArea1);
             this.graficoIndic.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graficoIndic.Location = new System.Drawing.Point(0, 0);
             this.graficoIndic.Name = "graficoIndic";
-            series9.BorderWidth = 3;
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series9.IsValueShownAsLabel = true;
-            series9.Name = "valor";
-            this.graficoIndic.Series.Add(series9);
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.IsValueShownAsLabel = true;
+            series1.Name = "valor";
+            this.graficoIndic.Series.Add(series1);
             this.graficoIndic.Size = new System.Drawing.Size(458, 212);
             this.graficoIndic.TabIndex = 0;
             this.graficoIndic.Text = "graficoIndic";
@@ -624,7 +663,6 @@
             this.cancDevLb.Name = "cancDevLb";
             this.cancDevLb.Size = new System.Drawing.Size(185, 19);
             this.cancDevLb.TabIndex = 3;
-            this.cancDevLb.Text = "Canc/Devolu: ";
             // 
             // aprovLb
             // 
@@ -634,17 +672,19 @@
             this.aprovLb.Name = "aprovLb";
             this.aprovLb.Size = new System.Drawing.Size(185, 19);
             this.aprovLb.TabIndex = 2;
-            this.aprovLb.Text = "Aprovados: ";
             // 
             // panel4
             // 
+            this.panel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel4.BackColor = System.Drawing.SystemColors.Window;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.panel8);
             this.panel4.Controls.Add(this.qtdePedBt);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Controls.Add(this.valorPedBt);
-            this.panel4.Location = new System.Drawing.Point(523, 61);
+            this.panel4.Location = new System.Drawing.Point(523, 73);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(485, 249);
             this.panel4.TabIndex = 2;
@@ -659,15 +699,15 @@
             // 
             // graficoPed
             // 
-            chartArea10.AxisX.MajorGrid.Enabled = false;
-            chartArea10.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
-            chartArea10.Name = "ChartArea1";
-            this.graficoPed.ChartAreas.Add(chartArea10);
+            chartArea2.AxisX.MajorGrid.Enabled = false;
+            chartArea2.AxisY.MajorGrid.LineDashStyle = System.Windows.Forms.DataVisualization.Charting.ChartDashStyle.Dot;
+            chartArea2.Name = "ChartArea1";
+            this.graficoPed.ChartAreas.Add(chartArea2);
             this.graficoPed.Location = new System.Drawing.Point(0, -1);
             this.graficoPed.Name = "graficoPed";
-            series10.ChartArea = "ChartArea1";
-            series10.Name = "valor";
-            this.graficoPed.Series.Add(series10);
+            series2.ChartArea = "ChartArea1";
+            series2.Name = "valor";
+            this.graficoPed.Series.Add(series2);
             this.graficoPed.Size = new System.Drawing.Size(398, 194);
             this.graficoPed.TabIndex = 4;
             this.graficoPed.Text = "chart1";
@@ -706,12 +746,15 @@
             // 
             // panel6
             // 
+            this.panel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.BackColor = System.Drawing.SystemColors.Window;
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel6.Controls.Add(this.metaLb);
             this.panel6.Controls.Add(this.graficoMeta);
             this.panel6.Controls.Add(this.label3);
-            this.panel6.Location = new System.Drawing.Point(19, 325);
+            this.panel6.Location = new System.Drawing.Point(19, 329);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(485, 249);
             this.panel6.TabIndex = 3;
@@ -724,24 +767,23 @@
             this.metaLb.Name = "metaLb";
             this.metaLb.Size = new System.Drawing.Size(141, 19);
             this.metaLb.TabIndex = 2;
-            this.metaLb.Text = "Meta: ";
             this.metaLb.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // graficoMeta
             // 
-            chartArea11.Name = "ChartArea1";
-            this.graficoMeta.ChartAreas.Add(chartArea11);
-            legend5.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend5.Name = "Legend1";
-            this.graficoMeta.Legends.Add(legend5);
+            chartArea3.Name = "ChartArea1";
+            this.graficoMeta.ChartAreas.Add(chartArea3);
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Name = "Legend1";
+            this.graficoMeta.Legends.Add(legend1);
             this.graficoMeta.Location = new System.Drawing.Point(11, 30);
             this.graficoMeta.Name = "graficoMeta";
-            series11.ChartArea = "ChartArea1";
-            series11.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series11.CustomProperties = "PieLabelStyle=Outside";
-            series11.Legend = "Legend1";
-            series11.Name = "valor";
-            this.graficoMeta.Series.Add(series11);
+            series3.ChartArea = "ChartArea1";
+            series3.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series3.CustomProperties = "PieLabelStyle=Outside";
+            series3.Legend = "Legend1";
+            series3.Name = "valor";
+            this.graficoMeta.Series.Add(series3);
             this.graficoMeta.Size = new System.Drawing.Size(457, 200);
             this.graficoMeta.TabIndex = 3;
             this.graficoMeta.Text = "chart1";
@@ -758,6 +800,9 @@
             // 
             // panel3
             // 
+            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
             this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel3.Controls.Add(this.totalFatLb);
@@ -765,7 +810,7 @@
             this.panel3.Controls.Add(this.qtdeFatBt);
             this.panel3.Controls.Add(this.valorFatBt);
             this.panel3.Controls.Add(this.label1);
-            this.panel3.Location = new System.Drawing.Point(19, 61);
+            this.panel3.Location = new System.Drawing.Point(19, 73);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(485, 249);
             this.panel3.TabIndex = 1;
@@ -778,7 +823,6 @@
             this.totalFatLb.Name = "totalFatLb";
             this.totalFatLb.Size = new System.Drawing.Size(154, 19);
             this.totalFatLb.TabIndex = 1;
-            this.totalFatLb.Text = "Total: ";
             this.totalFatLb.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // panel7
@@ -791,19 +835,19 @@
             // 
             // graficoFat
             // 
-            chartArea12.Name = "ChartArea1";
-            this.graficoFat.ChartAreas.Add(chartArea12);
-            legend6.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
-            legend6.Name = "Legend1";
-            this.graficoFat.Legends.Add(legend6);
+            chartArea4.Name = "ChartArea1";
+            this.graficoFat.ChartAreas.Add(chartArea4);
+            legend2.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend2.Name = "Legend1";
+            this.graficoFat.Legends.Add(legend2);
             this.graficoFat.Location = new System.Drawing.Point(0, 0);
             this.graficoFat.Name = "graficoFat";
-            series12.ChartArea = "ChartArea1";
-            series12.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series12.CustomProperties = "PieLabelStyle=Outside";
-            series12.Legend = "Legend1";
-            series12.Name = "valor";
-            this.graficoFat.Series.Add(series12);
+            series4.ChartArea = "ChartArea1";
+            series4.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series4.CustomProperties = "PieLabelStyle=Outside";
+            series4.Legend = "Legend1";
+            series4.Name = "valor";
+            this.graficoFat.Series.Add(series4);
             this.graficoFat.Size = new System.Drawing.Size(397, 200);
             this.graficoFat.TabIndex = 0;
             this.graficoFat.Text = "chart1";
@@ -846,7 +890,7 @@
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1028, 42);
-            this.panel2.TabIndex = 0;
+            this.panel2.TabIndex = 6;
             // 
             // backgroundWorker1
             // 
@@ -870,8 +914,15 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 10000;
+            this.timer1.Interval = 60000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // indicadoresDeVendasToolStripMenuItem
+            // 
+            this.indicadoresDeVendasToolStripMenuItem.Name = "indicadoresDeVendasToolStripMenuItem";
+            this.indicadoresDeVendasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.indicadoresDeVendasToolStripMenuItem.Text = "Indicadores de Vendas";
+            this.indicadoresDeVendasToolStripMenuItem.Click += new System.EventHandler(this.indicadoresDeVendasToolStripMenuItem_Click);
             // 
             // processosAdm
             // 
@@ -883,6 +934,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "processosAdm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Processos Administrativos";
@@ -892,6 +944,7 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
             this.panel10.ResumeLayout(false);
@@ -944,8 +997,6 @@
         private System.Windows.Forms.ToolStripMenuItem etiquetaDePreçoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem contagemToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem financeiroToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem mapaDeVendasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem indicadoresDePerformânceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem comprasFuncionáriosToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem controladoriaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem vendasToolStripMenuItem;
@@ -954,13 +1005,12 @@
         private System.Windows.Forms.ToolStripMenuItem entregasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem assistênciasTécnicasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem nDeSérieToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem utilitáriosToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem marketingToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem cadastroDeBannersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem utilitáriosToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem utilitáriosToolStripMenuItem;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem metaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem etiquetaDePreçoToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem chamadasTelefoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem restriçõesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem configuraçãoDeRedeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientesForaEstadoToolStripMenuItem;
@@ -996,5 +1046,12 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoPed;
         private System.ComponentModel.BackgroundWorker backgroundWorker4;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label vendedorLb;
+        private System.Windows.Forms.Button lojaBt;
+        private System.Windows.Forms.ToolStripMenuItem atendimentoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem chamadasDeTelefoneToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mapaDeVendasToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem indicadoresDeVendasToolStripMenuItem;
     }
 }

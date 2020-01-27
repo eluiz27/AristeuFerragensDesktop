@@ -160,12 +160,15 @@
     <Compile Include="Classes\DAO.cs" />
     <Compile Include="Classes\ValoresGraficos.cs" />
     <Compile Include="Classes\VerificaIp.cs" />
+    <Compile Include="Config\RestricaoConfig.cs" />
+    <Compile Include="Controllers\RestricaoController.cs" />
     <Compile Include="Dao\Conexao.cs" />
     <Compile Include="Classes\excel.cs" />
     <Compile Include="Classes\queryDataTable.cs" />
     <Compile Include="Classes\querys.cs" />
     <Compile Include="Classes\variaveis.cs" />
-    <Compile Include="Dao\LoteDAO.cs" />
+    <Compile Include="Dao\LoteDao.cs" />
+    <Compile Include="Dao\RestricaoDao.cs" />
     <Compile Include="gs_aristeusDataSet.cs">
       <DependentUpon>gs_aristeusDataSet.xsd</DependentUpon>
     </Compile>
@@ -174,7 +177,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>gs_aristeusDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Model\LoteM.cs" />
+    <Compile Include="Models\LoteM.cs" />
+    <Compile Include="Models\RestricaoModel.cs" />
     <Compile Include="Telas\cadastroCampanha.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -503,11 +507,11 @@
     <Compile Include="Telas\progresso.Designer.cs">
       <DependentUpon>progresso.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\restricoes.cs">
+    <Compile Include="Telas\Restricoes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\restricoes.Designer.cs">
-      <DependentUpon>restricoes.cs</DependentUpon>
+    <Compile Include="Telas\Restricoes.Designer.cs">
+      <DependentUpon>Restricoes.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="impressao\etiqueta.rdlc" />
     <EmbeddedResource Include="Telas\cadastroCampanha.resx">
@@ -682,8 +686,8 @@
     <EmbeddedResource Include="Telas\progresso.resx">
       <DependentUpon>progresso.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\restricoes.resx">
-      <DependentUpon>restricoes.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Restricoes.resx">
+      <DependentUpon>Restricoes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="gs_aristeusDataSet.xsc">
       <DependentUpon>gs_aristeusDataSet.xsd</DependentUpon>
@@ -733,6 +737,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Resources\header.jpg" />
+    <Content Include="Resources\Sem Título-2-Recuperado.jpg" />
+    <None Include="Resources\Sem Título-2-Recuperado1.jpg" />
     <None Include="Resources\header2.jpg" />
     <None Include="Resources\header1.jpg" />
     <None Include="Resources\accept.png" />
