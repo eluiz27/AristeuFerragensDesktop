@@ -251,6 +251,12 @@
     <Compile Include="Telas\Entregadores.Designer.cs">
       <DependentUpon>Entregadores.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\Gatilho.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\Gatilho.Designer.cs">
+      <DependentUpon>Gatilho.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\grupoEmails.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -549,6 +555,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Entregadores.resx">
       <DependentUpon>Entregadores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Gatilho.resx">
+      <DependentUpon>Gatilho.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\grupoEmails.resx">
       <DependentUpon>grupoEmails.cs</DependentUpon>

@@ -960,6 +960,12 @@ namespace processosAdministrativos.Telas
 
         }
 
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Gatilho ga = new Gatilho();
+            ga.ShowDialog();
+        }
+
         private void mapaVendasCompleto_Load(object sender, EventArgs e)
         {
             vendedores();
