@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using processosAdministrativos.Dao;
 using processosAdministrativos.Models;
 
@@ -12,6 +13,13 @@ namespace processosAdministrativos.Controllers
         public BindingSource SelectRestricao()
         {
             return SelectTable();
+        }
+        public int selectPesquisaDash()
+        {
+            rm.Computador = Environment.MachineName.ToLower();
+            rm.Usuario = Environment.UserName.ToLower();
+
+            return SelectVendedor(rm);
         }
 
         public void InsertRestricao(string cargo, string computador, string usuario, int dashboard)
@@ -32,6 +40,14 @@ namespace processosAdministrativos.Controllers
             rm.Dashboard = dashboard;
 
             Update(rm);
+        }
+        public void UpdateRestricaoVendedor(string computador, string usuario, int vendedor)
+        {
+            rm.Computador = computador;
+            rm.Usuario = usuario;
+            rm.Pesquisa = vendedor;
+
+            UpdateVendedor(rm);
         }
         public void DeleteRestricao(int cod)
         {

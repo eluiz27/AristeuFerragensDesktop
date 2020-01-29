@@ -53,7 +53,7 @@ namespace processosAdministrativos.Dao
 
             for (int i = 0; i < usuario.Count; i++)
             {
-                if (computer == computador[i] && user == usuario[i])
+                if (computer == computador[i] && user.Contains(usuario[i]))
                 {
                     carg.Clear();
                     carg.Add(cargo[i]);
@@ -71,6 +71,23 @@ namespace processosAdministrativos.Dao
             return carg;
 
         }
+        public int SelectVendedor(RestricaoModel rm)
+        {
+            Query = new MySqlCommand();
+            Query.Connection = Conec;
+            Query.Parameters.AddWithValue("@computador", rm.Computador);
+            Query.Parameters.AddWithValue("@usuario", rm.Usuario);
+
+            Query.CommandText = "SELECT restC_pesquisa FROM restrict_cargo WHERE restC_computador = @computador AND restC_usuario = @usuario";
+
+            conecta();
+            object vendedor = Query.ExecuteScalar();
+            desconecta();
+            if (vendedor != null && vendedor.ToString() != "")
+                return Convert.ToInt32(vendedor);
+            else
+                return 0;
+        }
         public void Insert(RestricaoModel rm)
         {
             Query = new MySqlCommand();
@@ -86,7 +103,7 @@ namespace processosAdministrativos.Dao
             Query.ExecuteNonQuery();
             desconecta();
         }
-
+        
         public void Update(RestricaoModel rm)
         {
             Query = new MySqlCommand();
@@ -98,6 +115,20 @@ namespace processosAdministrativos.Dao
             Query.Parameters.AddWithValue("@dashboard", rm.Dashboard);
 
             Query.CommandText = "UPDATE restrict_cargo SET restC_cargo = @cargo, restC_computador = @computador, restC_usuario = @usuario, restC_dash = @dashboard WHERE restC_codigo = @codigo";
+
+            conecta();
+            Query.ExecuteNonQuery();
+            desconecta();
+        }
+        public void UpdateVendedor(RestricaoModel rm)
+        {
+            Query = new MySqlCommand();
+            Query.Connection = Conec;
+            Query.Parameters.AddWithValue("@computador", rm.Computador);
+            Query.Parameters.AddWithValue("@usuario", rm.Usuario);
+            Query.Parameters.AddWithValue("@pesquisa", rm.Pesquisa);
+
+            Query.CommandText = "UPDATE restrict_cargo SET restC_pesquisa = @pesquisa WHERE restC_computador = @computador and restC_usuario = @usuario";
 
             conecta();
             Query.ExecuteNonQuery();

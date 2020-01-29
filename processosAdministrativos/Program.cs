@@ -22,7 +22,7 @@ namespace processosAdministrativos
             //login login = new login();
             //if(login.ShowDialog() == DialogResult.OK)
             //{
-                Application.Run(new processosAdm());
+                Application.Run(new Principal());
             //}
         }
     }

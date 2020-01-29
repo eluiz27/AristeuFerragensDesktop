@@ -26,6 +26,7 @@ namespace processosAdministrativos.Telas
             cargoCb.SelectedIndex = 0;
             compTxt.Text = string.Empty;
             usuarioTxt.Text = string.Empty;
+            dashLojaCb.Checked = false;
             cod = 0;
         }
         public Restricoes()

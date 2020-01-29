@@ -459,11 +459,11 @@
     <Compile Include="Telas\procuraForn.Designer.cs">
       <DependentUpon>procuraForn.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\processosAdm.cs">
+    <Compile Include="Telas\Principal.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\processosAdm.Designer.cs">
-      <DependentUpon>processosAdm.cs</DependentUpon>
+    <Compile Include="Telas\Principal.Designer.cs">
+      <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\procuraGrupo.cs">
       <SubType>Form</SubType>
@@ -662,8 +662,8 @@
     <EmbeddedResource Include="Telas\procuraForn.resx">
       <DependentUpon>procuraForn.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\processosAdm.resx">
-      <DependentUpon>processosAdm.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Principal.resx">
+      <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\procuraGrupo.resx">
       <DependentUpon>procuraGrupo.cs</DependentUpon>

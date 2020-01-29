@@ -3,7 +3,6 @@ c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\pro
 c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\bin\Debug\processosAdministrativos.pdb
 c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Properties.Resources.resources
 c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.assistenciaTecnica.resources
-c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.processosAdm.resources
 c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.csproj.GenerateResource.Cache
 c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.exe
 c:\users\luiz\documents\visual studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.pdb
@@ -140,3 +139,4 @@ C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\pro
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.CaminhosMV.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.ConfiguracaoRede.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.ClienteForaEstado.resources
+C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.Principal.resources

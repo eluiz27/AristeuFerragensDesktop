@@ -13,6 +13,8 @@ namespace processosAdministrativos.Models
         public string Computador { get; set; }
         public string Usuario { get; set; }
         public int Dashboard { get; set; }
+        public int Pesquisa { get; set; }
+
 
     }
 }

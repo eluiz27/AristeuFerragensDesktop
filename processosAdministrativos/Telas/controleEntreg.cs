@@ -1,9 +1,7 @@
-﻿using processosAdministrativos;
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using processosAdministrativos.Telas;
 using processosAdministrativos.Classes;
 using System.Text.RegularExpressions;
 

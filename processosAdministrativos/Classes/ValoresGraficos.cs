@@ -1,4 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
+using processosAdministrativos.Controllers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,8 @@ namespace processosAdministrativos.Classes
     public class ValoresGraficos
     {
         querys q = new querys();
+        RestricaoController rc = new RestricaoController();
+
         List<double> valores = new List<double>();
 
         public List<double> Valores { get => valores; set => valores = value; }
@@ -164,29 +167,16 @@ namespace processosAdministrativos.Classes
             }
         }
 
-        public void EscreveVendedor(string numero)
+        public void GravarPesquisa(int numero)
         {
-            string vendedor = Path.GetFullPath("NumVendedor\\vendedor.txt");
-
-            StreamWriter x;
-
-            x = File.CreateText(vendedor);
-            x.Write(numero);
-            x.Close();
+            string computer = Environment.MachineName.ToLower();
+            string user = Environment.UserName.ToLower();
+            rc.UpdateRestricaoVendedor(computer, user, numero);
         }
 
-        public string LeVendedor()
+        public int LeVendedor()
         {
-            string vendedor = Path.GetFullPath("NumVendedor\\vendedor.txt");
-
-            StreamReader y;
-
-            y = File.OpenText(vendedor);
-
-            string aux = y.ReadLine();
-            y.Close();
-
-            return aux;
+            return rc.selectPesquisaDash();
         }
 
     }

@@ -7,15 +7,16 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class processosAdm : Form
+    public partial class Principal : Form
     {
         controlTelaAberta cta = new controlTelaAberta();
         ValoresGraficos vg = new ValoresGraficos();
+        RestricaoConfig res = new RestricaoConfig();
+
         List<double> varsFatValor = new List<double>();
         List<double> varsPedValor = new List<double>();
         List<double> varsMeta = new List<double>();
         List<double> linhas = new List<double>();
-        List<string> testeSp = new List<string>();
 
         public List<int> Setor { get; set; }
 
@@ -28,7 +29,6 @@ namespace processosAdministrativos.Telas
 
         public void restricao()
         {
-            RestricaoConfig res = new RestricaoConfig();
             List<int> aux = new List<int>();
             
             foreach(int lista in res.RestricMenu())
@@ -250,7 +250,7 @@ namespace processosAdministrativos.Telas
             linhas.Clear();
         }
 
-        public processosAdm()
+        public Principal()
         {
             InitializeComponent();
         }
@@ -259,15 +259,16 @@ namespace processosAdministrativos.Telas
         {
             restricao();
             timer3.Start();
-            if(vg.LeVendedor() != "")
+            if (vg.LeVendedor() != 0)
             {
-                textBox1.Text = vg.LeVendedor();
+                textBox1.Text = vg.LeVendedor().ToString();
                 vdd1 = Convert.ToInt32(textBox1.Text);
                 vdd2 = Convert.ToInt32(textBox1.Text);
                 backgroundWorker1.RunWorkerAsync();
                 timer1.Start();
-                vg.EscreveVendedor(textBox1.Text);
             }
+            else
+                fecharTela = 0;
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -308,7 +309,7 @@ namespace processosAdministrativos.Telas
             PreencheGraficoLinha();
             qtdeFatBt.Enabled = true;
             qtdePedBt.Enabled = true;
-            if(cont == 8)
+            if (res.Dash == "1")
                 lojaBt.Enabled = true;
             fecharTela = 0;
         }
@@ -887,11 +888,6 @@ namespace processosAdministrativos.Telas
             backgroundWorker1.RunWorkerAsync();
         }
 
-        private void panel9_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             valorFatBt.Enabled = false;
@@ -930,16 +926,21 @@ namespace processosAdministrativos.Telas
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (vg.Vendedor(Convert.ToInt32(textBox1.Text)) == false)
-                    MessageBox.Show("Código de vendedor incorreto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                {
-                    vdd1 = Convert.ToInt32(textBox1.Text);
-                    vdd2 = Convert.ToInt32(textBox1.Text);
-                    backgroundWorker1.RunWorkerAsync();
-                    timer1.Start();
-                    vg.EscreveVendedor(textBox1.Text);
+                if (textBox1.Text != string.Empty)
+                { 
+                    if (vg.Vendedor(Convert.ToInt32(textBox1.Text)) == false)
+                        MessageBox.Show("Código de vendedor incorreto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                    {
+                        vdd1 = Convert.ToInt32(textBox1.Text);
+                        vdd2 = Convert.ToInt32(textBox1.Text);
+                        backgroundWorker1.RunWorkerAsync();
+                        timer1.Start();
+                        vg.GravarPesquisa(Convert.ToInt32(textBox1.Text));
+                    }
                 }
+                else
+                    MessageBox.Show("Campo de vendedor obrigatório!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
