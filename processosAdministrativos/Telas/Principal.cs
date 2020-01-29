@@ -17,6 +17,7 @@ namespace processosAdministrativos.Telas
         List<double> varsPedValor = new List<double>();
         List<double> varsMeta = new List<double>();
         List<double> linhas = new List<double>();
+        int validaDash = 0;
 
         public List<int> Setor { get; set; }
 
@@ -924,24 +925,35 @@ namespace processosAdministrativos.Telas
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
-            {
-                if (textBox1.Text != string.Empty)
-                { 
-                    if (vg.Vendedor(Convert.ToInt32(textBox1.Text)) == false)
-                        MessageBox.Show("Código de vendedor incorreto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            if (validaDash == 0)
+            { 
+                if (e.KeyCode == Keys.Enter)
+                {
+                    if (textBox1.Text != string.Empty)
+                    {
+                        if (vg.Vendedor(Convert.ToInt32(textBox1.Text)) == false)
+                        {
+                            MessageBox.Show("Código de vendedor incorreto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            validaDash = 1;
+                        }
+                        else
+                        {
+                            vdd1 = Convert.ToInt32(textBox1.Text);
+                            vdd2 = Convert.ToInt32(textBox1.Text);
+                            backgroundWorker1.RunWorkerAsync();
+                            timer1.Start();
+                            vg.GravarPesquisa(Convert.ToInt32(textBox1.Text));
+                        }
+                    }
                     else
                     {
-                        vdd1 = Convert.ToInt32(textBox1.Text);
-                        vdd2 = Convert.ToInt32(textBox1.Text);
-                        backgroundWorker1.RunWorkerAsync();
-                        timer1.Start();
-                        vg.GravarPesquisa(Convert.ToInt32(textBox1.Text));
+                        MessageBox.Show("Campo de vendedor obrigatório!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        validaDash = 1;
                     }
                 }
-                else
-                    MessageBox.Show("Campo de vendedor obrigatório!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+            else
+                validaDash = 0;
         }
 
         private void button1_Click_1(object sender, EventArgs e)
