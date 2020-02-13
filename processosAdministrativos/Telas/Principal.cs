@@ -239,12 +239,25 @@ namespace processosAdministrativos.Telas
         {
             graficoIndic.Series["valor"].Points.Clear();
 
-            graficoIndic.Series[0].Points.AddXY("30/12", linhas[0]);
-            graficoIndic.Series[0].Points.AddXY("05/01", linhas[1]);
-            graficoIndic.Series[0].Points.AddXY("10/01", linhas[2]);
-            graficoIndic.Series[0].Points.AddXY("15/01", linhas[3]);
-            graficoIndic.Series[0].Points.AddXY("20/01", linhas[4]);
-            graficoIndic.Series[0].Points.AddXY("25/01", linhas[5]);
+            if(Convert.ToInt32(DateTime.Now.ToString("dd")) > 25)
+            {
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("30/MM"), linhas[0]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("05/MM"), linhas[1]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("10/MM"), linhas[2]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("15/MM"), linhas[3]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("20/MM"), linhas[4]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("25/MM"), linhas[5]);
+            }
+            else
+            {
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(-1).ToString("30/MM"), linhas[0]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("05/MM"), linhas[1]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("10/MM"), linhas[2]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("15/MM"), linhas[3]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("20/MM"), linhas[4]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("25/MM"), linhas[5]);
+            }
+
             graficoIndic.Series["valor"].Color = Color.Purple;
 
             graficoIndic.Series["valor"].LabelFormat = "C2";

@@ -76,7 +76,10 @@ namespace processosAdministrativos.Dao
             Query = new MySqlCommand();
             Query.Connection = Conec;
             Query.Parameters.AddWithValue("@computador", rm.Computador);
-            Query.Parameters.AddWithValue("@usuario", rm.Usuario);
+            if (rm.Usuario.Contains("usuario"))
+                Query.Parameters.AddWithValue("@usuario", "usuario");
+            else
+                Query.Parameters.AddWithValue("@usuario", rm.Usuario);
 
             Query.CommandText = "SELECT restC_pesquisa FROM restrict_cargo WHERE restC_computador = @computador AND restC_usuario = @usuario";
 
@@ -125,7 +128,11 @@ namespace processosAdministrativos.Dao
             Query = new MySqlCommand();
             Query.Connection = Conec;
             Query.Parameters.AddWithValue("@computador", rm.Computador);
-            Query.Parameters.AddWithValue("@usuario", rm.Usuario);
+            if (rm.Usuario.Contains("usuario"))
+                Query.Parameters.AddWithValue("@usuario", "usuario");
+            else
+                Query.Parameters.AddWithValue("@usuario", rm.Usuario);
+
             Query.Parameters.AddWithValue("@pesquisa", rm.Pesquisa);
 
             Query.CommandText = "UPDATE restrict_cargo SET restC_pesquisa = @pesquisa WHERE restC_computador = @computador and restC_usuario = @usuario";
