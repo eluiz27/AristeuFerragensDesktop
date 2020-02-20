@@ -141,6 +141,7 @@ C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\pro
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.ClienteForaEstado.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.Principal.resources
 C:\Users\luiz\Documents\Visual Studio 2013\Projects\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.Gatilho.resources
+<<<<<<< HEAD
 C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.csprojAssemblyReference.cache
 C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.csproj.ResolveComReference.cache
 C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.cadastroCampanha.resources
@@ -283,3 +284,5 @@ C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\De
 C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.application
 C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.csproj.CopyComplete
 C:\Users\luiz\Documents\processosAdministrativos\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.CadastroFuncionario.resources
+=======
+>>>>>>> f00f8ff5aa063e3d017a622f1ddf7965488a9105

@@ -77,12 +77,12 @@ namespace processosAdministrativos.Telas
         public void limpaList()
         {
             listComent1.Clear();
-            listComent2.Clear();
-            listComent3.Clear();
-            listComent4.Clear();
             listProd1.Clear();
             listPreco.Clear();
             listQtde1.Clear();
+            listComent2.Clear();
+            listComent3.Clear();
+            listComent4.Clear();
             listProd2.Clear();
             listQtde2.Clear();
             listProd3.Clear();
@@ -325,6 +325,7 @@ namespace processosAdministrativos.Telas
             limpaPrecoElev();
             limpaList();
             limpaProdInex();
+            limpaTrocProd();
             limpaGridPrecElev();
             limpaGridFaltEst();
             limpaGridProdInex();
@@ -666,7 +667,14 @@ namespace processosAdministrativos.Telas
                         dao.cadastraLoe(cl);
                         x1 = 1;
                     }
+                    MessageBox.Show("Preço elevado salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaPrecoElev();
+                    limpaGridPrecElev();
+                    listComent1.Clear();
+                    listProd1.Clear();
                     listPreco.Clear();
+                    listQtde1.Clear();
+                    aux1 = 1;
                 }
                 else if (prodPrecElevTxt.Text != string.Empty && precPrecElevTxt.Text != string.Empty && qtdePrecElevTxt.Text != string.Empty)
                 {
@@ -678,7 +686,14 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = comentPrecoTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+                    MessageBox.Show("Preço elevado salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaPrecoElev();
+                    limpaGridPrecElev();
+                    listComent1.Clear();
+                    listProd1.Clear();
                     listPreco.Clear();
+                    listQtde1.Clear();
+                    aux1 = 1;
                     x1 = 1;
                 }
                 else
@@ -704,7 +719,14 @@ namespace processosAdministrativos.Telas
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dao.cadastraLoe(cl);
                         x2 = 1;
+                        aux2 = 1;
                     }
+                    MessageBox.Show("Falta de estoque salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaFaltaEst();
+                    limpaGridFaltEst();
+                    listComent2.Clear();
+                    listProd2.Clear();
+                    listQtde2.Clear();
                 }
                 else if (prodFaltEstTxt.Text != string.Empty && qtdeFaltEstTxt.Text != string.Empty)
                 {
@@ -716,7 +738,14 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = comentEstTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+                    MessageBox.Show("Falta de estoque salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaFaltaEst();
+                    limpaGridFaltEst();
+                    listComent2.Clear();
+                    listProd2.Clear();
+                    listQtde2.Clear();
                     x2 = 1;
+                    aux2 = 1;
                 }
                 else
                 {
@@ -741,7 +770,14 @@ namespace processosAdministrativos.Telas
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dao.cadastraLoe(cl);
                         x3 = 1;
+                        aux3 = 1;
                     }
+                    MessageBox.Show("Produto inexistente salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaProdInex();
+                    limpaGridProdInex();
+                    listComent3.Clear();
+                    listProd3.Clear();
+                    listQtde3.Clear();
                 }
                 else if (prodProdInexTxt.Text != string.Empty && qtdeProdInexTxt.Text != string.Empty)
                 {
@@ -753,7 +789,14 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = comentIneTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+                    MessageBox.Show("Produto inexistente salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaProdInex();
+                    limpaGridProdInex();
+                    listComent3.Clear();
+                    listProd3.Clear();
+                    listQtde3.Clear();
                     x3 = 1;
+                    aux3 = 1;
                 }
                 else
                 {
@@ -778,7 +821,13 @@ namespace processosAdministrativos.Telas
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         dao.cadastraLoe(cl);
                         x4 = 1;
+                        aux4 = 1;
                     }
+                    MessageBox.Show("Troca de produto salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaTrocProd();
+                    limpaGridTrocProd();
+                    listComent4.Clear();
+                    listProd4.Clear();
                 }
                 else if (prodTrocProdTxt.Text != string.Empty)
                 {
@@ -790,7 +839,13 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = comentTrocaTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+                    MessageBox.Show("Troca de produto salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    limpaTrocProd();
+                    limpaGridTrocProd();
+                    listComent4.Clear();
+                    listProd4.Clear();
                     x4 = 1;
+                    aux4 = 1;
                 }
                 else
                 {
@@ -812,7 +867,14 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = coment1Txt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+<<<<<<< HEAD
                     x5 = 1;
+=======
+                    MessageBox.Show("Condição de pagamento salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    coment1Txt.Text = string.Empty;
+                    x5 = 1;
+                    aux5 = 1;
+>>>>>>> f00f8ff5aa063e3d017a622f1ddf7965488a9105
                 }
                 else
                 {
@@ -833,6 +895,9 @@ namespace processosAdministrativos.Telas
                 cl.Comentario_loe = coment2Txt.Text;
                 cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 dao.cadastraLoe(cl);
+                MessageBox.Show("Retirada de encomenda salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                coment2Txt.Text = string.Empty;
+                aux6 = 1;
             }
             if (aux7 == 1)
             {
@@ -845,6 +910,9 @@ namespace processosAdministrativos.Telas
                 cl.Comentario_loe = coment3Txt.Text;
                 cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 dao.cadastraLoe(cl);
+                MessageBox.Show("Conhecendo/Olhando salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                coment3Txt.Text = string.Empty;
+                aux7 = 1;
             }
             if (aux8 == 1)
             {
@@ -859,6 +927,9 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = coment4Txt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+                    MessageBox.Show("Outros salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    coment4Txt.Text = string.Empty;
+                    aux8 = 1;
                 }
                 else
                 {
@@ -869,18 +940,27 @@ namespace processosAdministrativos.Telas
             }
             if (x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1 && x5 == 1 && x8 == 1)
             {
-                MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpaCampo();
-                limpaFaltaEst();
                 limpaPrecoElev();
-                limpaList();
-                limpaProdInex();
                 limpaGridPrecElev();
+                limpaFaltaEst();
                 limpaGridFaltEst();
+                limpaProdInex();
                 limpaGridProdInex();
+                limpaTrocProd();
                 limpaGridTrocProd();
+                limpaList();
                 limpaComent();
                 removeTabPage();
+                aux1 = 0;
+                aux2 = 0;
+                aux3 = 0;
+                aux4 = 0;
+                aux5 = 0;
+                aux6 = 0;
+                aux7 = 0;
+                aux8 = 0;
             }
         }
 
