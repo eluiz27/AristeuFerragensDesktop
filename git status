@@ -1,0 +1,24 @@
+[33m2bd1d3e[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m Criação de combobox para dashboard
+[33m395be65[m Criação de combobox para dashboard
+[33me47d9a1[m Correção 2
+[33mf42a4b2[m Correção de commits
+[33ma9cc3ff[m Ultimos commits
+[33mf00f8ff[m Correção da LOE
+[33mae185ba[m Correção de inconsistencia na LOE
+[33m50debdc[m Correção do gatilho de envio do MV
+[33m0f8fff5[m Correção de pequena falha relacionada ao ultimo commit
+[33me2fddc9[m carregamento da dashboard por historico da ultima pesquisa por usuario
+[33m7c92648[m Estruturação de dashboard e restrições de usuario por cargo
+[33m0db24c0[m Criacao de dashboard
+[33m703a73f[m Adicionada tela para verificar clientes fora do estado
+[33maa91bd2[m Correcao envio automatico MV
+[33mca00f53[m Correcao metas MV
+[33m35d6206[m Alteracao do gatilho da procedure sp_getNotas
+[33mf8512dc[m Correcao da abertura dos emails do MV
+[33me788b28[m Correcao horario de duplicacao da tabela de vendas
+[33m7cd7669[m Correcao de envio MV
+[33m09b36de[m Enviar MV
+[33mbd9bd68[m Correção de colunas do ranking dos vendedores
+[33m5a1ec7e[m Adicao de classe para copia das vendas
+[33mcd485cb[m Encerar tela LOE ao enviar por e-mail
+[33mf8b0383[m Primeiro commit

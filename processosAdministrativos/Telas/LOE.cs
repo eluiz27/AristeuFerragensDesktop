@@ -867,14 +867,11 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = coment1Txt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
-<<<<<<< HEAD
                     x5 = 1;
-=======
                     MessageBox.Show("Condição de pagamento salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     coment1Txt.Text = string.Empty;
                     x5 = 1;
                     aux5 = 1;
->>>>>>> f00f8ff5aa063e3d017a622f1ddf7965488a9105
                 }
                 else
                 {
