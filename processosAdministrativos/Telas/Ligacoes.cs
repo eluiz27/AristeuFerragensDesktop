@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,11 +14,22 @@ namespace processosAdministrativos.Telas
 {
     public partial class Ligacoes : Form
     {
+        string caminho = Path.GetFullPath("Txts\\vendedores.txt");
+        public static string[] linhas;
         DAO dao = new DAO();
         int cod = 0;
         public Ligacoes()
         {
             InitializeComponent();
+        }
+
+        public void preencheCombo()
+        {
+            linhas = File.ReadAllLines(caminho);
+            foreach (string x in linhas)
+            {
+                paraCb.Items.Add(x);
+            }
         }
 
         public void PreencheTabela()
@@ -35,7 +47,7 @@ namespace processosAdministrativos.Telas
         public void SalvaLigacao()
         {
             ControlLigacoes cl = new ControlLigacoes();
-            if(clienteTxt.Text != string.Empty && paraTxt.Text != string.Empty)
+            if(clienteTxt.Text != string.Empty && paraCb.SelectedIndex >= 0)
             {
                 cl.Liga_data = DateTime.Now.ToString("yyyy-MM-dd 00:00:00");
                 if (horaMtxt.Text.Trim().Replace(":", string.Empty) == string.Empty)
@@ -43,7 +55,7 @@ namespace processosAdministrativos.Telas
                 else
                     cl.Liga_hora = horaMtxt.Text;
                 cl.Liga_cliente = clienteTxt.Text;
-                cl.Liga_para = paraTxt.Text;
+                cl.Liga_para = paraCb.SelectedItem.ToString();
                 cl.Liga_situacao = situacaoCb.SelectedItem.ToString();
                 if (obsTxt.Text != string.Empty)
                     cl.Liga_obs = obsTxt.Text;
@@ -70,7 +82,7 @@ namespace processosAdministrativos.Telas
         public void Limpar()
         {
             clienteTxt.Text = string.Empty;
-            paraTxt.Text = string.Empty;
+            paraCb.SelectedIndex = 0;
             obsTxt.Text = string.Empty;
             horaMtxt.Text = string.Empty;
             situacaoCb.SelectedIndex = 0;
@@ -93,6 +105,8 @@ namespace processosAdministrativos.Telas
             inferiorMtxt.Text = DateTime.Now.ToString("dd/MM/yy");
             superiorMtxt.Text = DateTime.Now.ToString("dd/MM/yy");
             PreencheTabela();
+            preencheCombo();
+            paraCb.SelectedIndex = 0;
         }
 
         private void Ligacoes_FormClosing(object sender, FormClosingEventArgs e)
@@ -177,7 +191,7 @@ namespace processosAdministrativos.Telas
         {
             cod = Convert.ToInt32(dataGridView1.CurrentRow.Cells[6].Value.ToString());
             clienteTxt.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            paraTxt.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            paraCb.SelectedItem = dataGridView1.CurrentRow.Cells[3].Value.ToString();
             if (dataGridView1.CurrentRow.Cells[4].Value.ToString() == "Transferido")
                 situacaoCb.SelectedIndex = 0;
             else if (dataGridView1.CurrentRow.Cells[4].Value.ToString() == "Recado")
@@ -196,6 +210,12 @@ namespace processosAdministrativos.Telas
         {
             ProcuraCliLiga pcl = new ProcuraCliLiga();
             pcl.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            CadastroFuncionario cv = new CadastroFuncionario();
+            cv.ShowDialog();
         }
     }
 }

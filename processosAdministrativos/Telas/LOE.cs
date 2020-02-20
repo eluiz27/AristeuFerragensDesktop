@@ -2,12 +2,6 @@
 using processosAdministrativos.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
@@ -654,7 +648,7 @@ namespace processosAdministrativos.Telas
         {
             DAO dao = new DAO();
             controlLoe cl = new controlLoe();
-            int x1 = 1, x2 = 1, x3 = 1, x4 = 1;
+            int x1 = 1, x2 = 1, x3 = 1, x4 = 1, x5 = 1, x8 = 1;
             if (aux1 == 1)
             {
                 aux1 = 0;
@@ -689,8 +683,9 @@ namespace processosAdministrativos.Telas
                 }
                 else
                 {
-                    MessageBox.Show("Opção - Preço Elevado - não preenchida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Opção - Preço Elevado - não preenchida corretamente!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     x1 = 0;
+                    aux1 = 1;
                 }
             }
             if (aux2 == 1)
@@ -725,8 +720,9 @@ namespace processosAdministrativos.Telas
                 }
                 else
                 {
-                    MessageBox.Show("Opção - Falta no Estoque - não preenchida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Opção - Falta no Estoque - não preenchida corretamente!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     x2 = 0;
+                    aux2 = 1;
                 }
             }
             if (aux3 == 1)
@@ -761,8 +757,9 @@ namespace processosAdministrativos.Telas
                 }
                 else
                 {
-                    MessageBox.Show("Opção - Produto Inexistente - não preenchida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Opção - Produto Inexistente - não preenchida corretamente!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     x3 = 0;
+                    aux3 = 1;
                 }
             }
             if (aux4 == 1)
@@ -797,11 +794,12 @@ namespace processosAdministrativos.Telas
                 }
                 else
                 {
-                    MessageBox.Show("Opção - Troca de produto - não preenchida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Opção - Troca de produto - não preenchida corretamente!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     x4 = 0;
+                    aux4 = 1;
                 }
             }
-            if (aux5 == 1 && x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1)
+            if (aux5 == 1)
             {
                 aux5 = 0;
                 if (coment1Txt.Text != string.Empty)
@@ -814,15 +812,17 @@ namespace processosAdministrativos.Telas
                     cl.Comentario_loe = coment1Txt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     dao.cadastraLoe(cl);
+                    x5 = 1;
                 }
                 else
                 {
-                    MessageBox.Show("Opção - Candiçaõ de pagamento - não preenchida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    x1 = 0;
+                    MessageBox.Show("Opção - Condição de pagamento - não preenchida corretamente!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    x5 = 0;
+                    aux5 = 1;
                 }
                     
             }
-            if (aux6 == 1 && x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1)
+            if (aux6 == 1)
             {
                 aux6 = 0;
                 cl.Id_vendedor_loe = codigoVddTxt.Text;
@@ -834,7 +834,7 @@ namespace processosAdministrativos.Telas
                 cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 dao.cadastraLoe(cl);
             }
-            if (aux7 == 1 && x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1)
+            if (aux7 == 1)
             {
                 aux7 = 0;
                 cl.Id_vendedor_loe = codigoVddTxt.Text;
@@ -846,7 +846,7 @@ namespace processosAdministrativos.Telas
                 cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 dao.cadastraLoe(cl);
             }
-            if (aux8 == 1 && x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1)
+            if (aux8 == 1)
             {
                 aux8 = 0;
                 if (coment4Txt.Text != string.Empty)
@@ -862,11 +862,12 @@ namespace processosAdministrativos.Telas
                 }
                 else
                 {
-                    MessageBox.Show("Opção - Outros - não preenchida!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    x1 = 0;
+                    MessageBox.Show("Opção - Outros - não preenchida corretamente!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    x8 = 0;
+                    aux8 = 1;
                 }                  
             }
-            if (x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1)
+            if (x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1 && x5 == 1 && x8 == 1)
             {
                 MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpaCampo();

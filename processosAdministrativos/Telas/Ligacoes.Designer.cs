@@ -32,10 +32,16 @@
             this.clienteTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.paraTxt = new System.Windows.Forms.TextBox();
             this.comfirmaBt = new System.Windows.Forms.Button();
             this.limparBt = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.para = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.obs = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.horaMtxt = new System.Windows.Forms.MaskedTextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.situacaoCb = new System.Windows.Forms.ComboBox();
@@ -54,14 +60,9 @@
             this.paraRb = new System.Windows.Forms.RadioButton();
             this.clienteRb = new System.Windows.Forms.RadioButton();
             this.pesquisaTxt = new System.Windows.Forms.TextBox();
-            this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hora = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.para = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.situacao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.obs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button3 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.paraCb = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -93,13 +94,6 @@
             this.label2.Size = new System.Drawing.Size(37, 16);
             this.label2.TabIndex = 8;
             this.label2.Text = "Para";
-            // 
-            // paraTxt
-            // 
-            this.paraTxt.Location = new System.Drawing.Point(259, 14);
-            this.paraTxt.Name = "paraTxt";
-            this.paraTxt.Size = new System.Drawing.Size(134, 20);
-            this.paraTxt.TabIndex = 1;
             // 
             // comfirmaBt
             // 
@@ -144,6 +138,60 @@
             this.dataGridView1.Size = new System.Drawing.Size(754, 348);
             this.dataGridView1.TabIndex = 12;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DataGridView1_MouseDoubleClick);
+            // 
+            // data
+            // 
+            this.data.DataPropertyName = "dataFormatada";
+            this.data.HeaderText = "Data";
+            this.data.Name = "data";
+            this.data.ReadOnly = true;
+            this.data.Width = 80;
+            // 
+            // hora
+            // 
+            this.hora.DataPropertyName = "liga_hora";
+            this.hora.HeaderText = "Hora";
+            this.hora.Name = "hora";
+            this.hora.ReadOnly = true;
+            this.hora.Width = 70;
+            // 
+            // cliente
+            // 
+            this.cliente.DataPropertyName = "liga_cliente";
+            this.cliente.HeaderText = "Cliente";
+            this.cliente.Name = "cliente";
+            this.cliente.ReadOnly = true;
+            this.cliente.Width = 180;
+            // 
+            // para
+            // 
+            this.para.DataPropertyName = "liga_para";
+            this.para.HeaderText = "Para";
+            this.para.Name = "para";
+            this.para.ReadOnly = true;
+            // 
+            // situacao
+            // 
+            this.situacao.DataPropertyName = "liga_situacao";
+            this.situacao.HeaderText = "Situação";
+            this.situacao.Name = "situacao";
+            this.situacao.ReadOnly = true;
+            // 
+            // obs
+            // 
+            this.obs.DataPropertyName = "liga_obs";
+            this.obs.HeaderText = "Obs";
+            this.obs.Name = "obs";
+            this.obs.ReadOnly = true;
+            this.obs.Width = 150;
+            // 
+            // codigo
+            // 
+            this.codigo.DataPropertyName = "liga_id";
+            this.codigo.HeaderText = "Código";
+            this.codigo.Name = "codigo";
+            this.codigo.ReadOnly = true;
+            this.codigo.Visible = false;
             // 
             // horaMtxt
             // 
@@ -337,60 +385,6 @@
             this.pesquisaTxt.TabIndex = 0;
             this.pesquisaTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.PesquisaTxt_KeyUp);
             // 
-            // data
-            // 
-            this.data.DataPropertyName = "dataFormatada";
-            this.data.HeaderText = "Data";
-            this.data.Name = "data";
-            this.data.ReadOnly = true;
-            this.data.Width = 80;
-            // 
-            // hora
-            // 
-            this.hora.DataPropertyName = "liga_hora";
-            this.hora.HeaderText = "Hora";
-            this.hora.Name = "hora";
-            this.hora.ReadOnly = true;
-            this.hora.Width = 70;
-            // 
-            // cliente
-            // 
-            this.cliente.DataPropertyName = "liga_cliente";
-            this.cliente.HeaderText = "Cliente";
-            this.cliente.Name = "cliente";
-            this.cliente.ReadOnly = true;
-            this.cliente.Width = 180;
-            // 
-            // para
-            // 
-            this.para.DataPropertyName = "liga_para";
-            this.para.HeaderText = "Para";
-            this.para.Name = "para";
-            this.para.ReadOnly = true;
-            // 
-            // situacao
-            // 
-            this.situacao.DataPropertyName = "liga_situacao";
-            this.situacao.HeaderText = "Situação";
-            this.situacao.Name = "situacao";
-            this.situacao.ReadOnly = true;
-            // 
-            // obs
-            // 
-            this.obs.DataPropertyName = "liga_obs";
-            this.obs.HeaderText = "Obs";
-            this.obs.Name = "obs";
-            this.obs.ReadOnly = true;
-            this.obs.Width = 150;
-            // 
-            // codigo
-            // 
-            this.codigo.DataPropertyName = "liga_id";
-            this.codigo.HeaderText = "Código";
-            this.codigo.Name = "codigo";
-            this.codigo.ReadOnly = true;
-            this.codigo.Visible = false;
-            // 
             // button3
             // 
             this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -402,11 +396,33 @@
             this.button3.UseVisualStyleBackColor = true;
             this.button3.Click += new System.EventHandler(this.Button3_Click);
             // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(464, 45);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(95, 27);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Funcionários";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // paraCb
+            // 
+            this.paraCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.paraCb.FormattingEnabled = true;
+            this.paraCb.Location = new System.Drawing.Point(259, 13);
+            this.paraCb.Name = "paraCb";
+            this.paraCb.Size = new System.Drawing.Size(134, 21);
+            this.paraCb.TabIndex = 1;
+            // 
             // Ligacoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 514);
+            this.Controls.Add(this.paraCb);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.obslabel);
@@ -419,7 +435,6 @@
             this.Controls.Add(this.limparBt);
             this.Controls.Add(this.comfirmaBt);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.paraTxt);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clienteTxt);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -445,7 +460,6 @@
         private System.Windows.Forms.TextBox clienteTxt;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox paraTxt;
         private System.Windows.Forms.Button comfirmaBt;
         private System.Windows.Forms.Button limparBt;
         private System.Windows.Forms.DataGridView dataGridView1;
@@ -475,5 +489,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn obs;
         private System.Windows.Forms.DataGridViewTextBoxColumn codigo;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ComboBox paraCb;
     }
 }

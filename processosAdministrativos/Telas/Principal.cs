@@ -3,6 +3,7 @@ using processosAdministrativos.Config;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
@@ -18,6 +19,9 @@ namespace processosAdministrativos.Telas
         List<double> varsMeta = new List<double>();
         List<double> linhas = new List<double>();
         int validaDash = 0;
+
+        string enviarMV = Path.GetFullPath("EnviarMV\\Usuario.txt");
+        public static string[] linhasMV;
 
         public List<int> Setor { get; set; }
 
@@ -235,12 +239,25 @@ namespace processosAdministrativos.Telas
         {
             graficoIndic.Series["valor"].Points.Clear();
 
-            graficoIndic.Series[0].Points.AddXY("30/12", linhas[0]);
-            graficoIndic.Series[0].Points.AddXY("05/01", linhas[1]);
-            graficoIndic.Series[0].Points.AddXY("10/01", linhas[2]);
-            graficoIndic.Series[0].Points.AddXY("15/01", linhas[3]);
-            graficoIndic.Series[0].Points.AddXY("20/01", linhas[4]);
-            graficoIndic.Series[0].Points.AddXY("25/01", linhas[5]);
+            if(Convert.ToInt32(DateTime.Now.ToString("dd")) > 25)
+            {
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("30/MM"), linhas[0]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("05/MM"), linhas[1]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("10/MM"), linhas[2]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("15/MM"), linhas[3]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("20/MM"), linhas[4]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(1).ToString("25/MM"), linhas[5]);
+            }
+            else
+            {
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.AddMonths(-1).ToString("30/MM"), linhas[0]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("05/MM"), linhas[1]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("10/MM"), linhas[2]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("15/MM"), linhas[3]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("20/MM"), linhas[4]);
+                graficoIndic.Series[0].Points.AddXY(DateTime.Now.ToString("25/MM"), linhas[5]);
+            }
+
             graficoIndic.Series["valor"].Color = Color.Purple;
 
             graficoIndic.Series["valor"].LabelFormat = "C2";
@@ -310,6 +327,7 @@ namespace processosAdministrativos.Telas
             PreencheGraficoLinha();
             qtdeFatBt.Enabled = true;
             qtdePedBt.Enabled = true;
+            textBox1.Enabled = true;
             if (res.Dash == "1")
                 lojaBt.Enabled = true;
             fecharTela = 0;
@@ -836,18 +854,23 @@ namespace processosAdministrativos.Telas
 
         private void Timer3_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.ToString("HH:mm:ss") == "08:10:00")
+            linhasMV = File.ReadAllLines(enviarMV);
+
+            if (linhasMV[0] == Environment.UserName.ToLower() && linhasMV[1] == Environment.MachineName.ToLower())
             {
-                if (cta.TelaMapaVendas == 0)
+                if (DateTime.Now.ToString("HH:mm:ss") == "08:10:00")
                 {
-                    mapaVendasCompleto mv = new mapaVendasCompleto();
-                    mv.Show();
-                    cta.TelaMapaVendas = 1;
-                }
-                else
-                {
-                    MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    Application.OpenForms["mapaVendasCompleto"].BringToFront();
+                    if (cta.TelaMapaVendas == 0)
+                    {
+                        mapaVendasCompleto mv = new mapaVendasCompleto();
+                        mv.Show();
+                        cta.TelaMapaVendas = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Tela ja aberta!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Application.OpenForms["mapaVendasCompleto"].BringToFront();
+                    }
                 }
             }
         }
@@ -886,6 +909,8 @@ namespace processosAdministrativos.Telas
             qtdePedBt.Enabled = false;
             valorFatBt.Enabled = false;
             valorPedBt.Enabled = false;
+            textBox1.Enabled = false;
+            lojaBt.Enabled = false;
             backgroundWorker1.RunWorkerAsync();
         }
 
@@ -938,6 +963,12 @@ namespace processosAdministrativos.Telas
                         }
                         else
                         {
+                            qtdeFatBt.Enabled = false;
+                            qtdePedBt.Enabled = false;
+                            valorFatBt.Enabled = false;
+                            valorPedBt.Enabled = false;
+                            textBox1.Enabled = false;
+                            lojaBt.Enabled = false;
                             vdd1 = Convert.ToInt32(textBox1.Text);
                             vdd2 = Convert.ToInt32(textBox1.Text);
                             backgroundWorker1.RunWorkerAsync();
@@ -958,6 +989,11 @@ namespace processosAdministrativos.Telas
 
         private void button1_Click_1(object sender, EventArgs e)
         {
+            qtdeFatBt.Enabled = false;
+            qtdePedBt.Enabled = false;
+            valorFatBt.Enabled = false;
+            valorPedBt.Enabled = false;
+            textBox1.Enabled = false;
             lojaBt.Enabled = false;
             vdd1 = 1;
             vdd2 = 99;

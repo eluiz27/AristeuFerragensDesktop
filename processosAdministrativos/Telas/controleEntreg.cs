@@ -238,6 +238,7 @@ namespace processosAdministrativos.Telas
             int x = 0;
             if (e.KeyChar == 13)
             {
+                nPedidoTxt.Enabled = false;
                 if (Regex.IsMatch(nPedidoTxt.Text, verifica))
                 {
                     for(int i = 0; i < pedidosGv.RowCount; i++)
@@ -273,6 +274,8 @@ namespace processosAdministrativos.Telas
                     timer1.Start();
                 }
             }
+            nPedidoTxt.Enabled = true;
+            nPedidoTxt.Focus();
         }
 
         private void GravaBt_Click(object sender, EventArgs e)
