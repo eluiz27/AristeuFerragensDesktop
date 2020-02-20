@@ -169,6 +169,7 @@
     <Compile Include="Classes\variaveis.cs" />
     <Compile Include="Dao\LoteDao.cs" />
     <Compile Include="Dao\RestricaoDao.cs" />
+    <Compile Include="Dao\VendedorDao.cs" />
     <Compile Include="gs_aristeusDataSet.cs">
       <DependentUpon>gs_aristeusDataSet.xsd</DependentUpon>
     </Compile>

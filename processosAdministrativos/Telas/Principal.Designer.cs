@@ -88,6 +88,7 @@
             this.restriçõesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configuraçãoDeRedeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mapaDeVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.indicadoresDeVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.atendimentoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chamadasDeTelefoneToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -95,7 +96,6 @@
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.lojaBt = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.vendedorLb = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -126,7 +126,7 @@
             this.backgroundWorker3 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker4 = new System.ComponentModel.BackgroundWorker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.indicadoresDeVendasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.vendedorCb = new System.Windows.Forms.ComboBox();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -481,7 +481,7 @@
             // cadastroDeBannersToolStripMenuItem
             // 
             this.cadastroDeBannersToolStripMenuItem.Name = "cadastroDeBannersToolStripMenuItem";
-            this.cadastroDeBannersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cadastroDeBannersToolStripMenuItem.Size = new System.Drawing.Size(137, 22);
             this.cadastroDeBannersToolStripMenuItem.Text = "Campanhas";
             this.cadastroDeBannersToolStripMenuItem.Click += new System.EventHandler(this.cadastroDeBannersToolStripMenuItem_Click);
             // 
@@ -516,6 +516,13 @@
             this.mapaDeVendasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
             this.mapaDeVendasToolStripMenuItem.Text = "Mapa de Vendas";
             this.mapaDeVendasToolStripMenuItem.Click += new System.EventHandler(this.mapaDeVendasToolStripMenuItem_Click);
+            // 
+            // indicadoresDeVendasToolStripMenuItem
+            // 
+            this.indicadoresDeVendasToolStripMenuItem.Name = "indicadoresDeVendasToolStripMenuItem";
+            this.indicadoresDeVendasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+            this.indicadoresDeVendasToolStripMenuItem.Text = "Indicadores de Vendas";
+            this.indicadoresDeVendasToolStripMenuItem.Click += new System.EventHandler(this.indicadoresDeVendasToolStripMenuItem_Click);
             // 
             // menuStrip1
             // 
@@ -560,8 +567,8 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.vendedorCb);
             this.panel1.Controls.Add(this.lojaBt);
-            this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.vendedorLb);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.cancDevLb);
@@ -585,14 +592,6 @@
             this.lojaBt.Text = "Loja";
             this.lojaBt.UseVisualStyleBackColor = true;
             this.lojaBt.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(91, 48);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
             // vendedorLb
             // 
@@ -917,14 +916,17 @@
             this.timer1.Interval = 60000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // indicadoresDeVendasToolStripMenuItem
+            // vendedorCb
             // 
-            this.indicadoresDeVendasToolStripMenuItem.Name = "indicadoresDeVendasToolStripMenuItem";
-            this.indicadoresDeVendasToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-            this.indicadoresDeVendasToolStripMenuItem.Text = "Indicadores de Vendas";
-            this.indicadoresDeVendasToolStripMenuItem.Click += new System.EventHandler(this.indicadoresDeVendasToolStripMenuItem_Click);
+            this.vendedorCb.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.vendedorCb.FormattingEnabled = true;
+            this.vendedorCb.Location = new System.Drawing.Point(91, 48);
+            this.vendedorCb.Name = "vendedorCb";
+            this.vendedorCb.Size = new System.Drawing.Size(121, 21);
+            this.vendedorCb.TabIndex = 8;
+            this.vendedorCb.SelectionChangeCommitted += new System.EventHandler(this.vendedorCb_SelectionChangeCommitted);
             // 
-            // processosAdm
+            // Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -935,7 +937,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
-            this.Name = "processosAdm";
+            this.Name = "Principal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Processos Administrativos";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.processosAdm_FormClosing);
@@ -1046,12 +1048,12 @@
         private System.Windows.Forms.DataVisualization.Charting.Chart graficoPed;
         private System.ComponentModel.BackgroundWorker backgroundWorker4;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label vendedorLb;
         private System.Windows.Forms.Button lojaBt;
         private System.Windows.Forms.ToolStripMenuItem atendimentoToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem chamadasDeTelefoneToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mapaDeVendasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem indicadoresDeVendasToolStripMenuItem;
+        private System.Windows.Forms.ComboBox vendedorCb;
     }
 }

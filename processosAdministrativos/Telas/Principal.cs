@@ -1,5 +1,6 @@
 ﻿using processosAdministrativos.Classes;
 using processosAdministrativos.Config;
+using processosAdministrativos.Dao;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -13,6 +14,7 @@ namespace processosAdministrativos.Telas
         controlTelaAberta cta = new controlTelaAberta();
         ValoresGraficos vg = new ValoresGraficos();
         RestricaoConfig res = new RestricaoConfig();
+        VendedorDao vd = new VendedorDao();
 
         List<double> varsFatValor = new List<double>();
         List<double> varsPedValor = new List<double>();
@@ -32,6 +34,26 @@ namespace processosAdministrativos.Telas
 
         int cont = 0;
 
+        public void Vendedores()
+        {
+            foreach(string nome in vd.SelectVendedor())
+            {
+                vendedorCb.Items.Add(nome);
+            }
+
+            vendedorCb.SelectedIndex = 0;
+
+            vendedorCb.Enabled = false;
+            qtdeFatBt.Enabled = false;
+            qtdePedBt.Enabled = false;
+            valorFatBt.Enabled = false;
+            valorPedBt.Enabled = false;
+            lojaBt.Enabled = false;
+            vdd1 = vd.SelectVendedorCod()[vendedorCb.SelectedIndex];
+            vdd2 = vd.SelectVendedorCod()[vendedorCb.SelectedIndex];
+            backgroundWorker1.RunWorkerAsync();
+            timer1.Start();
+        }
         public void restricao()
         {
             List<int> aux = new List<int>();
@@ -277,16 +299,8 @@ namespace processosAdministrativos.Telas
         {
             restricao();
             timer3.Start();
-            if (vg.LeVendedor() != 0)
-            {
-                textBox1.Text = vg.LeVendedor().ToString();
-                vdd1 = Convert.ToInt32(textBox1.Text);
-                vdd2 = Convert.ToInt32(textBox1.Text);
-                backgroundWorker1.RunWorkerAsync();
-                timer1.Start();
-            }
-            else
-                fecharTela = 0;
+            
+            Vendedores();
         }
 
         private void backgroundWorker1_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -325,9 +339,9 @@ namespace processosAdministrativos.Telas
         private void backgroundWorker4_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
             PreencheGraficoLinha();
+            vendedorCb.Enabled = true;
             qtdeFatBt.Enabled = true;
             qtdePedBt.Enabled = true;
-            textBox1.Enabled = true;
             if (res.Dash == "1")
                 lojaBt.Enabled = true;
             fecharTela = 0;
@@ -905,11 +919,11 @@ namespace processosAdministrativos.Telas
 
         private void timer1_Tick(object sender, EventArgs e)
         {
+            vendedorCb.Enabled = false;
             qtdeFatBt.Enabled = false;
             qtdePedBt.Enabled = false;
             valorFatBt.Enabled = false;
             valorPedBt.Enabled = false;
-            textBox1.Enabled = false;
             lojaBt.Enabled = false;
             backgroundWorker1.RunWorkerAsync();
         }
@@ -948,55 +962,31 @@ namespace processosAdministrativos.Telas
             valorPedBt.Enabled = true;
         }
 
-        private void textBox1_KeyUp(object sender, KeyEventArgs e)
-        {
-            if (validaDash == 0)
-            { 
-                if (e.KeyCode == Keys.Enter)
-                {
-                    if (textBox1.Text != string.Empty)
-                    {
-                        if (vg.Vendedor(Convert.ToInt32(textBox1.Text)) == false)
-                        {
-                            MessageBox.Show("Código de vendedor incorreto!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            validaDash = 1;
-                        }
-                        else
-                        {
-                            qtdeFatBt.Enabled = false;
-                            qtdePedBt.Enabled = false;
-                            valorFatBt.Enabled = false;
-                            valorPedBt.Enabled = false;
-                            textBox1.Enabled = false;
-                            lojaBt.Enabled = false;
-                            vdd1 = Convert.ToInt32(textBox1.Text);
-                            vdd2 = Convert.ToInt32(textBox1.Text);
-                            backgroundWorker1.RunWorkerAsync();
-                            timer1.Start();
-                            vg.GravarPesquisa(Convert.ToInt32(textBox1.Text));
-                        }
-                    }
-                    else
-                    {
-                        MessageBox.Show("Campo de vendedor obrigatório!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        validaDash = 1;
-                    }
-                }
-            }
-            else
-                validaDash = 0;
-        }
-
+      
         private void button1_Click_1(object sender, EventArgs e)
         {
+            vendedorCb.Enabled = false;
             qtdeFatBt.Enabled = false;
             qtdePedBt.Enabled = false;
             valorFatBt.Enabled = false;
             valorPedBt.Enabled = false;
-            textBox1.Enabled = false;
             lojaBt.Enabled = false;
             vdd1 = 1;
             vdd2 = 99;
+            backgroundWorker1.RunWorkerAsync();
+            timer1.Start();
+        }
+
+        private void vendedorCb_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            vendedorCb.Enabled = false;
+            qtdeFatBt.Enabled = false;
+            qtdePedBt.Enabled = false;
+            valorFatBt.Enabled = false;
+            valorPedBt.Enabled = false;
+            lojaBt.Enabled = false;
+            vdd1 = vd.SelectVendedorCod()[vendedorCb.SelectedIndex];
+            vdd2 = vd.SelectVendedorCod()[vendedorCb.SelectedIndex];
             backgroundWorker1.RunWorkerAsync();
             timer1.Start();
         }
