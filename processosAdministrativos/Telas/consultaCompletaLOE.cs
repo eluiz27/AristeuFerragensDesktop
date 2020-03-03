@@ -442,7 +442,7 @@ namespace processosAdministrativos.Telas
 
                 if (z == 1)
                 {
-                    if ((Convert.ToDouble(saldoFalt[i]) >= Convert.ToDouble(minimo[i])) || (Convert.ToDouble(qtde1[i]) <= Convert.ToDouble(saldoFalt[i])))
+                    if (((Convert.ToDouble(saldoFalt[i]) >= Convert.ToDouble(minimo[i])) || (Convert.ToDouble(qtde1[i]) <= Convert.ToDouble(saldoFalt[i]))) && Convert.ToDouble(saldoFalt[i]) > 0)
                     {
                         sit = "Estoque";
                         situ.Add(sit);
