@@ -35,6 +35,9 @@
             this.compTxt = new System.Windows.Forms.TextBox();
             this.preencherBt = new System.Windows.Forms.Button();
             this.gravarBt = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.ativoCb = new System.Windows.Forms.CheckBox();
+            this.horarioTxt = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -73,7 +76,7 @@
             // 
             // preencherBt
             // 
-            this.preencherBt.Location = new System.Drawing.Point(16, 75);
+            this.preencherBt.Location = new System.Drawing.Point(16, 117);
             this.preencherBt.Name = "preencherBt";
             this.preencherBt.Size = new System.Drawing.Size(75, 23);
             this.preencherBt.TabIndex = 4;
@@ -83,7 +86,7 @@
             // 
             // gravarBt
             // 
-            this.gravarBt.Location = new System.Drawing.Point(121, 75);
+            this.gravarBt.Location = new System.Drawing.Point(121, 117);
             this.gravarBt.Name = "gravarBt";
             this.gravarBt.Size = new System.Drawing.Size(75, 23);
             this.gravarBt.TabIndex = 5;
@@ -91,11 +94,43 @@
             this.gravarBt.UseVisualStyleBackColor = true;
             this.gravarBt.Click += new System.EventHandler(this.gravarBt_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(13, 67);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 16);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Horário:";
+            // 
+            // ativoCb
+            // 
+            this.ativoCb.AutoSize = true;
+            this.ativoCb.Location = new System.Drawing.Point(15, 94);
+            this.ativoCb.Name = "ativoCb";
+            this.ativoCb.Size = new System.Drawing.Size(50, 17);
+            this.ativoCb.TabIndex = 9;
+            this.ativoCb.Text = "Ativo";
+            this.ativoCb.UseVisualStyleBackColor = true;
+            // 
+            // horarioTxt
+            // 
+            this.horarioTxt.Location = new System.Drawing.Point(104, 67);
+            this.horarioTxt.Mask = "90:00";
+            this.horarioTxt.Name = "horarioTxt";
+            this.horarioTxt.Size = new System.Drawing.Size(92, 20);
+            this.horarioTxt.TabIndex = 10;
+            this.horarioTxt.ValidatingType = typeof(System.DateTime);
+            // 
             // Gatilho
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(208, 110);
+            this.ClientSize = new System.Drawing.Size(208, 151);
+            this.Controls.Add(this.horarioTxt);
+            this.Controls.Add(this.ativoCb);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.gravarBt);
             this.Controls.Add(this.preencherBt);
             this.Controls.Add(this.compTxt);
@@ -106,6 +141,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Gatilho";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gatilho";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -120,5 +156,8 @@
         private System.Windows.Forms.TextBox compTxt;
         private System.Windows.Forms.Button preencherBt;
         private System.Windows.Forms.Button gravarBt;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox ativoCb;
+        private System.Windows.Forms.MaskedTextBox horarioTxt;
     }
 }

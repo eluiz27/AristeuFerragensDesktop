@@ -865,17 +865,18 @@ namespace processosAdministrativos.Telas
             }
         }
 
-
         private void Timer3_Tick(object sender, EventArgs e)
         {
             linhasMV = File.ReadAllLines(enviarMV);
 
-            if (linhasMV[0] == Environment.UserName.ToLower() && linhasMV[1] == Environment.MachineName.ToLower())
+            if (linhasMV[0] == Environment.UserName.ToLower() && linhasMV[1] == Environment.MachineName.ToLower() && linhasMV[2] == "1")
             {
-                if (DateTime.Now.ToString("HH:mm:ss") == "08:10:00")
+                if (DateTime.Now.ToString("HH:mm:ss") == linhasMV[3])
                 {
                     if (cta.TelaMapaVendas == 0)
                     {
+                        CopiaVendas cv = new CopiaVendas();
+                        cv.Copia();
                         mapaVendasCompleto mv = new mapaVendasCompleto();
                         mv.Show();
                         cta.TelaMapaVendas = 1;
