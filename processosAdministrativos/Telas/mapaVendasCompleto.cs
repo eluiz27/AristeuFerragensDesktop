@@ -4,12 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Outlook = Microsoft.Office.Interop.Outlook;
 
@@ -220,9 +216,8 @@ namespace processosAdministrativos.Telas
                    "group by nt_data ORDER BY nt_data";
 
             Sql7 = "SELECT round(SUM(nt_total), 2) as 'nt_total', DATE_FORMAT(nt_data, '%d') as 'nt_data' FROM Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo " +
-                   "WHERE nt_vendedor BETWEEN '" + vendedor1 + "' and '" + vendedor2 + "' and nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND '2018-10-15' AND nt_cancelada = 0 AND tmv_grupo = 'D' and tmv_tipo = 'E' " +
+                   "WHERE nt_vendedor BETWEEN '" + vendedor1 + "' and '" + vendedor2 + "' and nt_data BETWEEN '" + inferior + "' AND '" + superior + "' AND nt_cancelada = 0 AND tmv_grupo = 'D' and tmv_tipo = 'E' " +
                    "group by nt_data ORDER BY DATE_FORMAT(nt_data, '%Y-%m-%d')";
-
 
             Sql9 = "select sum(vmet_meta) as 'vmet_meta' from valor_meta where vmet_vendedor between '" + vendedor1 + "' and '" + vendedor2 + "'";
 
