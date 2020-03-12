@@ -20,6 +20,7 @@ namespace processosAdministrativos.Telas
             else
                 ativoCb.Checked = true;
             horarioTxt.Text = linhas[3];
+            horario2Txt.Text = linhas[4];
         }
         public void EscreverArq()
         {
@@ -31,6 +32,7 @@ namespace processosAdministrativos.Telas
             else
                 x.WriteLine(0);
             x.WriteLine(horarioTxt.Text);
+            x.WriteLine(horario2Txt.Text);
             x.Close();
         }
         public Gatilho()
@@ -52,6 +54,11 @@ namespace processosAdministrativos.Telas
                 EscreverArq();
                 MessageBox.Show("Usuário Salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+        }
+
+        private void horarioTxt_Leave(object sender, EventArgs e)
+        {
+            horario2Txt.Text = Convert.ToDateTime(horarioTxt.Text).ToString("HH:mm:05");
         }
     }
 }

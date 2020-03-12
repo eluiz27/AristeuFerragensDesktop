@@ -875,8 +875,8 @@ namespace processosAdministrativos.Telas
                 {
                     if (cta.TelaMapaVendas == 0)
                     {
-                        CopiaVendas cv = new CopiaVendas();
-                        cv.Copia();
+                        //CopiaVendas cv = new CopiaVendas();
+                        //cv.Copia();
                         mapaVendasCompleto mv = new mapaVendasCompleto();
                         mv.Show();
                         cta.TelaMapaVendas = 1;

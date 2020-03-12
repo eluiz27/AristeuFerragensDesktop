@@ -131,7 +131,6 @@
             this.vdd15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defCamBt = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
@@ -888,10 +887,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
-            // timer2
-            // 
-            this.timer2.Tick += new System.EventHandler(this.Timer2_Tick);
-            // 
             // button2
             // 
             this.button2.Location = new System.Drawing.Point(777, 9);
@@ -994,7 +989,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sMetaMv;
         private System.Windows.Forms.Button defCamBt;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Button button2;
     }
 }

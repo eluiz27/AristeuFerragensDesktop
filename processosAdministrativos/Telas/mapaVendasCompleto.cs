@@ -19,6 +19,8 @@ namespace processosAdministrativos.Telas
         string caminhosMVTxt = Path.GetFullPath("Caminhos\\MapaVendas.txt");
         string caminhosIndTxt = Path.GetFullPath("Caminhos\\Indicadores.txt");
         StreamReader arquivo;
+        string enviarMV = Path.GetFullPath("EnviarMV\\Usuario.txt");
+        public static string[] linhasMV;
 
         string caminhoMV;
         string caminhoInd;
@@ -866,10 +868,10 @@ namespace processosAdministrativos.Telas
             e.Close();
             ex.Save();
             ex.Close();
-            String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
+            /*String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             String strCaminhoNomeArquivo2 = @""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
-            //System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
-            //System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
+            System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
+            System.Diagnostics.Process.Start(strCaminhoNomeArquivo);*/
             Envia();
         }
 
@@ -941,10 +943,19 @@ namespace processosAdministrativos.Telas
 
         private void Timer1_Tick(object sender, EventArgs e)
         {
-            if(DateTime.Now.ToString("HH:mm:ss") == "08:10:20")
+            if(excelBt.Enabled == true)
             {
-                preecheTabela();
-                preecheTabela2();
+                linhasMV = File.ReadAllLines(enviarMV);
+                if (DateTime.Now.ToString("HH:mm:ss") == linhasMV[4])
+                {
+                    preecheTabela();
+                    preecheTabela2();
+                }
+            }
+            else
+            {
+                timer1.Stop();
+                MessageBox.Show("Dados do MV não são os da Loja!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
 
@@ -1040,8 +1051,18 @@ namespace processosAdministrativos.Telas
                 }
                 else
                 {
-                    excelBt.Enabled = true;
-                    enviarBt.Enabled = true;
+                    //excelBt.Enabled = true;
+                    //enviarBt.Enabled = true;
+                    if (e.ColumnIndex != 0)
+                    {
+                        excelBt.Enabled = false;
+                        enviarBt.Enabled = false;
+                    }
+                    else
+                    {
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                    }
                     if (apertaBt == 0)
                     {
                         limpa();
@@ -1065,8 +1086,18 @@ namespace processosAdministrativos.Telas
             {
                 if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
                 {
-                    excelBt.Enabled = true;
-                    enviarBt.Enabled = true;
+                    //excelBt.Enabled = true;
+                    //enviarBt.Enabled = true;
+                    if (e.ColumnIndex != 0)
+                    {
+                        excelBt.Enabled = false;
+                        enviarBt.Enabled = false;
+                    }
+                    else
+                    {
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                    }
                     if (apertaBt == 0)
                     {
                         limpa();
