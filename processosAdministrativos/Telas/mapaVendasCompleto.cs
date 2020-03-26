@@ -997,6 +997,9 @@ namespace processosAdministrativos.Telas
                         enviarBt.Enabled = true;
                         montaTabela();
                         backgroundWorker1.RunWorkerAsync();
+                        preencheMV();
+                        preencheInd();
+                        timer1.Start();
                     }
                 }
                 catch(Exception error)
@@ -1013,6 +1016,9 @@ namespace processosAdministrativos.Telas
                     enviarBt.Enabled = true;
                     montaTabela();
                     backgroundWorker1.RunWorkerAsync();
+                    preencheMV();
+                    preencheInd();
+                    timer1.Start();
                 }
                 else
                 {
@@ -1021,9 +1027,6 @@ namespace processosAdministrativos.Telas
                     enviarBt.Enabled = false;
                 }
             }
-            preencheMV();
-            preencheInd();
-            timer1.Start();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
