@@ -17,8 +17,15 @@ namespace processosAdministrativos.Dao
 
         public void conecta()
         {
-            if (Conec.State == System.Data.ConnectionState.Closed)
-                Conec.Open();
+            try
+            {
+                if (Conec.State == System.Data.ConnectionState.Closed)
+                    Conec.Open();
+            }
+            catch (Exception error)
+            {
+                
+            }
         }
 
         public void desconecta()

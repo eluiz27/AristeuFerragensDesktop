@@ -763,14 +763,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="processosAdministrativos.exe" size="2138624">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="processosAdministrativos.exe" size="2139136">
       <assemblyIdentity name="processosAdministrativos" version="1.0.0.0" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>/qOi/6XyCuT3ryG/NqfjHkoNE5ZHPujth3HghaMWEDA=</dsig:DigestValue>
+        <dsig:DigestValue>OAaRMbBQlN+yzZSerN8BrhiabQOLCYNfwsw1CJxzEQQ=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -782,7 +782,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>nvsdCFwRg70/qhMlV/jDnin3BD9ek0epGgKj8+bDCak=</dsig:DigestValue>
+        <dsig:DigestValue>6NiQjDqzpgqbEnW+FeqxdXd6yOqyy50J2/eB368llsY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

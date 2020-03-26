@@ -14,20 +14,24 @@ namespace processosAdministrativos.Telas
 {
     public partial class ConfiguracaoRede : Form
     {
+        DAO dao = new DAO();
+
         string caminhosRede = Path.GetFullPath("Conexão\\ConexaoRede.txt");
+        string userSenha = Path.GetFullPath("Conexão\\UserSenha.txt");
         StreamWriter x;
-        StreamReader y;
+        StreamWriter y;
 
         public void SalvarConexao()
         {
             x = File.CreateText(caminhosRede);
+            y = File.CreateText(userSenha);
             x.WriteLine(servidorTxt.Text);
             x.WriteLine(portaTxt.Text);
             x.WriteLine(baseDadosTxt.Text);
-            x.WriteLine(usuarioTxt.Text);
-            x.WriteLine(senhaTxt.Text);
-
+            y.WriteLine(usuarioTxt.Text);
+            y.WriteLine(senhaTxt.Text);
             x.Close();
+            y.Close();
         }
 
         public void PreencheRede()
@@ -45,13 +49,18 @@ namespace processosAdministrativos.Telas
 
         private void Button2_Click(object sender, EventArgs e)
         {
-            if(servidorTxt.Text.Length != 0 && portaTxt.Text.Length != 0 && baseDadosTxt.Text.Length != 0 && usuarioTxt.Text.Length != 0 && senhaTxt.Text.Length != 0)
+            if (dao.TesteConexao(servidorTxt.Text, portaTxt.Text, baseDadosTxt.Text, usuarioTxt.Text, senhaTxt.Text) == 1)
             {
-                SalvarConexao();
-                MessageBox.Show("Conexão salva!","Mensagem",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                if (servidorTxt.Text.Length != 0 && portaTxt.Text.Length != 0 && baseDadosTxt.Text.Length != 0 && usuarioTxt.Text.Length != 0 && senhaTxt.Text.Length != 0)
+                {
+                    SalvarConexao();
+                    MessageBox.Show("Conexão salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                    MessageBox.Show("Todos os campos são obrigatórios!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
-                MessageBox.Show("Todos os campos são obrigatórios!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Conexão incorreta, não será salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void ConfiguracaoRede_Load(object sender, EventArgs e)
@@ -61,7 +70,6 @@ namespace processosAdministrativos.Telas
 
         private void Button1_Click(object sender, EventArgs e)
         {
-            DAO dao = new DAO();
             if (dao.TesteConexao(servidorTxt.Text, portaTxt.Text, baseDadosTxt.Text, usuarioTxt.Text, senhaTxt.Text) == 1)
             {
                 MessageBox.Show("Conexão realizada com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -70,6 +78,12 @@ namespace processosAdministrativos.Telas
             else
                 MessageBox.Show("Falha na conexão!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
             
+        }
+
+        private void ConfiguracaoRede_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            controlTelaAberta cr = new controlTelaAberta();
+            cr.TelaConfRede = 0;
         }
     }
 }

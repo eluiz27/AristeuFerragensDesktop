@@ -186,6 +186,7 @@
             this.Name = "ConfiguracaoRede";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configuração de Rede";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ConfiguracaoRede_FormClosing);
             this.Load += new System.EventHandler(this.ConfiguracaoRede_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
