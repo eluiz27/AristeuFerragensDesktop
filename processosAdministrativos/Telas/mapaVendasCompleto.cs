@@ -187,7 +187,7 @@ namespace processosAdministrativos.Telas
 
             String inferior;
 
-            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1)
+            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
                 inferior = DateTime.Now.ToString("yyyy-MM-"+data[0].Substring(0, 2)+" 00:00:00");
             else
                 inferior = DateTime.Now.AddMonths(-1).ToString("yyyy-MM-" + data[0].Substring(0, 2) + " 00:00:00");
@@ -543,7 +543,7 @@ namespace processosAdministrativos.Telas
             int mes;
             int ano;
 
-            if (DateTime.Now.ToString("MM") == "12" && Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1) ano = Convert.ToInt32(DateTime.Now.AddYears(1).ToString("yy"));
+            if (DateTime.Now.ToString("MM") == "12" && Convert.ToInt32(DateTime.Now.ToString("dd")) > 26) ano = Convert.ToInt32(DateTime.Now.AddYears(1).ToString("yy"));
             else if (Convert.ToDateTime(DateTime.Now.ToString("dd/MM")) < Convert.ToDateTime("01/01")) ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
             else ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
 
@@ -708,7 +708,7 @@ namespace processosAdministrativos.Telas
 
             int mes;
 
-            if(Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1)
+            if(Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
                 mes = Convert.ToInt32(DateTime.Now.AddMonths(1).ToString("MM"));
             else
                 mes = Convert.ToInt32(DateTime.Now.ToString("MM"));
@@ -786,7 +786,7 @@ namespace processosAdministrativos.Telas
             int mes;
             int ano;
 
-            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1)
+            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
                 mes = Convert.ToInt32(DateTime.Now.AddMonths(1).ToString("MM"));
             else
                 mes = Convert.ToInt32(DateTime.Now.ToString("MM"));
@@ -981,8 +981,10 @@ namespace processosAdministrativos.Telas
                 dataGridView2.Columns[i + 1].Visible = true;
             }
             novoPeriodo();
-            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1)
+
+            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
             {
+
                 try
                 {
                     if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
@@ -1044,7 +1046,7 @@ namespace processosAdministrativos.Telas
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             novoPeriodo();
-            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1)
+            if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
             {
                 if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
                 {
@@ -1144,7 +1146,7 @@ namespace processosAdministrativos.Telas
             variaveis var = new variaveis();
             if (var.AuxMapaVendas == 1)
             {
-                if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26 && Convert.ToInt32(DateTime.Now.DayOfWeek) != 1)
+                if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
                 {
                     if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
                     {
