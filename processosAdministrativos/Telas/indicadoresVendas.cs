@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,25 @@ namespace processosAdministrativos.Telas
         List<string> vtl = new List<string>();
         querys qr = new querys();
         progresso pg = new progresso();
+
+        string caminhosMVTxt = Path.GetFullPath("Caminhos\\MapaVendas.txt");
+        string caminhosIndTxt = Path.GetFullPath("Caminhos\\IndVend.txt");
+        StreamReader arquivo;
+        string caminhoMV;
+        string caminhoInd;
+        public void preencheMV()
+        {
+            arquivo = File.OpenText(caminhosMVTxt);
+            caminhoMV = arquivo.ReadLine();
+            arquivo.Close();
+        }
+
+        public void preencheInd()
+        {
+            arquivo = File.OpenText(caminhosIndTxt);
+            caminhoInd = arquivo.ReadLine();
+            arquivo.Close();
+        }
 
         public void vendedores()
         {
@@ -117,6 +137,8 @@ namespace processosAdministrativos.Telas
 
         public void preenchePlanilha()
         {
+            preencheMV();
+            preencheInd();
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
@@ -125,17 +147,17 @@ namespace processosAdministrativos.Telas
             string mesExtenso = System.Globalization.DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToString();
             string mesDefi = mesExtenso.Substring(0,1).ToUpper()+""+mesExtenso.Substring(1);
 
-            excel ex = new excel(@"\\POSEIDON\documentos\Informatica\Luiz\MV\Indicadores\IND_ate_"+ mesExtenso.Substring(0, 3).ToUpper() + "_"+aux2.ToString("yy")+".xlsx", "");
+            excel ex = new excel(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_"+aux2.ToString("yy")+".xlsx", "");
 
-            excel e = new excel(@"\\POSEIDON\documentos\Informatica\Luiz\MV\MV\MV_" + mesExtenso.Substring(0, 3).ToUpper() + "_" + aux2.ToString("yy") + ".xlsx", "123");
+            excel e = new excel(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + aux2.ToString("yy") + ".xlsx", "123");
             ex.createSheet(mesDefi+"_"+aux2.ToString("yy"));
 
             int qtdePlan = ex.contaPastas() - 1;
             querys q = new querys();
-
+            
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
-                string meta = e.ReadCell(4, 38, i + 1);
+                string meta = e.ReadCell(4, 39, i + 1);
                 ex.writeCell2(qtdePlan, 3, 2, dataGridView1.Rows[i].Cells[1].Value.ToString(), vddsNome[i]);
                 ex.writeCell2(qtdePlan, 3, 3, dataGridView1.Rows[i].Cells[2].Value.ToString(), vddsNome[i]);
                 ex.writeCell2(qtdePlan, 3, 4, dataGridView1.Rows[i].Cells[3].Value.ToString(), vddsNome[i]);
@@ -150,7 +172,7 @@ namespace processosAdministrativos.Telas
             ex.Save();
             e.Close();
             ex.Close();
-            String strCaminhoNomeArquivo = @"\\POSEIDON\documentos\Informatica\Luiz\MV\Indicadores\IND_ate_" + mesExtenso.Substring(0, 3).ToUpper() + "_"+aux2.ToString("yy")+".xlsx";
+            String strCaminhoNomeArquivo = @"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_"+aux2.ToString("yy")+".xlsx";
             System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
         }
 
