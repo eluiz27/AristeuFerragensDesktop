@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ namespace processosAdministrativos.Telas
 {
     public partial class cotacaoProd : Form
     {
+        string caminho = Path.GetFullPath("Compras\\CotacaoAlzira.txt");
+
         private string Sql = String.Empty;
         DAO dao = new DAO();
         controlCompNComp ccnc = new controlCompNComp();
@@ -27,6 +30,7 @@ namespace processosAdministrativos.Telas
         List<string> saldoP = new List<string>();
         List<string> compraP = new List<string>();
         List<string> seteMP = new List<string>();
+        List<string> seteMPAux = new List<string>();
         List<string> tresMP = new List<string>();
         List<string> saldVendP = new List<string>();
         List<string> ultCP = new List<string>();
@@ -58,6 +62,7 @@ namespace processosAdministrativos.Telas
             saldoP.Clear();
             compraP.Clear();
             seteMP.Clear();
+            seteMPAux.Clear();
             tresMP.Clear();
             saldVendP.Clear();
             ultCP.Clear();
@@ -135,7 +140,7 @@ namespace processosAdministrativos.Telas
             dataGridView3.Columns.Add(sete);
 
             DataGridViewTextBoxColumn oito = new DataGridViewTextBoxColumn();
-            oito.HeaderText = "7 Meses";
+            oito.HeaderText = "+ Meses";
             oito.Name = "seteMProd";
             oito.ReadOnly = true;
             oito.DataPropertyName = "seteMes";
@@ -143,7 +148,7 @@ namespace processosAdministrativos.Telas
             dataGridView3.Columns.Add(oito);
 
             DataGridViewTextBoxColumn nove = new DataGridViewTextBoxColumn();
-            nove.HeaderText = "3 Meses";
+            nove.HeaderText = "- Meses";
             nove.Name = "tresMProd";
             nove.ReadOnly = true;
             nove.DataPropertyName = "tresMes";
@@ -326,13 +331,16 @@ namespace processosAdministrativos.Telas
         }
         public void valoresTresP()
         {
+            string[] linhas;
+            linhas = File.ReadAllLines(caminho);
+
             List<string> auxList1 = new List<string>();
             List<string> auxList2 = new List<string>();
             int w = 0;
 
             Sql = "select mv_item, round(sum(mv_quantidade), 2) as 'qtde' from (notas b INNER JOIN Tipomovi ON b.nt_movimento = Tipomovi.tmv_codigo) " +
                     "INNER JOIN movimentos a ON  a.mv_empresa = b.nt_empresa and a.mv_documento = b.nt_documento and a.mv_agente = b.nt_agente " +
-                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0  and " +
+                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(- Convert.ToInt32(linhas[1])).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0  and " +
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit != 'S' group by mv_item order by mv_item";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
@@ -368,13 +376,16 @@ namespace processosAdministrativos.Telas
         }
         public void valoresSeteP()
         {
+            string[] linhas;
+            linhas = File.ReadAllLines(caminho);
+
             List<string> auxList1 = new List<string>();
             List<string> auxList2 = new List<string>();
             int w = 0;
 
             Sql = "select mv_item, round(sum(mv_quantidade), 2) as 'qtde' from (notas b INNER JOIN Tipomovi ON b.nt_movimento = Tipomovi.tmv_codigo) " +
                     "INNER JOIN movimentos a ON  a.mv_empresa = b.nt_empresa and a.mv_documento = b.nt_documento and a.mv_agente = b.nt_agente " +
-                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(-7).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0  and " +
+                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(- Convert.ToInt32(linhas[0])).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0  and " +
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between "+fornInf+" and "+fornSup+""+fornNull+ " and itm_kit != 'S' group by mv_item order by mv_item";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
@@ -409,6 +420,53 @@ namespace processosAdministrativos.Telas
             seteM.Close();
             dao.desconecta();
         }
+
+        public void valoresSetePAux()
+        {
+            string[] linhas;
+            linhas = File.ReadAllLines(caminho);
+
+            List<string> auxList1 = new List<string>();
+            List<string> auxList2 = new List<string>();
+            int w = 0;
+
+            Sql = "select mv_item, round(sum(mv_quantidade), 2) as 'qtde' from (notas b INNER JOIN Tipomovi ON b.nt_movimento = Tipomovi.tmv_codigo) " +
+                    "INNER JOIN movimentos a ON  a.mv_empresa = b.nt_empresa and a.mv_documento = b.nt_documento and a.mv_agente = b.nt_agente " +
+                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(-7).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0  and " +
+                    "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit != 'S' group by mv_item order by mv_item";
+
+            dao.Query = new MySqlCommand(Sql, dao.Conexao);
+            dao.conecta();
+            MySqlDataReader seteM = dao.Query.ExecuteReader();
+            while (seteM.Read())
+            {
+                auxList1.Add(seteM["mv_item"].ToString());
+                auxList2.Add(seteM["qtde"].ToString());
+            }
+            for (int i = 0; i < codP.Count; i++)
+            {
+                if (auxList1.Count != 0)
+                {
+                    if (codP[i] == auxList1[w])
+                    {
+                        seteMPAux.Add(auxList2[w]);
+                        if (w < auxList1.Count - 1)
+                        {
+                            w++;
+                        }
+                    }
+                    else
+                        seteMPAux.Add("0");
+                }
+                else
+                    seteMPAux.Add("0");
+            }
+
+            auxList1.Clear();
+            auxList2.Clear();
+            seteM.Close();
+            dao.desconecta();
+        }
         public void comprando()
         {
             Sql = "SELECT cnc_item FROM compra_naocompra";
@@ -424,6 +482,9 @@ namespace processosAdministrativos.Telas
 
         public void composicao7()
         {
+            string[] linhas;
+            linhas = File.ReadAllLines(caminho);
+
             List<string> auxList1 = new List<string>();
             List<string> auxList2 = new List<string>();
             List<string> auxList3 = new List<string>();
@@ -433,7 +494,7 @@ namespace processosAdministrativos.Telas
 
             Sql = "select mv_item, round(sum(mv_quantidade), 2) as 'qtde' from (notas b INNER JOIN Tipomovi ON b.nt_movimento = Tipomovi.tmv_codigo) "+
                     "INNER JOIN movimentos a ON a.mv_empresa = b.nt_empresa and a.mv_documento = b.nt_documento and a.mv_agente = b.nt_agente "+
-                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(-7).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0 and " +
+                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(- Convert.ToInt32(linhas[0])).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0 and " +
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between  "+ grupoInf + " and " + grupoSup + " and(itm_fornecedor between "+fornInf+" and "+fornSup+""+fornNull+" and itm_kit = 'S' group by mv_item order by mv_item; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
             dao.conecta();
@@ -479,9 +540,9 @@ namespace processosAdministrativos.Telas
                 }
             }
 
-            for (int i = 0; i < seteMP.Count; i++)
+            for (int i = 0; i < seteMPAux.Count; i++)
             {
-                saldVendP.Add(string.Format("{0:0,0.00}", (Convert.ToDouble(saldoP[i]) - Convert.ToDouble(seteMP[i]))));
+                saldVendP.Add(string.Format("{0:0,0.00}", (Convert.ToDouble(saldoP[i]) - Convert.ToDouble(seteMPAux[i]))));
             }
 
             auxList1.Clear();
@@ -494,6 +555,9 @@ namespace processosAdministrativos.Telas
 
         public void composicao3()
         {
+            string[] linhas;
+            linhas = File.ReadAllLines(caminho);
+
             List<string> auxList1 = new List<string>();
             List<string> auxList2 = new List<string>();
             List<string> auxList3 = new List<string>();
@@ -503,7 +567,7 @@ namespace processosAdministrativos.Telas
 
             Sql = "select mv_item, round(sum(mv_quantidade), 2) as 'qtde' from (notas b INNER JOIN Tipomovi ON b.nt_movimento = Tipomovi.tmv_codigo) " +
                     "INNER JOIN movimentos a ON a.mv_empresa = b.nt_empresa and a.mv_documento = b.nt_documento and a.mv_agente = b.nt_agente " +
-                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(-3).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and " +
+                    "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(- Convert.ToInt32(linhas[1])).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and " +
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between  " + grupoInf + " and " + grupoSup + " and(itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit = 'S' group by mv_item order by mv_item; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
             dao.conecta();
@@ -705,6 +769,7 @@ namespace processosAdministrativos.Telas
         {
             dadosBancoProd();
             valoresSeteP();
+            valoresSetePAux();
             valoresTresP();
             comprarProd();
             grupos();
@@ -719,6 +784,12 @@ namespace processosAdministrativos.Telas
             preecheTabelaProd();
             dataGridView3.Sort(dataGridView3.Columns["saldVend7Prod"], ListSortDirection.Ascending);
             total();
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            button3.Enabled = true;
+            button2.Enabled = true;
+            button1.Enabled = true;
+            button4.Enabled = true;
         }
 
         private void cotacaoProd_Load(object sender, EventArgs e)
@@ -805,6 +876,7 @@ namespace processosAdministrativos.Telas
             limpaTabela();
             dadosBancoProd();
             valoresSeteP();
+            valoresSetePAux();
             valoresTresP();
             comprarProd();
             grupos();
@@ -848,8 +920,8 @@ namespace processosAdministrativos.Telas
                 ex2.writeCell3(1, 0, 5, "Saldo");
                 ex2.writeCell3(1, 0, 6, "Qtd");
                 ex2.writeCell3(1, 0, 7, "Obs.");
-                ex2.writeCell3(1, 0, 8, "7 meses");
-                ex2.writeCell3(1, 0, 9, "3 meses");
+                ex2.writeCell3(1, 0, 8, "+ meses");
+                ex2.writeCell3(1, 0, 9, "- meses");
                 ex2.writeCell3(1, 0, 10, "Saldo-Venda 7");
                 ex2.writeCell3(1, 0, 11, "Ult. Compra");
                 ex2.writeCell3(1, 0, 12, "Emb");
@@ -931,6 +1003,12 @@ namespace processosAdministrativos.Telas
         {
             procuraGrupo pg = new procuraGrupo();
             pg.ShowDialog();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            MesesCotacao mc = new MesesCotacao();
+            mc.ShowDialog();
         }
     }
 }

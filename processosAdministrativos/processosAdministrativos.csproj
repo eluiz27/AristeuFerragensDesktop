@@ -314,6 +314,12 @@
     <Compile Include="Telas\mediaVendas.Designer.cs">
       <DependentUpon>mediaVendas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Telas\MesesCotacao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Telas\MesesCotacao.Designer.cs">
+      <DependentUpon>MesesCotacao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Telas\meta.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -589,6 +595,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\mediaVendas.resx">
       <DependentUpon>mediaVendas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\MesesCotacao.resx">
+      <DependentUpon>MesesCotacao.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\meta.resx">
       <DependentUpon>meta.cs</DependentUpon>

@@ -140,5 +140,5 @@ C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Deb
 C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.exe
 C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.pdb
 C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.csprojAssemblyReference.cache
-C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\RdlCompile.cache
-C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\RdlCompile.compiled
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.csproj.CoreCompileInputs.cache
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.MesesCotacao.resources

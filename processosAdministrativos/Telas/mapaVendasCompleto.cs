@@ -868,11 +868,11 @@ namespace processosAdministrativos.Telas
             e.Close();
             ex.Save();
             ex.Close();
-            /*String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
+            String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             String strCaminhoNomeArquivo2 = @""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
-            System.Diagnostics.Process.Start(strCaminhoNomeArquivo);*/
-            Envia();
+            System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
+            //Envia();
         }
 
         public void grupos()
@@ -987,11 +987,16 @@ namespace processosAdministrativos.Telas
 
                 try
                 {
-                    if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
+                    if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM") && DateTime.Now.DayOfWeek.ToString() != "Monday")
                     {
                         MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        excelBt.Enabled = false;
-                        enviarBt.Enabled = false;
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                        montaTabela();
+                        backgroundWorker1.RunWorkerAsync();
+                        preencheMV();
+                        preencheInd();
+                        timer1.Start();
                     }
                     else
                     {
@@ -1025,8 +1030,13 @@ namespace processosAdministrativos.Telas
                 else
                 {
                     MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    excelBt.Enabled = false;
-                    enviarBt.Enabled = false;
+                    excelBt.Enabled = true;
+                    enviarBt.Enabled = true;
+                    montaTabela();
+                    backgroundWorker1.RunWorkerAsync();
+                    preencheMV();
+                    preencheInd();
+                    timer1.Start();
                 }
             }
         }
@@ -1051,8 +1061,33 @@ namespace processosAdministrativos.Telas
                 if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
                 {
                     MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    excelBt.Enabled = false;
-                    enviarBt.Enabled = false;
+                    if (e.ColumnIndex != 0)
+                    {
+                        excelBt.Enabled = false;
+                        enviarBt.Enabled = false;
+                    }
+                    else
+                    {
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                    }
+                    if (apertaBt == 0)
+                    {
+                        limpa();
+                        vendedores();
+                        if (e.ColumnIndex > 0)
+                        {
+                            vendedor1 = vdds[e.ColumnIndex - 1];
+                            vendedor2 = vdds[e.ColumnIndex - 1];
+                        }
+                        else
+                        {
+                            vendedor1 = "0";
+                            vendedor2 = "999";
+                        }
+                        backgroundWorker1.RunWorkerAsync();
+                        apertaBt = 1;
+                    }
                 }
                 else
                 {
@@ -1124,8 +1159,33 @@ namespace processosAdministrativos.Telas
                 else
                 {
                     MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    excelBt.Enabled = false;
-                    enviarBt.Enabled = false;
+                    if (e.ColumnIndex != 0)
+                    {
+                        excelBt.Enabled = false;
+                        enviarBt.Enabled = false;
+                    }
+                    else
+                    {
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                    }
+                    if (apertaBt == 0)
+                    {
+                        limpa();
+                        vendedores();
+                        if (e.ColumnIndex > 0)
+                        {
+                            vendedor1 = vdds[e.ColumnIndex - 1];
+                            vendedor2 = vdds[e.ColumnIndex - 1];
+                        }
+                        else
+                        {
+                            vendedor1 = "0";
+                            vendedor2 = "999";
+                        }
+                        backgroundWorker1.RunWorkerAsync();
+                        apertaBt = 1;
+                    }
                 }
             }
         }
@@ -1152,8 +1212,27 @@ namespace processosAdministrativos.Telas
                     {
                         MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         var.AuxMapaVendas = 0;
-                        excelBt.Enabled = false;
-                        enviarBt.Enabled = false;
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                        limpa();
+                        vendedor1 = "0";
+                        vendedor2 = "999";
+                        localizaDados();
+                        preencheTabela();
+                        dataGridView1.DataSource = tb;
+                        var.AuxMapaVendas = 0;
+                        dataGridView2.Rows.Clear();
+                        dataGridView2.Refresh();
+                        vdds.Clear();
+                        vddsNome.Clear();
+                        vendedores();
+                        dataGridView2.Rows.Add();
+                        dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
+                        for (int i = 0; i < vdds.Count; i++)
+                        {
+                            dataGridView2.Rows[0].Cells[i + 1].Value = vddsNome[i].Replace(" (EXPERIENCIA)", "") + "   ";
+                            dataGridView2.Columns[i + 1].Visible = true;
+                        }
                     }
                     else
                     {
@@ -1211,8 +1290,28 @@ namespace processosAdministrativos.Telas
                     {
                         MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         var.AuxMapaVendas = 0;
-                        excelBt.Enabled = false;
-                        enviarBt.Enabled = false;
+                        excelBt.Enabled = true;
+                        enviarBt.Enabled = true;
+                        limpa();
+                        vendedor1 = "0";
+                        vendedor2 = "999";
+                        localizaDados();
+                        preencheTabela();
+                        dataGridView1.DataSource = tb;
+                        var.AuxMapaVendas = 0;
+                        dataGridView2.Rows.Clear();
+                        dataGridView2.Refresh();
+                        vdds.Clear();
+                        vddsNome.Clear();
+                        vendedores();
+                        dataGridView2.Rows.Add();
+                        dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
+                        for (int i = 0; i < vdds.Count; i++)
+                        {
+                            dataGridView2.Columns[i + 2].Visible = false;
+                            dataGridView2.Rows[0].Cells[i + 1].Value = vddsNome[i].Replace(" (EXPERIENCIA)", "") + "   ";
+                            dataGridView2.Columns[i + 1].Visible = true;
+                        }
                     }
                 }
             }
