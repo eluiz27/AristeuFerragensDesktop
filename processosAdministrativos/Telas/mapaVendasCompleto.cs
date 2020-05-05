@@ -868,11 +868,11 @@ namespace processosAdministrativos.Telas
             e.Close();
             ex.Save();
             ex.Close();
-            String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
+            /*String strCaminhoNomeArquivo = @""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             String strCaminhoNomeArquivo2 = @""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx";
             System.Diagnostics.Process.Start(strCaminhoNomeArquivo2);
-            System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
-            //Envia();
+            System.Diagnostics.Process.Start(strCaminhoNomeArquivo);*/
+            Envia();
         }
 
         public void grupos()
