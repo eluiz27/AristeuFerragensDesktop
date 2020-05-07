@@ -16,7 +16,7 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                conecta();
+                Conecta();
 
                 cmd = new MySqlCommand("INSERT INTO lote_validade(ltv_numLote, ltv_codBarras, ltv_produto, ltv_qtde, ltv_validade, ltv_dataCriacao, ltv_dataAlteracao) VALUES(@ltv_numLote, @ltv_codBarras, @ltv_produto, @ltv_qtde, @ltv_validade, @ltv_dataCriacao, @ltv_dataAlteracao)", Conec);
 
@@ -36,7 +36,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                desconecta();
+                Desconecta();
             }
         }
 
@@ -44,7 +44,7 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                conecta();
+                Conecta();
 
                 cmd = new MySqlCommand("UPDATE lote_validade SET ltv_numLote = @ltv_numLote, ltv_codBarras = @ltv_codBarras, ltv_produto = @ltv_produto, ltv_qtde = @ltv_qtde, ltv_validade = @ltv_validade, ltv_dataAlteracao = @ltv_dataAlteracao WHERE ltv_codigo = @ltv_codigo", Conec);
 
@@ -64,7 +64,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                desconecta();
+                Desconecta();
             }
         }
 
@@ -72,7 +72,7 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                conecta();
+                Conecta();
 
                 cmd = new MySqlCommand(query, Conec);
                 object objeto = cmd.ExecuteScalar();
@@ -89,7 +89,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                desconecta();
+                Desconecta();
             }
         }
 
@@ -97,7 +97,7 @@ namespace processosAdministrativos.Dao
         {
             try
             {
-                conecta();
+                Conecta();
 
                 cmd = new MySqlCommand(query, Conec);
                 MySqlDataReader vetor = cmd.ExecuteReader();
@@ -110,7 +110,7 @@ namespace processosAdministrativos.Dao
             }
             finally
             {
-                desconecta();
+                Desconecta();
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class cadastroEstoquista
+    partial class CadastroEstoquista
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cadastroEstoquista));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroEstoquista));
             this.nomeLb = new System.Windows.Forms.Label();
             this.nomeTxt = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();

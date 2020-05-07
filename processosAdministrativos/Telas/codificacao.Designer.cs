@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class codificacao
+    partial class Codificacao
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(codificacao));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Codificacao));
             this.label1 = new System.Windows.Forms.Label();
             this.notaTxt = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();

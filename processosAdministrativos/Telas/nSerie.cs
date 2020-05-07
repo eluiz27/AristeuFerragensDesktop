@@ -1,35 +1,28 @@
 ﻿using MySql.Data.MySqlClient;
 using processosAdministrativos.Classes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos
 {
-    public partial class nSerie : Form
+    public partial class NSerie : Form
     {
         DAO dao = new DAO();
-        private string Sql = String.Empty;
+        private string Sql = string.Empty;
 
-        public bool verificaPedido()
+        public bool VerificaPedido()
         {
             Sql = "SELECT count(ped_numero) FROM pedidos where ped_numero = " + pedidoTxt.Text + "";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object pedido = dao.Query.ExecuteScalar();
-            dao.desconecta();
+            dao.Desconecta();
 
             Sql = "SELECT count(pdi_item) FROM peditem where pdi_numero = " + pedidoTxt.Text + " AND pdi_item = " + produtoTxt.Text + "";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object produto = dao.Query.ExecuteScalar();
-            dao.desconecta();
+            dao.Desconecta();
 
             if (Convert.ToInt32(pedido) > 0)
             {
@@ -50,14 +43,14 @@ namespace processosAdministrativos
             }
         }
 
-        public void limpaCampo()
+        public void LimpaCampo()
         {
             pedidoTxt.Text = string.Empty;
             produtoTxt.Text = string.Empty;
             nSerieTxt.Text = string.Empty;
         }
 
-        public nSerie()
+        public NSerie()
         {
             InitializeComponent();
         }
@@ -66,18 +59,18 @@ namespace processosAdministrativos
         {
             if (nSerieTxt.Text != string.Empty && pedidoTxt.Text != string.Empty && produtoTxt.Text != string.Empty)
             {
-                if (verificaPedido() == true)
+                if (VerificaPedido() == true)
                 {
                     DAO dao = new DAO();
-                    controlNSerie cn = new controlNSerie();
+                    ControlNSerie cn = new ControlNSerie();
                     cn.Ns_pedido = pedidoTxt.Text;
                     cn.Ns_produto = produtoTxt.Text;
                     cn.Ns_nSerie = nSerieTxt.Text;
                     cn.Ns_data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
-                    dao.cadastraNSerie(cn);
+                    dao.CadastraNSerie(cn);
                     MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaCampo();
+                    LimpaCampo();
                 }
             }
             else
@@ -86,7 +79,7 @@ namespace processosAdministrativos
 
         private void nSerie_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaNSerie = 0;
         }
     }

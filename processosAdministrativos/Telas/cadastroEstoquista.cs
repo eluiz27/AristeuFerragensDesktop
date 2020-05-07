@@ -13,14 +13,14 @@ using processosAdministrativos.Classes;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cadastroEstoquista : Form
+    public partial class CadastroEstoquista : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
         List<string> classes = new List<string>();
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
 
-        public cadastroEstoquista()
+        public CadastroEstoquista()
         {
             InitializeComponent();
         }
@@ -29,9 +29,9 @@ namespace processosAdministrativos.Telas
         {
             Sql = "SELECT MAX(est_codigo) FROM estoquista";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object pedido = dao.Query.ExecuteScalar();
-            dao.desconecta();
+            dao.Desconecta();
 
             return Convert.ToInt32(pedido);
         }
@@ -155,15 +155,15 @@ namespace processosAdministrativos.Telas
                 }
                 if (vat.CodEstoquista == "")
                 {
-                    dao.cadastraEstoquista(ce);
-                    dao.cadastraClasseEstoq(ce);
+                    dao.CadastraEstoquista(ce);
+                    dao.CadastraClasseEstoq(ce);
                     MessageBox.Show("Estoquista salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     limpaCampo();
                 }
                 else
                 {
-                    dao.alteraEstoquista(ce, Convert.ToInt32(vat.CodEstoquista));
-                    dao.alteraClasseEstoq(ce, Convert.ToInt32(vat.CodEstoquista));
+                    dao.AlteraEstoquista(ce, Convert.ToInt32(vat.CodEstoquista));
+                    dao.AlteraClasseEstoq(ce, Convert.ToInt32(vat.CodEstoquista));
                     MessageBox.Show("Estoquista Alterado!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     limpaCampo();
                 }
@@ -178,7 +178,7 @@ namespace processosAdministrativos.Telas
         private void alterarBt_Click(object sender, EventArgs e)
         {
             limpaCampo();
-            procuraEstoquista ae = new procuraEstoquista();
+            ProcuraEstoquista ae = new ProcuraEstoquista();
             ae.ShowDialog();          
         }
 
@@ -189,7 +189,7 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "SELECT cles_classe, est_nome FROM classes_estoque INNER JOIN estoquista ON classes_estoque.cles_estoquista = estoquista.est_codigo WHERE est_codigo = " + vat.CodEstoquista + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader clas = dao.Query.ExecuteReader();
                 while (clas.Read())
                 {
@@ -197,7 +197,7 @@ namespace processosAdministrativos.Telas
                 }
                 nomeTxt.Text = clas["est_nome"].ToString();
                 clas.Close();
-                dao.desconecta();
+                dao.Desconecta();
                 for (int i = 0; i < classes.Count; i++)
                 {
                     if (classes[i] == "1")
@@ -280,7 +280,7 @@ namespace processosAdministrativos.Telas
 
         private void CadastroEstoquista_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCadEstoquista = 0;
             limpaCampo();
         }

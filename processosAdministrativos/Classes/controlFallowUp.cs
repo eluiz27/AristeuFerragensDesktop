@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlFallowUp
+    class ControlFallowUp
     {
         private string fup_ordCompra;
         private DateTime fup_dataPed;

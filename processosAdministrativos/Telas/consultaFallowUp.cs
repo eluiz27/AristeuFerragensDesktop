@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class consultaFallowUp : Form
+    public partial class ConsultaFallowUp : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
@@ -39,7 +39,7 @@ namespace processosAdministrativos.Telas
                     "LEFT OUTER JOIN fallowup ON ordcompra.ocp_numero = fallowup.fup_ordCompra "+
                     " where ocp_situacao = 'p' ORDER BY OCP_Prevent, ocp_numero;";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader ordem = dao.Query.ExecuteReader();
             while (ordem.Read())
             {
@@ -57,7 +57,7 @@ namespace processosAdministrativos.Telas
                 alter.Add(ordem["alteracao"].ToString());
             }
             ordem.Close();
-            dao.desconecta();
+            dao.Desconecta();
             var tb = new DataTable();
             tb.Columns.Add("ocp_numero");
             tb.Columns.Add("pedido", typeof(DateTime));
@@ -172,7 +172,7 @@ namespace processosAdministrativos.Telas
 
             Sql = "SELECT fups_codigo, fups_nome FROM fallowupsit";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader situacoes = dao.Query.ExecuteReader();
             while (situacoes.Read())
             {
@@ -180,7 +180,7 @@ namespace processosAdministrativos.Telas
                 sit.Add(situacoes["fups_nome"].ToString());
             }
             situacoes.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             var s = new DataTable();
             s.Columns.Add("ID", typeof(int));
@@ -195,7 +195,15 @@ namespace processosAdministrativos.Telas
             s.DefaultView.Sort = "situacao ASC";
             oito.DataSource = s;
         }
-        public consultaFallowUp()
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
+        public ConsultaFallowUp()
         {
             InitializeComponent();
             criaTabela();
@@ -204,28 +212,23 @@ namespace processosAdministrativos.Telas
 
         private void consultaFallowUp_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaConsultaFallowUp = 0;
             limpaTabela();
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            DataTable table = new DataTable();
-            MySqlDataAdapter da;
-            string pesquisar = fornecedorTxt.Text.Replace('*', '%');
+            QueryDataTable dt = new QueryDataTable();
+            string pesquisar = CorrecoesTexto(fornecedorTxt.Text);
 
-            BindingSource bs = new BindingSource();
-            da = new MySqlDataAdapter("SELECT ocp_numero,  DATE_FORMAT(ocp_data, '%d/%m/%Y') as 'pedido', fnc_nome, cpr_nome, "+
+            dataGridView1.DataSource = dt.procura("SELECT ocp_numero,  DATE_FORMAT(ocp_data, '%d/%m/%Y') as 'pedido', fnc_nome, cpr_nome, " +
                                         "DATE_FORMAT(OCP_Prevent, '%d/%m/%Y') as 'entrega', fups_nome, "+
                                         "DATE_FORMAT(fup_dataAlteracao, '%H:%i:%s - %d/%m/%Y') as 'alteracao' "+
                                         "FROM (((ordcompra INNER JOIN fornecedores ON ordcompra.ocp_fornecedor = fornecedores.fnc_codigo) "+
                                         "INNER JOIN compradores ON ordcompra.ocp_comprador = compradores.cpr_codigo) "+
                                         "LEFT OUTER JOIN fallowup ON ordcompra.ocp_numero = fallowup.fup_ordCompra) "+
-                                        "LEFT OUTER JOIN fallowupsit ON fallowup.fup_ordCompra = fallowupsit.fups_codigo where ocp_situacao = 'p' AND fnc_nome like '" + pesquisar + "%' ORDER BY OCP_Prevent;", dao.Conexao);
-            da.Fill(table);
-            bs.DataSource = table;
-            dataGridView1.DataSource = bs;
+                                        "LEFT OUTER JOIN fallowupsit ON fallowup.fup_ordCompra = fallowupsit.fups_codigo where ocp_situacao = 'p' AND fnc_nome like '" + pesquisar + "%' ORDER BY OCP_Prevent;");
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -236,23 +239,16 @@ namespace processosAdministrativos.Telas
             }
             else
             {
-                DataTable table;
-                MySqlDataAdapter da;
-                BindingSource bs;
+                QueryDataTable dt = new QueryDataTable();
 
-                table = new DataTable();
-                bs = new BindingSource();
-                da = new MySqlDataAdapter("SELECT ocp_numero,  DATE_FORMAT(ocp_data, '%d/%m/%Y') as 'pedido', fnc_nome, cpr_nome, "+
+                dataGridView1.DataSource = dt.procura("SELECT ocp_numero,  DATE_FORMAT(ocp_data, '%d/%m/%Y') as 'pedido', fnc_nome, cpr_nome, " +
                                             "DATE_FORMAT(OCP_Prevent, '%d/%m/%Y') as 'entrega', fups_nome, "+
                                             "DATE_FORMAT(fup_dataAlteracao, '%H:%i:%s - %d/%m/%Y') as 'alteracao' "+
                                             "FROM (((ordcompra INNER JOIN fornecedores ON ordcompra.ocp_fornecedor = fornecedores.fnc_codigo) "+
                                             "INNER JOIN compradores ON ordcompra.ocp_comprador = compradores.cpr_codigo) "+
                                             "LEFT OUTER JOIN fallowup ON ordcompra.ocp_numero = fallowup.fup_ordCompra) "+
-                                            "LEFT OUTER JOIN fallowupsit ON fallowup.fup_ordCompra = fallowupsit.fups_codigo where ocp_situacao = 'p' and DATE_FORMAT(OCP_Prevent, '%d/%m/%Y') = '" + dataMtxt.Text + "' ORDER BY OCP_Prevent;", dao.Conexao);
-                da.Fill(table);
+                                            "LEFT OUTER JOIN fallowupsit ON fallowup.fup_ordCompra = fallowupsit.fups_codigo where ocp_situacao = 'p' and DATE_FORMAT(OCP_Prevent, '%d/%m/%Y') = '" + dataMtxt.Text + "' ORDER BY OCP_Prevent;");
 
-                bs.DataSource = table;
-                dataGridView1.DataSource = bs;
             }
         }
 
@@ -261,28 +257,28 @@ namespace processosAdministrativos.Telas
             int x = 0;
             Sql = "SELECT fup_ordCompra FROM fallowup";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader ordens = dao.Query.ExecuteReader();
             while (ordens.Read())
             {
                 codAlt.Add(ordens["fup_ordCompra"].ToString());
             }
             ordens.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
-            controlFallowUp cf = new controlFallowUp();
+            ControlFallowUp cf = new ControlFallowUp();
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 Sql = "SELECT fup_situacao FROM fallowup where fup_ordCompra = " + dataGridView1.Rows[i].Cells["ordCompra"].Value.ToString() + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader auxSit = dao.Query.ExecuteReader();
                 while (auxSit.Read())
                 {
                     auxdata = auxSit["fup_situacao"].ToString(); ;
                 }
                 auxSit.Close();
-                dao.desconecta();
+                dao.Desconecta();
                 if (codAlt.Count() > 0)
                 {
                     for (int y = 0; y < codAlt.Count(); y++)
@@ -306,7 +302,7 @@ namespace processosAdministrativos.Telas
                         cf.Fup_dataEntrega = Convert.ToDateTime(dataGridView1.Rows[i].Cells["dataEntrega"].Value.ToString());
                         cf.Fup_situacao = dataGridView1.Rows[i].Cells["situacao"].Value.ToString();
                         cf.Fup_dataAlteracao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        dao.cadastraFallowUp(cf);
+                        dao.CadastraFallowUp(cf);
                         x = 0;
                     }
                     else if (dataGridView1.Rows[i].Cells["situacao"].Value.ToString() != auxdata)
@@ -326,7 +322,7 @@ namespace processosAdministrativos.Telas
                     cf.Fup_dataEntrega = Convert.ToDateTime(dataGridView1.Rows[i].Cells["dataEntrega"].Value.ToString());
                     cf.Fup_situacao = dataGridView1.Rows[i].Cells["situacao"].Value.ToString();
                     cf.Fup_dataAlteracao = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraFallowUp(cf);
+                    dao.CadastraFallowUp(cf);
                 }
             }
             codAlt.Clear();

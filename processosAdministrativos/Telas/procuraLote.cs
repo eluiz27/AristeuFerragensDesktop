@@ -5,46 +5,53 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraLote : Form
+    public partial class ProcuraLote : Form
     {
         DAO dao = new DAO();
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
         private string Sql = String.Empty;
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable qdt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+        public void PreencheTabela()
+        {
+            QueryDataTable qdt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             dataGridView1.DataSource = qdt.procura("SELECT ltv_numLote, itm_descricao FROM lote_validade INNER JOIN itens ON lote_validade.ltv_produto = itens.itm_codigo WHERE itm_descricao like '%" + pesquisar + "%'");
         }
 
-        public procuraLote()
+        public ProcuraLote()
         {
             InitializeComponent();
         }
 
         private void procuraLote_Load(object sender, EventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             Sql = "SELECT ltv_codigo FROM lote_validade WHERE ltv_numLote = '" + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "'";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object aux = dao.Query.ExecuteScalar();
             vat.CodLote = aux.ToString();
             vat.AuxLote = 1;
-            dao.desconecta();
-            this.Close();
+            dao.Desconecta();
+            Close();
         }
     }
 }

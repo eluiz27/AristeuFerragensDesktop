@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class mapaVendasCompleto
+    partial class MapaVendasCompleto
     {
         /// <summary>
         /// Required designer variable.
@@ -67,7 +67,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle36 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle37 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle38 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mapaVendasCompleto));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MapaVendasCompleto));
             this.excelBt = new System.Windows.Forms.Button();
             this.enviarBt = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();

@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cotacaoProd : Form
+    public partial class CotacaoProd : Form
     {
         string caminho = Path.GetFullPath("Compras\\CotacaoAlzira.txt");
 
         private string Sql = String.Empty;
         DAO dao = new DAO();
-        controlCompNComp ccnc = new controlCompNComp();
-        variaveis var = new variaveis();
+        ControlCompNComp ccnc = new ControlCompNComp();
+        Variaveis var = new Variaveis();
         List<string> y = new List<string>();
         List<string> codP = new List<string>();
         List<string> prodP = new List<string>();
@@ -52,7 +52,7 @@ namespace processosAdministrativos.Telas
         int aux = 0;
         int contaTab1;
 
-        public void limpaTabela()
+        public void LimpaTabela()
         {
             codP.Clear();
             prodP.Clear();
@@ -81,160 +81,198 @@ namespace processosAdministrativos.Telas
             dataGridView3.Rows.Clear();
             dataGridView3.Refresh();
         }
-        public void montaTabelaProduto()
+        public void MontaTabelaProduto()
         {
-            DataGridViewTextBoxColumn um = new DataGridViewTextBoxColumn();
-            um.HeaderText = "Código";
-            um.Name = "codProd";
-            um.DataPropertyName = "itm_codigo";
-            um.ReadOnly = true;
-            um.Width = 60;
+            DataGridViewTextBoxColumn um = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Código",
+                Name = "codProd",
+                DataPropertyName = "itm_codigo",
+                ReadOnly = true,
+                Width = 60
+            };
             dataGridView3.Columns.Add(um);
 
-            DataGridViewTextBoxColumn dois = new DataGridViewTextBoxColumn();
-            dois.HeaderText = "Produto";
-            dois.Name = "prod";
-            dois.ReadOnly = true;
-            dois.DataPropertyName = "itm_descricao";
-            dois.Width = 250;
+            DataGridViewTextBoxColumn dois = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Produto",
+                Name = "prod",
+                ReadOnly = true,
+                DataPropertyName = "itm_descricao",
+                Width = 250
+            };
             dataGridView3.Columns.Add(dois);
 
-            DataGridViewTextBoxColumn tres = new DataGridViewTextBoxColumn();
-            tres.HeaderText = "Un.";
-            tres.Name = "uniProd";
-            tres.ReadOnly = true;
-            tres.DataPropertyName = "itm_unidade";
-            tres.Width = 40;
+            DataGridViewTextBoxColumn tres = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Un.",
+                Name = "uniProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_unidade",
+                Width = 40
+            };
             dataGridView3.Columns.Add(tres);
 
-            DataGridViewTextBoxColumn quatro = new DataGridViewTextBoxColumn();
-            quatro.HeaderText = "Mín.";
-            quatro.Name = "minProd";
-            quatro.ReadOnly = true;
-            quatro.DataPropertyName = "itm_minimo";
-            quatro.Width = 50;
+            DataGridViewTextBoxColumn quatro = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Mín.",
+                Name = "minProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_minimo",
+                Width = 50
+            };
             dataGridView3.Columns.Add(quatro);
 
-            DataGridViewTextBoxColumn cinco = new DataGridViewTextBoxColumn();
-            cinco.HeaderText = "Máx.";
-            cinco.Name = "maxProd";
-            cinco.ReadOnly = true;
-            cinco.DataPropertyName = "itm_maximo";
-            cinco.Width = 50;
+            DataGridViewTextBoxColumn cinco = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Máx.",
+                Name = "maxProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_maximo",
+                Width = 50
+            };
             dataGridView3.Columns.Add(cinco);
 
-            DataGridViewTextBoxColumn seis = new DataGridViewTextBoxColumn();
-            seis.HeaderText = "Saldo";
-            seis.Name = "saldoProd";
-            seis.ReadOnly = true;
-            seis.DataPropertyName = "saldo";
-            seis.Width = 60;
+            DataGridViewTextBoxColumn seis = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Saldo",
+                Name = "saldoProd",
+                ReadOnly = true,
+                DataPropertyName = "saldo",
+                Width = 60
+            };
             seis.DefaultCellStyle.BackColor = Color.Yellow;
             dataGridView3.Columns.Add(seis);
 
-            DataGridViewTextBoxColumn sete = new DataGridViewTextBoxColumn();
-            sete.HeaderText = "Qtd";
-            sete.Name = "compProd";
-            sete.DataPropertyName = "compra";
-            sete.Width = 60;
+            DataGridViewTextBoxColumn sete = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Qtd",
+                Name = "compProd",
+                DataPropertyName = "compra",
+                Width = 60
+            };
             dataGridView3.Columns.Add(sete);
 
-            DataGridViewTextBoxColumn oito = new DataGridViewTextBoxColumn();
-            oito.HeaderText = "+ Meses";
-            oito.Name = "seteMProd";
-            oito.ReadOnly = true;
-            oito.DataPropertyName = "seteMes";
-            oito.Width = 70;
+            DataGridViewTextBoxColumn oito = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "+ Meses",
+                Name = "seteMProd",
+                ReadOnly = true,
+                DataPropertyName = "seteMes",
+                Width = 70
+            };
             dataGridView3.Columns.Add(oito);
 
-            DataGridViewTextBoxColumn nove = new DataGridViewTextBoxColumn();
-            nove.HeaderText = "- Meses";
-            nove.Name = "tresMProd";
-            nove.ReadOnly = true;
-            nove.DataPropertyName = "tresMes";
-            nove.Width = 70;
+            DataGridViewTextBoxColumn nove = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "- Meses",
+                Name = "tresMProd",
+                ReadOnly = true,
+                DataPropertyName = "tresMes",
+                Width = 70
+            };
             dataGridView3.Columns.Add(nove);
 
-            DataGridViewTextBoxColumn dez = new DataGridViewTextBoxColumn();
-            dez.HeaderText = "Sald-Vend7";
-            dez.Name = "saldVend7Prod";
-            dez.ReadOnly = true;
-            dez.DataPropertyName = "vendSald7";
-            dez.Width = 85;
+            DataGridViewTextBoxColumn dez = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Sald-Vend7",
+                Name = "saldVend7Prod",
+                ReadOnly = true,
+                DataPropertyName = "vendSald7",
+                Width = 85
+            };
             dataGridView3.Columns.Add(dez);
 
-            DataGridViewTextBoxColumn onze = new DataGridViewTextBoxColumn();
-            onze.HeaderText = "Ult. Compra";
-            onze.Name = "ultCompProd";
-            onze.ReadOnly = true;
-            onze.DataPropertyName = "itm_ultcompra";
-            onze.Width = 60;
+            DataGridViewTextBoxColumn onze = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ult. Compra",
+                Name = "ultCompProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_ultcompra",
+                Width = 60
+            };
             dataGridView3.Columns.Add(onze);
 
-            DataGridViewTextBoxColumn dose = new DataGridViewTextBoxColumn();
-            dose.HeaderText = "Emb.";
-            dose.Name = "embProd";
-            dose.ReadOnly = true;
-            dose.DataPropertyName = "ITM_Embalagem";
-            dose.Width = 50;
+            DataGridViewTextBoxColumn dose = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Emb.",
+                Name = "embProd",
+                ReadOnly = true,
+                DataPropertyName = "ITM_Embalagem",
+                Width = 50
+            };
             dataGridView3.Columns.Add(dose);
 
-            DataGridViewTextBoxColumn trese = new DataGridViewTextBoxColumn();
-            trese.HeaderText = "Cód. Forn.";
-            trese.Name = "codFornProd";
-            trese.ReadOnly = true;
-            trese.DataPropertyName = "itm_identificacao";
-            trese.Width = 80;
+            DataGridViewTextBoxColumn trese = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Cód. Forn.",
+                Name = "codFornProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_identificacao",
+                Width = 80
+            };
             dataGridView3.Columns.Add(trese);
 
-            DataGridViewTextBoxColumn quatorze = new DataGridViewTextBoxColumn();
-            quatorze.HeaderText = "Comprar?";
-            quatorze.Name = "comprarProd";
-            quatorze.ReadOnly = true;
-            quatorze.DataPropertyName = "comprar";
-            quatorze.Width = 100;
+            DataGridViewTextBoxColumn quatorze = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Comprar?",
+                Name = "comprarProd",
+                ReadOnly = true,
+                DataPropertyName = "comprar",
+                Width = 100
+            };
             dataGridView3.Columns.Add(quatorze);
 
-            DataGridViewTextBoxColumn quinze = new DataGridViewTextBoxColumn();
-            quinze.HeaderText = "Ult. Venda";
-            quinze.Name = "ultVendProd";
-            quinze.ReadOnly = true;
-            quinze.DataPropertyName = "itm_ultvenda";
-            quinze.Width = 60;
+            DataGridViewTextBoxColumn quinze = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ult. Venda",
+                Name = "ultVendProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_ultvenda",
+                Width = 60
+            };
             dataGridView3.Columns.Add(quinze);
 
-            DataGridViewTextBoxColumn deseseis = new DataGridViewTextBoxColumn();
-            deseseis.HeaderText = "Preço";
-            deseseis.Name = "precoProd";
-            deseseis.ReadOnly = true;
-            deseseis.DataPropertyName = "itm_precocusto";
-            deseseis.Width = 50;
+            DataGridViewTextBoxColumn deseseis = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Preço",
+                Name = "precoProd",
+                ReadOnly = true,
+                DataPropertyName = "itm_precocusto",
+                Width = 50
+            };
             dataGridView3.Columns.Add(deseseis);
 
-            DataGridViewTextBoxColumn desesete = new DataGridViewTextBoxColumn();
-            desesete.HeaderText = "grupo";
-            desesete.Name = "grupoProd";
-            desesete.Visible = false;
-            desesete.DataPropertyName = "itm_grupo";
-            desesete.Width = 50;
+            DataGridViewTextBoxColumn desesete = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "grupo",
+                Name = "grupoProd",
+                Visible = false,
+                DataPropertyName = "itm_grupo",
+                Width = 50
+            };
             dataGridView3.Columns.Add(desesete);
 
-            DataGridViewTextBoxColumn desoito = new DataGridViewTextBoxColumn();
-            desoito.HeaderText = "fornecedor";
-            desoito.Name = "fornProd";
-            desoito.Visible = false;
-            desoito.DataPropertyName = "itm_fornecedor";
-            desoito.Width = 50;
+            DataGridViewTextBoxColumn desoito = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "fornecedor",
+                Name = "fornProd",
+                Visible = false,
+                DataPropertyName = "itm_fornecedor",
+                Width = 50
+            };
             dataGridView3.Columns.Add(desoito);
 
-            DataGridViewTextBoxColumn desenove = new DataGridViewTextBoxColumn();
-            desenove.HeaderText = "Ord. C.";
-            desenove.Name = "ordProd";
-            desenove.DataPropertyName = "ordCompra";
-            desenove.Width = 50;
+            DataGridViewTextBoxColumn desenove = new DataGridViewTextBoxColumn
+            {
+                HeaderText = "Ord. C.",
+                Name = "ordProd",
+                DataPropertyName = "ordCompra",
+                Width = 50
+            };
             dataGridView3.Columns.Add(desenove);
         }
-        public void preecheTabelaProd()
+        public void PreecheTabelaProd()
         {
             var tb = new DataTable();
             tb.Columns.Add("itm_codigo");
@@ -270,7 +308,7 @@ namespace processosAdministrativos.Telas
             dataGridView3.DataSource = tb;
         }
 
-        public void total()
+        public void Total()
         {
             List<decimal> x = new List<decimal>();
             decimal y = 0;
@@ -289,7 +327,7 @@ namespace processosAdministrativos.Telas
             valorTxt.Text = "R$ "+y.ToString();
         }
 
-        public void comprarProd()
+        public void ComprarProd()
         {
             for (int i = 0; i < codFornP.Count; i++)
             {
@@ -302,13 +340,13 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        public void dadosBancoProd()
+        public void DadosBancoProd()
         {
             Sql = "select itm_codigo, itm_descricao, itm_grupo, itm_fornecedor, itm_unidade, round(itm_minimo, 2) as 'itm_minimo', round(itm_maximo, 2) as 'itm_maximo', ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2) as 'saldo', " +
                     "itm_ultcompra, ITM_Embalagem, itm_identificacao, itm_ultvenda, round(itm_precocusto, 2) as 'itm_precocusto' from itens " +
                     "where itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit != 'S' order by itm_codigo";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader produtos = dao.Query.ExecuteReader();
             while (produtos.Read())
             {
@@ -327,9 +365,9 @@ namespace processosAdministrativos.Telas
                 fornProd.Add(produtos["itm_fornecedor"].ToString());
             }
             produtos.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public void valoresTresP()
+        public void ValoresTresP()
         {
             string[] linhas;
             linhas = File.ReadAllLines(caminho);
@@ -344,7 +382,7 @@ namespace processosAdministrativos.Telas
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit != 'S' group by mv_item order by mv_item";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader treM = dao.Query.ExecuteReader();
             while (treM.Read())
             {
@@ -372,9 +410,9 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             treM.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public void valoresSeteP()
+        public void ValoresSeteP()
         {
             string[] linhas;
             linhas = File.ReadAllLines(caminho);
@@ -389,7 +427,7 @@ namespace processosAdministrativos.Telas
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between "+fornInf+" and "+fornSup+""+fornNull+ " and itm_kit != 'S' group by mv_item order by mv_item";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader seteM = dao.Query.ExecuteReader();
             while (seteM.Read())
             {
@@ -418,10 +456,10 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             seteM.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void valoresSetePAux()
+        public void ValoresSetePAux()
         {
             string[] linhas;
             linhas = File.ReadAllLines(caminho);
@@ -436,7 +474,7 @@ namespace processosAdministrativos.Telas
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and (itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit != 'S' group by mv_item order by mv_item";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader seteM = dao.Query.ExecuteReader();
             while (seteM.Read())
             {
@@ -465,22 +503,22 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             seteM.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public void comprando()
+        public void Comprando()
         {
             Sql = "SELECT cnc_item FROM compra_naocompra";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while (aux.Read())
             {
                 y.Add(aux["cnc_item"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void composicao7()
+        public void Composicao7()
         {
             string[] linhas;
             linhas = File.ReadAllLines(caminho);
@@ -497,26 +535,26 @@ namespace processosAdministrativos.Telas
                     "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(- Convert.ToInt32(linhas[0])).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and nt_cancelada = 0 and " +
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between  "+ grupoInf + " and " + grupoSup + " and(itm_fornecedor between "+fornInf+" and "+fornSup+""+fornNull+" and itm_kit = 'S' group by mv_item order by mv_item; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while (aux.Read())
             {
                 auxList1.Add(aux["mv_item"].ToString());
                 auxList2.Add(aux["qtde"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
 
             Sql = "select cps_item, cps_componente from itens INNER JOIN composicao on itens.itm_codigo = composicao.cps_item " +
                     "where itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and(itm_fornecedor between "+fornInf+" and "+fornSup+""+fornNull+ " and itm_kit = 'S' order by cps_componente; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux2 = dao.Query.ExecuteReader();
             while (aux2.Read())
             {
                 auxList3.Add(aux2["cps_item"].ToString());
                 auxList4.Add(aux2["cps_componente"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < auxList3.Count; i++)
             {
@@ -553,7 +591,7 @@ namespace processosAdministrativos.Telas
             auxList6.Clear();
         }
 
-        public void composicao3()
+        public void Composicao3()
         {
             string[] linhas;
             linhas = File.ReadAllLines(caminho);
@@ -570,26 +608,26 @@ namespace processosAdministrativos.Telas
                     "INNER JOIN itens on a.mv_item = itens.itm_codigo where nt_data between '" + DateTime.Now.AddMonths(- Convert.ToInt32(linhas[1])).ToString("yyyy-MM-dd 00:00:00") + "' and '" + DateTime.Now.ToString("yyyy-MM-dd 23:00:00") + "' and " +
                     "Tipomovi.tmv_grupo = 'V' and itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between  " + grupoInf + " and " + grupoSup + " and(itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit = 'S' group by mv_item order by mv_item; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while (aux.Read())
             {
                 auxList1.Add(aux["mv_item"].ToString());
                 auxList2.Add(aux["qtde"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
 
             Sql = "select cps_item, cps_componente from itens INNER JOIN composicao on itens.itm_codigo = composicao.cps_item " +
                     "where itm_grupo != 0096 and itm_grupo != 0167 and itm_situacao = 'A' and itm_grupo between " + grupoInf + " and " + grupoSup + " and(itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + " and itm_kit = 'S' order by cps_componente; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux2 = dao.Query.ExecuteReader();
             while (aux2.Read())
             {
                 auxList3.Add(aux2["cps_item"].ToString());
                 auxList4.Add(aux2["cps_componente"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < auxList3.Count; i++)
             {
@@ -620,7 +658,7 @@ namespace processosAdministrativos.Telas
             auxList5.Clear();
             auxList6.Clear();
         }
-        public void ordemCompraC()
+        public void OrdemCompraC()
         {
             List<string> auxList1 = new List<string>();
             List<string> auxList2 = new List<string>();
@@ -630,7 +668,7 @@ namespace processosAdministrativos.Telas
                     "where itm_grupo != 0096 and itm_grupo != 0167 and(oci_sitentrega = 'P' or oci_sitentrega = 'Pendente') and ocp_dtrecebida is null and itm_situacao = 'A' and itm_grupo between  " + grupoInf + " and " + grupoSup + " and(itm_fornecedor between " + fornInf + " and " + fornSup + "" + fornNull + "  group by oci_item " +
                     "order by itm_codigo; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader oc = dao.Query.ExecuteReader();
             while (oc.Read())
             {
@@ -658,16 +696,16 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             oc.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public void grupos()
+        public void Grupos()
         {
             List<string> auxList1 = new List<string>();
             List<string> auxList2 = new List<string>();
             int w = 0;
             Sql = "select cnc_item, cnc_qtde from compra_naocompra where cnc_grupo != 0096 and cnc_grupo != 0167 and cnc_grupo between " + grupoInf + " and " + grupoSup + " and (cnc_fornecedor between " + fornInf + " and " + fornSup + ") order by cnc_item";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while (aux.Read())
             {
@@ -696,10 +734,10 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             aux.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
         }
-        public void contaTab()
+        public void ContaTab()
         {
 
             for (int i = 0; i < dataGridView3.RowCount; i++)
@@ -708,7 +746,7 @@ namespace processosAdministrativos.Telas
                     contaTab1++;
             }
         }
-        public cotacaoProd()
+        public CotacaoProd()
         {
             InitializeComponent();
         }
@@ -717,7 +755,7 @@ namespace processosAdministrativos.Telas
         {
             if (e.ColumnIndex == 6)
             {
-                comprando();
+                Comprando();
                 if (dataGridView3[e.ColumnIndex, e.RowIndex].Value.ToString() != "")
                 {
                     ccnc.Cnc_qtde = dataGridView3[e.ColumnIndex, e.RowIndex].Value.ToString();
@@ -737,11 +775,11 @@ namespace processosAdministrativos.Telas
                     ccnc.Cnc_fornecedor = dataGridView3[17, e.RowIndex].Value.ToString();
                     ccnc.Cnc_grupo = dataGridView3[16, e.RowIndex].Value.ToString();
                     ccnc.Cnc_item = dataGridView3[0, e.RowIndex].Value.ToString();
-                    dao.cadastraCompra2(ccnc);
+                    dao.CadastraCompra2(ccnc);
                 }
                 else
                 {
-                    dao.alteraCompra2(ccnc, dataGridView3[0, e.RowIndex].Value.ToString());
+                    dao.AlteraCompra2(ccnc, dataGridView3[0, e.RowIndex].Value.ToString());
                     aux = 0;
                 }
                 y.Clear();
@@ -749,7 +787,7 @@ namespace processosAdministrativos.Telas
                 ccnc.Cnc_qtde = string.Empty;
                 ccnc.Cnc_grupo = string.Empty;
                 ccnc.Cnc_fornecedor = string.Empty;
-                total();
+                Total();
             }
         }
 
@@ -767,23 +805,23 @@ namespace processosAdministrativos.Telas
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            dadosBancoProd();
-            valoresSeteP();
-            valoresSetePAux();
-            valoresTresP();
-            comprarProd();
-            grupos();
-            composicao7();
-            composicao3();
-            ordemCompraC();
+            DadosBancoProd();
+            ValoresSeteP();
+            ValoresSetePAux();
+            ValoresTresP();
+            ComprarProd();
+            Grupos();
+            Composicao7();
+            Composicao3();
+            OrdemCompraC();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            montaTabelaProduto();
-            preecheTabelaProd();
+            MontaTabelaProduto();
+            PreecheTabelaProd();
             dataGridView3.Sort(dataGridView3.Columns["saldVend7Prod"], ListSortDirection.Ascending);
-            total();
+            Total();
             textBox1.Enabled = true;
             textBox2.Enabled = true;
             button3.Enabled = true;
@@ -799,13 +837,13 @@ namespace processosAdministrativos.Telas
 
         private void cotacaoProd_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCompraProd = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            comprando();
+            Comprando();
             int aux = 0;
             for (int i = 0; i < dataGridView3.RowCount; i++)
             {
@@ -821,7 +859,7 @@ namespace processosAdministrativos.Telas
                     ccnc.Cnc_fornecedor = dataGridView3.Rows[i].Cells[17].Value.ToString();
                     ccnc.Cnc_grupo = dataGridView3.Rows[i].Cells[16].Value.ToString();
                     ccnc.Cnc_item = dataGridView3.Rows[i].Cells[0].Value.ToString();
-                    dao.cadastraCompra2(ccnc);
+                    dao.CadastraCompra2(ccnc);
                 }
                 else
                     aux = 0;
@@ -831,7 +869,7 @@ namespace processosAdministrativos.Telas
             {
                 dataGridView3.Rows[i].Cells[6].Value = "";
             }
-            dao.alteraCompra3();
+            dao.AlteraCompra3();
 
             y.Clear();
             ccnc.Cnc_item = string.Empty;
@@ -873,20 +911,20 @@ namespace processosAdministrativos.Telas
                 fornSup = Convert.ToInt32(textBox2.Text);
                 fornNull = ")";
             }
-            limpaTabela();
-            dadosBancoProd();
-            valoresSeteP();
-            valoresSetePAux();
-            valoresTresP();
-            comprarProd();
-            grupos();
-            composicao7();
-            composicao3();
-            ordemCompraC();
-            montaTabelaProduto();
-            preecheTabelaProd();
+            LimpaTabela();
+            DadosBancoProd();
+            ValoresSeteP();
+            ValoresSetePAux();
+            ValoresTresP();
+            ComprarProd();
+            Grupos();
+            Composicao7();
+            Composicao3();
+            OrdemCompraC();
+            MontaTabelaProduto();
+            PreecheTabelaProd();
             dataGridView3.Sort(dataGridView3.Columns["saldVend7Prod"], ListSortDirection.Ascending);
-            total();
+            Total();
         }
 
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
@@ -899,7 +937,7 @@ namespace processosAdministrativos.Telas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            contaTab();
+            ContaTab();
             int w = 0;
             string[,] x = new string[contaTab1, 18];
             SaveFileDialog sfd = new SaveFileDialog();
@@ -907,29 +945,29 @@ namespace processosAdministrativos.Telas
             sfd.ShowDialog();
             if (sfd.FileName != "")
             {
-                excel ex = new excel();
-                ex.createFile();
+                Excel ex = new Excel();
+                ex.CreateFile();
                 ex.SavaAs(sfd.FileName);
                 ex.Close();
-                excel ex2 = new excel(sfd.FileName, "");
-                ex2.writeCell3(1, 0, 0, "Código");
-                ex2.writeCell3(1, 0, 1, "Produto");
-                ex2.writeCell3(1, 0, 2, "Un.");
-                ex2.writeCell3(1, 0, 3, "Min.");
-                ex2.writeCell3(1, 0, 4, "Max.");
-                ex2.writeCell3(1, 0, 5, "Saldo");
-                ex2.writeCell3(1, 0, 6, "Qtd");
-                ex2.writeCell3(1, 0, 7, "Obs.");
-                ex2.writeCell3(1, 0, 8, "+ meses");
-                ex2.writeCell3(1, 0, 9, "- meses");
-                ex2.writeCell3(1, 0, 10, "Saldo-Venda 7");
-                ex2.writeCell3(1, 0, 11, "Ult. Compra");
-                ex2.writeCell3(1, 0, 12, "Emb");
-                ex2.writeCell3(1, 0, 13, "Cód. Forn");
-                ex2.writeCell3(1, 0, 14, "Comprar?");
-                ex2.writeCell3(1, 0, 15, "Ult. Venda");
-                ex2.writeCell3(1, 0, 16, "Preço");
-                ex2.writeCell3(1, 0, 17, "Ord. C.");
+                Excel ex2 = new Excel(sfd.FileName, "");
+                ex2.WriteCell3(1, 0, 0, "Código");
+                ex2.WriteCell3(1, 0, 1, "Produto");
+                ex2.WriteCell3(1, 0, 2, "Un.");
+                ex2.WriteCell3(1, 0, 3, "Min.");
+                ex2.WriteCell3(1, 0, 4, "Max.");
+                ex2.WriteCell3(1, 0, 5, "Saldo");
+                ex2.WriteCell3(1, 0, 6, "Qtd");
+                ex2.WriteCell3(1, 0, 7, "Obs.");
+                ex2.WriteCell3(1, 0, 8, "+ meses");
+                ex2.WriteCell3(1, 0, 9, "- meses");
+                ex2.WriteCell3(1, 0, 10, "Saldo-Venda 7");
+                ex2.WriteCell3(1, 0, 11, "Ult. Compra");
+                ex2.WriteCell3(1, 0, 12, "Emb");
+                ex2.WriteCell3(1, 0, 13, "Cód. Forn");
+                ex2.WriteCell3(1, 0, 14, "Comprar?");
+                ex2.WriteCell3(1, 0, 15, "Ult. Venda");
+                ex2.WriteCell3(1, 0, 16, "Preço");
+                ex2.WriteCell3(1, 0, 17, "Ord. C.");
                 for (int i = 0; i < dataGridView3.RowCount; i++)
                 {
                     if (dataGridView3.Rows[i].Cells[6].Value.ToString() != "")
@@ -958,18 +996,18 @@ namespace processosAdministrativos.Telas
                             posiNorm.Add((w+1).ToString());
                     }
                 }
-                ex2.writeRange(2, 1, contaTab1 + 1, 18, 1, x);
-                ex2.ajustarColunas(1, "A", "R");
-                ex2.negrito(1, "A1:R1");
+                ex2.WriteRange(2, 1, contaTab1 + 1, 18, 1, x);
+                ex2.AjustarColunas(1, "A", "R");
+                ex2.Negrito(1, "A1:R1");
                 int tama = contaTab1 + 1;
-                ex2.pintarAmerelo(1, "F2:F" + tama + "");
+                ex2.PintarAmerelo(1, "F2:F" + tama + "");
                 for (int i = 0; i < posiCrit.Count; i++)
                 {
-                    ex2.pintarVermelho(1, "O"+posiCrit[i]+":O"+posiCrit[i]+"");
+                    ex2.PintarVermelho(1, "O"+posiCrit[i]+":O"+posiCrit[i]+"");
                 }
                 for (int i = 0; i < posiNorm.Count; i++)
                 {
-                    ex2.pintarCastaAreno(1, "O" + posiNorm[i] + ":O" + posiNorm[i] + "");
+                    ex2.PintarCastaAreno(1, "O" + posiNorm[i] + ":O" + posiNorm[i] + "");
                 }
                     ex2.Save();
                 ex2.Close();
@@ -995,13 +1033,13 @@ namespace processosAdministrativos.Telas
 
         private void textBox2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            procuraForn pf = new procuraForn();
+            ProcuraForn pf = new ProcuraForn();
             pf.ShowDialog();
         }
 
         private void textBox1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            procuraGrupo pg = new procuraGrupo();
+            ProcuraGrupo pg = new ProcuraGrupo();
             pg.ShowDialog();
         }
 

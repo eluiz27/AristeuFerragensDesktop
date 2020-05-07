@@ -1,14 +1,6 @@
-﻿using MySql.Data.MySqlClient;
-using processosAdministrativos.Classes;
+﻿using processosAdministrativos.Classes;
 using processosAdministrativos.Controllers;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
@@ -91,7 +83,7 @@ namespace processosAdministrativos.Telas
         }
         private void restricoes_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaRestricoes = 0;
         }
 

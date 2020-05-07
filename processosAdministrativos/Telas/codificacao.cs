@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class codificacao : Form
+    public partial class Codificacao : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
         String numNot;
         String codFor;
         string situ;
@@ -35,19 +35,28 @@ namespace processosAdministrativos.Telas
         }
         List<preencheNota> aux2 = new List<preencheNota>();
 
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
         public bool maisDeUm()
         {
+            string notaAux = CorrecoesTexto(notaTxt.Text);
             int qtde = 0;
-            Sql = "select count(nt_documento) as 'nt_documento' from notas where nt_documento = " + notaTxt.Text + "";
+            Sql = "select count(nt_documento) as 'nt_documento' from notas where nt_documento = " + notaAux + "";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader qtdeNota = dao.Query.ExecuteReader();
             while (qtdeNota.Read())
             {
                 qtde = Convert.ToInt32(qtdeNota["nt_documento"]);
             }
             qtdeNota.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             if (qtde == 1)
             {
@@ -59,13 +68,15 @@ namespace processosAdministrativos.Telas
             }
         }
         public void preencheTabela()
-        {           
+        {
+            string notaAux = CorrecoesTexto(notaTxt.Text);
+
             Sql = "SELECT mv_documento, mv_item, MV_Descricao, mv_unidade, mv_quantidade, itm_identificacao, codf_situacao " +
                     "FROM (((movimentos INNER JOIN notas ON notas.nt_documento = movimentos.mv_documento " +
                     "AND notas.nt_empresa = movimentos.mv_empresa and notas.nt_agente =  movimentos.mv_agente) " +
-                    "INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo)INNER JOIN itens ON movimentos.mv_item = itens.itm_codigo) LEFT OUTER JOIN codificacao ON notas.nt_documento = codificacao.codf_nota WHERE mv_documento = " + notaTxt.Text + " and Tipomovi.tmv_grupo = 'c'";
+                    "INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo)INNER JOIN itens ON movimentos.mv_item = itens.itm_codigo) LEFT OUTER JOIN codificacao ON notas.nt_documento = codificacao.codf_nota WHERE mv_documento = " + notaAux + " and Tipomovi.tmv_grupo = 'c'";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader nota = dao.Query.ExecuteReader();
             while (nota.Read())
             {
@@ -84,7 +95,7 @@ namespace processosAdministrativos.Telas
                 situ = nota["codf_situacao"].ToString();
             }
             nota.Close();
-            dao.desconecta();
+            dao.Desconecta();
             dataGridView1.DataSource = null;
             dataGridView1.DataSource = aux2;
             dataGridView1.Columns[0].HeaderText = "Nº Nota";
@@ -122,7 +133,7 @@ namespace processosAdministrativos.Telas
         {
             Sql = "SELECT est_codigo, est_nome FROM estoquista";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader estoq1 = dao.Query.ExecuteReader();
             DataTable table1 = new DataTable();
             table1.Load(estoq1);
@@ -134,13 +145,13 @@ namespace processosAdministrativos.Telas
             estoq1Cb.DisplayMember = "est_nome";
             estoq1Cb.ValueMember = "est_codigo";
             estoq1.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
         public void preecheCombo1()
         {
             Sql = "SELECT est_codigo, est_nome FROM estoquista";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader estoq2 = dao.Query.ExecuteReader();
             DataTable table2 = new DataTable();
             table2.Load(estoq2);
@@ -152,7 +163,7 @@ namespace processosAdministrativos.Telas
             estoq2Cb.DisplayMember = "est_nome";
             estoq2Cb.ValueMember = "est_codigo";
             estoq2.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         public void limpaTabela()
@@ -172,7 +183,7 @@ namespace processosAdministrativos.Telas
             vat.AuxCodifica = 0;
             vat.NumNota = string.Empty;
         }
-        public codificacao()
+        public Codificacao()
         {
             InitializeComponent();
         }
@@ -185,7 +196,7 @@ namespace processosAdministrativos.Telas
 
         private void codificacao_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCodificacao = 0;
             limpaTabela();
             limpa();
@@ -193,7 +204,7 @@ namespace processosAdministrativos.Telas
 
         private void notaTxt_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            procuraNota pn = new procuraNota();
+            ProcuraNota pn = new ProcuraNota();
             pn.ShowDialog();
         }
 
@@ -209,16 +220,16 @@ namespace processosAdministrativos.Telas
                 sfd.ShowDialog();
                 if (sfd.FileName != "")
                 {
-                    excel ex = new excel();
-                    ex.createFile();
+                    Excel ex = new Excel();
+                    ex.CreateFile();
                     ex.SavaAs(sfd.FileName);
                     ex.Close();
-                    excel ex2 = new excel(sfd.FileName, "");
-                    ex2.writeCell3(1, 0, 0, "Cód. Prod.");
-                    ex2.writeCell3(1, 0, 1, "Produto");
-                    ex2.writeCell3(1, 0, 2, "Un.");
-                    ex2.writeCell3(1, 0, 3, "Qtde");
-                    ex2.writeCell3(1, 0, 4, "Cód. Forn.");
+                    Excel ex2 = new Excel(sfd.FileName, "");
+                    ex2.WriteCell3(1, 0, 0, "Cód. Prod.");
+                    ex2.WriteCell3(1, 0, 1, "Produto");
+                    ex2.WriteCell3(1, 0, 2, "Un.");
+                    ex2.WriteCell3(1, 0, 3, "Qtde");
+                    ex2.WriteCell3(1, 0, 4, "Cód. Forn.");
 
 
                     for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -232,9 +243,9 @@ namespace processosAdministrativos.Telas
                         z++;
                     }
 
-                    ex2.writeRange(2, 1, dataGridView1.RowCount + 1, 5, 1, x);
-                    ex2.ajustarColunas(1, "A", "E");
-                    ex2.negrito(1, "A1:E1");
+                    ex2.WriteRange(2, 1, dataGridView1.RowCount + 1, 5, 1, x);
+                    ex2.AjustarColunas(1, "A", "E");
+                    ex2.Negrito(1, "A1:E1");
                     ex2.Save();
                     ex2.Close();
                     System.Diagnostics.Process.Start(sfd.FileName);
@@ -272,8 +283,8 @@ namespace processosAdministrativos.Telas
                         }
                         else
                         {
-                            procuraNota pn = new procuraNota();
-                            variaveis vari = new variaveis();
+                            ProcuraNota pn = new ProcuraNota();
+                            Variaveis vari = new Variaveis();
                             vari.DocCodific = notaTxt.Text;
                             pn.ShowDialog();
                         }
@@ -294,7 +305,7 @@ namespace processosAdministrativos.Telas
         {
             if (notaTxt.Text != string.Empty && dataGridView1.RowCount > 0 && estoq1Cb.SelectedIndex > 0 && codificaCb.Checked == true)
             {
-                controlCodifica cc = new controlCodifica();
+                ControlCodifica cc = new ControlCodifica();
                 cc.Codf_nota = numNot;
                 cc.Codf_codForn = codFor;
                 cc.Codf_codEstoquista1 = estoq1Cb.SelectedValue.ToString();
@@ -306,7 +317,7 @@ namespace processosAdministrativos.Telas
 
                 cc.Codf_situacao = "OK";
                 cc.Codf_data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                dao.cadastraCodifica(cc);
+                dao.CadastraCodifica(cc);
                 MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpaTabela();
                 limpa();

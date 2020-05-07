@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class consultaNSerie
+    partial class ConsultaNSerie
     {
         /// <summary>
         /// Required designer variable.
@@ -29,21 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(consultaNSerie));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultaNSerie));
             this.label1 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.gs_aristeusDataSet = new processosAdministrativos.gs_aristeusDataSet();
-            this.nSerieBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.nSerieTableAdapter = new processosAdministrativos.gs_aristeusDataSetTableAdapters.nSerieTableAdapter();
             this.codProd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nSerie = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.data = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nSerieBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.gs_aristeusDataSet = new processosAdministrativos.gs_aristeusDataSet();
+            this.nSerieTableAdapter = new processosAdministrativos.gs_aristeusDataSetTableAdapters.nSerieTableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gs_aristeusDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nSerieBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gs_aristeusDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -68,7 +68,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codProd,
@@ -76,26 +75,11 @@
             this.nSerie,
             this.pedido,
             this.data});
-            this.dataGridView1.DataSource = this.nSerieBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 39);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.Size = new System.Drawing.Size(726, 397);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // gs_aristeusDataSet
-            // 
-            this.gs_aristeusDataSet.DataSetName = "gs_aristeusDataSet";
-            this.gs_aristeusDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // nSerieBindingSource
-            // 
-            this.nSerieBindingSource.DataMember = "nSerie";
-            this.nSerieBindingSource.DataSource = this.gs_aristeusDataSet;
-            // 
-            // nSerieTableAdapter
-            // 
-            this.nSerieTableAdapter.ClearBeforeFill = true;
             // 
             // codProd
             // 
@@ -137,6 +121,20 @@
             this.data.ReadOnly = true;
             this.data.Width = 70;
             // 
+            // nSerieBindingSource
+            // 
+            this.nSerieBindingSource.DataMember = "nSerie";
+            this.nSerieBindingSource.DataSource = this.gs_aristeusDataSet;
+            // 
+            // gs_aristeusDataSet
+            // 
+            this.gs_aristeusDataSet.DataSetName = "gs_aristeusDataSet";
+            this.gs_aristeusDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // nSerieTableAdapter
+            // 
+            this.nSerieTableAdapter.ClearBeforeFill = true;
+            // 
             // consultaNSerie
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -154,8 +152,8 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.consultaNSerie_FormClosing);
             this.Load += new System.EventHandler(this.consultaNSerie_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gs_aristeusDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nSerieBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gs_aristeusDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

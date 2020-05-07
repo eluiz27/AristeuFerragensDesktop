@@ -10,16 +10,13 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class progresso : Form
+    public partial class Progresso : Form
     {
         private int x;
+        public int X { get => x; set => x = value; }
 
-        public int X
-        {
-            get { return x; }
-            set { x = value; }
-        }
-        public progresso()
+
+        public Progresso()
         {
             InitializeComponent();
         }
@@ -31,8 +28,8 @@ namespace processosAdministrativos.Telas
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-                if (x == 1)
-                    this.Hide();
+                if (X == 1)
+                    Hide();
         }
     }
 }

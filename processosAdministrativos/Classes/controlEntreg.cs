@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos
 {
-    class controlEntreg
+    class ControlEntreg
     {
         private int pedido_contEntre;
-        private String cliente_contEntre;
+        private string cliente_contEntre;
         private int vendedor_contEntre;
-        private String situacao_contEntre;
+        private string situacao_contEntre;
         private int motoboy_contEntre;
-        private String dt_aCaminho;
-        private String dt_entregue;
-        private String obs_contEntre;
+        private string dt_aCaminho;
+        private string dt_entregue;
+        private string obs_contEntre;
        
         public int Pedido_contEntre
         {
@@ -23,7 +23,7 @@ namespace processosAdministrativos
             set { pedido_contEntre = value; }
         }
 
-        public String Cliente_contEntre
+        public string Cliente_contEntre
         {
             get { return cliente_contEntre; }
             set { cliente_contEntre = value; }
@@ -35,7 +35,7 @@ namespace processosAdministrativos
             set { vendedor_contEntre = value; }
         }
 
-        public String Situacao_contEntre
+        public string Situacao_contEntre
         {
             get { return situacao_contEntre; }
             set { situacao_contEntre = value; }
@@ -46,18 +46,18 @@ namespace processosAdministrativos
             set { motoboy_contEntre = value; }
         }
 
-        public String Dt_aCaminho
+        public string Dt_aCaminho
         {
             get { return dt_aCaminho; }
             set { dt_aCaminho = value; }
         }
 
-        public String Dt_entregue
+        public string Dt_entregue
         {
             get { return dt_entregue; }
             set { dt_entregue = value; }
         }
-        public String Obs_contEntre
+        public string Obs_contEntre
         {
             get { return obs_contEntre; }
             set { obs_contEntre = value; }

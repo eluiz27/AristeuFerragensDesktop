@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlContagem
+    class ControlContagem
     {
         private string cont_produto;
         private string cont_data;

@@ -12,10 +12,19 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class controleEst : Form
+    public partial class ControleEst : Form
     {
         DAO dao = new DAO();
-        public controleEst()
+
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
+        public ControleEst()
         {
             InitializeComponent();
         }
@@ -28,46 +37,29 @@ namespace processosAdministrativos.Telas
 
         private void produtoTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-            string pesquisar = produtoTxt.Text.Replace('*', '%');
-
-            table = new DataTable();
-            bs = new BindingSource();
+            QueryDataTable dt = new QueryDataTable();
+            string pesquisar = CorrecoesTexto(produtoTxt.Text);
             if (codigoRb.Checked)
             {
-                da = new MySqlDataAdapter("SELECT est_nome as 'Estoquista', clg_descricao as 'Classe', itm_descricao as 'Produto', itm_codigo as 'Codigo' FROM ((classes INNER JOIN itens ON classes.clg_codigo = itens.itm_classe) " +
+                dataGridView1.DataSource = dt.procura("SELECT est_nome as 'Estoquista', clg_descricao as 'Classe', itm_descricao as 'Produto', itm_codigo as 'Codigo' FROM ((classes INNER JOIN itens ON classes.clg_codigo = itens.itm_classe) " +
                                           "INNER JOIN classes_estoque ON classes.clg_codigo = classes_estoque.cles_classe) INNER JOIN estoquista ON estoquista.est_codigo = classes_estoque.cles_estoquista " +
-                                          "where itm_codigo like '%" + pesquisar + "%';", dao.Conexao);
-                da.Fill(table);
-
-               bs.DataSource = table;
-               dataGridView1.DataSource = bs;
+                                          "where itm_codigo like '%" + pesquisar + "%';");
             }
             else
             {
                 if (descricaoRb.Checked)
                 {
-                    da = new MySqlDataAdapter("SELECT est_nome as 'Estoquista', clg_descricao as 'Classe', itm_descricao as 'Produto', itm_codigo as 'Codigo' FROM ((classes INNER JOIN itens ON classes.clg_codigo = itens.itm_classe) " +
+                    dataGridView1.DataSource = dt.procura("SELECT est_nome as 'Estoquista', clg_descricao as 'Classe', itm_descricao as 'Produto', itm_codigo as 'Codigo' FROM ((classes INNER JOIN itens ON classes.clg_codigo = itens.itm_classe) " +
                                               "INNER JOIN classes_estoque ON classes.clg_codigo = classes_estoque.cles_classe) INNER JOIN estoquista ON estoquista.est_codigo = classes_estoque.cles_estoquista " +
-                                              "where itm_descricao like '%" + pesquisar + "%';", dao.Conexao);
-                    da.Fill(table);
-
-                    bs.DataSource = table;
-                    dataGridView1.DataSource = bs;
+                                              "where itm_descricao like '%" + pesquisar + "%';");
                 }
                 else
                 {
                     if (codigoBarrasRb.Checked)
                     {
-                        da = new MySqlDataAdapter("est_nome as 'Estoquista', clg_descricao as 'Classe', itm_descricao as 'Produto', itm_codigo as 'Codigo' FROM ((classes INNER JOIN itens ON classes.clg_codigo = itens.itm_classe) " +
+                        dataGridView1.DataSource = dt.procura("est_nome as 'Estoquista', clg_descricao as 'Classe', itm_descricao as 'Produto', itm_codigo as 'Codigo' FROM ((classes INNER JOIN itens ON classes.clg_codigo = itens.itm_classe) " +
                                                   "INNER JOIN classes_estoque ON classes.clg_codigo = classes_estoque.cles_classe) INNER JOIN estoquista ON estoquista.est_codigo = classes_estoque.cles_estoquista " +
-                                                  "where itm_codbarras like '%" + pesquisar + "%';", dao.Conexao);
-                        da.Fill(table);
-
-                        bs.DataSource = table;
-                        dataGridView1.DataSource = bs;
+                                                  "where itm_codbarras like '%" + pesquisar + "%';");
                     }
                 }
             }
@@ -79,7 +71,7 @@ namespace processosAdministrativos.Telas
 
         private void controleEst_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaContEstoq = 0;
         }
     }

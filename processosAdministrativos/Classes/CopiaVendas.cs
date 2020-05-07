@@ -13,9 +13,9 @@ namespace processosAdministrativos.Classes
         {
             dao.Query.Connection = dao.Conexao;
             dao.Query.CommandText = "Call sp_getNotas";
-            dao.conecta();
+            dao.Conecta();
             dao.Query.ExecuteNonQuery();
-            dao.desconecta();
+            dao.Desconecta();
         }
     }
 }

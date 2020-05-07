@@ -7,10 +7,10 @@ using System.Text.RegularExpressions;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class controleEntreg : Form
+    public partial class ControleEntreg : Form
     {
         DAO dao = new DAO();
-        variaveis var = new variaveis();
+        Variaveis var = new Variaveis();
         private string Sql = String.Empty;
 
         List<int> codMotoBoy = new List<int>();
@@ -30,14 +30,14 @@ namespace processosAdministrativos.Telas
             int x = 0;
             Sql = "SELECT COUNT(pedido_contEntre) as 'cont', if(COUNT(pedido_contEntre) = 1, situacao_contEntre, 0) as 'situ' FROM controle_entrega WHERE pedido_contEntre = '" + nPedidoTxt.Text + "' and pedido_contEntre != '0'";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while (aux.Read())
             {
                 x = Convert.ToInt32(aux["cont"]);
                 entregue.Add(aux["situ"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
             if (x == 1)
                 return true;
             else
@@ -55,7 +55,7 @@ namespace processosAdministrativos.Telas
         {
             Sql = "SELECT trp_codigo, trp_nome FROM transportadoras WHERE trp_atuacao LIKE '%ENTREGA INTERNA%'";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader auxMotoBoy = dao.Query.ExecuteReader();
             while (auxMotoBoy.Read())
             {
@@ -63,7 +63,7 @@ namespace processosAdministrativos.Telas
                 nomeMotoBoy.Add(auxMotoBoy["trp_nome"].ToString());
             }
             auxMotoBoy.Close();
-            dao.desconecta();
+            dao.Desconecta();
             for(int i = 0; i < codMotoBoy.Count; i++)
                 listaMotoboy.Add(new motoboy { codigo = codMotoBoy[i], nome = nomeMotoBoy[i]});
 
@@ -78,7 +78,7 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "select ped_numero, date_format(ped_data, '%d/%m/%Y') as 'data', ped_nmcliente, ped_vendedor from pedidos where ped_numero like '%" + Convert.ToInt32(nPedidoTxt.Text) + "%'";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader auxPed = dao.Query.ExecuteReader();
                 while (auxPed.Read())
                 {
@@ -88,10 +88,10 @@ namespace processosAdministrativos.Telas
                     vendedor.Add(Convert.ToInt32(auxPed["ped_vendedor"]));
                 }
                 auxPed.Close();
-                dao.desconecta();
+                dao.Desconecta();
                 return true;
             }
-            catch (Exception e)
+            catch
             {
                 MessageBox.Show("Pedido não encontrado", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return false;
@@ -165,14 +165,14 @@ namespace processosAdministrativos.Telas
 
         public void Salvar()
         {
-            controlEntreg cl = new controlEntreg();
+            ControlEntreg cl = new ControlEntreg();
             for (int i = 0; i < pedidosGv.RowCount; i++)
             {
                 if (entregue[i] == "A caminho")
                 {
                     cl.Situacao_contEntre = "Entregue";
                     cl.Dt_entregue = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                    dao.alteraEntrega(cl, Convert.ToInt32(pedidosGv.Rows[i].Cells[0].Value));
+                    dao.AlteraEntrega(cl, Convert.ToInt32(pedidosGv.Rows[i].Cells[0].Value));
                 }
                 else if (entregue[i] == "0")
                 {
@@ -187,7 +187,7 @@ namespace processosAdministrativos.Telas
                     cl.Dt_aCaminho = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                     cl.Dt_entregue = "2000-01-01 00:00:00";
                     cl.Obs_contEntre = pedidosGv.Rows[i].Cells[3].Value.ToString();
-                    dao.cadastraEntrega(cl);
+                    dao.CadastraEntrega(cl);
                 }
 
             }
@@ -197,21 +197,21 @@ namespace processosAdministrativos.Telas
 
         public void Alterar()
         {
-            controlEntreg cl = new controlEntreg();
+            ControlEntreg cl = new ControlEntreg();
             for (int i = 0; i < pedidosGv.RowCount; i++)
             {
                 if (entregue[i] == "A caminho")
                 {
                     cl.Situacao_contEntre = "Entregue";
                     cl.Dt_entregue = DateTime.Now.ToString("yyyy/MM/dd HH:mm:ss");
-                    dao.alteraEntrega(cl, Convert.ToInt32(pedidosGv.Rows[i].Cells[0].Value));
+                    dao.AlteraEntrega(cl, Convert.ToInt32(pedidosGv.Rows[i].Cells[0].Value));
                 }
             }
             timer1.Stop();
             Limpar();
         }
 
-        public controleEntreg()
+        public ControleEntreg()
         {
             InitializeComponent();
         }
@@ -223,7 +223,7 @@ namespace processosAdministrativos.Telas
 
         private void ControleEntreg_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaContEntre = 0;
         }
 
@@ -320,7 +320,7 @@ namespace processosAdministrativos.Telas
 
         private void RelatorioBt_Click(object sender, EventArgs e)
         {
-            procuraEntrega pe = new procuraEntrega();
+            ProcuraEntrega pe = new ProcuraEntrega();
             pe.Show();
         }
 

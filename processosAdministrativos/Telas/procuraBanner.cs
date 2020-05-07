@@ -4,38 +4,47 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraBanner : Form
+    public partial class ProcuraBanner : Form
     {
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable qdt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+
+
+        public void PreencheTabela()
+        {
+            QueryDataTable qdt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             dataGridView1.DataSource = qdt.procura("SELECT banrot_codigo, banrot_campanha FROM banner_rotativo WHERE banrot_campanha like '%" + pesquisar + "%'");
         }
 
-        public procuraBanner()
+        public ProcuraBanner()
         {
             InitializeComponent();
         }
 
         private void procuraBanner_Load(object sender, EventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             vat.CodBanner = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value.ToString());
-            this.Close();
+            Close();
         }
 
         private void pesquisaTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
     }
 }

@@ -2,17 +2,12 @@
 using processosAdministrativos.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class etiquetaPreco : Form
+    public partial class EtiquetaPreco : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
@@ -35,11 +30,11 @@ namespace processosAdministrativos.Telas
             public etique() { }
         }
         List<etique> et = new List<etique>();
-        public void preencheTabEtique()
+        public void PreencheTabEtique()
         {
             Sql = "SELECT itm_codigo, itm_descricao, itm_preco, itm_fornecedor FROM itens where itens.itm_codigo = "+codigoTxt.Text+"";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while (aux.Read())
             {
@@ -49,7 +44,7 @@ namespace processosAdministrativos.Telas
                 preco2.Add(aux["itm_preco"].ToString());
             }
             aux.Close();
-            dao.desconecta();
+            dao.Desconecta();
             et.Add(new etique()
             {
                 cod = codItem2[codItem2.Count-1],
@@ -70,30 +65,22 @@ namespace processosAdministrativos.Telas
             dataGridView2.Columns[2].Width = 70;
             dataGridView2.Columns[3].Width = 70;
 
-            limpaVar();
+            LimpaVar();
         }
-        public void preencheTabela()
+        public void PreencheTabela()
         {
+            QueryDataTable dt = new QueryDataTable();
+
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-
-            table = new DataTable();
-            bs = new BindingSource();
-
-            da = new MySqlDataAdapter("SELECT itm_codigo, itm_descricao, itm_preco, itm_fornecedor FROM itens " +
+            dataGridView1.DataSource = dt.procura("SELECT itm_codigo, itm_descricao, itm_preco, itm_fornecedor FROM itens " +
                                         "where itens.itm_ultpreco between '" + inferior + "' and '" + superior + "' and ITM_EtiquetaPreco = 1 and itm_situacao = 'a' "+
-                                        "Order by itens.itm_ultpreco desc;", dao.Conexao);
-            da.Fill(table);
-            bs.DataSource = table;
-            dataGridView1.DataSource = bs;
+                                        "Order by itens.itm_ultpreco desc;");
         }
-        public void limpaVar()
+        public void LimpaVar()
         {
             nome2.Clear();
             codItem2.Clear();
@@ -104,7 +91,7 @@ namespace processosAdministrativos.Telas
             codForn3.Clear();
             preco3.Clear();
         }
-        public void limpaTab()
+        public void LimpaTab()
         {
             codForAux.Clear();
             et.Clear();
@@ -113,7 +100,7 @@ namespace processosAdministrativos.Telas
             dataGridView2.Rows.Clear();
             dataGridView2.Refresh();
         }
-        public etiquetaPreco()
+        public EtiquetaPreco()
         {
             InitializeComponent();
         }
@@ -122,7 +109,7 @@ namespace processosAdministrativos.Telas
         {
             inferiorMtxt.Text = DateTime.Now.ToString("dd-MM-yyyy");
             superiorMtxt.Text = DateTime.Now.ToString("dd-MM-yyyy");
-            preencheTabela();
+            PreencheTabela();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 row.Cells[selec.Name].Value = true;
@@ -131,12 +118,12 @@ namespace processosAdministrativos.Telas
 
         private void pesquisarBt_Click(object sender, EventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void etiquetaPreco_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaEtiquetaPreco = 0;
         }
 
@@ -160,7 +147,7 @@ namespace processosAdministrativos.Telas
 
                 imprimeEtiquetaPreco itp = new imprimeEtiquetaPreco(nome3, codItem3, codForn3, preco3);
                 itp.ShowDialog();
-                limpaVar();
+                LimpaVar();
             }
             else
             {
@@ -178,8 +165,8 @@ namespace processosAdministrativos.Telas
                 }
                 imprimeEtiquetaPreco itp = new imprimeEtiquetaPreco(nome2, codItem2, codForn2, preco2);
                 itp.ShowDialog();
-                limpaVar();
-                limpaTab();
+                LimpaVar();
+                LimpaTab();
             }
         }
 
@@ -189,12 +176,12 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "SELECT count(itm_codigo) FROM itens where itens.itm_codigo = " + codigoTxt.Text + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 object aux = dao.Query.ExecuteScalar();
-                dao.desconecta();
+                dao.Desconecta();
                 if (aux.ToString() != "0")
                 {
-                    preencheTabEtique();
+                    PreencheTabEtique();
                 }
                 else
                     MessageBox.Show("Produto não encontrado!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);

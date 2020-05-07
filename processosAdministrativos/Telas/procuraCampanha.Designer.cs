@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class procuraCampanha
+    partial class ProcuraCampanha
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(procuraCampanha));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcuraCampanha));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.campanhaRb = new System.Windows.Forms.RadioButton();
-            this.codProdRb = new System.Windows.Forms.RadioButton();
-            this.produtoRb = new System.Windows.Forms.RadioButton();
-            this.pesquisaTxt = new System.Windows.Forms.TextBox();
             this.codigo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.campanha = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cod = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.produto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.produtoRb = new System.Windows.Forms.RadioButton();
+            this.codProdRb = new System.Windows.Forms.RadioButton();
+            this.campanhaRb = new System.Windows.Forms.RadioButton();
+            this.pesquisaTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -59,60 +59,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(386, 246);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseDoubleClick);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.produtoRb);
-            this.groupBox1.Controls.Add(this.codProdRb);
-            this.groupBox1.Controls.Add(this.campanhaRb);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(13, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(386, 50);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Filtro";
-            // 
-            // campanhaRb
-            // 
-            this.campanhaRb.AutoSize = true;
-            this.campanhaRb.Location = new System.Drawing.Point(6, 21);
-            this.campanhaRb.Name = "campanhaRb";
-            this.campanhaRb.Size = new System.Drawing.Size(92, 20);
-            this.campanhaRb.TabIndex = 0;
-            this.campanhaRb.TabStop = true;
-            this.campanhaRb.Text = "Campanha";
-            this.campanhaRb.UseVisualStyleBackColor = true;
-            // 
-            // codProdRb
-            // 
-            this.codProdRb.AutoSize = true;
-            this.codProdRb.Location = new System.Drawing.Point(104, 21);
-            this.codProdRb.Name = "codProdRb";
-            this.codProdRb.Size = new System.Drawing.Size(104, 20);
-            this.codProdRb.TabIndex = 1;
-            this.codProdRb.TabStop = true;
-            this.codProdRb.Text = "Cód. Produto";
-            this.codProdRb.UseVisualStyleBackColor = true;
-            // 
-            // produtoRb
-            // 
-            this.produtoRb.AutoSize = true;
-            this.produtoRb.Location = new System.Drawing.Point(214, 21);
-            this.produtoRb.Name = "produtoRb";
-            this.produtoRb.Size = new System.Drawing.Size(73, 20);
-            this.produtoRb.TabIndex = 2;
-            this.produtoRb.TabStop = true;
-            this.produtoRb.Text = "Produto";
-            this.produtoRb.UseVisualStyleBackColor = true;
-            // 
-            // pesquisaTxt
-            // 
-            this.pesquisaTxt.Location = new System.Drawing.Point(13, 65);
-            this.pesquisaTxt.Name = "pesquisaTxt";
-            this.pesquisaTxt.Size = new System.Drawing.Size(386, 20);
-            this.pesquisaTxt.TabIndex = 0;
-            this.pesquisaTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pesquisaTxt_KeyUp);
             // 
             // codigo
             // 
@@ -146,7 +92,61 @@
             this.produto.ReadOnly = true;
             this.produto.Width = 170;
             // 
-            // procuraCampanha
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.produtoRb);
+            this.groupBox1.Controls.Add(this.codProdRb);
+            this.groupBox1.Controls.Add(this.campanhaRb);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox1.Location = new System.Drawing.Point(13, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(386, 50);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Filtro";
+            // 
+            // produtoRb
+            // 
+            this.produtoRb.AutoSize = true;
+            this.produtoRb.Location = new System.Drawing.Point(214, 21);
+            this.produtoRb.Name = "produtoRb";
+            this.produtoRb.Size = new System.Drawing.Size(73, 20);
+            this.produtoRb.TabIndex = 2;
+            this.produtoRb.TabStop = true;
+            this.produtoRb.Text = "Produto";
+            this.produtoRb.UseVisualStyleBackColor = true;
+            // 
+            // codProdRb
+            // 
+            this.codProdRb.AutoSize = true;
+            this.codProdRb.Location = new System.Drawing.Point(104, 21);
+            this.codProdRb.Name = "codProdRb";
+            this.codProdRb.Size = new System.Drawing.Size(104, 20);
+            this.codProdRb.TabIndex = 1;
+            this.codProdRb.TabStop = true;
+            this.codProdRb.Text = "Cód. Produto";
+            this.codProdRb.UseVisualStyleBackColor = true;
+            // 
+            // campanhaRb
+            // 
+            this.campanhaRb.AutoSize = true;
+            this.campanhaRb.Location = new System.Drawing.Point(6, 21);
+            this.campanhaRb.Name = "campanhaRb";
+            this.campanhaRb.Size = new System.Drawing.Size(92, 20);
+            this.campanhaRb.TabIndex = 0;
+            this.campanhaRb.TabStop = true;
+            this.campanhaRb.Text = "Campanha";
+            this.campanhaRb.UseVisualStyleBackColor = true;
+            // 
+            // pesquisaTxt
+            // 
+            this.pesquisaTxt.Location = new System.Drawing.Point(13, 65);
+            this.pesquisaTxt.Name = "pesquisaTxt";
+            this.pesquisaTxt.Size = new System.Drawing.Size(386, 20);
+            this.pesquisaTxt.TabIndex = 0;
+            this.pesquisaTxt.KeyUp += new System.Windows.Forms.KeyEventHandler(this.pesquisaTxt_KeyUp);
+            // 
+            // ProcuraCampanha
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,9 +157,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
-            this.Name = "procuraCampanha";
+            this.Name = "ProcuraCampanha";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "procuraCampanha";
+            this.Text = "Procura Campanha";
             this.Load += new System.EventHandler(this.procuraCampanha_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.groupBox1.ResumeLayout(false);

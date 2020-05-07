@@ -13,9 +13,9 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cadastroCampanha : Form
+    public partial class CadastroCampanha : Form
     {
-        variaveis var = new variaveis();
+        Variaveis var = new Variaveis();
         DAO dao = new DAO();
         private string Sql = String.Empty;
         DateTime data;
@@ -25,14 +25,14 @@ namespace processosAdministrativos.Telas
         {
             Sql = "select cmak_campanha, cmak_data from campanha_marketing order by cmak_codigo desc limit 1";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader campa = dao.Query.ExecuteReader();
             while (campa.Read())
             {
                 data = Convert.ToDateTime(campa["cmak_data"]);
             }
             campa.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             if (data.ToString("ddd", new CultureInfo("pt-BR")) == "sex")
                 campanhaCb.SelectedIndex = 1;
@@ -57,7 +57,7 @@ namespace processosAdministrativos.Telas
             var.ProdCampanha = string.Empty;
         }
 
-        public cadastroCampanha()
+        public CadastroCampanha()
         {
             InitializeComponent();
         }
@@ -68,7 +68,7 @@ namespace processosAdministrativos.Telas
         }
         private void textBox2_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            procuraProd pp = new procuraProd();
+            ProcuraProd pp = new ProcuraProd();
             var.AuxCampanha = 1;
             pp.ShowDialog();
         }
@@ -77,7 +77,7 @@ namespace processosAdministrativos.Telas
         {
             if (campanhaCb.SelectedIndex > 0 && produtoTxt.Text != string.Empty)
             {
-                controlCampanha cc = new controlCampanha();
+                ControlCampanha cc = new ControlCampanha();
                 DAO dao = new DAO();
                 cc.Cmak_campanha = campanhaCb.SelectedItem.ToString();
                 cc.Cmak_codigo = codigoTxt.Text;
@@ -91,7 +91,7 @@ namespace processosAdministrativos.Telas
                     cc.Cmak_data = data.AddDays(1).ToString("yyyy-MM-dd");
 
 
-                dao.cadastraCampanha(cc);
+                dao.CadastraCampanha(cc);
                 MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 limpar();
                 EscolheCampanha();

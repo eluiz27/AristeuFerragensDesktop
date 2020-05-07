@@ -15,20 +15,20 @@ namespace processosAdministrativos.Dao
 
         public MySqlConnection Conec { get => conexaoInterna; set => conexaoInterna = value; }
 
-        public void conecta()
+        public void Conecta()
         {
             try
             {
                 if (Conec.State == System.Data.ConnectionState.Closed)
                     Conec.Open();
             }
-            catch (Exception error)
+            catch
             {
                 
             }
         }
 
-        public void desconecta()
+        public void Desconecta()
         {
             if (Conec.State == System.Data.ConnectionState.Open)
                 Conec.Close();
@@ -43,7 +43,7 @@ namespace processosAdministrativos.Dao
                 teste.Close();
                 return 1;
             }
-            catch (Exception error)
+            catch
             {
                 return 0;
             }

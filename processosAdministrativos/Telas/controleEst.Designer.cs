@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class controleEst
+    partial class ControleEst
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(controleEst));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControleEst));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.codigoBarrasRb = new System.Windows.Forms.RadioButton();
             this.descricaoRb = new System.Windows.Forms.RadioButton();

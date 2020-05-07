@@ -73,7 +73,7 @@ namespace processosAdministrativos.Telas
             if (dao.TesteConexao(servidorTxt.Text, portaTxt.Text, baseDadosTxt.Text, usuarioTxt.Text, senhaTxt.Text) == 1)
             {
                 MessageBox.Show("Conexão realizada com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                dao.desconecta();
+                dao.Desconecta();
             }
             else
                 MessageBox.Show("Falha na conexão!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -82,7 +82,7 @@ namespace processosAdministrativos.Telas
 
         private void ConfiguracaoRede_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cr = new controlTelaAberta();
+            ControlTelaAberta cr = new ControlTelaAberta();
             cr.TelaConfRede = 0;
         }
     }

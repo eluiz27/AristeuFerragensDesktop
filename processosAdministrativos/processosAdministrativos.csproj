@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>processosAdministrativos</RootNamespace>
     <AssemblyName>processosAdministrativos</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>2c782c83</NuGetPackageImportStamp>
     <IsWebBootstrapper>false</IsWebBootstrapper>
@@ -28,6 +28,7 @@
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -65,10 +66,12 @@
     <ApplicationIcon>Resources\favicon_cPz_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="GMap.NET.Core">
@@ -98,7 +101,7 @@
     <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
-    <Reference Include="MySql.Data, Version=6.9.9.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -137,25 +140,25 @@
   <ItemGroup>
     <Compile Include="Bll\LoteBLL.cs" />
     <Compile Include="Classes\ConexaoRede.cs" />
-    <Compile Include="Classes\controlBanner.cs" />
-    <Compile Include="Classes\controlCampanha.cs" />
-    <Compile Include="Classes\controlCodifica.cs" />
-    <Compile Include="Classes\controlCompNComp.cs" />
-    <Compile Include="Classes\controlContagem.cs" />
-    <Compile Include="Classes\controlEntreg.cs" />
-    <Compile Include="Classes\controlAssistTec.cs" />
+    <Compile Include="Classes\ControlBanner.cs" />
+    <Compile Include="Classes\ControlCampanha.cs" />
+    <Compile Include="Classes\ControlCodifica.cs" />
+    <Compile Include="Classes\ControlCompNComp.cs" />
+    <Compile Include="Classes\ControlContagem.cs" />
+    <Compile Include="Classes\ControlEntreg.cs" />
+    <Compile Include="Classes\ControlAssistTec.cs" />
     <Compile Include="Classes\ControlEstoquista.cs" />
-    <Compile Include="Classes\controlFallowUp.cs" />
-    <Compile Include="Classes\controlGruposEmail.cs" />
+    <Compile Include="Classes\ControlFallowUp.cs" />
+    <Compile Include="Classes\ControlGruposEmail.cs" />
     <Compile Include="Classes\ControlLigacoes.cs" />
-    <Compile Include="Classes\controlLoe.cs" />
-    <Compile Include="Classes\controlLote.cs" />
-    <Compile Include="Classes\controlMeta.cs" />
-    <Compile Include="Classes\controlNSerie.cs" />
-    <Compile Include="Classes\controlOrdemCompra.cs" />
-    <Compile Include="Classes\controlTelaAberta.cs" />
-    <Compile Include="Classes\controlTmpMeta.cs" />
-    <Compile Include="Classes\controlUsuarios.cs" />
+    <Compile Include="Classes\ControlLoe.cs" />
+    <Compile Include="Classes\ControlLote.cs" />
+    <Compile Include="Classes\ControlMeta.cs" />
+    <Compile Include="Classes\ControlNSerie.cs" />
+    <Compile Include="Classes\ControlOrdemCompra.cs" />
+    <Compile Include="Classes\ControlTelaAberta.cs" />
+    <Compile Include="Classes\ControlTmpMeta.cs" />
+    <Compile Include="Classes\ControlUsuarios.cs" />
     <Compile Include="Classes\CopiaVendas.cs" />
     <Compile Include="Classes\DAO.cs" />
     <Compile Include="Classes\ValoresGraficos.cs" />
@@ -163,10 +166,10 @@
     <Compile Include="Config\RestricaoConfig.cs" />
     <Compile Include="Controllers\RestricaoController.cs" />
     <Compile Include="Dao\Conexao.cs" />
-    <Compile Include="Classes\excel.cs" />
-    <Compile Include="Classes\queryDataTable.cs" />
-    <Compile Include="Classes\querys.cs" />
-    <Compile Include="Classes\variaveis.cs" />
+    <Compile Include="Classes\Excel.cs" />
+    <Compile Include="Classes\QueryDataTable.cs" />
+    <Compile Include="Classes\Querys.cs" />
+    <Compile Include="Classes\Variaveis.cs" />
     <Compile Include="Dao\LoteDao.cs" />
     <Compile Include="Dao\RestricaoDao.cs" />
     <Compile Include="Dao\VendedorDao.cs" />
@@ -180,11 +183,11 @@
     </Compile>
     <Compile Include="Models\LoteM.cs" />
     <Compile Include="Models\RestricaoModel.cs" />
-    <Compile Include="Telas\cadastroCampanha.cs">
+    <Compile Include="Telas\CadastroCampanha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cadastroCampanha.Designer.cs">
-      <DependentUpon>cadastroCampanha.cs</DependentUpon>
+    <Compile Include="Telas\CadastroCampanha.Designer.cs">
+      <DependentUpon>CadastroCampanha.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\CaminhosMV.cs">
       <SubType>Form</SubType>
@@ -192,11 +195,11 @@
     <Compile Include="Telas\CaminhosMV.Designer.cs">
       <DependentUpon>CaminhosMV.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\campanhas.cs">
+    <Compile Include="Telas\Campanhas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\campanhas.Designer.cs">
-      <DependentUpon>campanhas.cs</DependentUpon>
+    <Compile Include="Telas\Campanhas.Designer.cs">
+      <DependentUpon>Campanhas.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\ClienteForaEstado.cs">
       <SubType>Form</SubType>
@@ -204,17 +207,17 @@
     <Compile Include="Telas\ClienteForaEstado.Designer.cs">
       <DependentUpon>ClienteForaEstado.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\comprar.cs">
+    <Compile Include="Telas\Comprar.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\comprar.Designer.cs">
-      <DependentUpon>comprar.cs</DependentUpon>
+    <Compile Include="Telas\Comprar.Designer.cs">
+      <DependentUpon>Comprar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\comprasFunc.cs">
+    <Compile Include="Telas\ComprasFunc.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\comprasFunc.Designer.cs">
-      <DependentUpon>comprasFunc.cs</DependentUpon>
+    <Compile Include="Telas\ComprasFunc.Designer.cs">
+      <DependentUpon>ComprasFunc.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\ConfiguracaoRede.cs">
       <SubType>Form</SubType>
@@ -222,29 +225,29 @@
     <Compile Include="Telas\ConfiguracaoRede.Designer.cs">
       <DependentUpon>ConfiguracaoRede.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\consultaCodificacao.cs">
+    <Compile Include="Telas\ConsultaCodificacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\consultaCodificacao.Designer.cs">
-      <DependentUpon>consultaCodificacao.cs</DependentUpon>
+    <Compile Include="Telas\ConsultaCodificacao.Designer.cs">
+      <DependentUpon>ConsultaCodificacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\contagem.cs">
+    <Compile Include="Telas\Contagem.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\contagem.Designer.cs">
-      <DependentUpon>contagem.cs</DependentUpon>
+    <Compile Include="Telas\Contagem.Designer.cs">
+      <DependentUpon>Contagem.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\controladoria.cs">
+    <Compile Include="Telas\Controladoria.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\controladoria.Designer.cs">
-      <DependentUpon>controladoria.cs</DependentUpon>
+    <Compile Include="Telas\Controladoria.Designer.cs">
+      <DependentUpon>Controladoria.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\cotacaoProd.cs">
+    <Compile Include="Telas\CotacaoProd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cotacaoProd.Designer.cs">
-      <DependentUpon>cotacaoProd.cs</DependentUpon>
+    <Compile Include="Telas\CotacaoProd.Designer.cs">
+      <DependentUpon>CotacaoProd.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\Entregadores.cs">
       <SubType>Form</SubType>
@@ -258,17 +261,17 @@
     <Compile Include="Telas\Gatilho.Designer.cs">
       <DependentUpon>Gatilho.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\grupoEmails.cs">
+    <Compile Include="Telas\GrupoEmails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\grupoEmails.Designer.cs">
-      <DependentUpon>grupoEmails.cs</DependentUpon>
+    <Compile Include="Telas\GrupoEmails.Designer.cs">
+      <DependentUpon>GrupoEmails.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\imprimeEtiquetaPreco.cs">
+    <Compile Include="Telas\ImprimeEtiquetaPreco.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\imprimeEtiquetaPreco.Designer.cs">
-      <DependentUpon>imprimeEtiquetaPreco.cs</DependentUpon>
+    <Compile Include="Telas\ImprimeEtiquetaPreco.Designer.cs">
+      <DependentUpon>ImprimeEtiquetaPreco.cs</DependentUpon>
     </Compile>
     <Compile Include="relatorio.cs">
       <DependentUpon>relatorio.xsd</DependentUpon>
@@ -278,23 +281,23 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>relatorio.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Telas\consultaCompletaLOE.cs">
+    <Compile Include="Telas\ConsultaCompletaLOE.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\consultaCompletaLOE.Designer.cs">
-      <DependentUpon>consultaCompletaLOE.cs</DependentUpon>
+    <Compile Include="Telas\ConsultaCompletaLOE.Designer.cs">
+      <DependentUpon>ConsultaCompletaLOE.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\consultaNSerie.cs">
+    <Compile Include="Telas\ConsultaNSerie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\consultaNSerie.Designer.cs">
-      <DependentUpon>consultaNSerie.cs</DependentUpon>
+    <Compile Include="Telas\ConsultaNSerie.Designer.cs">
+      <DependentUpon>ConsultaNSerie.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\etiquetaPreco.cs">
+    <Compile Include="Telas\EtiquetaPreco.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\etiquetaPreco.Designer.cs">
-      <DependentUpon>etiquetaPreco.cs</DependentUpon>
+    <Compile Include="Telas\EtiquetaPreco.Designer.cs">
+      <DependentUpon>EtiquetaPreco.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\Ligacoes.cs">
       <SubType>Form</SubType>
@@ -302,17 +305,17 @@
     <Compile Include="Telas\Ligacoes.Designer.cs">
       <DependentUpon>Ligacoes.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\mapaVendasCompleto.cs">
+    <Compile Include="Telas\MapaVendasCompleto.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\mapaVendasCompleto.Designer.cs">
-      <DependentUpon>mapaVendasCompleto.cs</DependentUpon>
+    <Compile Include="Telas\MapaVendasCompleto.Designer.cs">
+      <DependentUpon>MapaVendasCompleto.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\mediaVendas.cs">
+    <Compile Include="Telas\MediaVendas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\mediaVendas.Designer.cs">
-      <DependentUpon>mediaVendas.cs</DependentUpon>
+    <Compile Include="Telas\MediaVendas.Designer.cs">
+      <DependentUpon>MediaVendas.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\MesesCotacao.cs">
       <SubType>Form</SubType>
@@ -320,67 +323,67 @@
     <Compile Include="Telas\MesesCotacao.Designer.cs">
       <DependentUpon>MesesCotacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\meta.cs">
+    <Compile Include="Telas\Meta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\meta.Designer.cs">
-      <DependentUpon>meta.cs</DependentUpon>
+    <Compile Include="Telas\Meta.Designer.cs">
+      <DependentUpon>Meta.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\metaPercent.cs">
+    <Compile Include="Telas\MetaPercent.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\metaPercent.Designer.cs">
-      <DependentUpon>metaPercent.cs</DependentUpon>
+    <Compile Include="Telas\MetaPercent.Designer.cs">
+      <DependentUpon>MetaPercent.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\nSerie.cs">
+    <Compile Include="Telas\NSerie.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\nSerie.Designer.cs">
-      <DependentUpon>nSerie.cs</DependentUpon>
+    <Compile Include="Telas\NSerie.Designer.cs">
+      <DependentUpon>NSerie.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Telas\cadastraBanner.cs">
+    <Compile Include="Telas\CadastraBanner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cadastraBanner.Designer.cs">
-      <DependentUpon>cadastraBanner.cs</DependentUpon>
+    <Compile Include="Telas\CadastraBanner.Designer.cs">
+      <DependentUpon>CadastraBanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\cadastraSituacao.cs">
+    <Compile Include="Telas\CadastraSituacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cadastraSituacao.Designer.cs">
-      <DependentUpon>cadastraSituacao.cs</DependentUpon>
+    <Compile Include="Telas\CadastraSituacao.Designer.cs">
+      <DependentUpon>CadastraSituacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\codificacao.cs">
+    <Compile Include="Telas\Codificacao.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\codificacao.Designer.cs">
-      <DependentUpon>codificacao.cs</DependentUpon>
+    <Compile Include="Telas\Codificacao.Designer.cs">
+      <DependentUpon>Codificacao.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\consultaFallowUp.cs">
+    <Compile Include="Telas\ConsultaFallowUp.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\consultaFallowUp.Designer.cs">
-      <DependentUpon>consultaFallowUp.cs</DependentUpon>
+    <Compile Include="Telas\ConsultaFallowUp.Designer.cs">
+      <DependentUpon>ConsultaFallowUp.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\consultaLOE.cs">
+    <Compile Include="Telas\ConsultaLOE.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\consultaLOE.Designer.cs">
-      <DependentUpon>consultaLOE.cs</DependentUpon>
+    <Compile Include="Telas\ConsultaLOE.Designer.cs">
+      <DependentUpon>ConsultaLOE.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\consultaLote.cs">
+    <Compile Include="Telas\ConsultaLote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\consultaLote.Designer.cs">
-      <DependentUpon>consultaLote.cs</DependentUpon>
+    <Compile Include="Telas\ConsultaLote.Designer.cs">
+      <DependentUpon>ConsultaLote.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\indicadoresVendas.cs">
+    <Compile Include="Telas\IndicadoresVendas.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\indicadoresVendas.Designer.cs">
-      <DependentUpon>indicadoresVendas.cs</DependentUpon>
+    <Compile Include="Telas\IndicadoresVendas.Designer.cs">
+      <DependentUpon>IndicadoresVendas.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\LOE.cs">
       <SubType>Form</SubType>
@@ -388,23 +391,23 @@
     <Compile Include="Telas\LOE.Designer.cs">
       <DependentUpon>LOE.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\ordemCompra.cs">
+    <Compile Include="Telas\OrdemCompra.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\ordemCompra.Designer.cs">
-      <DependentUpon>ordemCompra.cs</DependentUpon>
+    <Compile Include="Telas\OrdemCompra.Designer.cs">
+      <DependentUpon>OrdemCompra.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraBanner.cs">
+    <Compile Include="Telas\ProcuraBanner.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraBanner.Designer.cs">
-      <DependentUpon>procuraBanner.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraBanner.Designer.cs">
+      <DependentUpon>ProcuraBanner.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraCampanha.cs">
+    <Compile Include="Telas\ProcuraCampanha.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraCampanha.Designer.cs">
-      <DependentUpon>procuraCampanha.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraCampanha.Designer.cs">
+      <DependentUpon>ProcuraCampanha.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\ProcuraCliLiga.cs">
       <SubType>Form</SubType>
@@ -412,65 +415,65 @@
     <Compile Include="Telas\ProcuraCliLiga.Designer.cs">
       <DependentUpon>ProcuraCliLiga.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraEstoquista.cs">
+    <Compile Include="Telas\ProcuraEstoquista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraEstoquista.Designer.cs">
-      <DependentUpon>procuraEstoquista.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraEstoquista.Designer.cs">
+      <DependentUpon>ProcuraEstoquista.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\assistenciaTecnica.cs">
+    <Compile Include="Telas\AssistenciaTecnica.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\assistenciaTecnica.Designer.cs">
-      <DependentUpon>assistenciaTecnica.cs</DependentUpon>
+    <Compile Include="Telas\AssistenciaTecnica.Designer.cs">
+      <DependentUpon>AssistenciaTecnica.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\cadastroAssistencia.cs">
+    <Compile Include="Telas\CadastroAssistencia.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cadastroAssistencia.Designer.cs">
-      <DependentUpon>cadastroAssistencia.cs</DependentUpon>
+    <Compile Include="Telas\CadastroAssistencia.Designer.cs">
+      <DependentUpon>CadastroAssistencia.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\cadastroEstoquista.cs">
+    <Compile Include="Telas\CadastroEstoquista.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cadastroEstoquista.Designer.cs">
-      <DependentUpon>cadastroEstoquista.cs</DependentUpon>
+    <Compile Include="Telas\CadastroEstoquista.Designer.cs">
+      <DependentUpon>CadastroEstoquista.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\cadastroLote.cs">
+    <Compile Include="Telas\CadastroLote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\cadastroLote.Designer.cs">
-      <DependentUpon>cadastroLote.cs</DependentUpon>
+    <Compile Include="Telas\CadastroLote.Designer.cs">
+      <DependentUpon>CadastroLote.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\controleEntreg.cs">
+    <Compile Include="Telas\ControleEntreg.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\controleEntreg.Designer.cs">
-      <DependentUpon>controleEntreg.cs</DependentUpon>
+    <Compile Include="Telas\ControleEntreg.Designer.cs">
+      <DependentUpon>ControleEntreg.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\controleEst.cs">
+    <Compile Include="Telas\ControleEst.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\controleEst.Designer.cs">
-      <DependentUpon>controleEst.cs</DependentUpon>
+    <Compile Include="Telas\ControleEst.Designer.cs">
+      <DependentUpon>ControleEst.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraAssistTec.cs">
+    <Compile Include="Telas\ProcuraAssistTec.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraAssistTec.Designer.cs">
-      <DependentUpon>procuraAssistTec.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraAssistTec.Designer.cs">
+      <DependentUpon>ProcuraAssistTec.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraEntrega.cs">
+    <Compile Include="Telas\ProcuraEntrega.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraEntrega.Designer.cs">
-      <DependentUpon>procuraEntrega.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraEntrega.Designer.cs">
+      <DependentUpon>ProcuraEntrega.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraForn.cs">
+    <Compile Include="Telas\ProcuraForn.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraForn.Designer.cs">
-      <DependentUpon>procuraForn.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraForn.Designer.cs">
+      <DependentUpon>ProcuraForn.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\Principal.cs">
       <SubType>Form</SubType>
@@ -478,41 +481,41 @@
     <Compile Include="Telas\Principal.Designer.cs">
       <DependentUpon>Principal.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraGrupo.cs">
+    <Compile Include="Telas\ProcuraGrupo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraGrupo.Designer.cs">
-      <DependentUpon>procuraGrupo.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraGrupo.Designer.cs">
+      <DependentUpon>ProcuraGrupo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraLote.cs">
+    <Compile Include="Telas\ProcuraLote.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraLote.Designer.cs">
-      <DependentUpon>procuraLote.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraLote.Designer.cs">
+      <DependentUpon>ProcuraLote.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraNota.cs">
+    <Compile Include="Telas\ProcuraNota.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraNota.Designer.cs">
-      <DependentUpon>procuraNota.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraNota.Designer.cs">
+      <DependentUpon>ProcuraNota.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraOC.cs">
+    <Compile Include="Telas\ProcuraOC.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraOC.Designer.cs">
-      <DependentUpon>procuraOC.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraOC.Designer.cs">
+      <DependentUpon>ProcuraOC.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraProd.cs">
+    <Compile Include="Telas\ProcuraProd.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraProd.Designer.cs">
-      <DependentUpon>procuraProd.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraProd.Designer.cs">
+      <DependentUpon>ProcuraProd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\procuraUsuarios.cs">
+    <Compile Include="Telas\ProcuraUsuarios.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\procuraUsuarios.Designer.cs">
-      <DependentUpon>procuraUsuarios.cs</DependentUpon>
+    <Compile Include="Telas\ProcuraUsuarios.Designer.cs">
+      <DependentUpon>ProcuraUsuarios.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\CadastroFuncionario.cs">
       <SubType>Form</SubType>
@@ -520,11 +523,11 @@
     <Compile Include="Telas\CadastroFuncionario.Designer.cs">
       <DependentUpon>CadastroFuncionario.cs</DependentUpon>
     </Compile>
-    <Compile Include="Telas\progresso.cs">
+    <Compile Include="Telas\Progresso.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Telas\progresso.Designer.cs">
-      <DependentUpon>progresso.cs</DependentUpon>
+    <Compile Include="Telas\Progresso.Designer.cs">
+      <DependentUpon>Progresso.cs</DependentUpon>
     </Compile>
     <Compile Include="Telas\Restricoes.cs">
       <SubType>Form</SubType>
@@ -533,38 +536,38 @@
       <DependentUpon>Restricoes.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="impressao\etiqueta.rdlc" />
-    <EmbeddedResource Include="Telas\cadastroCampanha.resx">
-      <DependentUpon>cadastroCampanha.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CadastroCampanha.resx">
+      <DependentUpon>CadastroCampanha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\CaminhosMV.resx">
       <DependentUpon>CaminhosMV.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\campanhas.resx">
-      <DependentUpon>campanhas.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Campanhas.resx">
+      <DependentUpon>Campanhas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\ClienteForaEstado.resx">
       <DependentUpon>ClienteForaEstado.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\comprar.resx">
-      <DependentUpon>comprar.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Comprar.resx">
+      <DependentUpon>Comprar.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\comprasFunc.resx">
-      <DependentUpon>comprasFunc.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ComprasFunc.resx">
+      <DependentUpon>ComprasFunc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\ConfiguracaoRede.resx">
       <DependentUpon>ConfiguracaoRede.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\consultaCodificacao.resx">
-      <DependentUpon>consultaCodificacao.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ConsultaCodificacao.resx">
+      <DependentUpon>ConsultaCodificacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\contagem.resx">
-      <DependentUpon>contagem.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Contagem.resx">
+      <DependentUpon>Contagem.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\controladoria.resx">
-      <DependentUpon>controladoria.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Controladoria.resx">
+      <DependentUpon>Controladoria.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\cotacaoProd.resx">
-      <DependentUpon>cotacaoProd.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CotacaoProd.resx">
+      <DependentUpon>CotacaoProd.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Entregadores.resx">
       <DependentUpon>Entregadores.cs</DependentUpon>
@@ -572,41 +575,41 @@
     <EmbeddedResource Include="Telas\Gatilho.resx">
       <DependentUpon>Gatilho.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\grupoEmails.resx">
-      <DependentUpon>grupoEmails.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\GrupoEmails.resx">
+      <DependentUpon>GrupoEmails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\imprimeEtiquetaPreco.resx">
-      <DependentUpon>imprimeEtiquetaPreco.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ImprimeEtiquetaPreco.resx">
+      <DependentUpon>ImprimeEtiquetaPreco.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\consultaCompletaLOE.resx">
-      <DependentUpon>consultaCompletaLOE.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ConsultaCompletaLOE.resx">
+      <DependentUpon>ConsultaCompletaLOE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\consultaNSerie.resx">
-      <DependentUpon>consultaNSerie.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ConsultaNSerie.resx">
+      <DependentUpon>ConsultaNSerie.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\etiquetaPreco.resx">
-      <DependentUpon>etiquetaPreco.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\EtiquetaPreco.resx">
+      <DependentUpon>EtiquetaPreco.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Ligacoes.resx">
       <DependentUpon>Ligacoes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\mapaVendasCompleto.resx">
-      <DependentUpon>mapaVendasCompleto.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\MapaVendasCompleto.resx">
+      <DependentUpon>MapaVendasCompleto.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\mediaVendas.resx">
-      <DependentUpon>mediaVendas.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\MediaVendas.resx">
+      <DependentUpon>MediaVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\MesesCotacao.resx">
       <DependentUpon>MesesCotacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\meta.resx">
-      <DependentUpon>meta.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Meta.resx">
+      <DependentUpon>Meta.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\metaPercent.resx">
-      <DependentUpon>metaPercent.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\MetaPercent.resx">
+      <DependentUpon>MetaPercent.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\nSerie.resx">
-      <DependentUpon>nSerie.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\NSerie.resx">
+      <DependentUpon>NSerie.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -618,101 +621,101 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Telas\cadastraBanner.resx">
-      <DependentUpon>cadastraBanner.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CadastraBanner.resx">
+      <DependentUpon>CadastraBanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\cadastraSituacao.resx">
-      <DependentUpon>cadastraSituacao.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CadastraSituacao.resx">
+      <DependentUpon>CadastraSituacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\codificacao.resx">
-      <DependentUpon>codificacao.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Codificacao.resx">
+      <DependentUpon>Codificacao.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\consultaFallowUp.resx">
-      <DependentUpon>consultaFallowUp.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ConsultaFallowUp.resx">
+      <DependentUpon>ConsultaFallowUp.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\consultaLOE.resx">
-      <DependentUpon>consultaLOE.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ConsultaLOE.resx">
+      <DependentUpon>ConsultaLOE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\consultaLote.resx">
-      <DependentUpon>consultaLote.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ConsultaLote.resx">
+      <DependentUpon>ConsultaLote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\indicadoresVendas.resx">
-      <DependentUpon>indicadoresVendas.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\IndicadoresVendas.resx">
+      <DependentUpon>IndicadoresVendas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\LOE.resx">
       <DependentUpon>LOE.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\ordemCompra.resx">
-      <DependentUpon>ordemCompra.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\OrdemCompra.resx">
+      <DependentUpon>OrdemCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraBanner.resx">
-      <DependentUpon>procuraBanner.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraBanner.resx">
+      <DependentUpon>ProcuraBanner.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraCampanha.resx">
-      <DependentUpon>procuraCampanha.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraCampanha.resx">
+      <DependentUpon>ProcuraCampanha.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\ProcuraCliLiga.resx">
       <DependentUpon>ProcuraCliLiga.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraEstoquista.resx">
-      <DependentUpon>procuraEstoquista.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraEstoquista.resx">
+      <DependentUpon>ProcuraEstoquista.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\assistenciaTecnica.resx">
-      <DependentUpon>assistenciaTecnica.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\AssistenciaTecnica.resx">
+      <DependentUpon>AssistenciaTecnica.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\cadastroAssistencia.resx">
-      <DependentUpon>cadastroAssistencia.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CadastroAssistencia.resx">
+      <DependentUpon>CadastroAssistencia.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\cadastroEstoquista.resx">
-      <DependentUpon>cadastroEstoquista.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CadastroEstoquista.resx">
+      <DependentUpon>CadastroEstoquista.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\cadastroLote.resx">
-      <DependentUpon>cadastroLote.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\CadastroLote.resx">
+      <DependentUpon>CadastroLote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\controleEntreg.pt-BR.resx">
-      <DependentUpon>controleEntreg.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ControleEntreg.pt-BR.resx">
+      <DependentUpon>ControleEntreg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\controleEntreg.resx">
-      <DependentUpon>controleEntreg.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ControleEntreg.resx">
+      <DependentUpon>ControleEntreg.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\controleEst.resx">
-      <DependentUpon>controleEst.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ControleEst.resx">
+      <DependentUpon>ControleEst.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraAssistTec.resx">
-      <DependentUpon>procuraAssistTec.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraAssistTec.resx">
+      <DependentUpon>ProcuraAssistTec.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraEntrega.resx">
-      <DependentUpon>procuraEntrega.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraEntrega.resx">
+      <DependentUpon>ProcuraEntrega.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraForn.resx">
-      <DependentUpon>procuraForn.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraForn.resx">
+      <DependentUpon>ProcuraForn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Principal.resx">
       <DependentUpon>Principal.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraGrupo.resx">
-      <DependentUpon>procuraGrupo.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraGrupo.resx">
+      <DependentUpon>ProcuraGrupo.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraLote.resx">
-      <DependentUpon>procuraLote.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraLote.resx">
+      <DependentUpon>ProcuraLote.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraNota.resx">
-      <DependentUpon>procuraNota.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraNota.resx">
+      <DependentUpon>ProcuraNota.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraOC.resx">
-      <DependentUpon>procuraOC.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraOC.resx">
+      <DependentUpon>ProcuraOC.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraProd.resx">
-      <DependentUpon>procuraProd.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraProd.resx">
+      <DependentUpon>ProcuraProd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\procuraUsuarios.resx">
-      <DependentUpon>procuraUsuarios.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\ProcuraUsuarios.resx">
+      <DependentUpon>ProcuraUsuarios.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\CadastroFuncionario.resx">
       <DependentUpon>CadastroFuncionario.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\progresso.resx">
-      <DependentUpon>progresso.cs</DependentUpon>
+    <EmbeddedResource Include="Telas\Progresso.resx">
+      <DependentUpon>Progresso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Telas\Restricoes.resx">
       <DependentUpon>Restricoes.cs</DependentUpon>

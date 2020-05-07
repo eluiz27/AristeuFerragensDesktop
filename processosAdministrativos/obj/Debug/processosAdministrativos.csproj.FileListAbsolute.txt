@@ -142,3 +142,8 @@ C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Deb
 C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.csprojAssemblyReference.cache
 C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.csproj.CoreCompileInputs.cache
 C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\obj\Debug\processosAdministrativos.Telas.MesesCotacao.resources
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\bin\Debug\MySql.Data.dll
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\bin\Debug\Google.Protobuf.dll
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\bin\Debug\Ubiety.Dns.Core.dll
+C:\Users\luiz\Documents\AristeuFerragensDesktop\processosAdministrativos\bin\Debug\Renci.SshNet.dll

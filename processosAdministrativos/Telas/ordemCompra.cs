@@ -2,20 +2,15 @@
 using processosAdministrativos.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class ordemCompra : Form
+    public partial class OrdemCompra : Form
     {
         DAO dao = new DAO();
-        private string Sql = String.Empty;
+        private string Sql = string.Empty;
         List<string> codigos = new List<string>();
         List<string> qt = new List<string>();
         List<string> val = new List<string>();
@@ -28,16 +23,16 @@ namespace processosAdministrativos.Telas
         string forn;
         string aliquota;
 
-        public void verificaAliq()
+        public void VerificaAliq()
         {
             Sql = "select icm_aliquota from icms INNER JOIN fornecedores ON icms.icm_estado = fornecedores.fnc_estado where fnc_codigo = "+forn+"";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object existe = dao.Query.ExecuteScalar();
             aliquota = existe.ToString();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public bool verificaOC()
+        public bool VerificaOC()
         {
             int x = 0;
             if (ocTxt.Text != "")
@@ -46,28 +41,28 @@ namespace processosAdministrativos.Telas
             }
             Sql = "SELECT COUNT(ocp_numero) FROM ordcompra WHERE ocp_numero = "+x+"";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object existe = dao.Query.ExecuteScalar();
 
             if (Convert.ToInt32(existe) > 0)
             {
-                dao.desconecta();
+                dao.Desconecta();
                 return true;
             }
             else
             {
-                dao.desconecta();
+                dao.Desconecta();
                 return false;
             }
         }
 
-        public void valoresProd()
+        public void ValoresProd()
         {
             for (int i = 0; i < codigos.Count(); i++)
             {
                 Sql = "SELECT itm_descricao, itm_unidade, itm_percipi, ITM_PercSubTrib FROM itens WHERE itm_codigo = "+codigos[i]+"";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader valor1 = dao.Query.ExecuteReader();
                 while (valor1.Read())
                 {
@@ -77,14 +72,14 @@ namespace processosAdministrativos.Telas
                     aliqsubtrib.Add(valor1["ITM_PercSubTrib"].ToString());
                 }
                 valor1.Close();
-                dao.desconecta();
+                dao.Desconecta();
             }
         }
-        public void valoresOC()
+        public void ValoresOC()
         {
             Sql = "SELECT ocp_empresa, ocp_numero, ocp_fornecedor FROM ordcompra WHERE ocp_numero = " + ocTxt.Text + "";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader valor2 = dao.Query.ExecuteReader();
             while (valor2.Read())
             {
@@ -93,40 +88,40 @@ namespace processosAdministrativos.Telas
                 forn = valor2["ocp_fornecedor"].ToString();
             }
             valor2.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        class ordCompra
+        class OrdCompra
         {
-            public string empresa { get; set; }
-            public string oc { get; set; }
-            public string sequencia { get; set; }
-            public string item { get; set; }
-            public string fornecedor { get; set; }
-            public string produto { get; set; }
-            public string uni { get; set; }
-            public string unest { get; set; }
-            public string qtde { get; set; }
-            public string estoq { get; set; }
-            public string precokg { get; set; }
-            public string preco { get; set; }
-            public string total { get; set; }
-            public string aliqip { get; set; }
-            public string valoripi { get; set; }
-            public string compri { get; set; }
-            public string larg { get; set; }
-            public string bitola { get; set; }
-            public string aliqsubtri { get; set; }
-            public string valorsubtrib { get; set; }
-            public string qtdefatu { get; set; }
-            public string obs { get; set; }
-            public string sitentreg { get; set; }
-            public string aliqicms { get; set; }
+            public string Empresa { get; set; }
+            public string Oc { get; set; }
+            public string Sequencia { get; set; }
+            public string Item { get; set; }
+            public string Fornecedor { get; set; }
+            public string Produto { get; set; }
+            public string Uni { get; set; }
+            public string Unest { get; set; }
+            public string Qtde { get; set; }
+            public string Estoq { get; set; }
+            public string Precokg { get; set; }
+            public string Preco { get; set; }
+            public string Total { get; set; }
+            public string Aliqip { get; set; }
+            public string Valoripi { get; set; }
+            public string Compri { get; set; }
+            public string Larg { get; set; }
+            public string Bitola { get; set; }
+            public string Aliqsubtri { get; set; }
+            public string Valorsubtrib { get; set; }
+            public string Qtdefatu { get; set; }
+            public string Obs { get; set; }
+            public string Sitentreg { get; set; }
+            public string Aliqicms { get; set; }
 
-            public ordCompra() { }
+            public OrdCompra() { }
         }
-        List<ordCompra> aux = new List<ordCompra>();
+        List<OrdCompra> aux = new List<OrdCompra>();
 
-        public void preencheTabela()
+        public void PreencheTabela()
         {
             string w = "";
             for (int i = 0; i < codigos.Count(); i++)
@@ -138,32 +133,32 @@ namespace processosAdministrativos.Telas
                     w = "0"+(i+2);
                 else
                     w = (i+1).ToString();
-                aux.Add(new ordCompra()
+                aux.Add(new OrdCompra()
                 {
-                    empresa = emp,
-                    oc = num,
-                    sequencia = w,
-                    item = codigos[i],
-                    fornecedor = forn,
-                    produto = prod[i],
-                    uni = unit[i],
-                    unest = unit[i],
-                    qtde = qt[i].Replace(',','.'),
-                    estoq = qt[i].Replace(',', '.'),
-                    precokg = "0",
-                    preco = val[i].Replace(',', '.'),
-                    total = total.ToString().Replace(',', '.'),
-                    aliqip = aliqipi[i].Replace(',', '.'),
-                    valoripi = Math.Round(total * (Convert.ToDouble(aliqipi[i]) / 100), 2).ToString().Replace(',', '.'),
-                    compri = "0",
-                    larg = "0",
-                    bitola = "",
-                    aliqsubtri = aliqsubtrib[i].Replace(',', '.'),
-                    valorsubtrib = Math.Round(total * (Convert.ToDouble(aliqsubtrib[i]) / 100), 2).ToString().Replace(',', '.'),
-                    qtdefatu = "0",
-                    obs = "",
-                    sitentreg = "P",
-                    aliqicms = aliquota.Replace(',', '.')
+                    Empresa = emp,
+                    Oc = num,
+                    Sequencia = w,
+                    Item = codigos[i],
+                    Fornecedor = forn,
+                    Produto = prod[i],
+                    Uni = unit[i],
+                    Unest = unit[i],
+                    Qtde = qt[i].Replace(',','.'),
+                    Estoq = qt[i].Replace(',', '.'),
+                    Precokg = "0",
+                    Preco = val[i].Replace(',', '.'),
+                    Total = total.ToString().Replace(',', '.'),
+                    Aliqip = aliqipi[i].Replace(',', '.'),
+                    Valoripi = Math.Round(total * (Convert.ToDouble(aliqipi[i]) / 100), 2).ToString().Replace(',', '.'),
+                    Compri = "0",
+                    Larg = "0",
+                    Bitola = "",
+                    Aliqsubtri = aliqsubtrib[i].Replace(',', '.'),
+                    Valorsubtrib = Math.Round(total * (Convert.ToDouble(aliqsubtrib[i]) / 100), 2).ToString().Replace(',', '.'),
+                    Qtdefatu = "0",
+                    Obs = "",
+                    Sitentreg = "P",
+                    Aliqicms = aliquota.Replace(',', '.')
                 });
             }
             dataGridView1.DataSource = null;
@@ -218,7 +213,7 @@ namespace processosAdministrativos.Telas
             dataGridView1.Columns[22].Width = 90;
             dataGridView1.Columns[23].Width = 90;
         }
-        public void limpaTab()
+        public void LimpaTab()
         {
             aliqsubtrib.Clear();
             aliqipi.Clear();
@@ -237,36 +232,36 @@ namespace processosAdministrativos.Telas
             dataGridView1.Rows.Clear();
             dataGridView1.Refresh();
         }
-        public ordemCompra()
+        public OrdemCompra()
         {
             InitializeComponent();
         }
 
         private void ordemCompra_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaOdemCompra = 0;
         }
 
         private void excelBt_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = string.Empty;
-            if (verificaOC())
+            if (VerificaOC())
             {
-                limpaTab();
+                LimpaTab();
                 openFileDialog1.Filter = "Excel|*.xlsx|Excel|*.xls";
                 openFileDialog1.ShowDialog();
                 if (openFileDialog1.FileName != "")
                 {
-                    excel ex = new excel(openFileDialog1.FileName, "");
+                    Excel ex = new Excel(openFileDialog1.FileName, "");
                     codigos = ex.ReadCell4();
                     qt = ex.ReadCell5();
                     val = ex.ReadCell6();
                     ex.Close();
-                    valoresOC();
-                    valoresProd();
-                    verificaAliq();
-                    preencheTabela();
+                    ValoresOC();
+                    ValoresProd();
+                    VerificaAliq();
+                    PreencheTabela();
                 }
             }
             else
@@ -287,7 +282,7 @@ namespace processosAdministrativos.Telas
         {
             if (dataGridView1.RowCount > 0)
             {
-                controlOrdemCompra co = new controlOrdemCompra();
+                ControlOrdemCompra co = new ControlOrdemCompra();
                 for(int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     co.Oci_empresa = dataGridView1.Rows[i].Cells["empresa"].Value.ToString();
@@ -315,10 +310,10 @@ namespace processosAdministrativos.Telas
                     co.Oci_sitentrega = dataGridView1.Rows[i].Cells["sitentreg"].Value.ToString();
                     co.Oci_aliqicms = dataGridView1.Rows[i].Cells["aliqicms"].Value.ToString();
 
-                    dao.cadastraOrdemCompra(co);
+                    dao.CadastraOrdemCompra(co);
                 }
                 MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                limpaTab();
+                LimpaTab();
                 ocTxt.Text = string.Empty;
             }
         }

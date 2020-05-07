@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class variaveis
+    class Variaveis
     {
         private static int codProdAssistTec = 0;
         private static int aux1AssistTec = 0;

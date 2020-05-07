@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class assistenciaTecnica
+    partial class AssistenciaTecnica
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(assistenciaTecnica));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AssistenciaTecnica));
             this.label1 = new System.Windows.Forms.Label();
             this.produtoTxt = new System.Windows.Forms.TextBox();
             this.mapa = new GMap.NET.WindowsForms.GMapControl();

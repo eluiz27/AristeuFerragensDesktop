@@ -13,7 +13,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class contagem : Form
+    public partial class Contagem : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
@@ -44,7 +44,7 @@ namespace processosAdministrativos.Telas
         }
         public void comecarContar()
         {
-            dao.conecta();
+            dao.Conecta();
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 nomes.Add(dataGridView1.Rows[i].Cells["codigo"].Value.ToString());
@@ -54,7 +54,7 @@ namespace processosAdministrativos.Telas
                 object qtde = dao.Query.ExecuteScalar();
                 qtdeAtual.Add(Convert.ToDouble(qtde));
             }
-            dao.desconecta();
+            dao.Desconecta();
         }
         public bool verificaContar()
         {
@@ -79,7 +79,7 @@ namespace processosAdministrativos.Telas
                 contado.Add(Convert.ToDouble(dataGridView1.Rows[i].Cells["qtdeCont"].Value));
             }
         }
-        public contagem()
+        public Contagem()
         {
             InitializeComponent();
             List<TextBox> tList = new List<TextBox>();
@@ -128,12 +128,12 @@ namespace processosAdministrativos.Telas
                     dataGridView1.Rows[i].Cells["qtdeReal"].Value = real[i];
                 }
                 dataGridView1.Refresh();
-                controlContagem cc = new controlContagem();
+                ControlContagem cc = new ControlContagem();
                 DAO dao = new DAO();
 
                 cc.Cont_produto = prefixProdTxt.Text;
                 cc.Cont_data = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                dao.cadastraContagem(cc);
+                dao.CadastraContagem(cc);
             }
             else
                 MessageBox.Show("Campo Prefixo Produto e Qtde Contada obrigatório!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -163,7 +163,7 @@ namespace processosAdministrativos.Telas
             }
             else
             {
-                controlTelaAberta cta = new controlTelaAberta();
+                ControlTelaAberta cta = new ControlTelaAberta();
                 cta.TelaContagem = 0;
                 qtdeAtual.Clear();
                 qtdeAux.Clear();

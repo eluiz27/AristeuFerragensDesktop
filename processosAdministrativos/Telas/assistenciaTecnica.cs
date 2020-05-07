@@ -17,7 +17,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class assistenciaTecnica : Form
+    public partial class AssistenciaTecnica : Form
     {
         DAO dao = new DAO();
         GMarkerGoogle marker;
@@ -31,9 +31,9 @@ namespace processosAdministrativos.Telas
         List<string> longitude = new List<string>();
         List<string> produto = new List<string>();
         int aux2 = 0;
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
 
-        public assistenciaTecnica()
+        public AssistenciaTecnica()
         {
             InitializeComponent();
         }
@@ -82,7 +82,7 @@ namespace processosAdministrativos.Telas
             limparVar();
             mapaPadrao();
             vat.Aux1AssistTec = 1;
-            procuraProd pp = new procuraProd();
+            ProcuraProd pp = new ProcuraProd();
             pp.ShowDialog();
         }
 
@@ -92,7 +92,7 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "SELECT nome_assistTec, telefone_assistTec, endereco_assistTec, fnc_nome, itm_descricao, lat_assistTec, long_assistTec FROM (itens INNER JOIN assistencias_tecnicas ON itens.itm_fornecedor = assistencias_tecnicas.fornecedor_assistTec) INNER JOIN fornecedores ON assistencias_tecnicas.fornecedor_assistTec = fornecedores.fnc_codigo WHERE itm_codigo = " + vat.CodProdAssistTec + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader assistTec = dao.Query.ExecuteReader();
 
                 while (assistTec.Read())
@@ -107,7 +107,7 @@ namespace processosAdministrativos.Telas
                     aux2++;
                 }
                 assistTec.Close();
-                dao.desconecta();
+                dao.Desconecta();
                 produtoTxt.Text = produto[0];
                 if (aux2 == 1)
                 {
@@ -243,7 +243,7 @@ namespace processosAdministrativos.Telas
 
         private void assistenciaTecnica_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaAssistTec = 0;
             limparVar();
         }

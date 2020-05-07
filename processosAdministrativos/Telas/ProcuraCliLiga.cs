@@ -13,14 +13,22 @@ namespace processosAdministrativos.Telas
 {
     public partial class ProcuraCliLiga : Form
     {
-        queryDataTable qdt = new queryDataTable();
+        QueryDataTable qdt = new QueryDataTable();
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
+        public void PreencheTabela()
         {
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
-            if(RazaoSocRb.Checked == true)
+            if (RazaoSocRb.Checked == true)
                 dataGridView1.DataSource = qdt.procura("select cli_nome as 'Nome', cli_fantasia as 'Vazio' from clientes where cli_situacaocad = 'A' and (cli_nome like '%"+ pesquisar + "%' or cli_fantasia like '%" + pesquisar + "%')");
             else if (clienteRb.Checked == true)
                 dataGridView1.DataSource = qdt.procura("select concat(vdd_nome , ' - ', count(*)) as 'Nome' , 'Vazio' from notas inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo where nt_nmagente like '" + pesquisar +"' and vdd_situacao = 'A' group by nt_vendedor order by count(*) desc");
@@ -42,7 +50,7 @@ namespace processosAdministrativos.Telas
 
         private void PesquisaTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
     }
 }

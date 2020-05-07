@@ -39,7 +39,7 @@ namespace processosAdministrativos.Dao
             List<string> usuario = new List<string>();
             List<string> dashboard = new List<string>();
 
-            conecta();
+            Conecta();
             MySqlDataReader lista = Query.ExecuteReader();
             while (lista.Read())
             {
@@ -49,7 +49,7 @@ namespace processosAdministrativos.Dao
                 dashboard.Add(lista["restC_dash"].ToString());
             }
             lista.Close();
-            desconecta();
+            Desconecta();
 
             for (int i = 0; i < usuario.Count; i++)
             {
@@ -83,9 +83,9 @@ namespace processosAdministrativos.Dao
 
             Query.CommandText = "SELECT restC_pesquisa FROM restrict_cargo WHERE restC_computador = @computador AND restC_usuario = @usuario";
 
-            conecta();
+            Conecta();
             object vendedor = Query.ExecuteScalar();
-            desconecta();
+            Desconecta();
             if (vendedor != null && vendedor.ToString() != "")
                 return Convert.ToInt32(vendedor);
             else
@@ -102,9 +102,9 @@ namespace processosAdministrativos.Dao
 
             Query.CommandText = "INSERT INTO restrict_cargo (restC_cargo, restC_computador, restC_usuario, restC_dash) VALUES (@cargo, @computador, @usuario, @dashboard)";
 
-            conecta();
+            Conecta();
             Query.ExecuteNonQuery();
-            desconecta();
+            Desconecta();
         }
         
         public void Update(RestricaoModel rm)
@@ -119,9 +119,9 @@ namespace processosAdministrativos.Dao
 
             Query.CommandText = "UPDATE restrict_cargo SET restC_cargo = @cargo, restC_computador = @computador, restC_usuario = @usuario, restC_dash = @dashboard WHERE restC_codigo = @codigo";
 
-            conecta();
+            Conecta();
             Query.ExecuteNonQuery();
-            desconecta();
+            Desconecta();
         }
         public void UpdateVendedor(RestricaoModel rm)
         {
@@ -137,9 +137,9 @@ namespace processosAdministrativos.Dao
 
             Query.CommandText = "UPDATE restrict_cargo SET restC_pesquisa = @pesquisa WHERE restC_computador = @computador and restC_usuario = @usuario";
 
-            conecta();
+            Conecta();
             Query.ExecuteNonQuery();
-            desconecta();
+            Desconecta();
         }
 
         public void Delete(RestricaoModel rm)
@@ -150,9 +150,9 @@ namespace processosAdministrativos.Dao
 
             Query.CommandText = "DELETE FROM restrict_cargo WHERE restC_codigo = @codigo";
 
-            conecta();
+            Conecta();
             Query.ExecuteNonQuery();
-            desconecta();
+            Desconecta();
         }
     }
 }

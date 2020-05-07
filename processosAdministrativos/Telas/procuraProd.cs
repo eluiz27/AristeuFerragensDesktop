@@ -5,18 +5,25 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraProd : Form
+    public partial class ProcuraProd : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
-        variaveis vat = new variaveis();
-        controlTelaAberta cta = new controlTelaAberta();
+        Variaveis vat = new Variaveis();
+        ControlTelaAberta cta = new ControlTelaAberta();
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable qdt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+        public void PreencheTabela()
+        {
+            QueryDataTable qdt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             if (codigoRb.Checked == true)
                 dataGridView1.DataSource = qdt.procura("select itm_codigo, itm_descricao from itens where itm_codigo like '%" + pesquisar + "%'");
@@ -26,7 +33,7 @@ namespace processosAdministrativos.Telas
                 dataGridView1.DataSource = qdt.procura("select itm_codigo, itm_descricao from itens where itm_codbarras like '%" + pesquisar + "%'");
         }
 
-        public procuraProd()
+        public ProcuraProd()
         {
             InitializeComponent();
         }
@@ -39,12 +46,12 @@ namespace processosAdministrativos.Telas
                 codigoRb.Checked = true;
 
             pesquisaTxt.Focus();
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void pesquisaTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
@@ -53,7 +60,7 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "SELECT nome_assistTec, telefone_assistTec, endereco_assistTec, fnc_nome, itm_descricao, lat_assistTec, long_assistTec FROM (itens INNER JOIN assistencias_tecnicas ON itens.itm_fornecedor = assistencias_tecnicas.fornecedor_assistTec) INNER JOIN fornecedores ON assistencias_tecnicas.fornecedor_assistTec = fornecedores.fnc_codigo WHERE itm_codigo = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader assistTec = dao.Query.ExecuteReader();
 
                 if (assistTec.Read())
@@ -65,7 +72,7 @@ namespace processosAdministrativos.Telas
                 {
                     MessageBox.Show("Produto sem assistência técnica!", "Menssagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                dao.desconecta();
+                dao.Desconecta();
             }
             else if(vat.AuxLote2 == 1)
             {
@@ -102,7 +109,7 @@ namespace processosAdministrativos.Telas
                 vat.CodCampanha = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                 vat.ProdCampanha = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             }
-            this.Close();
+            Close();
         }
 
         private void procuraProd_FormClosing(object sender, FormClosingEventArgs e)

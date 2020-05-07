@@ -4,13 +4,21 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraOC : Form
+    public partial class ProcuraOC : Form
     {
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable qdt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+
+        public void PreencheTabela()
+        {
+            QueryDataTable qdt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             if (ocRb.Checked)
                 dataGridView1.DataSource = qdt.procura("SELECT ocp_numero, ocp_nmfornecedor FROM gs_aristeus.ordcompra where ocp_situacao = 'p' AND ocp_numero like '%" + pesquisar + "%'");
@@ -18,7 +26,7 @@ namespace processosAdministrativos.Telas
                 dataGridView1.DataSource = qdt.procura("SELECT ocp_numero, ocp_nmfornecedor FROM gs_aristeus.ordcompra where ocp_situacao = 'p' AND ocp_nmfornecedor like '%" + pesquisar + "%'");
         }
 
-        public procuraOC()
+        public ProcuraOC()
         {
             InitializeComponent();
         }
@@ -26,20 +34,20 @@ namespace processosAdministrativos.Telas
         private void procuraOC_Load(object sender, EventArgs e)
         {
             ocRb.Checked = true;
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            variaveis vat = new variaveis();
+            Variaveis vat = new Variaveis();
             vat.CodOrdemComp = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             vat.AuxFallowUp = 1;
-            this.Close();
+            Close();
         }
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
     }
 }

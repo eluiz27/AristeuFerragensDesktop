@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class consultaFallowUp
+    partial class ConsultaFallowUp
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(consultaFallowUp));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultaFallowUp));
             this.label1 = new System.Windows.Forms.Label();
             this.fornecedorTxt = new System.Windows.Forms.TextBox();
             this.dataMtxt = new System.Windows.Forms.MaskedTextBox();
@@ -169,7 +169,6 @@
         private gs_aristeusDataSet gs_aristeusDataSet;
         private System.Windows.Forms.BindingSource fallowUpBindingSource;
         private gs_aristeusDataSetTableAdapters.fallowUpTableAdapter fallowUpTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataPed;
         private System.Windows.Forms.Button salvarBt;
     }
 }

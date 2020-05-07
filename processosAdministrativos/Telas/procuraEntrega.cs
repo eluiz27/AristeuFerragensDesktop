@@ -1,31 +1,29 @@
-﻿using MySql.Data.MySqlClient;
-using processosAdministrativos.Classes;
+﻿using processosAdministrativos.Classes;
 using System;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraEntrega : Form
+    public partial class ProcuraEntrega : Form
     {
         DAO dao = new DAO();
-        controlEntreg ce = new controlEntreg();
-        controlTelaAberta cta = new controlTelaAberta();
+        ControlEntreg ce = new ControlEntreg();
+        ControlTelaAberta cta = new ControlTelaAberta();
         Entregadores entre = new Entregadores();
 
-        private string Sql = String.Empty;
         int clique = 0;
         int excluir = 0;
 
-        public void preencheTabela()
+        public void PreencheTabela()
         {
-            queryDataTable qdt = new queryDataTable();
+            QueryDataTable qdt = new QueryDataTable();
 
             string pesquisar = pesquisaTxt.Text.Replace('*', '%');
 
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
-            String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
-            String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
+            string inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
+            string superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
             if (pedidoRb.Checked)
                 dataGridView1.DataSource = qdt.procura("SELECT cod_contEntre, pedido_contEntre, cliente_contEntre, vdd_nome, trp_nome, situacao_contEntre, dt_aCaminho, dt_entregue, obs_contEntre FROM (controle_entrega a  inner join transportadoras b on a.motoboy_contEntre = b.trp_codigo) left outer join vendedores c on a.vendedor_contEntre = c.vdd_codigo WHERE pedido_contEntre LIKE '" + pesquisar + "%' AND dt_aCaminho between '" + inferior + "' AND '" + superior + "' ORDER BY dt_aCaminho desc");
@@ -36,7 +34,7 @@ namespace processosAdministrativos.Telas
             else if (motoboyRb.Checked)
                 dataGridView1.DataSource = qdt.procura("SELECT cod_contEntre, pedido_contEntre, cliente_contEntre, vdd_nome, trp_nome, situacao_contEntre, dt_aCaminho, dt_entregue, obs_contEntre FROM (controle_entrega a  inner join transportadoras b on a.motoboy_contEntre = b.trp_codigo) left outer join vendedores c on a.vendedor_contEntre = c.vdd_codigo WHERE trp_nome LIKE '" + pesquisar + "%' AND dt_aCaminho between '" + inferior + "' AND '" + superior + "' ORDER BY dt_aCaminho desc");
         }
-        public procuraEntrega()
+        public ProcuraEntrega()
         {
             InitializeComponent();
         }
@@ -46,7 +44,7 @@ namespace processosAdministrativos.Telas
             pedidoRb.Checked = true;
             inferiorMtxt.Text = DateTime.Now.ToString("dd-MM-yyyy");
             superiorMtxt.Text = DateTime.Now.ToString("dd-MM-yyyy");
-            preencheTabela();
+            PreencheTabela();
 
             dataGridView1.Columns[1].ReadOnly = true;
             dataGridView1.Columns[2].ReadOnly = true;
@@ -62,17 +60,17 @@ namespace processosAdministrativos.Telas
 
         private void pesqusiarTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void sairBt_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void pesquisarBt_Click(object sender, EventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void DataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -81,7 +79,7 @@ namespace processosAdministrativos.Telas
             {
                 ce.Obs_contEntre = dataGridView1[e.ColumnIndex, e.RowIndex].Value.ToString();
 
-                dao.alteraObsEntrega(ce, Convert.ToInt32(dataGridView1[0, e.RowIndex].Value));
+                dao.AlteraObsEntrega(ce, Convert.ToInt32(dataGridView1[0, e.RowIndex].Value));
             }
         }
 
@@ -123,8 +121,8 @@ namespace processosAdministrativos.Telas
                 {
                     ce.Situacao_contEntre = "Entregue";
                     ce.Dt_entregue = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.alteraSituEntrega(ce, Convert.ToInt32(dataGridView1[0, e.RowIndex].Value));
-                    preencheTabela();
+                    dao.AlteraSituEntrega(ce, Convert.ToInt32(dataGridView1[0, e.RowIndex].Value));
+                    PreencheTabela();
                 }
 
                 if (e.ColumnIndex == 4)
@@ -137,7 +135,7 @@ namespace processosAdministrativos.Telas
 
         private void ProcuraEntrega_FormClosing(object sender, FormClosingEventArgs e)
         {
-            variaveis var = new variaveis();
+            Variaveis var = new Variaveis();
             var.FechaTela = 1;
             cta.TelaEntrega = 0;
         }
@@ -146,8 +144,8 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaEntrega == 0)
             {
-                dao.deletaEntrega(excluir);
-                preencheTabela();
+                dao.DeletaEntrega(excluir);
+                PreencheTabela();
             }
 
         }
@@ -161,7 +159,7 @@ namespace processosAdministrativos.Telas
                     excluir = Convert.ToInt32(dataGridView1[0, e.RowIndex].Value);
 
                 }
-                catch (Exception ex)
+                catch
                 {
 
                 }
@@ -173,7 +171,7 @@ namespace processosAdministrativos.Telas
         {
             if(entre.Cod == 1)
             {
-                preencheTabela();
+                PreencheTabela();
                 entre.Cod = 0;
             }
         }

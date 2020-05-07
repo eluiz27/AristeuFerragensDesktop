@@ -4,17 +4,22 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraForn : Form
+    public partial class ProcuraForn : Form
     {
-        DAO dao = new DAO();
-        private string Sql = String.Empty;
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable qdt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+        public void PreencheTabela()
+        {
+            QueryDataTable qdt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             if (codigoRb.Checked == true)
                 dataGridView1.DataSource = qdt.procura("select fnc_codigo, fnc_nome from fornecedores where fnc_pessoa = 'J' and fnc_cgc <> '__.___.___/____-__' and fnc_inscricao <> '' and fnc_nome not like 'trans%' and fnc_situacao = 'N' and fnc_codigo like '%" + pesquisar + "%'");
@@ -22,7 +27,7 @@ namespace processosAdministrativos.Telas
                 dataGridView1.DataSource = qdt.procura("select fnc_codigo, fnc_nome from fornecedores where fnc_pessoa = 'J' and fnc_cgc <> '__.___.___/____-__' and fnc_inscricao <> '' and fnc_nome not like 'trans%' and fnc_situacao = 'N' and fnc_nome like '%" + pesquisar + "%'");
         }
 
-        public procuraForn()
+        public ProcuraForn()
         {
             InitializeComponent();
         }
@@ -30,19 +35,19 @@ namespace processosAdministrativos.Telas
         private void fornecedores_Load(object sender, EventArgs e)
         {
             codigoRb.Checked = true;
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void nomeTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             vat.CodForn = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             vat.NomeFornAssistTec = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            this.Close();
+            Close();
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlCodifica
+    class ControlCodifica
     {
         private string codf_nota;
         private string codf_codForn;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlBanner
+    class ControlBanner
     {
         private String banrot_campanha;
         private String banrot_img;

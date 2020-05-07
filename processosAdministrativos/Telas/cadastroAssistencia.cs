@@ -18,14 +18,14 @@ using System.Runtime.InteropServices;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cadastroAssistencia : Form
+    public partial class CadastroAssistencia : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
-        controlTelaAberta cta = new controlTelaAberta();
-        variaveis vat = new variaveis();
+        ControlTelaAberta cta = new ControlTelaAberta();
+        Variaveis vat = new Variaveis();
 
-        public cadastroAssistencia()
+        public CadastroAssistencia()
         {
             InitializeComponent();
             List<TextBox> tList = new List<TextBox>();
@@ -75,14 +75,14 @@ namespace processosAdministrativos.Telas
         }
         private void fornecedorTxt_Enter(object sender, EventArgs e)
         {
-            procuraForn f = new procuraForn();
+            ProcuraForn f = new ProcuraForn();
             f.ShowDialog();
             cta.TelaProcForn = 1;
         }
 
         private void salvarBt_Click(object sender, EventArgs e)
         {
-            controlAssistTec cat = new controlAssistTec();
+            ControlAssistTec cat = new ControlAssistTec();
             if (CampoVazio() == false)
             {
                 cat.Nome_assistTec = nomeTxt.Text;
@@ -93,14 +93,14 @@ namespace processosAdministrativos.Telas
                 cat.Fornecedor_assistTec = vat.CodFornAssistTec;
                 if (vat.Aux2AssistTec == 0)
                 {
-                    dao.cadastraAssistTec(cat);
+                    dao.CadastraAssistTec(cat);
                     MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     if (vat.Aux2AssistTec == 1)
                     {
-                        dao.alteraAssistTec(cat, vat.CodAssistTec);
+                        dao.AlteraAssistTec(cat, vat.CodAssistTec);
                         MessageBox.Show("Alterado com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                 }
@@ -122,7 +122,7 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "SELECT nome_assistTec, nome_assistTec, telefone_assistTec, endereco_assistTec, lat_assistTec, long_assistTec, fnc_nome, fornecedor_assistTec FROM assistencias_tecnicas INNER JOIN fornecedores ON assistencias_tecnicas.fornecedor_assistTec = fornecedores.fnc_codigo WHERE codigo_assistTec = " + vat.CodAssistTec + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader assistTec = dao.Query.ExecuteReader();
                 assistTec.Read();
                 nomeTxt.Text = assistTec["nome_assistTec"].ToString();
@@ -134,7 +134,7 @@ namespace processosAdministrativos.Telas
                 vat.CodFornAssistTec = Convert.ToInt32(assistTec["fornecedor_assistTec"]);
                 vat.Aux3AssistTec = 0;
                 assistTec.Close();
-                dao.desconecta();
+                dao.Desconecta();
             }
         }
 
@@ -145,7 +145,7 @@ namespace processosAdministrativos.Telas
 
         private void cadastraAssistencia_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCadAssistTec = 0;
             limpaCampo();
         }
@@ -153,7 +153,7 @@ namespace processosAdministrativos.Telas
         private void alterarBt_Click(object sender, EventArgs e)
         {
             limpaCampo();
-            procuraAssistTec pa = new procuraAssistTec();
+            ProcuraAssistTec pa = new ProcuraAssistTec();
             pa.ShowDialog();
         }
 
@@ -164,7 +164,7 @@ namespace processosAdministrativos.Telas
 
         private void fornecedorTxt_DoubleClick(object sender, EventArgs e)
         {
-            procuraForn f = new procuraForn();
+            ProcuraForn f = new ProcuraForn();
             f.ShowDialog();
         }
     }

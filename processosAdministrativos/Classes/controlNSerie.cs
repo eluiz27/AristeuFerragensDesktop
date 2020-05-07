@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlNSerie
+    class ControlNSerie
     {
         private string ns_nSerie;
         private string ns_pedido;

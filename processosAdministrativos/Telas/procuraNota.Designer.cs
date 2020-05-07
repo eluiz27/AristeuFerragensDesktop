@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class procuraNota
+    partial class ProcuraNota
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(procuraNota));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcuraNota));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nomeFonrRb = new System.Windows.Forms.RadioButton();
             this.codFornRb = new System.Windows.Forms.RadioButton();

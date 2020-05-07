@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class consultaCodificacao
+    partial class ConsultaCodificacao
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(consultaCodificacao));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultaCodificacao));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.nota = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.forn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -61,7 +61,6 @@
             // 
             this.dataGridView1.AllowUserToAddRows = false;
             this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nota,
@@ -69,7 +68,6 @@
             this.estoquista1,
             this.estoquista2,
             this.data});
-            this.dataGridView1.DataSource = this.consultCodificacaoBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(12, 100);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;

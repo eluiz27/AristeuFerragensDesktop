@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class procuraEntrega
+    partial class ProcuraEntrega
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(procuraEntrega));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcuraEntrega));
             this.filtroGb = new System.Windows.Forms.GroupBox();
             this.motoboyRb = new System.Windows.Forms.RadioButton();
             this.vendedorRb = new System.Windows.Forms.RadioButton();

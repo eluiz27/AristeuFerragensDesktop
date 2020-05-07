@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class controladoria
+    partial class Controladoria
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(controladoria));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Controladoria));
             this.inferiorMtxt = new System.Windows.Forms.MaskedTextBox();
             this.superiorMtxt = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();

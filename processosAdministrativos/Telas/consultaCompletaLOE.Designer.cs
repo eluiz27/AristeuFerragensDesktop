@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class consultaCompletaLOE
+    partial class ConsultaCompletaLOE
     {
         /// <summary>
         /// Required designer variable.
@@ -47,7 +47,7 @@
             System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
             System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(consultaCompletaLOE));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultaCompletaLOE));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.loeTp = new System.Windows.Forms.TabPage();
             this.pesquisaTxt = new System.Windows.Forms.TextBox();
@@ -1044,7 +1044,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consulta LOE";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.consultaCompletaLOE_FormClosing);
-            this.Load += new System.EventHandler(this.consultaCompletaLOE_Load);
+            this.Load += new System.EventHandler(this.ConsultaCompletaLOE_Load);
             this.tabControl1.ResumeLayout(false);
             this.loeTp.ResumeLayout(false);
             this.loeTp.PerformLayout();

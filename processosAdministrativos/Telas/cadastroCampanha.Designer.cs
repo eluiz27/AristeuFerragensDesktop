@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class cadastroCampanha
+    partial class CadastroCampanha
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(cadastroCampanha));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CadastroCampanha));
             this.codigoTxt = new System.Windows.Forms.TextBox();
             this.produtoTxt = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();

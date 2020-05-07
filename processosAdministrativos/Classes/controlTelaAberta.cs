@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlTelaAberta
+    class ControlTelaAberta
     {
         private static int telaAssistTec = 0;
         private static int telaCadAssistTec = 0;

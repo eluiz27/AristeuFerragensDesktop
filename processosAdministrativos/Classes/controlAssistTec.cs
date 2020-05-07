@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlAssistTec
+    class ControlAssistTec
     {
         private String nome_assistTec;
         private String telefone_assistTec;

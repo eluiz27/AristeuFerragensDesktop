@@ -8,11 +8,11 @@ using processosAdministrativos.Bll;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cadastroLote : Form
+    public partial class CadastroLote : Form
     {
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
 
-        public cadastroLote()
+        public CadastroLote()
         {
             InitializeComponent();
         }
@@ -115,7 +115,7 @@ namespace processosAdministrativos.Telas
 
         private void cadastroLote_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCadLote = 0;
         }
 
@@ -135,7 +135,7 @@ namespace processosAdministrativos.Telas
         private void alterarBt_Click(object sender, EventArgs e)
         {
             limparCampo();
-            procuraLote pl = new procuraLote();
+            ProcuraLote pl = new ProcuraLote();
             pl.ShowDialog();
         }
 
@@ -152,7 +152,7 @@ namespace processosAdministrativos.Telas
         private void produtoTxt_Enter(object sender, EventArgs e)
         {
             vat.AuxLote2 = 1;
-            procuraProd pp = new procuraProd();
+            ProcuraProd pp = new ProcuraProd();
             pp.ShowDialog();
         }
     }

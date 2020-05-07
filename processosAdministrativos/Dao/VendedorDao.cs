@@ -19,14 +19,14 @@ namespace processosAdministrativos.Dao
 
             List<string> nome = new List<string>();
 
-            conecta();
+            Conecta();
             MySqlDataReader lista = Query.ExecuteReader();
             while (lista.Read())
             {
                 nome.Add(lista["vdd_nome"].ToString());
             }
             lista.Close();
-            desconecta();
+            Desconecta();
 
             return nome;
         }
@@ -38,14 +38,14 @@ namespace processosAdministrativos.Dao
             Query.CommandText = "select vdd_codigo from vendedores where vdd_cttfuncao like 'vendedor%' and vdd_situacao = 'A';";
 
             List<int> codigo = new List<int>();
-            conecta();
+            Conecta();
             MySqlDataReader lista = Query.ExecuteReader();
             while (lista.Read())
             {
                 codigo.Add(Convert.ToInt32(lista["vdd_codigo"]));
             }
             lista.Close();
-            desconecta();
+            Desconecta();
 
             return codigo;
         }

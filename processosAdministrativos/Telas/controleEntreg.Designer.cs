@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class controleEntreg
+    partial class ControleEntreg
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(controleEntreg));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControleEntreg));
             this.label1 = new System.Windows.Forms.Label();
             this.nPedidoLb = new System.Windows.Forms.Label();
             this.nPedidoTxt = new System.Windows.Forms.TextBox();

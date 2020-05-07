@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cadastraSituacao : Form
+    public partial class CadastraSituacao : Form
     {
         DAO dao = new DAO();
         private int _codigo = 0;
@@ -22,22 +22,14 @@ namespace processosAdministrativos.Telas
             get { return _codigo; }
             set { _codigo = value; }
         }
+
         public void tabela()
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
+            QueryDataTable dt = new QueryDataTable();
 
-            table = new DataTable();
-            bs = new BindingSource();
-
-            da = new MySqlDataAdapter("SELECT fups_codigo, fups_nome FROM fallowupsit ORDER BY fups_codigo DESC;", dao.Conexao);
-            da.Fill(table);
-
-            bs.DataSource = table;
-            dataGridView1.DataSource = bs;
+            dataGridView1.DataSource = dt.procura("SELECT fups_codigo, fups_nome FROM fallowupsit ORDER BY fups_codigo DESC");
         }
-        public cadastraSituacao()
+        public CadastraSituacao()
         {
             InitializeComponent();
         }
@@ -45,13 +37,12 @@ namespace processosAdministrativos.Telas
         private void cadastraSituacao_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'gs_aristeusDataSet.fallowupsit' table. You can move, or remove it, as needed.
-            this.fallowupsitTableAdapter.Fill(this.gs_aristeusDataSet.fallowupsit);
             tabela();
         }
 
         private void cadastraSituacao_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCadastroSituacao = 0;
         }
 
@@ -59,12 +50,12 @@ namespace processosAdministrativos.Telas
         {
             if (situacaoTxt.Text != string.Empty)
             {
-                controlFallowUp cf = new controlFallowUp();
+                ControlFallowUp cf = new ControlFallowUp();
                 cf.Fup_situacao = situacaoTxt.Text;
                 if (aux == 0)
-                    dao.cadastraFallowUpSit(cf);
+                    dao.CadastraFallowUpSit(cf);
                 else
-                    dao.alteraFallowUpSit(cf, Codigo);
+                    dao.AlteraFallowUpSit(cf, Codigo);
                 dataGridView1.DataSource = null;
                 tabela();
                 situacaoTxt.Text = string.Empty;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlUsuarios
+    class ControlUsuarios
     {
         private string res_usuario;
         private string res_compras;

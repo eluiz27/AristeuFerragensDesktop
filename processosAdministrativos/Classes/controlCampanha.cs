@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlCampanha
+    class ControlCampanha
     {
         private string cmak_campanha;
         private string cmak_codigo;

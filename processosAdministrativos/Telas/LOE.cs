@@ -12,7 +12,7 @@ namespace processosAdministrativos.Telas
         private string Sql = String.Empty;
         List<int> vdds = new List<int>();
         TabPage tab1, tab2, tab3, tab4, tab5, tab6, tab7, tab8;
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
         int aux1, aux2, aux3, aux4, aux5, aux6, aux7, aux8 = 0;
         String codProdPrecoElev, codProdFaltaEst, codProdInex, CodProdTroc;
         List<string> listProd1 = new List<string>();
@@ -33,13 +33,10 @@ namespace processosAdministrativos.Telas
         List<string> listComent4 = new List<string>();
         private static bool precoControle = false;
 
-        public static bool PrecoControle
-        {
-            get { return precoControle; }
-            set { precoControle = value; }
-        }
+        public static bool PrecoControle { get => precoControle; set => precoControle = value; }
 
-        public static void formatoPreco(ref TextBox txt)
+
+        public static void FormatoPreco(ref TextBox txt)
         {
             String n;
             float v = 0;
@@ -61,7 +58,7 @@ namespace processosAdministrativos.Telas
             }
             catch (Exception) { }
         }
-        public void limpaCampo()
+        public void LimpaCampo()
         {
             codigoVddTxt.Text = string.Empty;
             nomeVddTxt.Text = string.Empty;
@@ -74,7 +71,7 @@ namespace processosAdministrativos.Telas
             aux7 = 0;
             aux8 = 0;
         }
-        public void limpaList()
+        public void LimpaList()
         {
             listComent1.Clear();
             listProd1.Clear();
@@ -89,7 +86,7 @@ namespace processosAdministrativos.Telas
             listQtde3.Clear();
             listProd4.Clear();
         }
-        public void limpaComent()
+        public void LimpaComent()
         {
             coment1Txt.Text = string.Empty;
             coment2Txt.Text = string.Empty;
@@ -97,7 +94,7 @@ namespace processosAdministrativos.Telas
             coment4Txt.Text = string.Empty;
 
         }
-        public void limpaPrecoElev()
+        public void LimpaPrecoElev()
         {
             prodPrecElevTxt.Text = string.Empty;
             qtdePrecElevTxt.Text = string.Empty;
@@ -105,27 +102,27 @@ namespace processosAdministrativos.Telas
             comentPrecoTxt.Text = string.Empty;
             codProdPrecoElev = string.Empty;
         }
-        public void limpaFaltaEst()
+        public void LimpaFaltaEst()
         {
             prodFaltEstTxt.Text = string.Empty;
             qtdeFaltEstTxt.Text = string.Empty;
             comentEstTxt.Text = string.Empty;
             codProdFaltaEst = string.Empty;
         }
-        public void limpaProdInex()
+        public void LimpaProdInex()
         {
             prodProdInexTxt.Text = string.Empty;
             qtdeProdInexTxt.Text = string.Empty;
             comentIneTxt.Text = string.Empty;
             codProdInex = string.Empty;
         }
-        public void limpaTrocProd()
+        public void LimpaTrocProd()
         {
             prodTrocProdTxt.Text = string.Empty;
             comentTrocaTxt.Text = string.Empty;
             CodProdTroc = string.Empty;
         }
-        public void limpaGridPrecElev()
+        public void LimpaGridPrecElev()
         {
             precoElevDgv.DataSource = null;
             precoElevDgv.Columns.Clear();
@@ -133,7 +130,7 @@ namespace processosAdministrativos.Telas
             precoElevDgv.Refresh();
             pE.Clear();
         }
-        public void limpaGridFaltEst()
+        public void LimpaGridFaltEst()
         {
             faltEstDgv.DataSource = null;
             faltEstDgv.Columns.Clear();
@@ -141,7 +138,7 @@ namespace processosAdministrativos.Telas
             faltEstDgv.Refresh();
             fE.Clear();
         }
-        public void limpaGridProdInex()
+        public void LimpaGridProdInex()
         {
             prodInexDgv.DataSource = null;
             prodInexDgv.Columns.Clear();
@@ -149,7 +146,7 @@ namespace processosAdministrativos.Telas
             prodInexDgv.Refresh();
             pI.Clear();
         }
-        public void limpaGridTrocProd()
+        public void LimpaGridTrocProd()
         {
             TrocProdDgv.DataSource = null;
             TrocProdDgv.Columns.Clear();
@@ -157,7 +154,7 @@ namespace processosAdministrativos.Telas
             TrocProdDgv.Refresh();
             tP.Clear();
         }
-        public void removeTabPage()
+        public void RemoveTabPage()
         {
             tab1 = precoElevTp;
             tab2 = faltaEstTp;
@@ -184,7 +181,7 @@ namespace processosAdministrativos.Telas
             retEncomenRb.Checked = false;
             trocProdRb.Checked = false;
         }
-        public void tabPag1()
+        public void TabPag1()
         {
             this.tabControl1.TabPages.Add(tab1);
             this.tabControl1.TabPages.Remove(tab2);
@@ -195,7 +192,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab7);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag2()
+        public void TabPag2()
         {
             this.tabControl1.TabPages.Add(tab2);
             this.tabControl1.TabPages.Remove(tab1);
@@ -206,7 +203,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab7);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag3()
+        public void TabPag3()
         {
             this.tabControl1.TabPages.Add(tab3);
             this.tabControl1.TabPages.Remove(tab1);
@@ -217,7 +214,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab7);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag4()
+        public void TabPag4()
         {
             this.tabControl1.TabPages.Add(tab4);
             this.tabControl1.TabPages.Remove(tab1);
@@ -228,7 +225,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab7);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag5()
+        public void TabPag5()
         {
             this.tabControl1.TabPages.Add(tab5);
             this.tabControl1.TabPages.Remove(tab1);
@@ -239,7 +236,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab7);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag6()
+        public void TabPag6()
         {
             this.tabControl1.TabPages.Add(tab6);
             this.tabControl1.TabPages.Remove(tab1);
@@ -250,7 +247,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab7);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag7()
+        public void TabPag7()
         {
             this.tabControl1.TabPages.Add(tab7);
             this.tabControl1.TabPages.Remove(tab1);
@@ -261,7 +258,7 @@ namespace processosAdministrativos.Telas
             this.tabControl1.TabPages.Remove(tab6);
             this.tabControl1.TabPages.Remove(tab8);
         }
-        public void tabPag8()
+        public void TabPag8()
         {
             this.tabControl1.TabPages.Add(tab8);
             this.tabControl1.TabPages.Remove(tab1);
@@ -276,62 +273,63 @@ namespace processosAdministrativos.Telas
         {
             return ((Val >= 48 && Val <= 57) || (Val == 8) || (Val == 46) || (Val >= 48 && Val <= 57));
         }
-        class precoElevado
+        class PrecoElevado
         {
             public string nomeProd { get; set; }
             public string precoProd { get; set; }
             public string qtdeProd { get; set; }
 
-            public precoElevado() { }
+            public PrecoElevado() { }
         }
-        List<precoElevado> pE= new List<precoElevado>();
-        class faltaEstoque
+        List<PrecoElevado> pE= new List<PrecoElevado>();
+        class FaltaEstoque
         {
             public string nomeProd { get; set; }
             public string qtdeProd { get; set; }
 
-            public faltaEstoque() { }
+            public FaltaEstoque() { }
         }
-        List<faltaEstoque> fE = new List<faltaEstoque>();
-        class produtoInexistente
+        List<FaltaEstoque> fE = new List<FaltaEstoque>();
+        class ProdutoInexistente
         {
             public string nomeProd { get; set; }
             public string qtdeProd { get; set; }
 
-            public produtoInexistente() { }
+            public ProdutoInexistente() { }
         }
-        List<produtoInexistente> pI = new List<produtoInexistente>();
-        class trocaProduto
+        List<ProdutoInexistente> pI = new List<ProdutoInexistente>();
+        class TrocaProduto
         {
             public string nomeProd { get; set; }
             public string pedProd { get; set; }
 
-            public trocaProduto() { }
+            public TrocaProduto() { }
         }
-        List<trocaProduto> tP = new List<trocaProduto>();
+        List<TrocaProduto> tP = new List<TrocaProduto>();
+
         public LOE()
         {
             InitializeComponent();
-            removeTabPage();
+            RemoveTabPage();
         }
 
         private void LOE_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaLOE = 0;
             cta.TelaCadastraLoe = 0;
-            limpaCampo();
-            limpaFaltaEst();
-            limpaPrecoElev();
-            limpaList();
-            limpaProdInex();
-            limpaTrocProd();
-            limpaGridPrecElev();
-            limpaGridFaltEst();
-            limpaGridProdInex();
-            limpaGridTrocProd();
-            limpaComent();
-            removeTabPage();
+            LimpaCampo();
+            LimpaFaltaEst();
+            LimpaPrecoElev();
+            LimpaList();
+            LimpaProdInex();
+            LimpaTrocProd();
+            LimpaGridPrecElev();
+            LimpaGridFaltEst();
+            LimpaGridProdInex();
+            LimpaGridTrocProd();
+            LimpaComent();
+            RemoveTabPage();
         }
 
         private void textBox1_Leave(object sender, EventArgs e)
@@ -339,31 +337,31 @@ namespace processosAdministrativos.Telas
             int aux = 0;
             Sql = "SELECT vdd_codigo FROM vendedores WHERE vdd_situacao = 'A'";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader vdd = dao.Query.ExecuteReader();
             while (vdd.Read())
             {
                 vdds.Add(Convert.ToInt32(vdd["vdd_codigo"]));
             }
             vdd.Close();
-            dao.desconecta();
+            dao.Desconecta();
             for (int i = 0; i < vdds.Count; i++)
             {
                 if (codigoVddTxt.Text == vdds[i].ToString())
                 {
                     Sql = "SELECT vdd_nome FROM vendedores WHERE vdd_codigo = " + codigoVddTxt.Text;
                     dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                    dao.conecta();
+                    dao.Conecta();
                     object vendedor = dao.Query.ExecuteScalar();
                     nomeVddTxt.Text = vendedor.ToString();
-                    dao.desconecta();
+                    dao.Desconecta();
                     aux = 1;
                 }
             }
             if (aux == 0)
             {
                 MessageBox.Show("Vendedor não cadastrado!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                limpaCampo();
+                LimpaCampo();
                 codigoVddTxt.Focus();
             }
         }
@@ -372,7 +370,7 @@ namespace processosAdministrativos.Telas
         {
             if (precoEleRb.Checked == true)
             {
-                tabPag1();
+                TabPag1();
                 aux1 = 1;
             }
         }
@@ -381,7 +379,7 @@ namespace processosAdministrativos.Telas
         {
             if (faltaEstRb.Checked == true)
             {
-                tabPag2();
+                TabPag2();
                 aux2 = 1;
             }
         }
@@ -390,7 +388,7 @@ namespace processosAdministrativos.Telas
         {
             if (prodInexistRb.Checked == true)
             {
-                tabPag3();
+                TabPag3();
                 aux3 = 1;
             }
         }
@@ -399,7 +397,7 @@ namespace processosAdministrativos.Telas
         {
             if (trocProdRb.Checked == true)
             {
-                tabPag4();
+                TabPag4();
                 aux4 = 1;
             }
         }
@@ -409,7 +407,7 @@ namespace processosAdministrativos.Telas
             if (condPagRb.Checked == true)
             {
                 this.tabControl1.TabPages.Remove(tab5);
-                tabPag5();
+                TabPag5();
                 aux5 = 1;
             }
         }
@@ -419,7 +417,7 @@ namespace processosAdministrativos.Telas
             if (retEncomenRb.Checked == true)
             {
                 this.tabControl1.TabPages.Remove(tab6);
-                tabPag6();
+                TabPag6();
                 aux6 = 1;
             }
         }
@@ -429,7 +427,7 @@ namespace processosAdministrativos.Telas
             if (conheOlhanRb.Checked == true)
             {
                 this.tabControl1.TabPages.Remove(tab7);
-                tabPag7();
+                TabPag7();
                 aux7 = 1;
             }
         }
@@ -439,23 +437,23 @@ namespace processosAdministrativos.Telas
             if (defQualiOutRb.Checked == true)
             {
                 this.tabControl1.TabPages.Remove(tab8);
-                tabPag8();
+                TabPag8();
                 aux8 = 1;
             }
         }
 
         private void prodPrecElevTxt_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            limpaPrecoElev();
+            LimpaPrecoElev();
             vat.AuxLOE1 = 1;
-            procuraProd pp = new procuraProd();
+            ProcuraProd pp = new ProcuraProd();
             pp.ShowDialog();
         }
         private void prodFaltEstTxt_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            limpaFaltaEst();
+            LimpaFaltaEst();
             vat.AuxLOE2 = 1;
-            procuraProd pp = new procuraProd();
+            ProcuraProd pp = new ProcuraProd();
             pp.ShowDialog();
         }
         private void prodProdInexTxt_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -464,9 +462,9 @@ namespace processosAdministrativos.Telas
         }
         private void prodTrocProdTxt_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            limpaProdInex();
+            LimpaProdInex();
             vat.AuxLOE4 = 1;
-            procuraProd pp = new procuraProd();
+            ProcuraProd pp = new ProcuraProd();
             pp.ShowDialog();
         }
         private void LOE_Activated(object sender, EventArgs e)
@@ -503,7 +501,7 @@ namespace processosAdministrativos.Telas
         {
             if (prodPrecElevTxt.Text != string.Empty && precPrecElevTxt.Text != string.Empty && qtdePrecElevTxt.Text != string.Empty)
             {
-                pE.Add(new precoElevado()
+                pE.Add(new PrecoElevado()
                 {
                     nomeProd = prodPrecElevTxt.Text,
                     precoProd = precPrecElevTxt.Text,
@@ -522,7 +520,7 @@ namespace processosAdministrativos.Telas
                 listPreco.Add(precPrecElevTxt.Text);
                 listQtde1.Add(qtdePrecElevTxt.Text);
                 listComentPreco.Add(comentPrecoTxt.Text);
-                limpaPrecoElev();
+                LimpaPrecoElev();
                 vat.NomeProdLOE = string.Empty;
             }
             else
@@ -533,7 +531,7 @@ namespace processosAdministrativos.Telas
         {
             if (prodFaltEstTxt.Text != string.Empty && qtdeFaltEstTxt.Text != string.Empty)
             {
-                fE.Add(new faltaEstoque()
+                fE.Add(new FaltaEstoque()
                 {
                     nomeProd = prodFaltEstTxt.Text,
                     qtdeProd = qtdeFaltEstTxt.Text
@@ -548,7 +546,7 @@ namespace processosAdministrativos.Telas
                 listProd2.Add(vat.CodProdLOE);
                 listQtde2.Add(qtdeFaltEstTxt.Text);
                 listComentFalt.Add(comentEstTxt.Text);
-                limpaFaltaEst();
+                LimpaFaltaEst();
                 vat.NomeProdLOE = string.Empty;
             }
             else
@@ -559,7 +557,7 @@ namespace processosAdministrativos.Telas
         {
             if (prodProdInexTxt.Text != string.Empty && qtdeProdInexTxt.Text != string.Empty)
             {
-                pI.Add(new produtoInexistente()
+                pI.Add(new ProdutoInexistente()
                 {
                     nomeProd = prodProdInexTxt.Text,
                     qtdeProd = qtdeProdInexTxt.Text
@@ -574,7 +572,7 @@ namespace processosAdministrativos.Telas
                 listProd3.Add(prodProdInexTxt.Text);
                 listQtde3.Add(qtdeProdInexTxt.Text);
                 listComentIne.Add(comentIneTxt.Text);
-                limpaProdInex();
+                LimpaProdInex();
                 vat.NomeProdLOE = string.Empty;
             }
             else
@@ -585,7 +583,7 @@ namespace processosAdministrativos.Telas
         {
             if (prodTrocProdTxt.Text != string.Empty)
             {
-                tP.Add(new trocaProduto()
+                tP.Add(new TrocaProduto()
                 {
                     nomeProd = prodTrocProdTxt.Text,
                 });
@@ -598,7 +596,7 @@ namespace processosAdministrativos.Telas
                 TrocProdDgv.Columns[1].Width = 60;
                 listProd4.Add(vat.CodProdLOE);
                 listComentTroca.Add(comentTrocaTxt.Text);
-                limpaTrocProd();
+                LimpaTrocProd();
                 vat.NomeProdLOE = string.Empty;
             }
             else
@@ -609,23 +607,23 @@ namespace processosAdministrativos.Telas
         {
             if (precoEleRb.Checked == true)
             {
-                limpaGridPrecElev();
-                limpaPrecoElev();
+                LimpaGridPrecElev();
+                LimpaPrecoElev();
             }
             else if (faltaEstRb.Checked == true)
             {
-                limpaGridFaltEst();
-                limpaFaltaEst();
+                LimpaGridFaltEst();
+                LimpaFaltaEst();
             }
             else if (prodInexistRb.Checked == true)
             {
-                limpaGridProdInex();
-                limpaProdInex();
+                LimpaGridProdInex();
+                LimpaProdInex();
             }
             else if (trocProdRb.Checked == true)
             {
-                limpaGridTrocProd();
-                limpaTrocProd();
+                LimpaGridTrocProd();
+                LimpaTrocProd();
             }
             else if (condPagRb.Checked == true)
             {
@@ -648,7 +646,7 @@ namespace processosAdministrativos.Telas
         private void salvarBt_Click(object sender, EventArgs e)
         {
             DAO dao = new DAO();
-            controlLoe cl = new controlLoe();
+            ControlLoe cl = new ControlLoe();
             int x1 = 1, x2 = 1, x3 = 1, x4 = 1, x5 = 1, x8 = 1;
             if (aux1 == 1)
             {
@@ -664,12 +662,12 @@ namespace processosAdministrativos.Telas
                         cl.Preco_loe = float.Parse(listPreco[i]);
                         cl.Comentario_loe = listComentPreco[i];
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        dao.cadastraLoe(cl);
+                        dao.CadastraLoe(cl);
                         x1 = 1;
                     }
                     MessageBox.Show("Preço elevado salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaPrecoElev();
-                    limpaGridPrecElev();
+                    LimpaPrecoElev();
+                    LimpaGridPrecElev();
                     listComent1.Clear();
                     listProd1.Clear();
                     listPreco.Clear();
@@ -685,10 +683,10 @@ namespace processosAdministrativos.Telas
                     cl.Preco_loe = float.Parse(precPrecElevTxt.Text);
                     cl.Comentario_loe = comentPrecoTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraLoe(cl);
+                    dao.CadastraLoe(cl);
                     MessageBox.Show("Preço elevado salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaPrecoElev();
-                    limpaGridPrecElev();
+                    LimpaPrecoElev();
+                    LimpaGridPrecElev();
                     listComent1.Clear();
                     listProd1.Clear();
                     listPreco.Clear();
@@ -717,13 +715,13 @@ namespace processosAdministrativos.Telas
                         cl.Preco_loe = 0;
                         cl.Comentario_loe = listComentFalt[i];
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        dao.cadastraLoe(cl);
+                        dao.CadastraLoe(cl);
                         x2 = 1;
                         aux2 = 1;
                     }
                     MessageBox.Show("Falta de estoque salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaFaltaEst();
-                    limpaGridFaltEst();
+                    LimpaFaltaEst();
+                    LimpaGridFaltEst();
                     listComent2.Clear();
                     listProd2.Clear();
                     listQtde2.Clear();
@@ -737,10 +735,10 @@ namespace processosAdministrativos.Telas
                     cl.Preco_loe = 0;
                     cl.Comentario_loe = comentEstTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraLoe(cl);
+                    dao.CadastraLoe(cl);
                     MessageBox.Show("Falta de estoque salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaFaltaEst();
-                    limpaGridFaltEst();
+                    LimpaFaltaEst();
+                    LimpaGridFaltEst();
                     listComent2.Clear();
                     listProd2.Clear();
                     listQtde2.Clear();
@@ -768,13 +766,13 @@ namespace processosAdministrativos.Telas
                         cl.Preco_loe = 0;
                         cl.Comentario_loe = listComentIne[i];
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        dao.cadastraLoe(cl);
+                        dao.CadastraLoe(cl);
                         x3 = 1;
                         aux3 = 1;
                     }
                     MessageBox.Show("Produto inexistente salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaProdInex();
-                    limpaGridProdInex();
+                    LimpaProdInex();
+                    LimpaGridProdInex();
                     listComent3.Clear();
                     listProd3.Clear();
                     listQtde3.Clear();
@@ -788,10 +786,10 @@ namespace processosAdministrativos.Telas
                     cl.Preco_loe = 0;
                     cl.Comentario_loe = comentIneTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraLoe(cl);
+                    dao.CadastraLoe(cl);
                     MessageBox.Show("Produto inexistente salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaProdInex();
-                    limpaGridProdInex();
+                    LimpaProdInex();
+                    LimpaGridProdInex();
                     listComent3.Clear();
                     listProd3.Clear();
                     listQtde3.Clear();
@@ -819,13 +817,13 @@ namespace processosAdministrativos.Telas
                         cl.Preco_loe = 0;
                         cl.Comentario_loe = listComentTroca[i];
                         cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                        dao.cadastraLoe(cl);
+                        dao.CadastraLoe(cl);
                         x4 = 1;
                         aux4 = 1;
                     }
                     MessageBox.Show("Troca de produto salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaTrocProd();
-                    limpaGridTrocProd();
+                    LimpaTrocProd();
+                    LimpaGridTrocProd();
                     listComent4.Clear();
                     listProd4.Clear();
                 }
@@ -838,10 +836,10 @@ namespace processosAdministrativos.Telas
                     cl.Preco_loe = 0;
                     cl.Comentario_loe = comentTrocaTxt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraLoe(cl);
+                    dao.CadastraLoe(cl);
                     MessageBox.Show("Troca de produto salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    limpaTrocProd();
-                    limpaGridTrocProd();
+                    LimpaTrocProd();
+                    LimpaGridTrocProd();
                     listComent4.Clear();
                     listProd4.Clear();
                     x4 = 1;
@@ -866,7 +864,7 @@ namespace processosAdministrativos.Telas
                     cl.Preco_loe = 0;
                     cl.Comentario_loe = coment1Txt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraLoe(cl);
+                    dao.CadastraLoe(cl);
                     x5 = 1;
                     MessageBox.Show("Condição de pagamento salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     coment1Txt.Text = string.Empty;
@@ -891,7 +889,7 @@ namespace processosAdministrativos.Telas
                 cl.Preco_loe = 0;
                 cl.Comentario_loe = coment2Txt.Text;
                 cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                dao.cadastraLoe(cl);
+                dao.CadastraLoe(cl);
                 MessageBox.Show("Retirada de encomenda salva!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 coment2Txt.Text = string.Empty;
                 aux6 = 1;
@@ -906,7 +904,7 @@ namespace processosAdministrativos.Telas
                 cl.Preco_loe = 0;
                 cl.Comentario_loe = coment3Txt.Text;
                 cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                dao.cadastraLoe(cl);
+                dao.CadastraLoe(cl);
                 MessageBox.Show("Conhecendo/Olhando salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 coment3Txt.Text = string.Empty;
                 aux7 = 1;
@@ -923,7 +921,7 @@ namespace processosAdministrativos.Telas
                     cl.Preco_loe = 0;
                     cl.Comentario_loe = coment4Txt.Text;
                     cl.Data_loe = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-                    dao.cadastraLoe(cl);
+                    dao.CadastraLoe(cl);
                     MessageBox.Show("Outros salvo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     coment4Txt.Text = string.Empty;
                     aux8 = 1;
@@ -938,18 +936,18 @@ namespace processosAdministrativos.Telas
             if (x1 == 1 && x2 == 1 && x3 == 1 && x4 == 1 && x5 == 1 && x8 == 1)
             {
                 //MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                limpaCampo();
-                limpaPrecoElev();
-                limpaGridPrecElev();
-                limpaFaltaEst();
-                limpaGridFaltEst();
-                limpaProdInex();
-                limpaGridProdInex();
-                limpaTrocProd();
-                limpaGridTrocProd();
-                limpaList();
-                limpaComent();
-                removeTabPage();
+                LimpaCampo();
+                LimpaPrecoElev();
+                LimpaGridPrecElev();
+                LimpaFaltaEst();
+                LimpaGridFaltEst();
+                LimpaProdInex();
+                LimpaGridProdInex();
+                LimpaTrocProd();
+                LimpaGridTrocProd();
+                LimpaList();
+                LimpaComent();
+                RemoveTabPage();
                 aux1 = 0;
                 aux2 = 0;
                 aux3 = 0;
@@ -971,9 +969,9 @@ namespace processosAdministrativos.Telas
 
         private void precPrecElevTxt_TextChanged(object sender, EventArgs e)
         {
-            if (precoControle == false)
+            if (PrecoControle == false)
             {
-                formatoPreco(ref precPrecElevTxt);
+                FormatoPreco(ref precPrecElevTxt);
             } 
         }
     }

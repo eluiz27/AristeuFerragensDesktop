@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class consultaLOE
+    partial class ConsultaLOE
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(consultaLOE));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConsultaLOE));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.opcaoRb = new System.Windows.Forms.RadioButton();
             this.vendedorRb = new System.Windows.Forms.RadioButton();

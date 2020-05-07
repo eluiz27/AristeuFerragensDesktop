@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlOrdemCompra
+    class ControlOrdemCompra
     {
         private string oci_empresa;
         private string oci_numero;

@@ -11,7 +11,7 @@ namespace processosAdministrativos.Classes
 {
     public class ValoresGraficos
     {
-        querys q = new querys();
+        Querys q = new Querys();
         RestricaoController rc = new RestricaoController();
 
         List<double> valores = new List<double>();
@@ -26,9 +26,9 @@ namespace processosAdministrativos.Classes
             dao.Query2.Parameters.AddWithValue("@vdd", vdd);
             dao.Query2.CommandText = "select Count(vdd_codigo) from vendedores where vdd_codigo = @vdd";
 
-            dao.conecta2();
+            dao.Conecta2();
             object aux = dao.Query2.ExecuteScalar();
-            dao.desconecta2();
+            dao.Desconecta2();
             dao.Query2.Parameters.Clear();
             if (aux.ToString() == "0")
                 return false;
@@ -176,7 +176,7 @@ namespace processosAdministrativos.Classes
 
         public int LeVendedor()
         {
-            return rc.selectPesquisaDash();
+            return rc.SelectPesquisaDash();
         }
 
     }

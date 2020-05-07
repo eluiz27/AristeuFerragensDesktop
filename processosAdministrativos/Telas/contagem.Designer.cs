@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class contagem
+    partial class Contagem
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(contagem));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Contagem));
             this.label1 = new System.Windows.Forms.Label();
             this.prefixProdTxt = new System.Windows.Forms.TextBox();
             this.pararBt = new System.Windows.Forms.Button();

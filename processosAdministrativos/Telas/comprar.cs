@@ -12,11 +12,11 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class comprar : Form
+    public partial class Comprar : Form
     {
         private string Sql = String.Empty;
         DAO dao = new DAO();
-        controlCompNComp ccnc = new controlCompNComp();
+        ControlCompNComp ccnc = new ControlCompNComp();
         List<string> y = new List<string>();
         List<string> comprouC = new List<string>();
         List<string> comprouB = new List<string>();
@@ -377,7 +377,7 @@ namespace processosAdministrativos.Telas
                     "ITM_Embalagem, round(itm_minimo, 2) as 'itm_minimo', round(itm_maximo, 2) as 'itm_maximo', round(itm_maximo - ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), 2) as 'qtde', cnc_comprar " +
                     "FROM itens left outer join compra_naocompra a on itens.itm_codigo = a.cnc_item where itm_grupo = 0096 and itm_situacao = 'A' and ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2) < itm_maximo order by saldo, itm_descricao";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader ciser = dao.Query.ExecuteReader();
             while (ciser.Read())
             {
@@ -393,7 +393,7 @@ namespace processosAdministrativos.Telas
                 comprouC.Add(ciser["cnc_comprar"].ToString());
             }
             ciser.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         public void ordemComrpaC()
@@ -406,7 +406,7 @@ namespace processosAdministrativos.Telas
                     "where itm_grupo = 0096 and (oci_sitentrega = 'P' or oci_sitentrega = 'Pendente') and ocp_dtrecebida is null and itm_situacao = 'A' and ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2) < itm_maximo group by oci_item " +
                     "order by ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), itm_descricao;";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader oc = dao.Query.ExecuteReader();
             while (oc.Read())
             {
@@ -434,7 +434,7 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             oc.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
         public void valoresTresC()
         {
@@ -449,7 +449,7 @@ namespace processosAdministrativos.Telas
                                 "itm_situacao = 'A' and ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2) < itm_maximo group by mv_item " +
                                 "order by ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), itm_descricao";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader treM = dao.Query.ExecuteReader();
             while (treM.Read())
             {
@@ -472,7 +472,7 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             treM.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < tresC.Count; i++)
             {
@@ -493,7 +493,7 @@ namespace processosAdministrativos.Telas
                     "order by ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), itm_descricao";
             
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader seteM = dao.Query.ExecuteReader();
             while (seteM.Read())
             {
@@ -516,7 +516,7 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             seteM.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < seteC.Count; i++)
             {
@@ -562,7 +562,7 @@ namespace processosAdministrativos.Telas
                     "ITM_Embalagem, round(itm_minimo, 2) as 'itm_minimo', round(itm_maximo, 2) as 'itm_maximo', round(itm_maximo - ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), 2) as 'qtde', cnc_comprar " +
                     "FROM itens left outer join compra_naocompra a on itens.itm_codigo = a.cnc_item where itm_grupo = 0167 and itm_situacao = 'A' and ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2) < itm_maximo order by saldo, itm_descricao";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader belenus = dao.Query.ExecuteReader();
             while (belenus.Read())
             {
@@ -578,7 +578,7 @@ namespace processosAdministrativos.Telas
                 comprouB.Add(belenus["cnc_comprar"].ToString());
             }
             belenus.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         public void ordemComrpaB()
@@ -591,7 +591,7 @@ namespace processosAdministrativos.Telas
                     "where itm_grupo = 0167 and (oci_sitentrega = 'P' or oci_sitentrega = 'Pendente') and ocp_dtrecebida is null and itm_situacao = 'A' and ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2) < itm_maximo group by oci_item " +
                     "order by ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), itm_descricao;";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader oc = dao.Query.ExecuteReader();
             while (oc.Read())
             {
@@ -619,7 +619,7 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             oc.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         public void valoresTresB()
@@ -636,7 +636,7 @@ namespace processosAdministrativos.Telas
                                "order by ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), itm_descricao";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader treM = dao.Query.ExecuteReader();
             while (treM.Read())
             {
@@ -659,7 +659,7 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             treM.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < tresB.Count; i++)
             {
@@ -680,7 +680,7 @@ namespace processosAdministrativos.Telas
                                "order by ROUND((ITM_Anterior+ITM_Entradas+ITM_Compras-ITM_Saidas-ITM_Vendas),2), itm_descricao";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader seteM = dao.Query.ExecuteReader();
             while (seteM.Read())
             {
@@ -703,7 +703,7 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             seteM.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < seteB.Count; i++)
             {
@@ -715,23 +715,23 @@ namespace processosAdministrativos.Telas
         {
             Sql = "SELECT cnc_item FROM compra_naocompra";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader aux = dao.Query.ExecuteReader();
             while(aux.Read())
             {
                 y.Add(aux["cnc_item"].ToString());
             }
             aux.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public comprar()
+        public Comprar()
         {
             InitializeComponent();
         }
 
         private void comprar_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCompra = 0;
         }
 
@@ -771,13 +771,13 @@ namespace processosAdministrativos.Telas
                         {
                             ccnc.Cnc_item = dataGridView1.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 1;
-                            dao.cadastraCompra(ccnc);
+                            dao.CadastraCompra(ccnc);
                         }
                         else
                         {
                             ccnc.Cnc_item = dataGridView1.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 1;
-                            dao.alteraCompra(ccnc, dataGridView1.Rows[i].Cells[1].Value.ToString());
+                            dao.AlteraCompra(ccnc, dataGridView1.Rows[i].Cells[1].Value.ToString());
                         }
                         aux = 0;
                     }
@@ -796,13 +796,13 @@ namespace processosAdministrativos.Telas
                         {
                             ccnc.Cnc_item = dataGridView1.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 0;
-                            dao.cadastraCompra(ccnc);
+                            dao.CadastraCompra(ccnc);
                         }
                         else
                         {
                             ccnc.Cnc_item = dataGridView1.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 0;
-                            dao.alteraCompra(ccnc, dataGridView1.Rows[i].Cells[1].Value.ToString());
+                            dao.AlteraCompra(ccnc, dataGridView1.Rows[i].Cells[1].Value.ToString());
                         }
                         aux = 0;
                     }
@@ -844,13 +844,13 @@ namespace processosAdministrativos.Telas
                         {
                             ccnc.Cnc_item = dataGridView2.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 1;
-                            dao.cadastraCompra(ccnc);
+                            dao.CadastraCompra(ccnc);
                         }
                         else
                         {
                             ccnc.Cnc_item = dataGridView2.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 1;
-                            dao.alteraCompra(ccnc, dataGridView2.Rows[i].Cells[1].Value.ToString());
+                            dao.AlteraCompra(ccnc, dataGridView2.Rows[i].Cells[1].Value.ToString());
                         }
                         aux = 0;
                     }
@@ -869,13 +869,13 @@ namespace processosAdministrativos.Telas
                         {
                             ccnc.Cnc_item = dataGridView2.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 0;
-                            dao.cadastraCompra(ccnc);
+                            dao.CadastraCompra(ccnc);
                         }
                         else
                         {
                             ccnc.Cnc_item = dataGridView2.Rows[i].Cells[1].Value.ToString();
                             ccnc.Cnc_comprar = 0;
-                            dao.alteraCompra(ccnc, dataGridView2.Rows[i].Cells[1].Value.ToString());
+                            dao.AlteraCompra(ccnc, dataGridView2.Rows[i].Cells[1].Value.ToString());
                         }
                         aux = 0;
                     }
@@ -906,11 +906,11 @@ namespace processosAdministrativos.Telas
                 if (aux == 0)
                 {
                     ccnc.Cnc_item = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-                    dao.cadastraCompra(ccnc);
+                    dao.CadastraCompra(ccnc);
                 }
                 else
                 {
-                    dao.alteraCompra(ccnc, dataGridView1.CurrentRow.Cells[1].Value.ToString());
+                    dao.AlteraCompra(ccnc, dataGridView1.CurrentRow.Cells[1].Value.ToString());
                     aux = 0;
                 }
                 y.Clear();
@@ -945,11 +945,11 @@ namespace processosAdministrativos.Telas
                 if (aux == 0)
                 {
                     ccnc.Cnc_item = dataGridView2.CurrentRow.Cells[1].Value.ToString();
-                    dao.cadastraCompra(ccnc);
+                    dao.CadastraCompra(ccnc);
                 }
                 else
                 {
-                    dao.alteraCompra(ccnc, dataGridView2.CurrentRow.Cells[1].Value.ToString());
+                    dao.AlteraCompra(ccnc, dataGridView2.CurrentRow.Cells[1].Value.ToString());
                     aux = 0;
                 }
                 y.Clear();
@@ -976,25 +976,25 @@ namespace processosAdministrativos.Telas
                 sfd.ShowDialog();
                 if (sfd.FileName != "")
                 {
-                    excel ex = new excel();
-                    ex.createFile();
+                    Excel ex = new Excel();
+                    ex.CreateFile();
                     ex.SavaAs(sfd.FileName);
                     ex.Close();
-                    excel ex2 = new excel(sfd.FileName, "");
-                    ex2.writeCell3(1, 0, 0, "Código");
-                    ex2.writeCell3(1, 0, 1, "Produto");
-                    ex2.writeCell3(1, 0, 2, "Cód. Forn.");
-                    ex2.writeCell3(1, 0, 3, "Un.");
-                    ex2.writeCell3(1, 0, 4, "Saldo");
-                    ex2.writeCell3(1, 0, 5, "Embalagem");
-                    ex2.writeCell3(1, 0, 6, "Mín.");
-                    ex2.writeCell3(1, 0, 7, "Máx.");
-                    ex2.writeCell3(1, 0, 8, "7 Meses");
-                    ex2.writeCell3(1, 0, 9, "3 Meses");
-                    ex2.writeCell3(1, 0, 10, "Qtde");
-                    ex2.writeCell3(1, 0, 11, "Saldo - Venda 7");
-                    ex2.writeCell3(1, 0, 12, "Saldo - Venda 3");
-                    ex2.writeCell3(1, 0, 13, "Pendencia OC");
+                    Excel ex2 = new Excel(sfd.FileName, "");
+                    ex2.WriteCell3(1, 0, 0, "Código");
+                    ex2.WriteCell3(1, 0, 1, "Produto");
+                    ex2.WriteCell3(1, 0, 2, "Cód. Forn.");
+                    ex2.WriteCell3(1, 0, 3, "Un.");
+                    ex2.WriteCell3(1, 0, 4, "Saldo");
+                    ex2.WriteCell3(1, 0, 5, "Embalagem");
+                    ex2.WriteCell3(1, 0, 6, "Mín.");
+                    ex2.WriteCell3(1, 0, 7, "Máx.");
+                    ex2.WriteCell3(1, 0, 8, "7 Meses");
+                    ex2.WriteCell3(1, 0, 9, "3 Meses");
+                    ex2.WriteCell3(1, 0, 10, "Qtde");
+                    ex2.WriteCell3(1, 0, 11, "Saldo - Venda 7");
+                    ex2.WriteCell3(1, 0, 12, "Saldo - Venda 3");
+                    ex2.WriteCell3(1, 0, 13, "Pendencia OC");
                     for (int i = 0; i < dataGridView1.RowCount; i++)
                     {
                         if (bool.Parse(dataGridView1.Rows[i].Cells[0].FormattedValue.ToString()) == true)
@@ -1016,9 +1016,9 @@ namespace processosAdministrativos.Telas
                             z++;
                         }
                     }
-                    ex2.writeRange(2, 1, contaTab2 + 1, 14, 1, x);
-                    ex2.ajustarColunas(1, "A", "N");
-                    ex2.negrito(1,"A1:N1");
+                    ex2.WriteRange(2, 1, contaTab2 + 1, 14, 1, x);
+                    ex2.AjustarColunas(1, "A", "N");
+                    ex2.Negrito(1,"A1:N1");
                     ex2.Save();
                     ex2.Close();
                     System.Diagnostics.Process.Start(sfd.FileName);
@@ -1033,25 +1033,25 @@ namespace processosAdministrativos.Telas
                 sfd.ShowDialog();
                 if (sfd.FileName != "")
                 {
-                    excel ex = new excel();
-                    ex.createFile();
+                    Excel ex = new Excel();
+                    ex.CreateFile();
                     ex.SavaAs(sfd.FileName);
                     ex.Close();
-                    excel ex2 = new excel(sfd.FileName, "");
-                    ex2.writeCell3(1, 0, 0, "Código");
-                    ex2.writeCell3(1, 0, 1, "Produto");
-                    ex2.writeCell3(1, 0, 2, "Cód. Forn.");
-                    ex2.writeCell3(1, 0, 3, "Un.");
-                    ex2.writeCell3(1, 0, 4, "Saldo");
-                    ex2.writeCell3(1, 0, 5, "Embalagem");
-                    ex2.writeCell3(1, 0, 6, "Mín.");
-                    ex2.writeCell3(1, 0, 7, "Máx.");
-                    ex2.writeCell3(1, 0, 8, "7 Meses");
-                    ex2.writeCell3(1, 0, 9, "3 Meses");
-                    ex2.writeCell3(1, 0, 10, "Qtde");
-                    ex2.writeCell3(1, 0, 11, "Saldo - Venda 7");
-                    ex2.writeCell3(1, 0, 12, "Saldo - Venda 3");
-                    ex2.writeCell3(1, 0, 13, "Pendencia OC");
+                    Excel ex2 = new Excel(sfd.FileName, "");
+                    ex2.WriteCell3(1, 0, 0, "Código");
+                    ex2.WriteCell3(1, 0, 1, "Produto");
+                    ex2.WriteCell3(1, 0, 2, "Cód. Forn.");
+                    ex2.WriteCell3(1, 0, 3, "Un.");
+                    ex2.WriteCell3(1, 0, 4, "Saldo");
+                    ex2.WriteCell3(1, 0, 5, "Embalagem");
+                    ex2.WriteCell3(1, 0, 6, "Mín.");
+                    ex2.WriteCell3(1, 0, 7, "Máx.");
+                    ex2.WriteCell3(1, 0, 8, "7 Meses");
+                    ex2.WriteCell3(1, 0, 9, "3 Meses");
+                    ex2.WriteCell3(1, 0, 10, "Qtde");
+                    ex2.WriteCell3(1, 0, 11, "Saldo - Venda 7");
+                    ex2.WriteCell3(1, 0, 12, "Saldo - Venda 3");
+                    ex2.WriteCell3(1, 0, 13, "Pendencia OC");
                     for (int i = 0; i < dataGridView2.RowCount; i++)
                     {
                         if (bool.Parse(dataGridView2.Rows[i].Cells[0].FormattedValue.ToString()) == true)
@@ -1073,9 +1073,9 @@ namespace processosAdministrativos.Telas
                             w++;
                         }
                     }
-                    ex2.writeRange(2, 1, contaTab3 + 1, 14, 1, x);
-                    ex2.ajustarColunas(1, "A", "N");
-                    ex2.negrito(1, "A1:N1");
+                    ex2.WriteRange(2, 1, contaTab3 + 1, 14, 1, x);
+                    ex2.AjustarColunas(1, "A", "N");
+                    ex2.Negrito(1, "A1:N1");
                     ex2.Save();
                     ex2.Close();
                     System.Diagnostics.Process.Start(sfd.FileName);

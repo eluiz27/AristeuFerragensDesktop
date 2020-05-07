@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class mediaVendas
+    partial class MediaVendas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mediaVendas));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MediaVendas));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.inferiorMtxt = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();

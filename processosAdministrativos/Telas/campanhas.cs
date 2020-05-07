@@ -14,7 +14,7 @@ using System.Net.NetworkInformation;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class campanhas : Form
+    public partial class Campanhas : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
@@ -34,7 +34,7 @@ namespace processosAdministrativos.Telas
         string pesquisaCod = string.Empty;
         string pesquisaProd = string.Empty;
         int codigoProd = 0;
-        variaveis var = new variaveis();
+        Variaveis var = new Variaveis();
 
         public void montaTabela()
         {
@@ -119,18 +119,30 @@ namespace processosAdministrativos.Telas
             dataGridView1.DataSource = tb;
         }
 
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+
+            return text;
+        }
+
         public void localizaDados()
         {
+            string prodAux = CorrecoesTexto(pesquisaProd);
+            string campAx = CorrecoesTexto(pesquisaCamp);
+            string CodAux = CorrecoesTexto(pesquisaCod);
+
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
             Sql = "SELECT cmak_codigo, cmak_campanha, cmak_item, if(cmak_produto = '' , itm_descricao, cmak_produto) as 'prod', cmak_alcance, cmak_curtidas, cmak_compart, DATE_FORMAT(cmak_data, '%d/%m/%Y') as 'data' " +
-                    "FROM campanha_marketing left outer join itens on campanha_marketing.cmak_item = itens.itm_codigo where cmak_campanha like '%" + pesquisaCamp + "%' and cmak_item like '%" + pesquisaCod + "%' " +
-                    "and (cmak_produto like '%" + pesquisaProd + "%' or itm_descricao like '%" + pesquisaProd + "%') and cmak_data between '" + inferior + "' and '" + superior + "'";
+                    "FROM campanha_marketing left outer join itens on campanha_marketing.cmak_item = itens.itm_codigo where cmak_campanha like '%" + campAx + "%' and cmak_item like '%" + CodAux + "%' " +
+                    "and (cmak_produto like '%" + prodAux + "%' or itm_descricao like '%" + prodAux + "%') and cmak_data between '" + inferior + "' and '" + superior + "'";
+
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader campa = dao.Query.ExecuteReader();
             while (campa.Read())
             {
@@ -144,7 +156,7 @@ namespace processosAdministrativos.Telas
                 dat.Add(Convert.ToDateTime(campa["data"]));
             }
             campa.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         public void limpaTabela()
@@ -174,14 +186,14 @@ namespace processosAdministrativos.Telas
             int aux = 0;
             Sql = "select round(if (cmak_campanha = 'OFERTA', sum(cmak_alcance) / 2, sum(cmak_alcance))) as 'valor' from campanha_marketing group by cmak_campanha; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader graf = dao.Query.ExecuteReader();
             while (graf.Read())
             {
                 grafiValor.Add(Convert.ToInt32(graf["valor"]));
             }
             graf.Close();
-            dao.desconecta();
+            dao.Desconecta();
             for (int i = 0; i < grafiValor.Count; i++)
             {
                 aux = aux + grafiValor[i];
@@ -201,7 +213,7 @@ namespace processosAdministrativos.Telas
         {
             Sql = "select cmak_campanha, cmak_item, if(cmak_produto = '' , itm_descricao, cmak_produto) as 'prod', DATE_FORMAT(cmak_data, '%d/%m/%Y') as 'data' from campanha_marketing  left outer join itens on campanha_marketing.cmak_item = itens.itm_codigo where cmak_codigo = " + var.CodCamp + "";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader camp = dao.Query.ExecuteReader();
             while (camp.Read())
             {
@@ -211,7 +223,7 @@ namespace processosAdministrativos.Telas
                 codigoProd = Convert.ToInt32(camp["cmak_item"]);
             }
             camp.Close();
-            dao.desconecta();
+            dao.Desconecta();
             var.CodCamp = 0;
 
             DateTime aux1 = DateTime.Parse(dataMtxt.Text);
@@ -219,26 +231,26 @@ namespace processosAdministrativos.Telas
             superior2Mtxt.Text = aux1.AddMonths(1).ToString("dd/MM/yyyy");
         } 
 
-        public campanhas()
+        public Campanhas()
         {
             InitializeComponent();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            cadastraBanner cb = new cadastraBanner();
+            CadastraBanner cb = new CadastraBanner();
             cb.ShowDialog();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            cadastroCampanha cc = new cadastroCampanha();
+            CadastroCampanha cc = new CadastroCampanha();
             cc.ShowDialog();
         }
 
         private void campanhas_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCadBanner = 0;
         }
 
@@ -304,12 +316,12 @@ namespace processosAdministrativos.Telas
         {
             if(e.ColumnIndex == 3 || e.ColumnIndex == 4 || e.ColumnIndex == 5)
             {
-                controlCampanha cc = new controlCampanha();
+                ControlCampanha cc = new ControlCampanha();
                 cc.Cmak_alcance = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
                 cc.Cmak_curtidas = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
                 cc.Cmak_compart = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
 
-                dao.alteraCampanha(cc, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[7].Value));
+                dao.AlteraCampanha(cc, Convert.ToInt32(dataGridView1.Rows[e.RowIndex].Cells[7].Value));
                 cc.Cmak_alcance = string.Empty;
                 cc.Cmak_curtidas = string.Empty;
                 cc.Cmak_compart = string.Empty;
@@ -346,7 +358,7 @@ namespace processosAdministrativos.Telas
             dataMtxt.Text = "  /  /   ";
             inferior2Mtxt.Text = "  /  /   ";
             superior2Mtxt.Text = "  /  /   ";
-            procuraCampanha pc = new procuraCampanha();
+            ProcuraCampanha pc = new ProcuraCampanha();
             pc.ShowDialog();
         }
 
@@ -364,7 +376,7 @@ namespace processosAdministrativos.Telas
             Sql = "select nt_data, mv_quantidade from movimentos a inner join notas b on a.mv_empresa = b.nt_empresa and a.mv_documento = b.nt_documento and a.mv_agente = b.nt_agente " +
                     "INNER JOIN Tipomovi ON b.nt_movimento = Tipomovi.tmv_codigo where nt_data between '"+ inferior2 + "' and '"+superior2+"' and Tipomovi.tmv_grupo = 'V' and mv_item = "+codigoProd+"; ";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
 
             MySqlDataReader vendas = dao.Query.ExecuteReader();
             while (vendas.Read())
@@ -388,7 +400,7 @@ namespace processosAdministrativos.Telas
             chart2.Series[1].Points.AddY(depois);
 
             vendas.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         private void button4_Click(object sender, EventArgs e)

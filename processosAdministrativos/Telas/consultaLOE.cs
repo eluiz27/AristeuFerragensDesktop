@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class consultaLOE : Form
+    public partial class ConsultaLOE : Form
     {
         DAO dao = new DAO();
         private string Sql, Sql2 = String.Empty;
@@ -22,31 +22,22 @@ namespace processosAdministrativos.Telas
         List<string> prec = new List<string>();
         List<string> qtdeSis = new List<string>();
         List<string> comentc = new List<string>();
-        controlTelaAberta cta = new controlTelaAberta();
+        ControlTelaAberta cta = new ControlTelaAberta();
 
         public void dataInfSup()
         {
+            QueryDataTable dt = new QueryDataTable();
+
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-
-            table = new DataTable();
-            bs = new BindingSource();
-
-            da = new MySqlDataAdapter("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
+            dataGridView1.DataSource = dt.procura("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
                                         "if(loe_comentario <> '', 'sim', 'não') as 'comentario' ,DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data', ROUND((itens.ITM_Anterior+itens.ITM_Entradas+itens.ITM_Compras-itens.ITM_Saidas-itens.ITM_Vendas),2) as 'qtdeSist' " +
                                         "FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) "+
                                         "INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo) "+
-                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "';", dao.Conexao);
-            da.Fill(table);
-
-            bs.DataSource = table;
-            dataGridView1.DataSource = bs;
+                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "';");
         }
 
         public void vendas()
@@ -55,8 +46,8 @@ namespace processosAdministrativos.Telas
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior1 = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior2 = aux2.ToString("yyyy-MM-dd 23:00:00");
-            querys qr = new querys();
-            qr.selcTotal(inferior1, superior2);
+            Querys qr = new Querys();
+            qr.SelcTotal(inferior1, superior2);
             vendasTxt.Text = qr.NVendasL;
         }
         public void salvaDados()
@@ -67,9 +58,9 @@ namespace processosAdministrativos.Telas
                 {
                     Sql = "SELECT loe_comentario FROM loe WHERE loe_codigo =  " + dataGridView1.Rows[i].Cells["codigo"].Value.ToString() + "";
                     dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                    dao.conecta();
+                    dao.Conecta();
                     object coment = dao.Query.ExecuteScalar();
-                    dao.desconecta();
+                    dao.Desconecta();
                     vendc.Add(dataGridView1.Rows[i].Cells["vendedor"].Value.ToString());
                     opc.Add(dataGridView1.Rows[i].Cells["opcao"].Value.ToString());
                     prodc.Add(dataGridView1.Rows[i].Cells["produto"].Value.ToString());
@@ -79,7 +70,16 @@ namespace processosAdministrativos.Telas
                 }
             }
         }
-        public consultaLOE()
+
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
+        public ConsultaLOE()
         {
             InitializeComponent();
         }
@@ -120,9 +120,9 @@ namespace processosAdministrativos.Telas
         {
             Sql = "SELECT loe_comentario FROM loe WHERE loe_codigo = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object coment = dao.Query.ExecuteScalar();
-            dao.desconecta();
+            dao.Desconecta();
             comentarioTxt.Text = coment.ToString();
         }
 
@@ -134,43 +134,31 @@ namespace processosAdministrativos.Telas
 
         private void pesquisaTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            QueryDataTable dt = new QueryDataTable();
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
-            table = new DataTable();
-            bs = new BindingSource();
             if (vendedorRb.Checked)
             {
-                da = new MySqlDataAdapter("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
+                dataGridView1.DataSource = dt.procura("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
                                         "if(loe_comentario <> '', 'sim', 'não') as 'comentario' ,DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data', ROUND((itens.ITM_Anterior+itens.ITM_Entradas+itens.ITM_Compras-itens.ITM_Saidas-itens.ITM_Vendas),2) as 'qtdeSist' " +
                                         "FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) " +
                                         "INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo) " +
-                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND vdd_nome like '" + pesquisar + "%';", dao.Conexao);
-                da.Fill(table);
-
-                bs.DataSource = table;
-                dataGridView1.DataSource = bs;
+                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND vdd_nome like '" + pesquisar + "%';");
             }
             else
             {
                 if (opcaoRb.Checked)
                 {
-                    da = new MySqlDataAdapter("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
+                    dataGridView1.DataSource = dt.procura("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
                                         "if(loe_comentario <> '', 'sim', 'não') as 'comentario' ,DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data', ROUND((itens.ITM_Anterior+itens.ITM_Entradas+itens.ITM_Compras-itens.ITM_Saidas-itens.ITM_Vendas),2) as 'qtdeSist' " +
                                         "FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) " +
                                         "INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo) " +
-                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND opcao_loe_descricao like '" + pesquisar + "%';", dao.Conexao);
-                    da.Fill(table);
-
-                    bs.DataSource = table;
-                    dataGridView1.DataSource = bs;
+                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND opcao_loe_descricao like '" + pesquisar + "%';");
                 }
             }
         }
@@ -188,27 +176,27 @@ namespace processosAdministrativos.Telas
             sfd.ShowDialog();
             if (sfd.FileName != "")
             {
-                excel ex = new excel();
-                ex.createFile();
+                Excel ex = new Excel();
+                ex.CreateFile();
                 ex.SavaAs(sfd.FileName);
                 ex.Close();
-                excel ex2 = new excel(sfd.FileName, "");
-                ex2.writeCell3(1, 0, 0, "Vendedor");
-                ex2.writeCell3(1, 0, 1, "Opção");
-                ex2.writeCell3(1, 0, 2, "Produto");
-                ex2.writeCell3(1, 0, 3, "Qtde");
-                ex2.writeCell3(1, 0, 4, "Preço");
-                ex2.writeCell3(1, 0, 5, "Comentário");
+                Excel ex2 = new Excel(sfd.FileName, "");
+                ex2.WriteCell3(1, 0, 0, "Vendedor");
+                ex2.WriteCell3(1, 0, 1, "Opção");
+                ex2.WriteCell3(1, 0, 2, "Produto");
+                ex2.WriteCell3(1, 0, 3, "Qtde");
+                ex2.WriteCell3(1, 0, 4, "Preço");
+                ex2.WriteCell3(1, 0, 5, "Comentário");
                 for (int i = 0; i < vendc.Count; i++)
                 {
-                    ex2.writeCell3(1, i + 1, 0, vendc[i]);
-                    ex2.writeCell3(1, i + 1, 1, opc[i]);
-                    ex2.writeCell3(1, i + 1, 2, prodc[i]);
-                    ex2.writeCell3(1, i + 1, 3, qtdeSis[i]);
-                    ex2.writeCell3(1, i + 1, 4, prec[i]);
-                    ex2.writeCell3(1, i + 1, 5, comentc[i]);
+                    ex2.WriteCell3(1, i + 1, 0, vendc[i]);
+                    ex2.WriteCell3(1, i + 1, 1, opc[i]);
+                    ex2.WriteCell3(1, i + 1, 2, prodc[i]);
+                    ex2.WriteCell3(1, i + 1, 3, qtdeSis[i]);
+                    ex2.WriteCell3(1, i + 1, 4, prec[i]);
+                    ex2.WriteCell3(1, i + 1, 5, comentc[i]);
                 }
-                ex2.ajustarColunas(1, "A", "F");
+                ex2.AjustarColunas(1, "A", "F");
                 ex2.Save();
                 ex2.Close();
                 System.Diagnostics.Process.Start(sfd.FileName);

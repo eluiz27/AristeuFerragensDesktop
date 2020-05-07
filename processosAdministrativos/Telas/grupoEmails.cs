@@ -12,34 +12,33 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class grupoEmails : Form
+    public partial class GrupoEmails : Form
     {
         int aux = 0;
         int codi = 0;
         DAO dao = new DAO();
-        public void tabela()
+        public void Tabela()
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
+            QueryDataTable dt = new QueryDataTable();
 
-            table = new DataTable();
-            bs = new BindingSource();
-
-            da = new MySqlDataAdapter("SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails ORDER BY grpe_dono, grpe_grupo, grpe_email;", dao.Conexao);
-            da.Fill(table);
-
-            bs.DataSource = table;
-            dataGridView1.DataSource = bs;
+            dataGridView1.DataSource = dt.procura("SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails ORDER BY grpe_dono, grpe_grupo, grpe_email;");
         }
-        public grupoEmails()
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
+        public GrupoEmails()
         {
             InitializeComponent();
         }
 
         private void grupoEmails_Load(object sender, EventArgs e)
         {
-            tabela();
+            Tabela();
             donoRb.Checked = true;
         }
 
@@ -47,21 +46,21 @@ namespace processosAdministrativos.Telas
         {
             if (donoTxt.Text != string.Empty && grupoTxt.Text != string.Empty && emailTxt.Text != string.Empty)
             {
-                controlGruposEmail cg = new controlGruposEmail();
+                ControlGruposEmail cg = new ControlGruposEmail();
                 cg.Grpe_dono = donoTxt.Text;
                 cg.Grpe_grupo = grupoTxt.Text;
                 cg.Grpe_email = emailTxt.Text;
                 if (aux == 0)
-                    dao.cadastraGrupoEmail(cg);
+                    dao.CadastraGrupoEmail(cg);
                 else
                 {
-                    dao.alteraGrupoEmail(cg, codi);
+                    dao.AlteraGrupoEmail(cg, codi);
                     aux = 0;
                     codi = 0;
                 }
 
                 dataGridView1.DataSource = null;
-                tabela();
+                Tabela();
                 donoTxt.Text = string.Empty;
                 grupoTxt.Text = string.Empty;
                 emailTxt.Text = string.Empty;
@@ -76,7 +75,7 @@ namespace processosAdministrativos.Telas
             aux = 0;
             codi = 0;
             dataGridView1.DataSource = null;
-            tabela();
+            Tabela();
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
@@ -90,30 +89,18 @@ namespace processosAdministrativos.Telas
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            QueryDataTable dt = new QueryDataTable();
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
-            table = new DataTable();
-            bs = new BindingSource();
             if (donoRb.Checked)
             {
-                da = new MySqlDataAdapter("SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails WHERE grpe_dono like '"+pesquisar+"%' ORDER BY grpe_dono, grpe_grupo, grpe_email;", dao.Conexao);
-                da.Fill(table);
-
-                bs.DataSource = table;
-                dataGridView1.DataSource = bs;
+                dataGridView1.DataSource = dt.procura("SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails WHERE grpe_dono like '" +pesquisar+"%' ORDER BY grpe_dono, grpe_grupo, grpe_email;");
             }
             else
             {
                 if (grupoRb.Checked)
                 {
-                    da = new MySqlDataAdapter("SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails WHERE grpe_grupo like '" + pesquisar + "%' ORDER BY grpe_dono, grpe_grupo, grpe_email;", dao.Conexao);
-                    da.Fill(table);
-
-                    bs.DataSource = table;
-                    dataGridView1.DataSource = bs;
+                    dataGridView1.DataSource = dt.procura("SELECT grpe_codigo, grpe_dono, grpe_grupo, grpe_email FROM grupo_emails WHERE grpe_grupo like '" + pesquisar + "%' ORDER BY grpe_dono, grpe_grupo, grpe_email;");
                 }
             }
         }
@@ -123,10 +110,10 @@ namespace processosAdministrativos.Telas
             if (MessageBox.Show("Tem certeza que deseja excluir?", "Mensagem", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
                 codi = Convert.ToInt32(dataGridView1.CurrentRow.Cells[0].Value);
-                dao.deletaGrupoEmail(codi);
+                dao.DeletaGrupoEmail(codi);
                 codi = 0;
                 dataGridView1.DataSource = null;
-                tabela();
+                Tabela();
                 donoTxt.Text = string.Empty;
                 grupoTxt.Text = string.Empty;
                 emailTxt.Text = string.Empty;

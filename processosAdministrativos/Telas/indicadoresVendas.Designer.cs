@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class indicadoresVendas
+    partial class IndicadoresVendas
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(indicadoresVendas));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IndicadoresVendas));
             this.dataGb = new System.Windows.Forms.GroupBox();
             this.inferiorMtxt = new System.Windows.Forms.MaskedTextBox();
             this.superiorMtxt = new System.Windows.Forms.MaskedTextBox();

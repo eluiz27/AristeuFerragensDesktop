@@ -23,7 +23,7 @@ namespace processosAdministrativos.Telas
             InitializeComponent();
         }
 
-        public void preencheCombo()
+        public void PreencheCombo()
         {
             linhas = File.ReadAllLines(caminho);
             foreach (string x in linhas)
@@ -32,11 +32,19 @@ namespace processosAdministrativos.Telas
             }
         }
 
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
         public void PreencheTabela()
         {
-            queryDataTable dt = new queryDataTable();
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
-            if(clienteRb.Checked == true)
+            QueryDataTable dt = new QueryDataTable();
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
+            if (clienteRb.Checked == true)
                 dataGridView1.DataSource = dt.procura("SELECT DATE_FORMAT(liga_data, '%d/%m/%Y') AS 'dataFormatada', liga_hora, liga_cliente, liga_para, liga_situacao, liga_obs, liga_id FROM ligacoes WHERE liga_cliente like '%" + pesquisar + "%' AND liga_data BETWEEN '"+ DateTime.Parse(inferiorMtxt.Text).ToString("yyyy-MM-dd 00:00:00") + "' AND '"+ DateTime.Parse(superiorMtxt.Text).ToString("yyyy-MM-dd 23:00:00") + "' ORDER BY liga_data, liga_hora");
             else if(paraRb.Checked == true)
                 dataGridView1.DataSource = dt.procura("SELECT DATE_FORMAT(liga_data, '%d/%m/%Y') AS 'dataFormatada', liga_hora, liga_cliente, liga_para, liga_situacao, liga_obs, liga_id FROM ligacoes WHERE liga_para like '%" + pesquisar + "%' AND liga_data BETWEEN '" + DateTime.Parse(inferiorMtxt.Text).ToString("yyyy-MM-dd 00:00:00") + "' AND '" + DateTime.Parse(superiorMtxt.Text).ToString("yyyy-MM-dd 23:00:00") + "' ORDER BY liga_data, liga_hora");
@@ -105,13 +113,13 @@ namespace processosAdministrativos.Telas
             inferiorMtxt.Text = DateTime.Now.ToString("dd/MM/yy");
             superiorMtxt.Text = DateTime.Now.ToString("dd/MM/yy");
             PreencheTabela();
-            preencheCombo();
+            PreencheCombo();
             paraCb.SelectedIndex = 0;
         }
 
         private void Ligacoes_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaChamadas = 0;
         }
 

@@ -12,10 +12,10 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class cadastraBanner : Form
+    public partial class CadastraBanner : Form
     {
         DAO dao = new DAO();
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
         private string Sql = String.Empty;
 
         public bool CampoVazio()
@@ -42,7 +42,7 @@ namespace processosAdministrativos.Telas
             vat.CodBanner = 0;
         }
 
-        public cadastraBanner()
+        public CadastraBanner()
         {
             InitializeComponent();
         }
@@ -56,19 +56,19 @@ namespace processosAdministrativos.Telas
         {
             if (CampoVazio() == false)
             {
-                controlBanner cb = new controlBanner();
+                ControlBanner cb = new ControlBanner();
                 cb.Banrot_campanha = campanhaTxt.Text;
                 cb.Banrot_img = imgTxt.Text;
                 DateTime data = DateTime.Parse(validadeMtxt.Text);
                 cb.Banrot_validade = data.ToString("yyyy-MM-dd 23:59:59");
                 if (vat.CodBanner == 0)
                 {
-                    dao.cadastraBanner(cb);
+                    dao.CadastraBanner(cb);
                     MessageBox.Show("Salvo com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    dao.alteraBanner(cb, vat.CodBanner);
+                    dao.AlteraBanner(cb, vat.CodBanner);
                     MessageBox.Show("Alterado com sucesso!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     vat.CodBanner = 0;
                 }
@@ -84,7 +84,7 @@ namespace processosAdministrativos.Telas
         private void alterarBt_Click(object sender, EventArgs e)
         {
             limparCampo();
-            procuraBanner pb = new procuraBanner();
+            ProcuraBanner pb = new ProcuraBanner();
             pb.ShowDialog();
         }
 
@@ -99,7 +99,7 @@ namespace processosAdministrativos.Telas
             {
                 Sql = "SELECT banrot_campanha, banrot_img, banrot_validade FROM banner_rotativo WHERE banrot_codigo = " + vat.CodBanner + "";
                 dao.Query = new MySqlCommand(Sql, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 MySqlDataReader banners = dao.Query.ExecuteReader();
                 banners.Read();
                 campanhaTxt.Text = banners["banrot_campanha"].ToString();
@@ -107,7 +107,7 @@ namespace processosAdministrativos.Telas
                 DateTime aux = Convert.ToDateTime(banners["banrot_validade"]);
                 validadeMtxt.Text = aux.ToString("dd-MM-yyyy");
                 banners.Close();
-                dao.desconecta();
+                dao.Desconecta();
             }
         }
     }

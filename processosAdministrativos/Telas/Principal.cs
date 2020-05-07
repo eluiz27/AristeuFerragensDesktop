@@ -11,16 +11,15 @@ namespace processosAdministrativos.Telas
 {
     public partial class Principal : Form
     {
-        controlTelaAberta cta = new controlTelaAberta();
-        ValoresGraficos vg = new ValoresGraficos();
-        RestricaoConfig res = new RestricaoConfig();
-        VendedorDao vd = new VendedorDao();
+        readonly ControlTelaAberta cta = new ControlTelaAberta();
+        readonly ValoresGraficos vg = new ValoresGraficos();
+        readonly RestricaoConfig res = new RestricaoConfig();
+        readonly VendedorDao vd = new VendedorDao();
 
         List<double> varsFatValor = new List<double>();
         List<double> varsPedValor = new List<double>();
         List<double> varsMeta = new List<double>();
         List<double> linhas = new List<double>();
-        int validaDash = 0;
 
         string enviarMV = Path.GetFullPath("EnviarMV\\Usuario.txt");
         public static string[] linhasMV;
@@ -31,8 +30,6 @@ namespace processosAdministrativos.Telas
         int vdd2 = 0;
 
         int fecharTela = 1;
-
-        int cont = 0;
 
         public void Vendedores()
         {
@@ -54,7 +51,7 @@ namespace processosAdministrativos.Telas
             backgroundWorker1.RunWorkerAsync();
             timer1.Start();
         }
-        public void restricao()
+        public void Restricao()
         {
             List<int> aux = new List<int>();
             
@@ -297,7 +294,7 @@ namespace processosAdministrativos.Telas
 
         private void processosAdm_Load(object sender, EventArgs e)
         {
-            restricao();
+            Restricao();
             timer3.Start();
             
             Vendedores();
@@ -350,7 +347,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCadAssistTec == 0)
             {
-                cadastroAssistencia ca = new cadastroAssistencia();
+                CadastroAssistencia ca = new CadastroAssistencia();
                 ca.Show();
                 cta.TelaCadAssistTec = 1;
             }
@@ -366,7 +363,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaAssistTec == 0)
             {
-                assistenciaTecnica at = new assistenciaTecnica();
+                AssistenciaTecnica at = new AssistenciaTecnica();
                 at.Show();
                 cta.TelaAssistTec = 1;
             }
@@ -381,7 +378,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaAssistTec == 0)
             {
-                assistenciaTecnica at = new assistenciaTecnica();
+                AssistenciaTecnica at = new AssistenciaTecnica();
                 at.Show();
                 cta.TelaAssistTec = 1;
             }
@@ -395,7 +392,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaContEntre == 0)
             {
-                controleEntreg pe = new controleEntreg();
+                ControleEntreg pe = new ControleEntreg();
                 pe.Show();
                 cta.TelaContEntre = 1;
             }
@@ -410,7 +407,7 @@ namespace processosAdministrativos.Telas
             if (cta.TelaEntrega == 0)
             {
                 cta.TelaEntrega = 1;
-                procuraEntrega pe = new procuraEntrega();
+                ProcuraEntrega pe = new ProcuraEntrega();
                 pe.Show();
             }
             else
@@ -423,7 +420,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCadEstoquista == 0)
             {
-                cadastroEstoquista ce = new cadastroEstoquista();
+                CadastroEstoquista ce = new CadastroEstoquista();
                 ce.Show();
                 cta.TelaCadEstoquista = 1;
             }
@@ -438,7 +435,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaContEstoq == 0)
             {
-                controleEst ce = new controleEst();
+                ControleEst ce = new ControleEst();
                 ce.Show();
                 cta.TelaContEstoq = 1;
             }
@@ -452,7 +449,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCadBanner == 0)
             {
-                campanhas cb = new campanhas();
+                Campanhas cb = new Campanhas();
                 cb.Show();
                 cta.TelaCadBanner = 1;
             }
@@ -467,7 +464,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCadLote == 0)
             {
-                consultaLote cl = new consultaLote();
+                ConsultaLote cl = new ConsultaLote();
                 cl.Show();
                 cta.TelaConsultaLote = 1;
             }
@@ -481,7 +478,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCadLote == 0)
             {
-                cadastroLote cl = new cadastroLote();
+                CadastroLote cl = new CadastroLote();
                 cl.Show();
                 cta.TelaCadLote = 1;
             }
@@ -510,7 +507,7 @@ namespace processosAdministrativos.Telas
             if (cta.TelaConsultaLOE == 0)
             {
                 cta.TelaConsultaLOE = 1;
-                consultaLOE cloe = new consultaLOE();
+                ConsultaLOE cloe = new ConsultaLOE();
                 cloe.Show();
             }
             else
@@ -523,7 +520,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaConsultLOEComple == 0)
             {
-                consultaCompletaLOE cce = new consultaCompletaLOE();
+                ConsultaCompletaLOE cce = new ConsultaCompletaLOE();
                 cce.Show();
                 cta.TelaConsultLOEComple = 1;
             }
@@ -537,7 +534,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaConsultaLOE == 0)
             {
-                consultaLOE cloe = new consultaLOE();
+                ConsultaLOE cloe = new ConsultaLOE();
                 cloe.Show();
                 cta.TelaConsultaLOE = 1;
             }
@@ -552,7 +549,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCadastroSituacao == 0)
             {
-                cadastraSituacao cf = new cadastraSituacao();
+                CadastraSituacao cf = new CadastraSituacao();
                 cf.Show();
                 cta.TelaCadastroSituacao = 1;
             }
@@ -566,7 +563,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaConsultaFallowUp == 0)
             {
-                consultaFallowUp cf = new consultaFallowUp();
+                ConsultaFallowUp cf = new ConsultaFallowUp();
                 cf.Show();
                 cta.TelaConsultaFallowUp = 1;
             }
@@ -581,7 +578,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCodificacao == 0)
             {
-                codificacao c = new codificacao();
+                Codificacao c = new Codificacao();
                 c.Show();
                 cta.TelaCodificacao = 1;
             }
@@ -595,7 +592,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaNSerie == 0)
             {
-                nSerie ns = new nSerie();
+                NSerie ns = new NSerie();
                 ns.Show();
                 cta.TelaNSerie = 1;
             }
@@ -609,7 +606,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaConsultaNSerie == 0)
             {
-                consultaNSerie cns = new consultaNSerie();
+                ConsultaNSerie cns = new ConsultaNSerie();
                 cns.Show();
                 cta.TelaConsultaNSerie = 1;
             }
@@ -637,7 +634,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaEtiquetaPreco == 0)
             {
-                etiquetaPreco ep = new etiquetaPreco();
+                EtiquetaPreco ep = new EtiquetaPreco();
                 ep.Show();
                 cta.TelaEtiquetaPreco = 1;
             }
@@ -651,7 +648,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaContagem == 0)
             {
-                contagem c = new contagem();
+                Contagem c = new Contagem();
                 c.Show();
                 cta.TelaContagem = 1;
             }
@@ -665,7 +662,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaComprasFunc == 0)
             {
-                comprasFunc cf = new comprasFunc();
+                ComprasFunc cf = new ComprasFunc();
                 cf.Show();
                 cta.TelaComprasFunc = 1;
             }
@@ -679,7 +676,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaConsCodif == 0)
             {
-                consultaCodificacao cc = new consultaCodificacao();
+                ConsultaCodificacao cc = new ConsultaCodificacao();
                 cc.Show();
                 cta.TelaConsCodif = 1;
             }
@@ -693,7 +690,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaOdemCompra == 0)
             {
-                ordemCompra oc = new ordemCompra();
+                OrdemCompra oc = new OrdemCompra();
                 oc.Show();
                 cta.TelaOdemCompra = 1;
             }
@@ -707,7 +704,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaMediaVenda == 0)
             {
-                mediaVendas mv = new mediaVendas();
+                MediaVendas mv = new MediaVendas();
                 mv.Show();
                 cta.TelaMediaVenda = 1;
             }
@@ -721,7 +718,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCompra == 0)
             {
-                comprar c = new comprar();
+                Comprar c = new Comprar();
                 c.Show();
                 cta.TelaCompra = 1;
             }
@@ -735,7 +732,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaCompraProd == 0)
             {
-                cotacaoProd cp = new cotacaoProd();
+                CotacaoProd cp = new CotacaoProd();
                 cp.Show();
                 cta.TelaCompraProd = 1;
             }
@@ -750,7 +747,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaControladoria == 0)
             {
-                controladoria ct = new controladoria();
+                Controladoria ct = new Controladoria();
                 ct.Show();
                 cta.TelaControladoria = 1;
             }
@@ -780,10 +777,10 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaMeta == 0)
             {
-                meta met = new meta();
+                Meta met = new Meta();
                 cta.TelaMeta = 1;
                 met.Show();
-                variaveis var = new variaveis();
+                Variaveis var = new Variaveis();
             }
             else
             {
@@ -797,10 +794,10 @@ namespace processosAdministrativos.Telas
             
             if(cta.TelaEtiquetaPreco == 0)
             {
-                etiquetaPreco ep = new etiquetaPreco();
+                EtiquetaPreco ep = new EtiquetaPreco();
                 cta.TelaEtiquetaPreco = 1;
                 ep.Show();
-                variaveis var = new variaveis();
+                Variaveis var = new Variaveis();
             }
             else
             {
@@ -877,7 +874,7 @@ namespace processosAdministrativos.Telas
                     {
                         //CopiaVendas cv = new CopiaVendas();
                         //cv.Copia();
-                        mapaVendasCompleto mv = new mapaVendasCompleto();
+                        MapaVendasCompleto mv = new MapaVendasCompleto();
                         mv.Show();
                         cta.TelaMapaVendas = 1;
                     }
@@ -893,7 +890,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaMapaVendas == 0)
             {
-                mapaVendasCompleto mv = new mapaVendasCompleto();
+                MapaVendasCompleto mv = new MapaVendasCompleto();
                 mv.Show();
                 cta.TelaMapaVendas = 1;
             }
@@ -907,7 +904,7 @@ namespace processosAdministrativos.Telas
         {
             if (cta.TelaIndicVendas == 0)
             {
-                indicadoresVendas iv = new indicadoresVendas();
+                IndicadoresVendas iv = new IndicadoresVendas();
                 iv.Show();
                 cta.TelaIndicVendas = 1;
             }

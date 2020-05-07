@@ -14,7 +14,7 @@ namespace processosAdministrativos.Controllers
         {
             return SelectTable();
         }
-        public int selectPesquisaDash()
+        public int SelectPesquisaDash()
         {
             rm.Computador = Environment.MachineName.ToLower();
             rm.Usuario = Environment.UserName.ToLower();

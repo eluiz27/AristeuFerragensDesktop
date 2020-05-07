@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class procuraAssistTec
+    partial class ProcuraAssistTec
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(procuraAssistTec));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProcuraAssistTec));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.assistenciaRb = new System.Windows.Forms.RadioButton();
             this.nomeFornRb = new System.Windows.Forms.RadioButton();

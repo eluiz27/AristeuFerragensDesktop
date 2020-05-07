@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class grupoEmails
+    partial class GrupoEmails
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(grupoEmails));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GrupoEmails));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.grupoRb = new System.Windows.Forms.RadioButton();
             this.donoRb = new System.Windows.Forms.RadioButton();

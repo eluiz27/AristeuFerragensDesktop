@@ -1,19 +1,26 @@
 ﻿using processosAdministrativos.Classes;
-using processosAdministrativos.Dao;
 using System;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraNota : Form
+    public partial class ProcuraNota : Form
     {
-        variaveis vari = new variaveis();
+        Variaveis vari = new Variaveis();
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable dt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+
+        public void PreencheTabela()
+        {
+            QueryDataTable dt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             if (notaRb.Checked)
                 dataGridView1.DataSource = dt.procura("SELECT nt_documento, nt_agente, nt_nmagente FROM notas INNER JOIN Tipomovi ON Notas.nt_movimento = Tipomovi.tmv_codigo where tmv_grupo = 'c' AND nt_documento like '%" + pesquisar + "%'");
@@ -22,7 +29,7 @@ namespace processosAdministrativos.Telas
             else if (nomeFonrRb.Checked)
                 dataGridView1.DataSource = dt.procura("SELECT nt_documento, nt_agente, nt_nmagente FROM notas INNER JOIN Tipomovi ON Notas.nt_movimento = Tipomovi.tmv_codigo where tmv_grupo = 'c' AND nt_nmagente like '%" + pesquisar + "%'");
         }
-        public procuraNota()
+        public ProcuraNota()
         {
             InitializeComponent();
         }
@@ -35,12 +42,12 @@ namespace processosAdministrativos.Telas
                 pesquisaTxt.Text = vari.DocCodific;
                 vari.DocCodific = string.Empty;
             }
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void pesquisaTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -48,7 +55,7 @@ namespace processosAdministrativos.Telas
             vari.NumNota = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             vari.CodFornCodific = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             vari.AuxCodifica = 1;
-            this.Close();
+            Close();
         }
     }
 }

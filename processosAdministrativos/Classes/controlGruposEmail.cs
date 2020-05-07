@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlGruposEmail
+    class ControlGruposEmail
     {
         private string grpe_dono;
         private string grpe_grupo;

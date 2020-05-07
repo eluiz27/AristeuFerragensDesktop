@@ -8,133 +8,58 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class querys
+    class Querys
     {
-        DAO dao = new DAO();
+        readonly DAO dao = new DAO();
         static MySqlCommand cmd1, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7, cmd8, cmd9, cmdAux;
-        static MySqlCommand cmdValor1, cmdValor2, cmdValor3, cmdMeta, cmdDev, cmdCanc;
+        static MySqlCommand cmdValor1, cmdValor3, cmdMeta, cmdDev, cmdCanc;
         static string Sql1, Sql2, Sql3, Sql4, Sql5, Sql6, Sql7, Sql8, Sql9, SqlAux = string.Empty;
-        static string sqlValor1, sqlValor2, sqlValor3, sqlMeta, sqlDev, sqlCanc = string.Empty;
         
         List<double> meta = new List<double>();
-        String nVendas;
-        String nOrcam;
+        string nVendas;
+        string nOrcam;
         double orcam;
-        String vendas;
-        String nVendasL;
-        String nOrcamL;
+        string vendas;
+        string nVendasL;
+        string nOrcamL;
         double orcamL;
-        String vendasL;
-        String nCancelado;
-        String nDevolu;
+        string vendasL;
+        string nCancelado;
+        string nDevolu;
         double cancelado;
         double devolu;
         double descIten;
         double descPed;
-        String nAtend;
-        String nAtendL;
-        String itensPed;
-        String itensPedL;
-        String nItens;
+        string nAtend;
+        string nAtendL;
+        string itensPed;
+        string itensPedL;
+        string nItens;
         string nItensLoja;
 
-        public String ItensPedL
-        {
-            get { return itensPedL; }
-            set { itensPedL = value; }
-        }
-        public String ItensPed
-        {
-            get { return itensPed; }
-            set { itensPed = value; }
-        }
-
-        public String NVendas
-        {
-            get { return nVendas; }
-            set { nVendas = value; }
-        }
-        public String NAtend
-        {
-            get { return nAtend; }
-            set { nAtend = value; }
-        }
-        public String NAtendL
-        {
-            get { return nAtendL; }
-            set { nAtendL = value; }
-        }
-        public String NOrcam
-        {
-            get { return nOrcam; }
-            set { nOrcam = value; }
-        }
-        public double Orcam
-        {
-            get { return orcam; }
-            set { orcam = value; }
-        }
-        public String Vendas
-        {
-            get { return vendas; }
-            set { vendas = value; }
-        }
-        public String NVendasL
-        {
-            get { return nVendasL; }
-            set { nVendasL = value; }
-        }
-        public String NOrcamL
-        {
-            get { return nOrcamL; }
-            set { nOrcamL = value; }
-        }
-        public double OrcamL
-        {
-            get { return orcamL; }
-            set { orcamL = value; }
-        }
-        public String VendasL
-        {
-            get { return vendasL; }
-            set { vendasL = value; }
-        }
-        public String NCancelado
-        {
-            get { return nCancelado; }
-            set { nCancelado = value; }
-        }
-        public String NDevolu
-        {
-            get { return nDevolu; }
-            set { nDevolu = value; }
-        }
-        public double Cancelado
-        {
-            get { return cancelado; }
-            set { cancelado = value; }
-        }
-        public double Devolu
-        {
-            get { return devolu; }
-            set { devolu = value; }
-        }
-        public double DescIten
-        {
-            get { return descIten; }
-            set { descIten = value; }
-        }
-        public double DescPed
-        {
-            get { return descPed; }
-            set { descPed = value; }
-        }
-
+        public List<double> Meta { get => meta; set => meta = value; }
+        public string NVendas { get => nVendas; set => nVendas = value; }
+        public string NOrcam { get => nOrcam; set => nOrcam = value; }
+        public double Orcam { get => orcam; set => orcam = value; }
+        public string Vendas { get => vendas; set => vendas = value; }
+        public string NVendasL { get => nVendasL; set => nVendasL = value; }
+        public string NOrcamL { get => nOrcamL; set => nOrcamL = value; }
+        public double OrcamL { get => orcamL; set => orcamL = value; }
+        public string VendasL { get => vendasL; set => vendasL = value; }
+        public string NCancelado { get => nCancelado; set => nCancelado = value; }
+        public string NDevolu { get => nDevolu; set => nDevolu = value; }
+        public double Cancelado { get => cancelado; set => cancelado = value; }
+        public double Devolu { get => devolu; set => devolu = value; }
+        public double DescIten { get => descIten; set => descIten = value; }
+        public double DescPed { get => descPed; set => descPed = value; }
+        public string NAtend { get => nAtend; set => nAtend = value; }
+        public string NAtendL { get => nAtendL; set => nAtendL = value; }
+        public string ItensPed { get => itensPed; set => itensPed = value; }
+        public string ItensPedL { get => itensPedL; set => itensPedL = value; }
         public string NItens { get => nItens; set => nItens = value; }
         public string NItensLoja { get => nItensLoja; set => nItensLoja = value; }
-        public List<double> Meta { get => meta; set => meta = value; }
 
-        public void selecao(String inferior, String superior, int vendedor)
+        public void Selecao(string inferior, string superior, int vendedor)
         {
             double totalVendas;
                 
@@ -174,7 +99,7 @@ namespace processosAdministrativos.Classes
             cmd6 = new MySqlCommand(Sql6, dao.Conexao);
             cmd9 = new MySqlCommand(Sql9, dao.Conexao);
             cmdAux = new MySqlCommand(SqlAux, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object aux1 = cmd1.ExecuteScalar();
             object aux2 = cmd2.ExecuteScalar();
             object aux3 = cmd3.ExecuteScalar();
@@ -206,11 +131,11 @@ namespace processosAdministrativos.Classes
             NItens = aux9.ToString();
             Orcam = Convert.ToDouble(aux3);
             Vendas = totalVendas.ToString();
-            dao.desconecta();
+            dao.Desconecta();
             
         }
 
-        public void selcTotal(String inferior, String superior)
+        public void SelcTotal(string inferior, string superior)
         {
             double totalVendas;
 
@@ -251,7 +176,7 @@ namespace processosAdministrativos.Classes
             cmd6 = new MySqlCommand(Sql6, dao.Conexao);
             cmd9 = new MySqlCommand(Sql9, dao.Conexao);
             cmdAux = new MySqlCommand(SqlAux, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object aux1 = cmd1.ExecuteScalar();
             object aux2 = cmd2.ExecuteScalar();
             object aux3 = cmd3.ExecuteScalar();
@@ -282,10 +207,10 @@ namespace processosAdministrativos.Classes
             NItensLoja = aux9.ToString();
             OrcamL = Convert.ToDouble(aux3);
             VendasL = totalVendas.ToString();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void indcaLoja(String inferior, String superior, int vendInf, int vendSup)
+        public void IndcaLoja(string inferior, string superior, int vendInf, int vendSup)
         {
             Sql1 = "SELECT count(vendedores.vdd_nome) as 'nome' FROM ((((notas INNER JOIN empresas on notas.nt_empresa = empresas.emp_codigo) inner join pedidos on notas.nt_numpedido = pedidos.ped_numero  and notas.nt_vendedor = pedidos.ped_vendedor and notas.nt_empresa = pedidos.ped_empresa) inner join clientes on notas.nt_agente = clientes.cli_codigo) " +
                     "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
@@ -321,7 +246,7 @@ namespace processosAdministrativos.Classes
             cmd5 = new MySqlCommand(Sql5, dao.Conexao);
             cmd6 = new MySqlCommand(Sql6, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             object aux1 = cmd1.ExecuteScalar();
             object aux2 = cmd2.ExecuteScalar();
             object aux3 = cmd3.ExecuteScalar();
@@ -334,21 +259,23 @@ namespace processosAdministrativos.Classes
             Devolu = Convert.ToDouble(aux4);
             DescIten = Convert.ToDouble(aux5);
             DescPed = Convert.ToDouble(aux6);
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void CanceladosLoja(String inferior, String superior, int vdd, int vdd2)
+        public void CanceladosLoja(string inferior, string superior, int vdd, int vdd2)
         {
-            cmdCanc = new MySqlCommand();
-            cmdCanc.Connection = dao.Conexao2;
-            cmdCanc.CommandType = CommandType.StoredProcedure;
+            cmdCanc = new MySqlCommand
+            {
+                Connection = dao.Conexao2,
+                CommandType = CommandType.StoredProcedure
+            };
             cmdCanc.Parameters.AddWithValue("dataInf", inferior);
             cmdCanc.Parameters.AddWithValue("dataSup", superior);
             cmdCanc.Parameters.AddWithValue("vdd", vdd);
             cmdCanc.Parameters.AddWithValue("vdd2", vdd2);
             cmdCanc.CommandText = "sp_Cancelados";
 
-            dao.conecta2();
+            dao.Conecta2();
 
             MySqlDataReader aux = cmdCanc.ExecuteReader();
             while (aux.Read())
@@ -357,13 +284,12 @@ namespace processosAdministrativos.Classes
                 Cancelado = Convert.ToDouble(aux["total"]);
             }
             aux.Close();
-            dao.desconecta2();
+            dao.Desconecta2();
         }
 
-        public void DevolucaoLoja(String inferior, String superior, int vdd, int vdd2)
+        public void DevolucaoLoja(string inferior, string superior, int vdd, int vdd2)
         {
-            cmdDev = new MySqlCommand();
-            cmdDev.Connection = dao.Conexao2;
+            cmdDev = new MySqlCommand{ Connection = dao.Conexao2 };
             cmdDev.Parameters.AddWithValue("@inferior", inferior);
             cmdDev.Parameters.AddWithValue("@superior", superior);
             cmdDev.Parameters.AddWithValue("@vdd", vdd);
@@ -372,7 +298,7 @@ namespace processosAdministrativos.Classes
                                  "inner join tipomovi on notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
                                  "WHERE notas.nt_data between @inferior and @superior AND vdd_codigo between @vdd and @vdd2 and notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'D' AND tipomovi.tmv_tipo = 'E'";
 
-            dao.conecta2();
+            dao.Conecta2();
             MySqlDataReader aux = cmdDev.ExecuteReader();
             while (aux.Read())
             {
@@ -380,26 +306,25 @@ namespace processosAdministrativos.Classes
                 Devolu = Convert.ToDouble(aux["total"]);
             }
             aux.Close();
-            dao.desconecta2();
+            dao.Desconecta2();
         }
         public void MetaLoja(int vdd, int vdd2)
         {
-            cmdMeta = new MySqlCommand();
-            cmdMeta.Connection = dao.Conexao2;
+            cmdMeta = new MySqlCommand{ Connection = dao.Conexao2 };
             cmdMeta.Parameters.AddWithValue("@vdd", vdd);
             cmdMeta.Parameters.AddWithValue("@vdd2", vdd2);
             cmdMeta.CommandText = "select vmet_meta from valor_meta where vmet_vendedor between @vdd and @vdd2";
-            dao.conecta2();
+            dao.Conecta2();
             MySqlDataReader aux = cmdMeta.ExecuteReader();
             while (aux.Read())
             {
                 Meta.Add(Convert.ToDouble(aux["vmet_meta"]));
             }
             aux.Close();
-            dao.desconecta2();
+            dao.Desconecta2();
         }
 
-        public void Valor(String inferior, String superior, int vdd, int vdd2)
+        public void Valor(string inferior, string superior, int vdd, int vdd2)
         {
             cmdValor1 = new MySqlCommand();
             cmdValor3 = new MySqlCommand();
@@ -422,7 +347,7 @@ namespace processosAdministrativos.Classes
             cmdValor3.CommandText = "SELECT SUM(Notas.nt_total) FROM (Notas INNER JOIN tipomovi ON notas.nt_movimento = tipomovi.tmv_codigo) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo " +
                                     "WHERE notas.nt_data BETWEEN @inferior AND @superior AND vdd_codigo BETWEEN @vdd and @vdd2 and notas.nt_cancelada = 0 AND tmv_grupo = 'D' and tmv_tipo = 'E' ";
 
-            dao.conecta2();
+            dao.Conecta2();
 
             object auxVendas = cmdValor3.ExecuteScalar();
             if (auxVendas.ToString() == "")
@@ -437,30 +362,30 @@ namespace processosAdministrativos.Classes
                 NVendasL = aux1["qtde"].ToString();
             }
             aux1.Close();
-            dao.desconecta2();
+            dao.Desconecta2();
         }
 
-        public string selecJustific(String inferior, String superior, int opcao)
+        public string SelecJustific(string inferior, string superior, int opcao)
         {
             Sql7 = "SELECT count(loe_codigo) FROM loe WHERE loe_opcao = " + opcao + " AND loe_data between '" + inferior + "' and '" + superior + "'";
             cmd7 = new MySqlCommand(Sql7, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             object aux1 = cmd7.ExecuteScalar();
 
-            dao.desconecta();
+            dao.Desconecta();
             return aux1.ToString();
         }
 
-        public int selecJustificTot(String inferior, String superior)
+        public int SelecJustificTot(string inferior, string superior)
         {
             Sql8 = "SELECT count(loe_codigo) FROM loe WHERE loe_data between '" + inferior + "' and '" + superior + "'";
             cmd8 = new MySqlCommand(Sql8, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             object aux1 = cmd8.ExecuteScalar();
 
-            dao.desconecta();
+            dao.Desconecta();
             return Convert.ToInt32(aux1);
         }
     }

@@ -12,75 +12,72 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class consultaCodificacao : Form
+    public partial class ConsultaCodificacao : Form
     {
         DAO dao = new DAO();
-        public consultaCodificacao()
+
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
+
+            return text;
+        }
+
+        public void PreencheTabela()
+        {
+            QueryDataTable dt = new QueryDataTable();
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
+
+            if (notaRb.Checked)
+            {
+                dataGridView1.DataSource = dt.procura("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
+                                            "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) " +
+                                            "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) " +
+                                            "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE codf_nota LIKE '%" + pesquisar + "%';");
+            }
+            else
+            {
+                if (fornecedorRb.Checked)
+                {
+                    dataGridView1.DataSource = dt.procura("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
+                                                                "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) " +
+                                                                "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) " +
+                                                                "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE fnc_nome LIKE '%" + pesquisar + "%';");
+                }
+                else
+                {
+                    if (estoquistaRb.Checked)
+                    {
+                        dataGridView1.DataSource = dt.procura("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
+                                                                    "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) " +
+                                                                    "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) " +
+                                                                    "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE a.est_nome LIKE '%" + pesquisar + "%' OR b.est_nome LIKE '%" + pesquisar + "%';");
+                    }
+                }
+            }
+        }
+        public ConsultaCodificacao()
         {
             InitializeComponent();
         }
 
         private void consultaCodificacao_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'gs_aristeusDataSet.consultCodificacao' table. You can move, or remove it, as needed.
-            this.consultCodificacaoTableAdapter.Fill(this.gs_aristeusDataSet.consultCodificacao);
+            PreencheTabela();
             notaRb.Checked = true;
         }
 
         private void consultaCodificacao_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaConsCodif = 0;
         }
 
+
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
-
-            table = new DataTable();
-            bs = new BindingSource();
-            if (notaRb.Checked)
-            {
-                da = new MySqlDataAdapter("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' "+
-                                            "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) "+
-                                            "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) "+
-                                            "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE codf_nota LIKE '%" + pesquisar + "%';", dao.Conexao);
-                da.Fill(table);
-
-                bs.DataSource = table;
-                dataGridView1.DataSource = bs;
-            }
-            else
-            {
-                if (fornecedorRb.Checked)
-                {
-                    da = new MySqlDataAdapter("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
-                                                                "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) " +
-                                                                "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) " +
-                                                                "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE fnc_nome LIKE '%" + pesquisar + "%';", dao.Conexao);
-                    da.Fill(table);
-
-                    bs.DataSource = table;
-                    dataGridView1.DataSource = bs;
-                }
-                else
-                {
-                    if (estoquistaRb.Checked)
-                    {
-                        da = new MySqlDataAdapter("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
-                                                                    "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) " +
-                                                                    "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) " +
-                                                                    "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE a.est_nome LIKE '%" + pesquisar + "%' OR b.est_nome LIKE '%" + pesquisar + "%';", dao.Conexao);
-                        da.Fill(table);
-
-                        bs.DataSource = table;
-                        dataGridView1.DataSource = bs;
-                    }
-                }
-            }
+            PreencheTabela();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -95,22 +92,14 @@ namespace processosAdministrativos.Telas
                     string superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
 
-                    DataTable table;
-                    MySqlDataAdapter da;
-                    BindingSource bs;
-                    string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+                    QueryDataTable dt = new QueryDataTable();
+                    string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
-                    table = new DataTable();
-                    bs = new BindingSource();
 
-                    da = new MySqlDataAdapter("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
+                    dataGridView1.DataSource = dt.procura("SELECT codf_nota, fnc_nome, a.est_nome AS 'estoq1', b.est_nome AS 'estoq2', DATE_FORMAT(codf_data, '%d/%m/%Y') AS 'data' " +
                                                                     "FROM((codificacao INNER JOIN fornecedores ON codificacao.codf_codForn = fornecedores.fnc_codigo) " +
                                                                     "LEFT OUTER JOIN estoquista as a ON codificacao.codf_codEstoquista1 = a.est_codigo) " +
-                                                                    "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE codf_data between '" + inferior + "' AND '" + superior + "';", dao.Conexao);
-                    da.Fill(table);
-
-                    bs.DataSource = table;
-                    dataGridView1.DataSource = bs;
+                                                                    "LEFT OUTER JOIN estoquista as b ON codificacao.codf_codEstoquista2 = b.est_codigo WHERE codf_data between '" + inferior + "' AND '" + superior + "';");
                 }
                 else
                     MessageBox.Show("Data inferior maior que a superio!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);

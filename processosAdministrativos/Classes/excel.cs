@@ -8,21 +8,21 @@ using _Excel = Microsoft.Office.Interop.Excel;
 
 namespace processosAdministrativos.Classes
 {
-    class excel
+    class Excel
     {
         string path = "";
-        _Application Excel = new _Excel.Application();
+        _Application Excels = new _Excel.Application();
         Workbook wb;
         Worksheet ws;
-        public excel()
+        public Excel()
         {
 
         }
 
-        public excel(string path, string pass)
+        public Excel(string path, string pass)
         {
             this.path = path;
-            wb = Excel.Workbooks.Open(path, Password: pass);
+            wb = Excels.Workbooks.Open(path, Password: pass);
         }
 
         public string ReadCell(int linha, int coluna, int sheet)
@@ -130,7 +130,7 @@ namespace processosAdministrativos.Classes
             return valor;
         }
 
-        public string[,] readRange(int linhaIB, int linhaIL, int linhaFB, int linhaFL, int sheet)
+        public string[,] ReadRange(int linhaIB, int linhaIL, int linhaFB, int linhaFL, int sheet)
         {
             ws = wb.Worksheets[sheet];
             Range range = (Range)ws.Range[ws.Cells[linhaIB, linhaIL], ws.Cells[linhaFB, linhaFL]];
@@ -166,21 +166,21 @@ namespace processosAdministrativos.Classes
             }
         }
 
-        public void writeRange(int linhaIB, int linhaIL, int linhaFB, int linhaFL, int sheet, string[,] s)
+        public void WriteRange(int linhaIB, int linhaIL, int linhaFB, int linhaFL, int sheet, string[,] s)
         {
             ws = wb.Worksheets[sheet];
             Range range = (Range)ws.Range[ws.Cells[linhaIB, linhaIL], ws.Cells[linhaFB, linhaFL]];
             range.Value2 = s;
         }
 
-        public void writeRange2(int linhaIB, int linhaIL, int linhaFB, int linhaFL, int sheet, double[,] s)
+        public void WriteRange2(int linhaIB, int linhaIL, int linhaFB, int linhaFL, int sheet, double[,] s)
         {
             ws = wb.Worksheets[sheet];
             Range range = (Range)ws.Range[ws.Cells[linhaIB, linhaIL], ws.Cells[linhaFB, linhaFL]];
             range.Value2 = s;
         }
 
-        public void writeCell(int sheet, int i, int j, string s, string dia)
+        public void WriteCell(int sheet, int i, int j, string s, string dia)
         {
             ws = wb.Worksheets[sheet];
             i++;
@@ -198,7 +198,7 @@ namespace processosAdministrativos.Classes
             }
         }
 
-        public void writeCellIndic(int sheet, int i, int j, string s, string dia)
+        public void WriteCellIndic(int sheet, int i, int j, string s, string dia)
         {
             ws = wb.Worksheets[sheet];
             i++;
@@ -216,7 +216,7 @@ namespace processosAdministrativos.Classes
             }
         }
 
-        public void writeCell2(int sheet, int linha, int coluna, string s, string vdd)
+        public void WriteCell2(int sheet, int linha, int coluna, string s, string vdd)
         {
             ws = wb.Worksheets[sheet];
             linha++;
@@ -245,7 +245,7 @@ namespace processosAdministrativos.Classes
 
         }
 
-        public void writeCell3(int sheet, int i, int j, string s)
+        public void WriteCell3(int sheet, int i, int j, string s)
         {
             ws = wb.Worksheets[sheet];
             i++;
@@ -254,7 +254,7 @@ namespace processosAdministrativos.Classes
             ws.Cells[i, j].Value2 = s;
         }
 
-        public void writeCell4(int sheet, int i, int j, double s)
+        public void WriteCell4(int sheet, int i, int j, double s)
         {
             ws = wb.Worksheets[sheet];
             i++;
@@ -263,38 +263,38 @@ namespace processosAdministrativos.Classes
             ws.Cells[i, j].Value2 = s;
         }
 
-        public void ajustarColunas(int sheet, string colIni, string colFim)
+        public void AjustarColunas(int sheet, string colIni, string colFim)
         {
             ws = wb.Worksheets[sheet];
 
             ws.Columns[colIni + ":" + colFim].AutoFit();
         }
 
-        public void negrito(int sheet, string ran)
+        public void Negrito(int sheet, string ran)
         {
             wb.Worksheets[sheet].Range(ran).Font.Bold = true;
         }
-        public void pintarAmerelo(int sheet, string ran)
+        public void PintarAmerelo(int sheet, string ran)
         {
             wb.Worksheets[sheet].Range(ran).Interior.Color = XlRgbColor.rgbYellow;
         }
-        public void pintarVermelho(int sheet, string ran)
+        public void PintarVermelho(int sheet, string ran)
         {
             wb.Worksheets[sheet].Range(ran).Interior.Color = XlRgbColor.rgbRed;
         }
-        public void pintarCastaAreno(int sheet, string ran)
+        public void PintarCastaAreno(int sheet, string ran)
         {
             wb.Worksheets[sheet].Range(ran).Interior.Color = XlRgbColor.rgbSandyBrown;
         }
-        public void numero(int sheet, string ran)
+        public void Numero(int sheet, string ran)
         {
             wb.Worksheets[sheet].Range(ran).NumberFormat = "0.00";
         }
-        public int contaPastas()
+        public int ContaPastas()
         {
             return wb.Worksheets.Count;
         }
-        public void createSheet(string nome)
+        public void CreateSheet(string nome)
         {
             ws = wb.Worksheets[wb.Worksheets.Count-1];
             ws.Copy(After: ws);
@@ -302,11 +302,11 @@ namespace processosAdministrativos.Classes
             ws.Name = nome;
         }
 
-        public void createFile()
+        public void CreateFile()
         {
-            this.wb = Excel.Workbooks.Add();
+            this.wb = Excels.Workbooks.Add();
         }
-        public void createSheet()
+        public void CreateSheet()
         {
             this.ws = wb.Worksheets.Add();
         }
@@ -323,8 +323,8 @@ namespace processosAdministrativos.Classes
         public void Close()
         {
             wb.Close(true);
-            Excel.Quit();
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(Excel);
+            Excels.Quit();
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(Excels);
         }
     }
 }

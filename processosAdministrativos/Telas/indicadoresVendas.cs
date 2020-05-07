@@ -4,16 +4,12 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class indicadoresVendas : Form
+    public partial class IndicadoresVendas : Form
     {
         DAO dao = new DAO();
         DataTable tb = new DataTable();
@@ -29,33 +25,33 @@ namespace processosAdministrativos.Telas
         List<string> dev = new List<string>();
         List<string> desc = new List<string>();
         List<string> vtl = new List<string>();
-        querys qr = new querys();
-        progresso pg = new progresso();
+        Querys qr = new Querys();
+        Progresso pg = new Progresso();
 
         string caminhosMVTxt = Path.GetFullPath("Caminhos\\MapaVendas.txt");
         string caminhosIndTxt = Path.GetFullPath("Caminhos\\IndVend.txt");
         StreamReader arquivo;
         string caminhoMV;
         string caminhoInd;
-        public void preencheMV()
+        public void PreencheMV()
         {
             arquivo = File.OpenText(caminhosMVTxt);
             caminhoMV = arquivo.ReadLine();
             arquivo.Close();
         }
 
-        public void preencheInd()
+        public void PreencheInd()
         {
             arquivo = File.OpenText(caminhosIndTxt);
             caminhoInd = arquivo.ReadLine();
             arquivo.Close();
         }
 
-        public void vendedores()
+        public void Vendedores()
         {
             Sql = "select vdd_codigo, vdd_nome from vendedores inner join valor_meta on vendedores.vdd_codigo = valor_meta.vmet_vendedor where (vdd_cttfuncao = 'VENDEDOR' or vdd_cttfuncao = 'VENDEDORA') and vdd_situacao = 'A' and vmet_situacao = 1";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader vdd = dao.Query.ExecuteReader();
             vdds.Add("0");
             vddsNome.Add("LOJA");
@@ -65,10 +61,10 @@ namespace processosAdministrativos.Telas
                 vddsNome.Add(vdd["vdd_nome"].ToString());
             }
             vdd.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void montaTabela()
+        public void MontaTabela()
         {
             tb.Columns.Add("no");
             tb.Columns.Add("nD");
@@ -79,29 +75,27 @@ namespace processosAdministrativos.Telas
             tb.Columns.Add("de");
             tb.Columns.Add("des");
             tb.Columns.Add("tQ");
-
         }
 
-        public void preencheTabela()
+        public void PreencheTabela()
         {
             for(int i = 0; i < vdds.Count; i++)
             {
                 tb.Rows.Add(vddsNome[i], qtdeDev[i], qtdeCan[i], qtdeAtend[i], qtdePed[i], qtdeItens[i], dev[i], desc[i], vtl[i]);
             }
             dataGridView1.DataSource = tb;
-
         }
 
-        public void localizaDados()
+        public void LocalizaDados()
         {
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
-            querys q = new querys();
+            Querys q = new Querys();
 
-            qr.indcaLoja(inferior, superior, 0, 99);
-            qr.selcTotal(inferior, superior);
+            qr.IndcaLoja(inferior, superior, 0, 99);
+            qr.SelcTotal(inferior, superior);
 
             qtdeDev.Add(qr.NDevolu.ToString());
             qtdeCan.Add(qr.NCancelado.ToString());
@@ -117,8 +111,8 @@ namespace processosAdministrativos.Telas
                 double totaldesc = 0;
                 double totaldev = 0;
                 double totalLiq = 0;
-                q.indcaLoja(inferior, superior, int.Parse(vdds[i]), int.Parse(vdds[i]));
-                q.selecao(inferior, superior, int.Parse(vdds[i]));
+                q.IndcaLoja(inferior, superior, int.Parse(vdds[i]), int.Parse(vdds[i]));
+                q.Selecao(inferior, superior, int.Parse(vdds[i]));
 
                 totaldesc = q.DescIten + q.DescPed;
                 totaldev = q.Cancelado + q.Devolu;
@@ -135,10 +129,10 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        public void preenchePlanilha()
+        public void PreenchePlanilha()
         {
-            preencheMV();
-            preencheInd();
+            PreencheMV();
+            PreencheInd();
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
@@ -147,26 +141,26 @@ namespace processosAdministrativos.Telas
             string mesExtenso = System.Globalization.DateTimeFormatInfo.CurrentInfo.GetMonthName(mes).ToString();
             string mesDefi = mesExtenso.Substring(0,1).ToUpper()+""+mesExtenso.Substring(1);
 
-            excel ex = new excel(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_"+aux2.ToString("yy")+".xlsx", "");
+            Excel ex = new Excel(@"" + caminhoInd + "" + mesExtenso.Substring(0, 3).ToUpper() + "_"+aux2.ToString("yy")+".xlsx", "");
 
-            excel e = new excel(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + aux2.ToString("yy") + ".xlsx", "123");
-            ex.createSheet(mesDefi+"_"+aux2.ToString("yy"));
+            Excel e = new Excel(@"" + caminhoMV + "" + mesExtenso.Substring(0, 3).ToUpper() + "_" + aux2.ToString("yy") + ".xlsx", "123");
+            ex.CreateSheet(mesDefi+"_"+aux2.ToString("yy"));
 
-            int qtdePlan = ex.contaPastas() - 1;
-            querys q = new querys();
+            int qtdePlan = ex.ContaPastas() - 1;
+            Querys q = new Querys();
             
             for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 string meta = e.ReadCell(4, 39, i + 1);
-                ex.writeCell2(qtdePlan, 3, 2, dataGridView1.Rows[i].Cells[1].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 3, dataGridView1.Rows[i].Cells[2].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 4, dataGridView1.Rows[i].Cells[3].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 5, dataGridView1.Rows[i].Cells[4].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 8, dataGridView1.Rows[i].Cells[5].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 12, dataGridView1.Rows[i].Cells[6].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 13, dataGridView1.Rows[i].Cells[7].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 14, dataGridView1.Rows[i].Cells[8].Value.ToString(), vddsNome[i]);
-                ex.writeCell2(qtdePlan, 3, 15, meta, vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 2, dataGridView1.Rows[i].Cells[1].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 3, dataGridView1.Rows[i].Cells[2].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 4, dataGridView1.Rows[i].Cells[3].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 5, dataGridView1.Rows[i].Cells[4].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 8, dataGridView1.Rows[i].Cells[5].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 12, dataGridView1.Rows[i].Cells[6].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 13, dataGridView1.Rows[i].Cells[7].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 14, dataGridView1.Rows[i].Cells[8].Value.ToString(), vddsNome[i]);
+                ex.WriteCell2(qtdePlan, 3, 15, meta, vddsNome[i]);
             }
 
             ex.Save();
@@ -176,7 +170,7 @@ namespace processosAdministrativos.Telas
             System.Diagnostics.Process.Start(strCaminhoNomeArquivo);
         }
 
-        public void limpar()
+        public void Limpar()
         {
             tb.Clear();
             vdds.Clear();
@@ -191,7 +185,7 @@ namespace processosAdministrativos.Telas
             vtl.Clear();
         }
 
-        public indicadoresVendas()
+        public IndicadoresVendas()
         {
             InitializeComponent();
         }
@@ -201,37 +195,37 @@ namespace processosAdministrativos.Telas
             DateTime sup = DateTime.Now;
             inferiorMtxt.Text = inf.AddMonths(-1).ToString("26-MM-yyyy");
             superiorMtxt.Text = sup.ToString("25-MM-yyyy");
-            montaTabela();
+            MontaTabela();
             backgroundWorker1.RunWorkerAsync();
             pg.ShowDialog();
 
         }
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            vendedores();
-            localizaDados();
+            Vendedores();
+            LocalizaDados();
         }
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             pg.X = 1;
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            preenchePlanilha();
+            PreenchePlanilha();
         }
 
         private void indicadoresVendas_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaIndicVendas = 0;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             pg.X = 0;
-            limpar();
+            Limpar();
             backgroundWorker1.RunWorkerAsync();
             pg.ShowDialog();
         }

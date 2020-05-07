@@ -4,38 +4,45 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class procuraEstoquista : Form
+    public partial class ProcuraEstoquista : Form
     {
-        variaveis vat = new variaveis();
+        Variaveis vat = new Variaveis();
 
-        public void preencheTabela()
+        public static string CorrecoesTexto(string text)
         {
-            queryDataTable qdt = new queryDataTable();
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            return text;
+        }
+        public void PreencheTabela()
+        {
+            QueryDataTable qdt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             dataGridView1.DataSource = qdt.procura("SELECT est_codigo, est_nome FROM estoquista WHERE est_nome LIKE '%" + pesquisar + "%' ORDER BY est_nome");
         }
 
-        public procuraEstoquista()
+        public ProcuraEstoquista()
         {
             InitializeComponent();
         }
 
         private void nomeTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
             vat.CodEstoquista = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            this.Close();
+            Close();
         }
 
         private void alterarEstoquista_Load(object sender, EventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
     }
 }

@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class consultaCompletaLOE : Form
+    public partial class ConsultaCompletaLOE : Form
     {
         DAO dao = new DAO();
         private string Sql, Sql2, Sql3, Sql4, Sql5, Sql6, Sql7 = String.Empty;
         MySqlCommand cmd, cmd2, cmd3, cmd4, cmd5, cmd6, cmd7;
-        querys qr = new querys();
+        Querys qr = new Querys();
         List<string> dias = new List<string>();
         List<string> semana = new List<string>();
         List<string> idProdFalt = new List<string>();
@@ -36,9 +36,7 @@ namespace processosAdministrativos.Telas
         List<string> qtde1 = new List<string>();
         int aux1 = 0;
         int aux2 = 0;
-        int aux3 = 0;
         int aux4 = 0;
-        int aux5 = 0;
         int cont1, cont2, cont3, cont4 = 0;
         List<int> vdds = new List<int>();
         List<int> estoque = new List<int>();
@@ -48,42 +46,40 @@ namespace processosAdministrativos.Telas
         int auxPrecoElev = 0;
         int auxOutros = 0;
 
-        public void dataInfSup()
+        public void DataInfSup()
         {
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
-            String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
-            String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
+            string inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
+            string superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
+            QueryDataTable dt = new QueryDataTable();
 
-            table = new DataTable();
-            bs = new BindingSource();
-
-            da = new MySqlDataAdapter("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
+            dataGridView1.DataSource = dt.procura("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
                                         "if(loe_comentario <> '', 'sim', 'não') as 'comentario' ,DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data' " +
                                         "FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) " +
                                         "INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo) " +
-                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "';", dao.Conexao);
-            da.Fill(table);
+                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "';");
+        }
+        public static string CorrecoesTexto(string text)
+        {
+            text = text.Replace("'", string.Empty);
+            text = text.Replace('*', '%');
 
-            bs.DataSource = table;
-            dataGridView1.DataSource = bs;
+            return text;
         }
 
-        public void vendas()
+        public void Vendas()
         {
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior1 = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior2 = aux2.ToString("yyyy-MM-dd 23:00:00");
-            qr.selcTotal(inferior1, superior2);
+            qr.SelcTotal(inferior1, superior2);
             vendasTxt.Text = qr.NVendasL;
         }
 
-        public void listaData()
+        public void ListaData()
         {
             DateTime primeiDiaMes = DateTime.Parse("01" + "/" + inferior6Mtxt.Text);
             DateTime primeiDiaProxMes = primeiDiaMes.AddMonths(1);
@@ -108,7 +104,7 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        public void mes()
+        public void Mes()
         {
             DateTime primeiDiaMes = DateTime.Parse("01" + DateTime.Now.ToString("/MM/yyyy"));
             DateTime primeiDiaProxMes = primeiDiaMes.AddMonths(1);
@@ -128,7 +124,7 @@ namespace processosAdministrativos.Telas
             inferior6Mtxt.Text = inf.ToString("MM-yyyy");
         }
 
-        public void limpaTabContJust()
+        public void LimpaTabContJust()
         {
             dias.Clear();
             semana.Clear();
@@ -138,7 +134,7 @@ namespace processosAdministrativos.Telas
             ContJustDgv.Rows.Clear();
             ContJustDgv.Refresh();
         }
-        public void limpaTabFaltProd()
+        public void LimpaTabFaltProd()
         {
             cont1 = 0;
             cont2 = 0;
@@ -164,7 +160,7 @@ namespace processosAdministrativos.Telas
             faltaEstDgv.Rows.Clear();
             faltaEstDgv.Refresh();
         }
-        public void limpaTabProdInex()
+        public void LimpaTabProdInex()
         {
             pi.Clear();
             prodInexDgv.DataSource = null;
@@ -178,7 +174,7 @@ namespace processosAdministrativos.Telas
             contProdInex.Clear();
             situ.Clear();
         }
-        public void limpaTabPrecoElev()
+        public void LimpaTabPrecoElev()
         {
             pe.Clear();
             precoElevDgv.DataSource = null;
@@ -186,7 +182,7 @@ namespace processosAdministrativos.Telas
             precoElevDgv.Columns.Clear();
             precoElevDgv.Refresh();
         }
-        public void limpaTabOutro()
+        public void LimpaTabOutro()
         {
             ou.Clear();
             outrosDgv.DataSource = null;
@@ -194,29 +190,29 @@ namespace processosAdministrativos.Telas
             outrosDgv.Rows.Clear();
             outrosDgv.Refresh();
         }
-        class contJust
+        class ContJust
         {
-            public string data { get; set; }
-            public string dia { get; set; }
-            public string venda { get; set; }
-            public string precAlto { get; set; }
-            public string falta { get; set; }
-            public string naoTrab { get; set; }
-            public string condPag { get; set; }
-            public string troca { get; set; }
-            public string retiMerc { get; set; }
-            public string olhan { get; set; }
-            public string quali { get; set; }
-            public int total { get; set; }
-            public string taxaC { get; set; }
+            public string Data { get; set; }
+            public string Dia { get; set; }
+            public string Venda { get; set; }
+            public string PrecAlto { get; set; }
+            public string Falta { get; set; }
+            public string NaoTrab { get; set; }
+            public string CondPag { get; set; }
+            public string Troca { get; set; }
+            public string RetiMerc { get; set; }
+            public string Olhan { get; set; }
+            public string Quali { get; set; }
+            public int Total { get; set; }
+            public string TaxaC { get; set; }
 
-            public contJust() { }
+            public ContJust() { }
         }
-        List<contJust> cj = new List<contJust>();
+        List<ContJust> cj = new List<ContJust>();
 
-        public void tabelaContJust()
+        public void TabelaContJust()
         {
-            listaData();
+            ListaData();
             if(graficoCont.Series[0].Points.Count > 1)
             {
                 graficoCont.Series[0].Points.Clear();
@@ -238,31 +234,31 @@ namespace processosAdministrativos.Telas
                 {
                     String inferior = aux.ToString("yyyy-MM-0" + y + " 00:00:00");
                     String superior = aux.ToString("yyyy-MM-0" + y + " 23:00:00");
-                    qr.selcTotal(inferior, superior);
-                    op1 = qr.selecJustific(inferior, superior, 1);
-                    op2 = qr.selecJustific(inferior, superior, 2);
-                    op3 = qr.selecJustific(inferior, superior, 3);
-                    op4 = qr.selecJustific(inferior, superior, 4);
-                    op5 = qr.selecJustific(inferior, superior, 5);
-                    op6 = qr.selecJustific(inferior, superior, 6);
-                    op7 = qr.selecJustific(inferior, superior, 7);
-                    op8 = qr.selecJustific(inferior, superior, 8);
-                    op9 = qr.selecJustificTot(inferior, superior);
+                    qr.SelcTotal(inferior, superior);
+                    op1 = qr.SelecJustific(inferior, superior, 1);
+                    op2 = qr.SelecJustific(inferior, superior, 2);
+                    op3 = qr.SelecJustific(inferior, superior, 3);
+                    op4 = qr.SelecJustific(inferior, superior, 4);
+                    op5 = qr.SelecJustific(inferior, superior, 5);
+                    op6 = qr.SelecJustific(inferior, superior, 6);
+                    op7 = qr.SelecJustific(inferior, superior, 7);
+                    op8 = qr.SelecJustific(inferior, superior, 8);
+                    op9 = qr.SelecJustificTot(inferior, superior);
                 }
                 else
                 {
                     String inferior = aux.ToString("yyyy-MM-" + y + " 00:00:00");
                     String superior = aux.ToString("yyyy-MM-" + y + " 23:00:00");
-                    qr.selcTotal(inferior, superior);
-                    op1 = qr.selecJustific(inferior, superior, 1);
-                    op2 = qr.selecJustific(inferior, superior, 2);
-                    op3 = qr.selecJustific(inferior, superior, 3);
-                    op4 = qr.selecJustific(inferior, superior, 4);
-                    op5 = qr.selecJustific(inferior, superior, 5);
-                    op6 = qr.selecJustific(inferior, superior, 6);
-                    op7 = qr.selecJustific(inferior, superior, 7);
-                    op8 = qr.selecJustific(inferior, superior, 8);
-                    op9 = qr.selecJustificTot(inferior, superior);
+                    qr.SelcTotal(inferior, superior);
+                    op1 = qr.SelecJustific(inferior, superior, 1);
+                    op2 = qr.SelecJustific(inferior, superior, 2);
+                    op3 = qr.SelecJustific(inferior, superior, 3);
+                    op4 = qr.SelecJustific(inferior, superior, 4);
+                    op5 = qr.SelecJustific(inferior, superior, 5);
+                    op6 = qr.SelecJustific(inferior, superior, 6);
+                    op7 = qr.SelecJustific(inferior, superior, 7);
+                    op8 = qr.SelecJustific(inferior, superior, 8);
+                    op9 = qr.SelecJustificTot(inferior, superior);
                 }
                 if (qr.NVendasL != "0")
                 {
@@ -272,21 +268,21 @@ namespace processosAdministrativos.Telas
                 {
                     op10 = 0;
                 }
-                cj.Add(new contJust()
+                cj.Add(new ContJust()
                 {
-                    data = dias[i],
-                    dia = semana[i].ToUpper(),
-                    venda = qr.NVendasL,
-                    precAlto = op1,
-                    falta = op2,
-                    naoTrab = op3,
-                    condPag = op4,
-                    troca = op5,
-                    retiMerc = op6,
-                    olhan = op7,
-                    quali = op8,
-                    total = op9 + Convert.ToInt32(qr.NVendasL),
-                    taxaC = string.Format("{0:0,0.00}", op10)
+                    Data = dias[i],
+                    Dia = semana[i].ToUpper(),
+                    Venda = qr.NVendasL,
+                    PrecAlto = op1,
+                    Falta = op2,
+                    NaoTrab = op3,
+                    CondPag = op4,
+                    Troca = op5,
+                    RetiMerc = op6,
+                    Olhan = op7,
+                    Quali = op8,
+                    Total = op9 + Convert.ToInt32(qr.NVendasL),
+                    TaxaC = string.Format("{0:0,0.00}", op10)
                 });
                 graficoCont.Series[0].Points.AddXY(dias[i], op1);
                 graficoCont.Series[1].Points.AddY(op2);
@@ -327,22 +323,22 @@ namespace processosAdministrativos.Telas
             ContJustDgv.Columns[12].Width = 70;
         }
 
-        class opcaoFaltEst
+        class OpcaoFaltEst
         {
-            public string data { get; set; }
-            public string codProd { get; set; }
-            public string nomeProd { get; set; }
-            public string saldo { get; set; }
-            public string vendedor { get; set; }
-            public string situacao { get; set; }
-            public string marca { get; set; }
-            public string ultCompr { get; set; }
-            public string ultVend { get; set; }
+            public string Data { get; set; }
+            public string CodProd { get; set; }
+            public string NomeProd { get; set; }
+            public string Saldo { get; set; }
+            public string Vendedor { get; set; }
+            public string Situacao { get; set; }
+            public string Marca { get; set; }
+            public string UltCompr { get; set; }
+            public string UltVend { get; set; }
 
-            public opcaoFaltEst() { }
+            public OpcaoFaltEst() { }
         }
-        List<opcaoFaltEst> ofe = new List<opcaoFaltEst>();
-        public void tabelaFaltaEst()
+        List<OpcaoFaltEst> ofe = new List<OpcaoFaltEst>();
+        public void TabelaFaltaEst()
         {
             int aux = 0;
             DateTime aux1 = DateTime.Parse(inferior2Mtxt.Text);
@@ -364,7 +360,7 @@ namespace processosAdministrativos.Telas
             cmd3 = new MySqlCommand(Sql3, dao.Conexao);
             cmd4 = new MySqlCommand(Sql4, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader falta = cmd2.ExecuteReader();
 
             while(falta.Read())
@@ -381,23 +377,23 @@ namespace processosAdministrativos.Telas
                 vendFalt.Add(falta["ultVend"].ToString());
                 qtde1.Add(falta["loe_qtde"].ToString());
             }
-            dao.desconecta();
-            dao.conecta();
+            dao.Desconecta();
+            dao.Conecta();
             MySqlDataReader compra = cmd3.ExecuteReader();
 
             while (compra.Read())
             {
                 sitCompra.Add(compra["loe_id_produto"].ToString());
             }
-            dao.desconecta();
-            dao.conecta();
+            dao.Desconecta();
+            dao.Conecta();
             MySqlDataReader ina = cmd4.ExecuteReader();
 
             while (ina.Read())
             {
                 inativo.Add(ina["loe_id_produto"].ToString());
             }
-            dao.desconecta();
+            dao.Desconecta();
             for (int i = 0; i < dataFalt.Count; i++)
             {
 
@@ -461,17 +457,17 @@ namespace processosAdministrativos.Telas
                     z = 0;
                 }
 
-                ofe.Add(new opcaoFaltEst()
+                ofe.Add(new OpcaoFaltEst()
                 {
-                    data = dataFalt[i],
-                    codProd = idProdFalt[i],
-                    nomeProd = nomeProdFalt[i],
-                    saldo = saldoFalt[i],
-                    vendedor = venddFalt[i],
-                    marca = marcaFalt[i],
-                    situacao = sit,
-                    ultCompr = comprFalt[i],
-                    ultVend = vendFalt[i]
+                    Data = dataFalt[i],
+                    CodProd = idProdFalt[i],
+                    NomeProd = nomeProdFalt[i],
+                    Saldo = saldoFalt[i],
+                    Vendedor = venddFalt[i],
+                    Marca = marcaFalt[i],
+                    Situacao = sit,
+                    UltCompr = comprFalt[i],
+                    UltVend = vendFalt[i]
                 });
             }
 
@@ -490,17 +486,17 @@ namespace processosAdministrativos.Telas
 
             if (dataFalt.Count == 0)
             {
-                ofe.Add(new opcaoFaltEst()
+                ofe.Add(new OpcaoFaltEst()
                 {
-                    data = "",
-                    codProd = "",
-                    nomeProd = "",
-                    saldo = "",
-                    vendedor = "",
-                    marca = "",
-                    situacao = "",
-                    ultCompr = "",
-                    ultVend = ""
+                    Data = "",
+                    CodProd = "",
+                    NomeProd = "",
+                    Saldo = "",
+                    Vendedor = "",
+                    Marca = "",
+                    Situacao = "",
+                    UltCompr = "",
+                    UltVend = ""
                 });
             }
 
@@ -511,32 +507,32 @@ namespace processosAdministrativos.Telas
 
             faltaEstDgv.DataSource = null;
             faltaEstDgv.DataSource = ofe;
-            designTabelaFaltaProd();
+            DesignTabelaFaltaProd();
         }
 
-        public void vendedores()
+        public void Vendedores()
         {
             Sql6 = "select vdd_codigo from vendedores where vdd_codigo > 8 and vdd_codigo != 13 and vdd_situacao = 'A'";
             cmd6 = new MySqlCommand(Sql6, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader vdd = cmd6.ExecuteReader();
             while (vdd.Read())
             {
                 vdds.Add(Convert.ToInt32(vdd["vdd_codigo"]));
             }
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        class prodInex
+        class ProdInex
         {
-            public string data { get; set; }
-            public string produto { get; set; }
-            public string vendedor { get; set; }
-            public prodInex() { }
+            public string Data { get; set; }
+            public string Produto { get; set; }
+            public string Vendedor { get; set; }
+            public ProdInex() { }
         }
-        List<prodInex> pi = new List<prodInex>();
+        List<ProdInex> pi = new List<ProdInex>();
 
-        public void tabelaProdInex()
+        public void TabelaProdInex()
         {
             int aux3 = 0;
             DateTime aux1 = DateTime.Parse(inferior3Mtxt.Text);
@@ -547,21 +543,21 @@ namespace processosAdministrativos.Telas
             Sql5 = "SELECT DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data', loe_id_produto, loe_id_vendedor, vdd_nome FROM loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo WHERE loe_opcao = 3 AND loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "'";
             cmd5 = new MySqlCommand(Sql5, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader prodIne = cmd5.ExecuteReader();
 
             while (prodIne.Read())
             {
-                pi.Add(new prodInex()
+                pi.Add(new ProdInex()
                 {
-                    data = prodIne["data"].ToString(),
-                    produto = prodIne["loe_id_produto"].ToString(),
-                    vendedor = prodIne["vdd_nome"].ToString()
+                    Data = prodIne["data"].ToString(),
+                    Produto = prodIne["loe_id_produto"].ToString(),
+                    Vendedor = prodIne["vdd_nome"].ToString()
                 });
                 contProdInex.Add(Convert.ToInt32(prodIne["loe_id_vendedor"]));
                 auxProIne = 1;
             }
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < vdds.Count; i++)
             {
@@ -574,40 +570,40 @@ namespace processosAdministrativos.Telas
                 }
                 Sql7 = "SELECT count(loe_id_vendedor) FROM loe WHERE loe_id_vendedor = " + vdds[i] + " AND loe_opcao";
                 cmd7 = new MySqlCommand(Sql7, dao.Conexao);
-                dao.conecta();
+                dao.Conecta();
                 object aux = cmd7.ExecuteScalar();
                 graficoVend.Series[0].Points.AddXY(vdds[i].ToString(), aux3);
                 graficoVend.Series[1].Points.AddY(estoque[i]);
-                dao.desconecta();
+                dao.Desconecta();
                 aux3 = 0;
             }
 
             if (auxProIne == 0)
             {
-                pi.Add(new prodInex()
+                pi.Add(new ProdInex()
                 {
-                    data = "",
-                    produto = "",
-                    vendedor = ""
+                    Data = "",
+                    Produto = "",
+                    Vendedor = ""
                 });
                 auxProIne = 1;
             }
 
             prodInexDgv.DataSource = null;
             prodInexDgv.DataSource = pi;
-            designTabelaProdInex();           
+            DesignTabelaProdInex();           
         }
 
-        class precoElev
+        class PrecoElev
         {
-            public string data { get; set; }
-            public string produto { get; set; }
-            public string preco { get; set; }
-            public string vendedor { get; set; }
-            public precoElev() { }
+            public string Data { get; set; }
+            public string Produto { get; set; }
+            public string Preco { get; set; }
+            public string Vendedor { get; set; }
+            public PrecoElev() { }
         }
-        List<precoElev> pe = new List<precoElev>();
-        public void tabelaPrecoElev()
+        List<PrecoElev> pe = new List<PrecoElev>();
+        public void TabelaPrecoElev()
         {
             DateTime aux1 = DateTime.Parse(inferior4Mtxt.Text);
             DateTime aux2 = DateTime.Parse(superior4Mtxt.Text);
@@ -617,49 +613,49 @@ namespace processosAdministrativos.Telas
             Sql5 = "SELECT DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data', itm_descricao, vdd_nome, loe_preco FROM (loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) INNER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_opcao = 1 AND loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "'";
             cmd5 = new MySqlCommand(Sql5, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader precoEle = cmd5.ExecuteReader();
 
             while (precoEle.Read())
             {
-                pe.Add(new precoElev()
+                pe.Add(new PrecoElev()
                 {
-                    data = precoEle["data"].ToString(),
-                    produto = precoEle["itm_descricao"].ToString(),
-                    preco = precoEle["loe_preco"].ToString(),
-                    vendedor = precoEle["vdd_nome"].ToString()
+                    Data = precoEle["data"].ToString(),
+                    Produto = precoEle["itm_descricao"].ToString(),
+                    Preco = precoEle["loe_preco"].ToString(),
+                    Vendedor = precoEle["vdd_nome"].ToString()
                 });
                 auxPrecoElev = 1;
             }
 
             if (auxPrecoElev == 0)
             {
-                pe.Add(new precoElev()
+                pe.Add(new PrecoElev()
                 {
-                    data = "",
-                    produto = "",
-                    preco = "",
-                    vendedor = ""
+                    Data = "",
+                    Produto = "",
+                    Preco = "",
+                    Vendedor = ""
                 });
                 auxPrecoElev = 1;
             }
 
             precoEle.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             precoElevDgv.DataSource = pe;
-            designTabelaPrecoElev();
+            DesignTabelaPrecoElev();
         }
-        class outros
+        class Outros
         {
-            public string data { get; set; }
-            public string coment { get; set; }
-            public string opcao { get; set;  }
-            public string vendedor { get; set; }
-            public outros() { }
+            public string Data { get; set; }
+            public string Coment { get; set; }
+            public string Opcao { get; set;  }
+            public string Vendedor { get; set; }
+            public Outros() { }
         }
-        List<outros> ou = new List<outros>();
-        public void tabelaOutros()
+        List<Outros> ou = new List<Outros>();
+        public void TabelaOutros()
         {
             DateTime aux1 = DateTime.Parse(inferior5Mtxt.Text);
             DateTime aux2 = DateTime.Parse(superior5Mtxt.Text);
@@ -669,41 +665,41 @@ namespace processosAdministrativos.Telas
             Sql7 = "SELECT DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data', loe_comentario, opcao_loe_descricao, vdd_nome FROM (loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo WHERE (loe_opcao = 4 OR loe_opcao = 6 OR loe_opcao = 7 OR loe_opcao = 8) AND loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "'";
             cmd7 = new MySqlCommand(Sql7, dao.Conexao);
 
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader outros = cmd7.ExecuteReader();
 
             while (outros.Read())
             {
-                ou.Add(new outros()
+                ou.Add(new Outros()
                 {
-                    data = outros["data"].ToString(),
-                    coment = outros["loe_comentario"].ToString(),
-                    opcao = outros["opcao_loe_descricao"].ToString(),
-                    vendedor = outros["vdd_nome"].ToString()
+                    Data = outros["data"].ToString(),
+                    Coment = outros["loe_comentario"].ToString(),
+                    Opcao = outros["opcao_loe_descricao"].ToString(),
+                    Vendedor = outros["vdd_nome"].ToString()
                 });
                 auxOutros = 1;
             }
 
             if (auxOutros == 0)
             {
-                ou.Add(new outros()
+                ou.Add(new Outros()
                 {
-                    data = "",
-                    coment = "",
-                    opcao = "",
-                    vendedor = ""
+                    Data = "",
+                    Coment = "",
+                    Opcao = "",
+                    Vendedor = ""
                 });
                 auxOutros = 1;
             }
             outros.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             outrosDgv.DataSource = null;
             outrosDgv.DataSource = ou;
-            designTabeaOutros();
+            DesignTabeaOutros();
 
         }
-        public void designTabeaOutros()
+        public void DesignTabeaOutros()
         {
             outrosDgv.Columns[0].HeaderText = "Data";
             outrosDgv.Columns[1].HeaderText = "Comentário";
@@ -716,7 +712,7 @@ namespace processosAdministrativos.Telas
 
             outrosDgv.Columns[1].Visible = false;
         }
-        public void designTabelaPrecoElev()
+        public void DesignTabelaPrecoElev()
         {
             precoElevDgv.Columns[0].HeaderText = "Data";
             precoElevDgv.Columns[1].HeaderText = "Produto";
@@ -728,7 +724,7 @@ namespace processosAdministrativos.Telas
             precoElevDgv.Columns[2].Width = 50;
             precoElevDgv.Columns[3].Width = 70;
         }
-        public void designTabelaProdInex()
+        public void DesignTabelaProdInex()
         {
             prodInexDgv.Columns[0].HeaderText = "Data";
             prodInexDgv.Columns[1].HeaderText = "Produto";
@@ -738,7 +734,7 @@ namespace processosAdministrativos.Telas
             prodInexDgv.Columns[1].Width = 300;
             prodInexDgv.Columns[2].Width = 150;
         }
-        public void designTabelaFaltaProd()
+        public void DesignTabelaFaltaProd()
         {
             faltaEstDgv.Columns[0].HeaderText = "Data";
             faltaEstDgv.Columns[1].HeaderText = "Cód Prod";
@@ -760,102 +756,91 @@ namespace processosAdministrativos.Telas
             faltaEstDgv.Columns[7].Width = 70;
             faltaEstDgv.Columns[8].Width = 70;
         }
-        public consultaCompletaLOE()
+        public ConsultaCompletaLOE()
         {
             InitializeComponent();
         }
 
-        private void consultaCompletaLOE_Load(object sender, EventArgs e)
+        private void ConsultaCompletaLOE_Load(object sender, EventArgs e)
         {
             DateTime inf = DateTime.Now;
             DateTime sup = DateTime.Now;
             inferiorMtxt.Text = inf.ToString("dd-MM-yyyy");
             superiorMtxt.Text = sup.ToString("dd-MM-yyyy");
             vendedorRb.Checked = true;
-            dataInfSup();
-            mes();
-            vendas();
+            DataInfSup();
+            Mes();
+            Vendas();
             graficoCont.ChartAreas[0].AxisX.Interval = 1;
             graficoCont.ChartAreas[0].AxisY.Interval = 5;
             graficoVend.ChartAreas[0].AxisX.Interval = 1;
-            vendedores();
-            tabelaContJust();
-            tabelaFaltaEst();
-            tabelaProdInex();
-            limpaTabPrecoElev();
-            tabelaPrecoElev();
-            tabelaOutros();
+            Vendedores();
+            TabelaContJust();
+            TabelaFaltaEst();
+            TabelaProdInex();
+            LimpaTabPrecoElev();
+            TabelaPrecoElev();
+            TabelaOutros();
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
         {
-            Sql = "SELECT loe_comentario FROM loe WHERE loe_codigo =  " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
+            Sql = "SELECT loe_comentario FROM loe WHERE loe_codigo = " + dataGridView1.CurrentRow.Cells[0].Value.ToString() + "";
             cmd = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             object coment = cmd.ExecuteScalar();
 
             comentarioTxt.Text = coment.ToString();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            dataInfSup();
-            vendas();
+            DataInfSup();
+            Vendas();
         }
 
         private void pesquisaTxt_KeyUp(object sender, KeyEventArgs e)
         {
-            DataTable table;
-            MySqlDataAdapter da;
-            BindingSource bs;
-            string pesquisar = pesquisaTxt.Text.Replace('*', '%');
+            QueryDataTable dt = new QueryDataTable();
+
+            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
 
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
             String inferior = aux1.ToString("yyyy-MM-dd 00:00:00");
             String superior = aux2.ToString("yyyy-MM-dd 23:00:00");
 
-            table = new DataTable();
-            bs = new BindingSource();
             if (vendedorRb.Checked)
             {
-                da = new MySqlDataAdapter("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
+                dataGridView1.DataSource = dt.procura("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
                                         "if(loe_comentario <> '', 'sim', 'não') as 'comentario' ,DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data' " +
                                         "FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) " +
                                         "INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo) " +
-                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND vdd_nome like '" + pesquisar + "%';", dao.Conexao);
-                da.Fill(table);
-
-                bs.DataSource = table;
-                dataGridView1.DataSource = bs;
+                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND vdd_nome like '" + pesquisar + "%';");
             }
             else
             {
                 if (opcaoRb.Checked)
                 {
-                    da = new MySqlDataAdapter("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
+                    dataGridView1.DataSource = dt.procura("SELECT loe_codigo, vdd_nome, opcao_loe_descricao, if(loe_id_produto regexp '[a-z]', loe_id_produto, concat(itm_codigo, ' - ', itm_descricao)) as 'produt', loe_qtde, loe_preco, " +
                                         "if(loe_comentario <> '', 'sim', 'não') as 'comentario' ,DATE_FORMAT(loe_data, '%d/%m/%Y') as 'data' " +
                                         "FROM ((loe INNER JOIN vendedores ON loe.loe_id_vendedor = vendedores.vdd_codigo) " +
                                         "INNER JOIN loe_opcao ON loe.loe_opcao = loe_opcao.opcao_loe_codigo) " +
-                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND opcao_loe_descricao like '" + pesquisar + "%';", dao.Conexao);
-                    da.Fill(table);
-
-                    bs.DataSource = table;
-                    dataGridView1.DataSource = bs;
+                                        "LEFT OUTER JOIN itens ON loe.loe_id_produto = itens.itm_codigo WHERE loe_data between '" + inferior.ToString() + "' AND '" + superior.ToString() + "' AND opcao_loe_descricao like '" + pesquisar + "%';");
                 }
             }
         }
 
         private void consultaCompletaLOE_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaConsultLOEComple = 0;
-            limpaTabFaltProd();
-            limpaTabContJust();
-            limpaTabProdInex();
-            limpaTabPrecoElev();
-            limpaTabOutro();
+            LimpaTabFaltProd();
+            LimpaTabContJust();
+            LimpaTabProdInex();
+            LimpaTabPrecoElev();
+            LimpaTabOutro();
         }
 
         private void contagem_Enter(object sender, EventArgs e)
@@ -909,16 +894,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
+                    ofe = ofe.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
+                    ofe = ofe.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "codProd")
             {
@@ -928,16 +913,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.codProd).ThenBy(m => m.codProd).ToList();
+                    ofe = ofe.OrderBy(m => m.CodProd).ThenBy(m => m.CodProd).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.codProd).ThenBy(m => m.codProd).ToList();
+                    ofe = ofe.OrderByDescending(m => m.CodProd).ThenBy(m => m.CodProd).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "nomeProd")
             {
@@ -947,16 +932,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.nomeProd).ThenBy(m => m.nomeProd).ToList();
+                    ofe = ofe.OrderBy(m => m.NomeProd).ThenBy(m => m.NomeProd).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.nomeProd).ThenBy(m => m.nomeProd).ToList();
+                    ofe = ofe.OrderByDescending(m => m.NomeProd).ThenBy(m => m.NomeProd).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "saldo")
             {
@@ -966,16 +951,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.saldo).ThenBy(m => m.saldo).ToList();
+                    ofe = ofe.OrderBy(m => m.Saldo).ThenBy(m => m.Saldo).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.saldo).ThenBy(m => m.saldo).ToList();
+                    ofe = ofe.OrderByDescending(m => m.Saldo).ThenBy(m => m.Saldo).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "vendedor")
             {
@@ -985,16 +970,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    ofe = ofe.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    ofe = ofe.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "situacao")
             {
@@ -1004,16 +989,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.situacao).ThenBy(m => m.situacao).ToList();
+                    ofe = ofe.OrderBy(m => m.Situacao).ThenBy(m => m.Situacao).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.situacao).ThenBy(m => m.situacao).ToList();
+                    ofe = ofe.OrderByDescending(m => m.Situacao).ThenBy(m => m.Situacao).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "marca")
             {
@@ -1023,16 +1008,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.marca).ThenBy(m => m.marca).ToList();
+                    ofe = ofe.OrderBy(m => m.Marca).ThenBy(m => m.Marca).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.marca).ThenBy(m => m.marca).ToList();
+                    ofe = ofe.OrderByDescending(m => m.Marca).ThenBy(m => m.Marca).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "ultCompr")
             {
@@ -1042,16 +1027,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.ultCompr).ThenBy(m => m.ultCompr).ToList();
+                    ofe = ofe.OrderBy(m => m.UltCompr).ThenBy(m => m.UltCompr).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.ultCompr).ThenBy(m => m.ultCompr).ToList();
+                    ofe = ofe.OrderByDescending(m => m.UltCompr).ThenBy(m => m.UltCompr).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
             if (faltaEstDgv.Columns[e.ColumnIndex].Name == "ultVend")
             {
@@ -1061,16 +1046,16 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.ultVend).ThenBy(m => m.ultVend).ToList();
+                    ofe = ofe.OrderBy(m => m.UltVend).ThenBy(m => m.UltVend).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.ultVend).ThenBy(m => m.ultVend).ToList();
+                    ofe = ofe.OrderByDescending(m => m.UltVend).ThenBy(m => m.UltVend).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
-                designTabelaFaltaProd();
+                DesignTabelaFaltaProd();
             }
         }
 
@@ -1084,16 +1069,16 @@ namespace processosAdministrativos.Telas
                 prodInexDgv.Refresh();
                 if (aux2 == 1)
                 {
-                    pi = pi.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
+                    pi = pi.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux2 = 0;
                 }
                 else
                 {
-                    pi = pi.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
+                    pi = pi.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux2 = 1;
                 }
                 prodInexDgv.DataSource = pi;
-                designTabelaProdInex();
+                DesignTabelaProdInex();
             }
             if(prodInexDgv.Columns[e.ColumnIndex].Name == "produto")
             {
@@ -1103,16 +1088,16 @@ namespace processosAdministrativos.Telas
                 prodInexDgv.Refresh();
                 if (aux2 == 1)
                 {
-                    pi = pi.OrderBy(m => m.produto).ThenBy(m => m.produto).ToList();
+                    pi = pi.OrderBy(m => m.Produto).ThenBy(m => m.Produto).ToList();
                     aux2 = 0;
                 }
                 else
                 {
-                    pi = pi.OrderByDescending(m => m.produto).ThenBy(m => m.produto).ToList();
+                    pi = pi.OrderByDescending(m => m.Produto).ThenBy(m => m.Produto).ToList();
                     aux2 = 1;
                 }
                 prodInexDgv.DataSource = pi;
-                designTabelaProdInex();
+                DesignTabelaProdInex();
             }
             if(prodInexDgv.Columns[e.ColumnIndex].Name == "vendedor")
             {
@@ -1122,16 +1107,16 @@ namespace processosAdministrativos.Telas
                 prodInexDgv.Refresh();
                 if (aux2 == 1)
                 {
-                    pi = pi.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    pi = pi.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux2 = 0;
                 }
                 else
                 {
-                    pi = pi.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    pi = pi.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux2 = 1;
                 }
                 prodInexDgv.DataSource = pi;
-                designTabelaProdInex();
+                DesignTabelaProdInex();
             }
         }
         private void precoElevDgv_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -1144,16 +1129,16 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
+                    pe = pe.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
+                    pe = pe.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
-                designTabelaPrecoElev();
+                DesignTabelaPrecoElev();
             }
             if (precoElevDgv.Columns[e.ColumnIndex].Name == "produto")
             {
@@ -1163,16 +1148,16 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.produto).ThenBy(m => m.produto).ToList();
+                    pe = pe.OrderBy(m => m.Produto).ThenBy(m => m.Produto).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.produto).ThenBy(m => m.produto).ToList();
+                    pe = pe.OrderByDescending(m => m.Produto).ThenBy(m => m.Produto).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
-                designTabelaPrecoElev();
+                DesignTabelaPrecoElev();
             }
             if (precoElevDgv.Columns[e.ColumnIndex].Name == "preco")
             {
@@ -1182,16 +1167,16 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.preco).ThenBy(m => m.preco).ToList();
+                    pe = pe.OrderBy(m => m.Preco).ThenBy(m => m.Preco).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.preco).ThenBy(m => m.preco).ToList();
+                    pe = pe.OrderByDescending(m => m.Preco).ThenBy(m => m.Preco).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
-                designTabelaPrecoElev();
+                DesignTabelaPrecoElev();
             }
             if (precoElevDgv.Columns[e.ColumnIndex].Name == "vendedor")
             {
@@ -1201,16 +1186,16 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    pe = pe.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    pe = pe.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
-                designTabelaPrecoElev();
+                DesignTabelaPrecoElev();
             }
         }
         private void outrosDgv_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -1223,16 +1208,16 @@ namespace processosAdministrativos.Telas
                 outrosDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    ou = ou.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
+                    ou = ou.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    ou = ou.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
+                    ou = ou.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
                     aux4 = 1;
                 }
                 outrosDgv.DataSource = ou;
-                designTabeaOutros();
+                DesignTabeaOutros();
             }
             if (outrosDgv.Columns[e.ColumnIndex].Name == "opcao")
             {
@@ -1242,16 +1227,16 @@ namespace processosAdministrativos.Telas
                 outrosDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    ou = ou.OrderBy(m => m.opcao).ThenBy(m => m.opcao).ToList();
+                    ou = ou.OrderBy(m => m.Opcao).ThenBy(m => m.Opcao).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    ou = ou.OrderByDescending(m => m.opcao).ThenBy(m => m.opcao).ToList();
+                    ou = ou.OrderByDescending(m => m.Opcao).ThenBy(m => m.Opcao).ToList();
                     aux4 = 1;
                 }
                 outrosDgv.DataSource = ou;
-                designTabeaOutros();
+                DesignTabeaOutros();
             }
             if (outrosDgv.Columns[e.ColumnIndex].Name == "preco")
             {
@@ -1261,47 +1246,47 @@ namespace processosAdministrativos.Telas
                 outrosDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    ou = ou.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    ou = ou.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    ou = ou.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
+                    ou = ou.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
                     aux4 = 1;
                 }
                 outrosDgv.DataSource = ou;
-                designTabeaOutros();
+                DesignTabeaOutros();
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            limpaTabFaltProd();
-            tabelaFaltaEst();
+            LimpaTabFaltProd();
+            TabelaFaltaEst();
         }
 
         private void pesquisarBt_Click(object sender, EventArgs e)
         {
-            limpaTabFaltProd();
-            limpaTabProdInex();
-            tabelaFaltaEst();
-            tabelaProdInex();
+            LimpaTabFaltProd();
+            LimpaTabProdInex();
+            TabelaFaltaEst();
+            TabelaProdInex();
         }
         private void pesquisa4Bt_Click(object sender, EventArgs e)
         {
-            limpaTabPrecoElev();
-            tabelaPrecoElev();
+            LimpaTabPrecoElev();
+            TabelaPrecoElev();
         }
 
         private void pesquisa5Bt_Click(object sender, EventArgs e)
         {
-            limpaTabOutro();
-            tabelaOutros();
+            LimpaTabOutro();
+            TabelaOutros();
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            limpaTabContJust();
-            tabelaContJust();
+            LimpaTabContJust();
+            TabelaContJust();
         }
         private void outrosDgv_MouseClick(object sender, MouseEventArgs e)
         {
@@ -1314,16 +1299,16 @@ namespace processosAdministrativos.Telas
 
         private void button3_Click(object sender, EventArgs e)
         {
-            limpaTabContJust();
-            limpaTabFaltProd();
-            limpaTabProdInex();
-            limpaTabPrecoElev();
-            limpaTabOutro();
-            tabelaContJust();
-            tabelaFaltaEst();
-            tabelaProdInex();
-            tabelaPrecoElev();
-            tabelaOutros();
+            LimpaTabContJust();
+            LimpaTabFaltProd();
+            LimpaTabProdInex();
+            LimpaTabPrecoElev();
+            LimpaTabOutro();
+            TabelaContJust();
+            TabelaFaltaEst();
+            TabelaProdInex();
+            TabelaPrecoElev();
+            TabelaOutros();
         }
     }
 }

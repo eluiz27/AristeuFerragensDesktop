@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlMeta
+    class ControlMeta
     {
         private string vmet_vendedor;
         private string vmet_meta;

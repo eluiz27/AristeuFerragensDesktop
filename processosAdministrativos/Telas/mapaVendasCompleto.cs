@@ -11,10 +11,10 @@ using Outlook = Microsoft.Office.Interop.Outlook;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class mapaVendasCompleto : Form
+    public partial class MapaVendasCompleto : Form
     {
         DAO dao = new DAO();
-        controlTelaAberta cta = new controlTelaAberta();
+        ControlTelaAberta cta = new ControlTelaAberta();
         DataTable tb = new DataTable();
         string caminhosMVTxt = Path.GetFullPath("Caminhos\\MapaVendas.txt");
         string caminhosIndTxt = Path.GetFullPath("Caminhos\\Indicadores.txt");
@@ -24,7 +24,7 @@ namespace processosAdministrativos.Telas
 
         string caminhoMV;
         string caminhoInd;
-        private string Sql, Sql2, Sql3, Sql4, Sql5, Sql6, Sql7, Sql8, Sql9 = String.Empty;
+        private string Sql, Sql2, Sql3, Sql4, Sql5, Sql6, Sql7, Sql8, Sql9 = string.Empty;
         List<string> vdds = new List<string>();
         List<string> vddsNome = new List<string>();
         List<string> vddsTipo = new List<string>();
@@ -78,7 +78,6 @@ namespace processosAdministrativos.Telas
         List<string> indVend = new List<string>();
         List<string> emailAux = new List<string>();
         List<string> grupoAux = new List<string>();
-        string periodoMeta;
         string periodoPercent;
         int contador = 0;
 
@@ -87,7 +86,7 @@ namespace processosAdministrativos.Telas
         string vendedor1 = "0";
         string vendedor2 = "999";
 
-        public void montaTabela()
+        public void MontaTabela()
         {
             tb.Columns.Add("qt", typeof(int));
             tb.Columns.Add("dt");
@@ -128,7 +127,7 @@ namespace processosAdministrativos.Telas
             tb.Columns.Add("meta");
             tb.Columns.Add("sMeta");
         }
-        public void preencheTabela()
+        public void PreencheTabela()
         { 
             for (int i = 0; i < data.Count; i++)
             {
@@ -147,15 +146,15 @@ namespace processosAdministrativos.Telas
 
         private void button1_Click(object sender, EventArgs e)
         {
-            metaPercent mp = new metaPercent();
+            MetaPercent mp = new MetaPercent();
             mp.ShowDialog();
         }
 
-        public void vendedores()
+        public void Vendedores()
         {
             Sql = "select vdd_codigo, vdd_nome, vmet_tipo from vendedores inner join valor_meta on vendedores.vdd_codigo = valor_meta.vmet_vendedor where (vdd_cttfuncao = 'VENDEDOR' or vdd_cttfuncao = 'VENDEDORA') and vdd_situacao = 'A' and vmet_situacao = 1";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader vdd = dao.Query.ExecuteReader();
             while (vdd.Read())
             {
@@ -164,17 +163,17 @@ namespace processosAdministrativos.Telas
                 vddsTipo.Add(vdd["vmet_tipo"].ToString());
             }
             vdd.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void localizaDados()
+        public void LocalizaDados()
         {
             string vdd1Aux = vendedor1.Replace("0","");
             string vdd2Aux = vendedor2.Replace("0", "");
 
             Sql8 = "select tmet_dia, tmet_meta, tmet_semana from tmp_meta where tmet_semana != 'DOM' and tmet_feriado = 0";
             dao.Query = new MySqlCommand(Sql8, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader diaSema = dao.Query.ExecuteReader();
             while (diaSema.Read())
             {
@@ -183,7 +182,7 @@ namespace processosAdministrativos.Telas
                 semana.Add(diaSema["tmet_semana"].ToString());
             }
             diaSema.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             String inferior;
 
@@ -224,7 +223,7 @@ namespace processosAdministrativos.Telas
             Sql9 = "select sum(vmet_meta) as 'vmet_meta' from valor_meta where vmet_vendedor between '" + vendedor1 + "' and '" + vendedor2 + "'";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader atend = dao.Query.ExecuteReader();
             while (atend.Read())
             {
@@ -232,20 +231,20 @@ namespace processosAdministrativos.Telas
                 loeData.Add(atend["data"].ToString());
             }
             atend.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql9, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader valMeta = dao.Query.ExecuteReader();
             while (valMeta.Read())
             {
                 ValorMeta.Add(valMeta["vmet_meta"].ToString());
             }
             valMeta.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql2, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader vend = dao.Query.ExecuteReader();
             while (vend.Read())
             {
@@ -253,20 +252,20 @@ namespace processosAdministrativos.Telas
                 vendasData.Add(vend["nt_data"].ToString());
             }
             vend.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql3, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader pp = dao.Query.ExecuteReader();
             while (pp.Read())
             {
                 ppoAux.Add(pp["mv_documento"].ToString());
             }
             pp.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql4, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader numOrc = dao.Query.ExecuteReader();
             while (numOrc.Read())
             {
@@ -274,30 +273,30 @@ namespace processosAdministrativos.Telas
                 norcData.Add(numOrc["data"].ToString());
             }
             numOrc.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql5, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader orc = dao.Query.ExecuteReader();
             while (orc.Read())
             {
                 orcValorAux.Add(orc["ped_total"].ToString());
             }
             orc.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql6, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader ven = dao.Query.ExecuteReader();
             while (ven.Read())
             {
                 vendaAux.Add(ven["nt_total"].ToString());
             }
             ven.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             dao.Query = new MySqlCommand(Sql7, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader devol = dao.Query.ExecuteReader();
             while (devol.Read())
             {
@@ -305,7 +304,7 @@ namespace processosAdministrativos.Telas
                 dataDevAux.Add(devol["nt_data"].ToString());
             }
             devol.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
 
             int x = 1;
@@ -524,14 +523,14 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        public void preencheMV()
+        public void PreencheMV()
         {
             arquivo = File.OpenText(caminhosMVTxt);
             caminhoMV = arquivo.ReadLine();
             arquivo.Close();
         }
 
-        public void preencheInd()
+        public void PreencheInd()
         {
             arquivo = File.OpenText(caminhosIndTxt);
             caminhoInd = arquivo.ReadLine();
@@ -547,7 +546,7 @@ namespace processosAdministrativos.Telas
             else if (Convert.ToDateTime(DateTime.Now.ToString("dd/MM")) < Convert.ToDateTime("01/01")) ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
             else ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
 
-            grupos();
+            Grupos();
             try
             {
                 string emailsMv = string.Empty;
@@ -638,7 +637,7 @@ namespace processosAdministrativos.Telas
             this.Close();
         }
 
-        public void limpa()
+        public void Limpa()
         {
             vdds.Clear();
             vddsNome.Clear();
@@ -693,7 +692,7 @@ namespace processosAdministrativos.Telas
             dataGridView1.Refresh();
         }
 
-        public void preecheTabela()
+        public void PreecheTabela()
         {
             int aux = 0;
             int ano;
@@ -718,7 +717,7 @@ namespace processosAdministrativos.Telas
             else if (Convert.ToDateTime(DateTime.Now.ToString("dd/MM")) < Convert.ToDateTime("01/01")) ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
             else ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
 
-            excel ex = new excel(@""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", "123");
+            Excel ex = new Excel(@""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", "123");
 
             x2[0] = 3;
             x2[1] = 5;
@@ -743,18 +742,18 @@ namespace processosAdministrativos.Telas
                         else
                             x1[i, 0] = dataGridView1.Rows[i].Cells[x2[y]].Value.ToString();
                     }
-                    ex.writeRange(6, x2[y] + 2, aux + 5, x2[y] + 2, w + 1, x1);
+                    ex.WriteRange(6, x2[y] + 2, aux + 5, x2[y] + 2, w + 1, x1);
                 }
 
-                limpa();
-                vendedores();
+                Limpa();
+                Vendedores();
 
                 if (w < vdds.Count)
                 {
                     vendedor1 = vdds[w];
                     vendedor2 = vdds[w];
-                    localizaDados();
-                    preencheTabela();
+                    LocalizaDados();
+                    PreencheTabela();
                     dataGridView1.DataSource = tb;
                 }
 
@@ -765,12 +764,12 @@ namespace processosAdministrativos.Telas
 
             vendedor1 = "0";
             vendedor2 = "999";
-            localizaDados();
-            preencheTabela();
+            LocalizaDados();
+            PreencheTabela();
             dataGridView1.DataSource = tb;
         }
 
-        public void preecheTabela2()
+        public void PreecheTabela2()
         {
             string[,] x1 = new string[dataGridView1.RowCount, 1];
             int[] x2 = new int[8];
@@ -796,8 +795,8 @@ namespace processosAdministrativos.Telas
             else if (Convert.ToDateTime(DateTime.Now.ToString("dd/MM")) < Convert.ToDateTime("01/01")) ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
             else ano = Convert.ToInt32(DateTime.Now.ToString("yy"));
 
-            excel ex = new excel(@""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", "");
-            excel e = new excel(@""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", "123");
+            Excel ex = new Excel(@""+ caminhoInd +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", "");
+            Excel e = new Excel(@""+ caminhoMV +""+ mesExtenso.Substring(0, 3).ToUpper() + "_" + ano + ".xlsx", "123");
 
             int aux = 0;
             for(int i = 0; i < dataGridView1.RowCount; i++)
@@ -820,7 +819,7 @@ namespace processosAdministrativos.Telas
                     {
                         if (vddsTipo[w] == "vendedor")
                         {
-                            ex.writeRange(4, aux2, aux + 3, aux2, pasta, e.readRange(6, x2[y], aux + 5, x2[y], pasta2 + 1));
+                            ex.WriteRange(4, aux2, aux + 3, aux2, pasta, e.ReadRange(6, x2[y], aux + 5, x2[y], pasta2 + 1));
                             aux2++;
                         }
                     }
@@ -848,12 +847,12 @@ namespace processosAdministrativos.Telas
                         {
                             if(w != 4 && w != 6)
                             {
-                                ex.writeCell3(ex.contaPastas(), z + 1, w + 1, ex.ReadCell3(z + 1, 3, y2 + 3, aux1));
+                                ex.WriteCell3(ex.ContaPastas(), z + 1, w + 1, ex.ReadCell3(z + 1, 3, y2 + 3, aux1));
                                 y2++;
                             }
                             else
                             {
-                                ex.writeCell4(ex.contaPastas(), z + 1, w + 1, Convert.ToDouble(ex.ReadCell3(z + 1, 3, y2 + 3, aux1)));
+                                ex.WriteCell4(ex.ContaPastas(), z + 1, w + 1, Convert.ToDouble(ex.ReadCell3(z + 1, 3, y2 + 3, aux1)));
                                 y2++;
                             }
                         }
@@ -875,11 +874,11 @@ namespace processosAdministrativos.Telas
             Envia();
         }
 
-        public void grupos()
+        public void Grupos()
         {
             Sql = "SELECT grpe_email, grpe_grupo FROM grupo_emails";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader grup = dao.Query.ExecuteReader();
             while (grup.Read())
             {
@@ -899,39 +898,39 @@ namespace processosAdministrativos.Telas
                 }
             }
             grup.Close();
-            dao.desconecta();
+            dao.Desconecta();
             emailAux.Clear();
             grupoAux.Clear();
         }
 
-        public void novoPeriodo()
+        public void NovoPeriodo()
         {
             Sql = "select tmet_dia from tmp_meta order by tmet_codigo desc limit 1";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader periodo = dao.Query.ExecuteReader();
             while (periodo.Read())
             {
                 periodoPercent = periodo["tmet_dia"].ToString();
             }
             periodo.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public mapaVendasCompleto()
+        public MapaVendasCompleto()
         {
             InitializeComponent();
         }
 
         private void metaBt_Click(object sender, EventArgs e)
         {
-            meta me = new meta();
+            Meta me = new Meta();
             me.ShowDialog();
         }
 
         private void emailTxt_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            grupoEmails ge = new grupoEmails();
+            GrupoEmails ge = new GrupoEmails();
             ge.ShowDialog();
         }
 
@@ -948,8 +947,8 @@ namespace processosAdministrativos.Telas
                 linhasMV = File.ReadAllLines(enviarMV);
                 if (DateTime.Now.ToString("HH:mm:ss") == linhasMV[4])
                 {
-                    preecheTabela();
-                    preecheTabela2();
+                    PreecheTabela();
+                    PreecheTabela2();
                 }
             }
             else
@@ -972,7 +971,7 @@ namespace processosAdministrativos.Telas
 
         private void mapaVendasCompleto_Load(object sender, EventArgs e)
         {
-            vendedores();
+            Vendedores();
             dataGridView2.Rows.Add();
             dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
             for (int i = 0; i < vdds.Count; i++)
@@ -980,7 +979,7 @@ namespace processosAdministrativos.Telas
                 dataGridView2.Rows[0].Cells[i + 1].Value = vddsNome[i].Replace(" (EXPERIENCIA)", "") + "   ";
                 dataGridView2.Columns[i + 1].Visible = true;
             }
-            novoPeriodo();
+            NovoPeriodo();
 
             if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
             {
@@ -992,24 +991,24 @@ namespace processosAdministrativos.Telas
                         MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         excelBt.Enabled = true;
                         enviarBt.Enabled = true;
-                        montaTabela();
+                        MontaTabela();
                         backgroundWorker1.RunWorkerAsync();
-                        preencheMV();
-                        preencheInd();
+                        PreencheMV();
+                        PreencheInd();
                         timer1.Start();
                     }
                     else
                     {
                         excelBt.Enabled = true;
                         enviarBt.Enabled = true;
-                        montaTabela();
+                        MontaTabela();
                         backgroundWorker1.RunWorkerAsync();
-                        preencheMV();
-                        preencheInd();
+                        PreencheMV();
+                        PreencheInd();
                         timer1.Start();
                     }
                 }
-                catch(Exception error)
+                catch
                 {
 
                 }
@@ -1021,10 +1020,10 @@ namespace processosAdministrativos.Telas
                 {
                     excelBt.Enabled = true;
                     enviarBt.Enabled = true;
-                    montaTabela();
+                    MontaTabela();
                     backgroundWorker1.RunWorkerAsync();
-                    preencheMV();
-                    preencheInd();
+                    PreencheMV();
+                    PreencheInd();
                     timer1.Start();
                 }
                 else
@@ -1032,10 +1031,10 @@ namespace processosAdministrativos.Telas
                     MessageBox.Show("Inicie um novo periodo!", "Mensagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     excelBt.Enabled = true;
                     enviarBt.Enabled = true;
-                    montaTabela();
+                    MontaTabela();
                     backgroundWorker1.RunWorkerAsync();
-                    preencheMV();
-                    preencheInd();
+                    PreencheMV();
+                    PreencheInd();
                     timer1.Start();
                 }
             }
@@ -1043,19 +1042,19 @@ namespace processosAdministrativos.Telas
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            localizaDados();
+            LocalizaDados();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
             dataGridView1.DataSource = tb;
             apertaBt = 0;
         }
 
         private void dataGridView2_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            novoPeriodo();
+            NovoPeriodo();
             if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
             {
                 if (periodoPercent.Substring(periodoPercent.Length - 2, 2) == DateTime.Now.ToString("MM"))
@@ -1073,8 +1072,8 @@ namespace processosAdministrativos.Telas
                     }
                     if (apertaBt == 0)
                     {
-                        limpa();
-                        vendedores();
+                        Limpa();
+                        Vendedores();
                         if (e.ColumnIndex > 0)
                         {
                             vendedor1 = vdds[e.ColumnIndex - 1];
@@ -1105,8 +1104,8 @@ namespace processosAdministrativos.Telas
                     }
                     if (apertaBt == 0)
                     {
-                        limpa();
-                        vendedores();
+                        Limpa();
+                        Vendedores();
                         if (e.ColumnIndex > 0)
                         {
                             vendedor1 = vdds[e.ColumnIndex - 1];
@@ -1140,8 +1139,8 @@ namespace processosAdministrativos.Telas
                     }
                     if (apertaBt == 0)
                     {
-                        limpa();
-                        vendedores();
+                        Limpa();
+                        Vendedores();
                         if (e.ColumnIndex > 0)
                         {
                             vendedor1 = vdds[e.ColumnIndex - 1];
@@ -1171,8 +1170,8 @@ namespace processosAdministrativos.Telas
                     }
                     if (apertaBt == 0)
                     {
-                        limpa();
-                        vendedores();
+                        Limpa();
+                        Vendedores();
                         if (e.ColumnIndex > 0)
                         {
                             vendedor1 = vdds[e.ColumnIndex - 1];
@@ -1192,8 +1191,8 @@ namespace processosAdministrativos.Telas
 
         private void excelBt_Click(object sender, EventArgs e)
         {
-            preecheTabela();
-            preecheTabela2();
+            PreecheTabela();
+            PreecheTabela2();
         }
 
         private void enviarBt_Click(object sender, EventArgs e)
@@ -1203,7 +1202,7 @@ namespace processosAdministrativos.Telas
 
         private void mapaVendasCompleto_Activated(object sender, EventArgs e)
         {
-            variaveis var = new variaveis();
+            Variaveis var = new Variaveis();
             if (var.AuxMapaVendas == 1)
             {
                 if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 26)
@@ -1214,18 +1213,18 @@ namespace processosAdministrativos.Telas
                         var.AuxMapaVendas = 0;
                         excelBt.Enabled = true;
                         enviarBt.Enabled = true;
-                        limpa();
+                        Limpa();
                         vendedor1 = "0";
                         vendedor2 = "999";
-                        localizaDados();
-                        preencheTabela();
+                        LocalizaDados();
+                        PreencheTabela();
                         dataGridView1.DataSource = tb;
                         var.AuxMapaVendas = 0;
                         dataGridView2.Rows.Clear();
                         dataGridView2.Refresh();
                         vdds.Clear();
                         vddsNome.Clear();
-                        vendedores();
+                        Vendedores();
                         dataGridView2.Rows.Add();
                         dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
                         for (int i = 0; i < vdds.Count; i++)
@@ -1238,18 +1237,18 @@ namespace processosAdministrativos.Telas
                     {
                         excelBt.Enabled = true;
                         enviarBt.Enabled = true;
-                        limpa();
+                        Limpa();
                         vendedor1 = "0";
                         vendedor2 = "999";
-                        localizaDados();
-                        preencheTabela();
+                        LocalizaDados();
+                        PreencheTabela();
                         dataGridView1.DataSource = tb;
                         var.AuxMapaVendas = 0;
                         dataGridView2.Rows.Clear();
                         dataGridView2.Refresh();
                         vdds.Clear();
                         vddsNome.Clear();
-                        vendedores();
+                        Vendedores();
                         dataGridView2.Rows.Add();
                         dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
                         for (int i = 0; i < vdds.Count; i++)
@@ -1265,18 +1264,18 @@ namespace processosAdministrativos.Telas
                     {
                         excelBt.Enabled = true;
                         enviarBt.Enabled = true;
-                        limpa();
+                        Limpa();
                         vendedor1 = "0";
                         vendedor2 = "999";
-                        localizaDados();
-                        preencheTabela();
+                        LocalizaDados();
+                        PreencheTabela();
                         dataGridView1.DataSource = tb;
                         var.AuxMapaVendas = 0;
                         dataGridView2.Rows.Clear();
                         dataGridView2.Refresh();
                         vdds.Clear();
                         vddsNome.Clear();
-                        vendedores();
+                        Vendedores();
                         dataGridView2.Rows.Add();
                         dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
                         for (int i = 0; i < vdds.Count; i++)
@@ -1292,18 +1291,18 @@ namespace processosAdministrativos.Telas
                         var.AuxMapaVendas = 0;
                         excelBt.Enabled = true;
                         enviarBt.Enabled = true;
-                        limpa();
+                        Limpa();
                         vendedor1 = "0";
                         vendedor2 = "999";
-                        localizaDados();
-                        preencheTabela();
+                        LocalizaDados();
+                        PreencheTabela();
                         dataGridView1.DataSource = tb;
                         var.AuxMapaVendas = 0;
                         dataGridView2.Rows.Clear();
                         dataGridView2.Refresh();
                         vdds.Clear();
                         vddsNome.Clear();
-                        vendedores();
+                        Vendedores();
                         dataGridView2.Rows.Add();
                         dataGridView2.Rows[0].Cells[0].Value = "LOJA   ";
                         for (int i = 0; i < vdds.Count; i++)
@@ -1315,8 +1314,8 @@ namespace processosAdministrativos.Telas
                     }
                 }
             }
-            preencheMV();
-            preencheInd();
+            PreencheMV();
+            PreencheInd();
         }
 
         private void mapaVendasCompleto_FormClosing(object sender, FormClosingEventArgs e)

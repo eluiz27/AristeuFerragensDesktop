@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlLote
+    class ControlLote
     {
         private string ltv_numLote;
         private string ltv_codBarras;

@@ -3,16 +3,12 @@ using processosAdministrativos.Classes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class mediaVendas : Form
+    public partial class MediaVendas : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
@@ -27,7 +23,7 @@ namespace processosAdministrativos.Telas
         List<double> tot = new List<double>();
         List<double> med = new List<double>();
 
-        public void valores()
+        public void Valores()
         {
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
@@ -38,7 +34,7 @@ namespace processosAdministrativos.Telas
                     "sum(pdi_quantidade) as 'qtde' from (peditem a left outer join pedidos b ON  a.pdi_empresa = b.ped_empresa and a.pdi_numero = b.ped_numero) "+
                     "left outer join itens c on a.pdi_item = c.itm_codigo where ped_data between '"+inferior+"' and '"+superior+"' group by pdi_item";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader val = dao.Query.ExecuteReader();
             while (val.Read())
             {
@@ -48,10 +44,10 @@ namespace processosAdministrativos.Telas
                 sald.Add(Convert.ToDouble(val["saldo"]));
                 tot.Add(Convert.ToDouble(val["qtde"]));
             }
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void valoresTres()
+        public void ValoresTres()
         {
             List<string> auxList1 = new List<string>();
             List<double> auxList2 = new List<double>();
@@ -65,7 +61,7 @@ namespace processosAdministrativos.Telas
             Sql = "select pdi_item, sum(pdi_quantidade) as 'qtde' from (peditem a left outer join pedidos b ON  a.pdi_empresa = b.ped_empresa and a.pdi_numero = b.ped_numero) " +
                     "left outer join itens c on a.pdi_item = c.itm_codigo where ped_data between '" + inferior1 + "' and '" + superior1 + "' group by pdi_item";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader treM = dao.Query.ExecuteReader();
             while (treM.Read())
             {
@@ -85,9 +81,9 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             treM.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public void valoresSete()
+        public void ValoresSete()
         {
             List<string> auxList1 = new List<string>();
             List<double> auxList2 = new List<double>();
@@ -101,7 +97,7 @@ namespace processosAdministrativos.Telas
             Sql = "select pdi_item, sum(pdi_quantidade) as 'qtde' from (peditem a left outer join pedidos b ON  a.pdi_empresa = b.ped_empresa and a.pdi_numero = b.ped_numero) " +
                     "left outer join itens c on a.pdi_item = c.itm_codigo where ped_data between '" + inferior2 + "' and '" + superior2 + "' group by pdi_item";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader setM = dao.Query.ExecuteReader();
             while (setM.Read())
             {
@@ -122,9 +118,9 @@ namespace processosAdministrativos.Telas
             auxList1.Clear();
             auxList2.Clear();
             setM.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
-        public void medias()
+        public void Medias()
         {
             DateTime aux1 = DateTime.Parse(inferiorMtxt.Text);
             DateTime aux2 = DateTime.Parse(superiorMtxt.Text);
@@ -134,7 +130,7 @@ namespace processosAdministrativos.Telas
                 med.Add((Convert.ToDouble(tot[i]) / x));
             }
         }
-        class medVend
+        class MedVend
         {
             public string codigo { get; set; }
             public string produto { get; set; }
@@ -145,16 +141,16 @@ namespace processosAdministrativos.Telas
             public string total { get; set; }
             public string media { get; set; }
 
-            public medVend() { }
+            public MedVend() { }
         }
-        List<medVend> mv = new List<medVend>();
+        List<MedVend> mv = new List<MedVend>();
 
-        public void preencheTabela()
+        public void PreencheTabela()
         {
             
             for (int i = 0; i < cod1.Count(); i++)
             {
-                mv.Add(new medVend()
+                mv.Add(new MedVend()
                 {
                     codigo = cod1[i],
                     produto = prod[i],
@@ -187,14 +183,14 @@ namespace processosAdministrativos.Telas
             dataGridView1.Columns[6].Width = 60;
             dataGridView1.Columns[7].Width = 70;
         }
-        public mediaVendas()
+        public MediaVendas()
         {
             InitializeComponent();
         }
 
         private void mediaVendas_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaMediaVenda = 0;
         }
 
@@ -224,11 +220,11 @@ namespace processosAdministrativos.Telas
             sald.Clear();
             tot.Clear();
             med.Clear();
-            valores();
-            valoresTres();
-            valoresSete();
-            medias();
-            preencheTabela();
+            Valores();
+            ValoresTres();
+            ValoresSete();
+            Medias();
+            PreencheTabela();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -240,19 +236,19 @@ namespace processosAdministrativos.Telas
             if (sfd.FileName != "")
             {
 
-                excel ex = new excel();
-                ex.createFile();
+                Excel ex = new Excel();
+                ex.CreateFile();
                 ex.SavaAs(sfd.FileName);
                 ex.Close();
-                excel ex2 = new excel(sfd.FileName, "");
-                ex2.writeCell3(1, 0, 0, "Código");
-                ex2.writeCell3(1, 0, 1, "Produto");
-                ex2.writeCell3(1, 0, 2, "Un.");
-                ex2.writeCell3(1, 0, 3, "Saldo");
-                ex2.writeCell3(1, 0, 4, "3 Meses");
-                ex2.writeCell3(1, 0, 5, "7 Meses");
-                ex2.writeCell3(1, 0, 6, "Total");
-                ex2.writeCell3(1, 0, 7, "Média");
+                Excel ex2 = new Excel(sfd.FileName, "");
+                ex2.WriteCell3(1, 0, 0, "Código");
+                ex2.WriteCell3(1, 0, 1, "Produto");
+                ex2.WriteCell3(1, 0, 2, "Un.");
+                ex2.WriteCell3(1, 0, 3, "Saldo");
+                ex2.WriteCell3(1, 0, 4, "3 Meses");
+                ex2.WriteCell3(1, 0, 5, "7 Meses");
+                ex2.WriteCell3(1, 0, 6, "Total");
+                ex2.WriteCell3(1, 0, 7, "Média");
                 for (int i = 0; i < cod1.Count; i++)
                 {
                     x[i, 0] = cod1[i];
@@ -264,8 +260,8 @@ namespace processosAdministrativos.Telas
                     x[i, 6] = String.Format("{0:0.00}", tot[i]);
                     x[i, 7] = String.Format("{0:0.00}", med[i]);
                 }
-                ex2.writeRange(2, 1, cod1.Count + 1, 8, 1, x);
-                ex2.ajustarColunas(1, "A", "H");
+                ex2.WriteRange(2, 1, cod1.Count + 1, 8, 1, x);
+                ex2.AjustarColunas(1, "A", "H");
                 ex2.Save();
                 ex2.Close();
                 System.Diagnostics.Process.Start(sfd.FileName);
@@ -274,15 +270,15 @@ namespace processosAdministrativos.Telas
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            valores();
-            valoresTres();
-            valoresSete();
-            medias();
+            Valores();
+            ValoresTres();
+            ValoresSete();
+            Medias();
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
     }
 }

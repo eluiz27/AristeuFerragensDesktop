@@ -15,7 +15,7 @@ namespace processosAdministrativos.Telas
     {
         public void preencheTabela()
         {
-            queryDataTable qdt = new queryDataTable();
+            QueryDataTable qdt = new QueryDataTable();
 
             dataGridView1.DataSource = qdt.procura("select cli_codigo, cli_nome, if(cli_pessoa = 'F', 'Física', 'Jurídica') as 'pessoa', cli_cgc, cli_estado, cli_situacao from clientes where cli_estado != 'PR'");
         }
@@ -27,7 +27,7 @@ namespace processosAdministrativos.Telas
 
         private void ClienteForaEstado_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaCliForaEstado = 0;
         }
     }

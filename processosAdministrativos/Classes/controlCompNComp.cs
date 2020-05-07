@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlCompNComp
+    class ControlCompNComp
     {
         private string cnc_item;
         private int cnc_comprar;

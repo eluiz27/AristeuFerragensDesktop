@@ -19,9 +19,9 @@ namespace processosAdministrativos.Telas
 
         public int Cod { get => cod; set => cod = value; }
 
-        public void preencheTabela()
+        public void PreencheTabela()
         {
-            queryDataTable qdt = new queryDataTable();
+            QueryDataTable qdt = new QueryDataTable();
 
             dataGridView1.DataSource = qdt.procura("select trp_codigo, trp_nome from transportadoras where trp_atuacao = 'entrega interna'");
         }
@@ -33,14 +33,14 @@ namespace processosAdministrativos.Telas
 
         private void Entregadores_Load(object sender, EventArgs e)
         {
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void DataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            controlEntreg ce = new controlEntreg();
+            ControlEntreg ce = new ControlEntreg();
             ce.Motoboy_contEntre = Convert.ToInt32(dataGridView1[0, e.RowIndex].Value);
-            dao.alteraEntregador(ce, Cod);
+            dao.AlteraEntregador(ce, Cod);
             Cod = 1;
             this.Close();
         }

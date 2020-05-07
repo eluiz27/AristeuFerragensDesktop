@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlLoe
+    class ControlLoe
     {
         private String id_vendedor_loe;
         private int opcao_loe;

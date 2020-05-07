@@ -2,28 +2,23 @@
 using processosAdministrativos.Classes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class metaPercent : Form
+    public partial class MetaPercent : Form
     {
         private string Sql = string.Empty;
         DAO dao = new DAO();
-        controlTmpMeta ctm = new controlTmpMeta();
+        ControlTmpMeta ctm = new ControlTmpMeta();
         List<string> dias = new List<string>();
         List<string> semana = new List<string>();
         List<string> metas = new List<string>();
         List<string> feriados = new List<string>();
 
-        public void preencheTabela()
+        public void PreencheTabela()
         {
             DateTime aux;
             var tb = new DataTable();
@@ -103,12 +98,12 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        public void localizaDados()
+        public void LocalizaDados()
         {
             Sql = "select tmet_dia, tmet_semana, tmet_meta, tmet_feriado from tmp_meta";
 
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader tmp = dao.Query.ExecuteReader();
             while (tmp.Read())
             {
@@ -118,16 +113,16 @@ namespace processosAdministrativos.Telas
                 feriados.Add(tmp["tmet_feriado"].ToString());
             }
             tmp.Close();
-            dao.desconecta();
+            dao.Desconecta();
         }
 
-        public void salvaDados(int coluna)
+        public void SalvaDados(int coluna)
         {
             int aux = 0;
             dias.Clear();
             metas.Clear();
             feriados.Clear();
-            localizaDados();
+            LocalizaDados();
             if (coluna == 2|| coluna == 3)
             {
                 for (int i = 0; i < dias.Count; i++)
@@ -149,7 +144,7 @@ namespace processosAdministrativos.Telas
                         ctm.Tmet_dia = dataGridView1.Rows[i].Cells[0].Value.ToString();
                         ctm.Tmet_semana = dataGridView1.Rows[i].Cells[1].Value.ToString();
                         ctm.Tmet_meta = dataGridView1.Rows[i].Cells[2].Value.ToString();
-                        dao.cadastraTmpMeta(ctm);
+                        dao.CadastraTmpMeta(ctm);
                     }
                 }
                 else
@@ -159,7 +154,7 @@ namespace processosAdministrativos.Telas
                     else
                         ctm.Tmet_feriado = "0";
                     ctm.Tmet_meta = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-                    dao.alteraTmpMeta(ctm, dataGridView1.CurrentRow.Cells[0].Value.ToString());
+                    dao.AlteraTmpMeta(ctm, dataGridView1.CurrentRow.Cells[0].Value.ToString());
                     aux = 0;
                 }
                 ctm.Tmet_feriado = string.Empty;
@@ -168,27 +163,27 @@ namespace processosAdministrativos.Telas
             }
         }
 
-        public metaPercent()
+        public MetaPercent()
         {
             InitializeComponent();
         }
 
         private void metaPercent_Load(object sender, EventArgs e)
         {
-            localizaDados();
+            LocalizaDados();
             if(dias.Count > 0)
             {
                 string aux = dias[dias.Count - 1];
                 if (Convert.ToInt32(DateTime.Now.ToString("dd")) > 25 && aux.Substring(aux.Length - 2, 2) == DateTime.Now.ToString("MM"))
                 {
-                    dao.deletaTmpMeta();
+                    dao.DeletaTmpMeta();
                     dias.Clear();
                     metas.Clear();
                     feriados.Clear();
-                    localizaDados();
+                    LocalizaDados();
                 }
             }
-            preencheTabela();
+            PreencheTabela();
         }
 
         private void novoPeriBt_Click(object sender, EventArgs e)
@@ -198,7 +193,7 @@ namespace processosAdministrativos.Telas
 
         private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
-            salvaDados(e.ColumnIndex);
+            SalvaDados(e.ColumnIndex);
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -209,7 +204,7 @@ namespace processosAdministrativos.Telas
                 {
                     dataGridView1.CurrentRow.Cells[3].Value = true;
                     dataGridView1.CurrentRow.Cells[2].Value = "FERIADO";
-                    salvaDados(e.ColumnIndex);
+                    SalvaDados(e.ColumnIndex);
                 }
                 else
                 {
@@ -220,7 +215,7 @@ namespace processosAdministrativos.Telas
                     }
                     else
                         dataGridView1.CurrentRow.Cells[2].Value = "";
-                    salvaDados(e.ColumnIndex);
+                    SalvaDados(e.ColumnIndex);
                 }
             }
         }
@@ -228,7 +223,7 @@ namespace processosAdministrativos.Telas
         private void metaPercent_FormClosing(object sender, FormClosingEventArgs e)
         {
             int aux = 0;
-            for(int i = 0; i < dataGridView1.RowCount; i++)
+            for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 if (dataGridView1.Rows[i].Cells[2].Value.ToString() == string.Empty)
                 {
@@ -243,7 +238,7 @@ namespace processosAdministrativos.Telas
             }
             if (aux == 0)
             {
-                variaveis var = new variaveis();
+                Variaveis var = new Variaveis();
                 var.AuxMapaVendas = 1;
             }
             else

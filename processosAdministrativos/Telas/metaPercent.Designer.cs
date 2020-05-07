@@ -1,6 +1,6 @@
 ﻿namespace processosAdministrativos.Telas
 {
-    partial class metaPercent
+    partial class MetaPercent
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(metaPercent));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MetaPercent));
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sema = new System.Windows.Forms.DataGridViewTextBoxColumn();

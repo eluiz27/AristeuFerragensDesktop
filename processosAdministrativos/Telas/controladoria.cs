@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Telas
 {
-    public partial class controladoria : Form
+    public partial class Controladoria : Form
     {
         DAO dao = new DAO();
         private string Sql = String.Empty;
@@ -386,7 +386,7 @@ namespace processosAdministrativos.Telas
                     "INNER JOIN empresas ON empresas.emp_codigo = mv_empresa WHERE notas.nt_data between '"+inferior+"' and '"+superior+"'AND " +
                     "notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'V' Order by -notas.nt_data, movimentos.mv_agente, movimentos.mv_item";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader contro = dao.Query.ExecuteReader();
             while (contro.Read())
             {
@@ -409,7 +409,7 @@ namespace processosAdministrativos.Telas
                 vend.Add(contro["nt_vendedor"].ToString());
             }
             contro.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             for(int i = 0; i < doc.Count; i++)
             {
@@ -468,7 +468,7 @@ namespace processosAdministrativos.Telas
                     "INNER JOIN empresas ON empresas.emp_codigo = mv_empresa WHERE notas.nt_data between '" + inferior + "' and '" + superior + "' AND notas.nt_cancelada = 0 AND " +
                     "tipomovi.tmv_grupo = 'D' AND tipomovi.tmv_tipo = 'E' Order by notas.nt_data, movimentos.mv_agente, movimentos.mv_item";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader contro = dao.Query.ExecuteReader();
             while (contro.Read())
             {
@@ -491,7 +491,7 @@ namespace processosAdministrativos.Telas
                 vendNeg.Add(contro["nt_vendedor"].ToString());
             }
             contro.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             for (int i = 0; i < docNeg.Count; i++)
             {
@@ -546,7 +546,7 @@ namespace processosAdministrativos.Telas
                     "INNER JOIN empresas ON empresas.emp_codigo = mv_empresa) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo WHERE notas.nt_data between '" + inferior + "' and '" + superior + "'AND " +
                     "notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'V' group by nt_vendedor Order by nt_vendedor;";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader contro = dao.Query.ExecuteReader();
             while (contro.Read())
             {
@@ -554,7 +554,7 @@ namespace processosAdministrativos.Telas
                 vendTot.Add(contro["vdd_nome"].ToString());
             }
             contro.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             decimal total = 0;
             decimal margemB = 0;
@@ -593,7 +593,7 @@ namespace processosAdministrativos.Telas
                     "INNER JOIN empresas ON empresas.emp_codigo = mv_empresa) inner join vendedores on notas.nt_vendedor = vendedores.vdd_codigo WHERE notas.nt_data between '" + inferior + "' and '" + superior + "'AND " +
                     "notas.nt_cancelada = 0 AND tipomovi.tmv_grupo = 'V' group by nt_vendedor Order by nt_vendedor;";
             dao.Query = new MySqlCommand(Sql, dao.Conexao);
-            dao.conecta();
+            dao.Conecta();
             MySqlDataReader contro = dao.Query.ExecuteReader();
             while (contro.Read())
             {
@@ -601,7 +601,7 @@ namespace processosAdministrativos.Telas
                 vendTotNeg.Add(contro["vdd_nome"].ToString());
             }
             contro.Close();
-            dao.desconecta();
+            dao.Desconecta();
 
             decimal totalTot = 0;
             decimal margemBTot = 0;
@@ -708,14 +708,14 @@ namespace processosAdministrativos.Telas
             dataGridView2.Refresh();
         }
 
-        public controladoria()
+        public Controladoria()
         {
             InitializeComponent();
         }
 
         private void controladoria_FormClosing(object sender, FormClosingEventArgs e)
         {
-            controlTelaAberta cta = new controlTelaAberta();
+            ControlTelaAberta cta = new ControlTelaAberta();
             cta.TelaControladoria = 0;
         }
 
@@ -742,44 +742,44 @@ namespace processosAdministrativos.Telas
             sfd.ShowDialog();
             if (sfd.FileName != "")
             {
-                excel ex = new excel();
-                ex.createFile();
-                ex.createSheet();
+                Excel ex = new Excel();
+                ex.CreateFile();
+                ex.CreateSheet();
                 ex.SavaAs(sfd.FileName);
                 ex.Close();
-                excel ex2 = new excel(sfd.FileName, "");
-                ex2.writeCell3(1, 0, 0, "EMPRESA");
-                ex2.writeCell3(1, 0, 1, "DATA");
-                ex2.writeCell3(1, 0, 2, "DOCUMENTO");
-                ex2.writeCell3(1, 0, 3, "CÓDIGO DO CLIENTE");
-                ex2.writeCell3(1, 0, 4, "NOME DO CLIENTE");
-                ex2.writeCell3(1, 0, 5, "CLASSE");
-                ex2.writeCell3(1, 0, 6, "GRUPO");
-                ex2.writeCell3(1, 0, 7, "DESCRIÇÃO DO ÍTEM");
-                ex2.writeCell3(1, 0, 8, "CÓDIGO DO ITEM");
-                ex2.writeCell3(1, 0, 9, "QTD DA NOTA");
-                ex2.writeCell3(1, 0, 10, "UND NOTA");
-                ex2.writeCell3(1, 0, 11, "PREÇO UNIT. NOTA");
-                ex2.writeCell3(1, 0, 12, "VALOR TOT. ITEM");
-                ex2.writeCell3(1, 0, 13, "VALOR TT NOTA");
-                ex2.writeCell3(1, 0, 14, "VALOR ICMS");
-                ex2.writeCell3(1, 0, 15, "VALOR IPI");
-                ex2.writeCell3(1, 0, 16, "PIS");
-                ex2.writeCell3(1, 0, 17, "COFINS");
-                ex2.writeCell3(1, 0, 18, "IRPJ");
-                ex2.writeCell3(1, 0, 19, "CSLL");
-                ex2.writeCell3(1, 0, 20, "SIMPLES");
-                ex2.writeCell3(1, 0, 21, "CMV");
-                ex2.writeCell3(1, 0, 22, "CMV AJ");
-                ex2.writeCell3(1, 0, 23, "CMV AJ CORR");
-                ex2.writeCell3(1, 0, 24, "VENDA LIQ");
-                ex2.writeCell3(1, 0, 25, "MARGEM BRUTA");
-                ex2.writeCell3(1, 0, 26, "MB%");
-                ex2.writeCell3(1, 0, 27, "VENDEDOR");
-                ex2.writeCell3(2, 0, 0, "VENDEDOR");
-                ex2.writeCell3(2, 0, 1, "SOMA VALOR TT DA NOTA");
-                ex2.writeCell3(2, 0, 2, "SOMA MARGEM BRUTA");
-                ex2.writeCell3(2, 0, 3, "% MARGEM BRUTA");
+                Excel ex2 = new Excel(sfd.FileName, "");
+                ex2.WriteCell3(1, 0, 0, "EMPRESA");
+                ex2.WriteCell3(1, 0, 1, "DATA");
+                ex2.WriteCell3(1, 0, 2, "DOCUMENTO");
+                ex2.WriteCell3(1, 0, 3, "CÓDIGO DO CLIENTE");
+                ex2.WriteCell3(1, 0, 4, "NOME DO CLIENTE");
+                ex2.WriteCell3(1, 0, 5, "CLASSE");
+                ex2.WriteCell3(1, 0, 6, "GRUPO");
+                ex2.WriteCell3(1, 0, 7, "DESCRIÇÃO DO ÍTEM");
+                ex2.WriteCell3(1, 0, 8, "CÓDIGO DO ITEM");
+                ex2.WriteCell3(1, 0, 9, "QTD DA NOTA");
+                ex2.WriteCell3(1, 0, 10, "UND NOTA");
+                ex2.WriteCell3(1, 0, 11, "PREÇO UNIT. NOTA");
+                ex2.WriteCell3(1, 0, 12, "VALOR TOT. ITEM");
+                ex2.WriteCell3(1, 0, 13, "VALOR TT NOTA");
+                ex2.WriteCell3(1, 0, 14, "VALOR ICMS");
+                ex2.WriteCell3(1, 0, 15, "VALOR IPI");
+                ex2.WriteCell3(1, 0, 16, "PIS");
+                ex2.WriteCell3(1, 0, 17, "COFINS");
+                ex2.WriteCell3(1, 0, 18, "IRPJ");
+                ex2.WriteCell3(1, 0, 19, "CSLL");
+                ex2.WriteCell3(1, 0, 20, "SIMPLES");
+                ex2.WriteCell3(1, 0, 21, "CMV");
+                ex2.WriteCell3(1, 0, 22, "CMV AJ");
+                ex2.WriteCell3(1, 0, 23, "CMV AJ CORR");
+                ex2.WriteCell3(1, 0, 24, "VENDA LIQ");
+                ex2.WriteCell3(1, 0, 25, "MARGEM BRUTA");
+                ex2.WriteCell3(1, 0, 26, "MB%");
+                ex2.WriteCell3(1, 0, 27, "VENDEDOR");
+                ex2.WriteCell3(2, 0, 0, "VENDEDOR");
+                ex2.WriteCell3(2, 0, 1, "SOMA VALOR TT DA NOTA");
+                ex2.WriteCell3(2, 0, 2, "SOMA MARGEM BRUTA");
+                ex2.WriteCell3(2, 0, 3, "% MARGEM BRUTA");
 
 
                 for (int i = 0; i < dataGridView1.RowCount; i++)
@@ -826,15 +826,15 @@ namespace processosAdministrativos.Telas
 
                     z++;
                 }
-                ex2.writeRange(2, 1, dataGridView1.RowCount + 1, 11, 1, x1);
-                ex2.writeRange2(2, 12, dataGridView1.RowCount + 1, 28, 1, x);
-                ex2.writeRange(2, 1, dataGridView2.RowCount + 1, 1, 2, x3);
-                ex2.writeRange2(2, 2, dataGridView2.RowCount + 1, 4, 2, x2);
-                ex2.ajustarColunas(1, "A", "AB");
-                ex2.ajustarColunas(2, "A", "D");
-                ex2.negrito(1, "A1:AB1");
-                ex2.negrito(2, "A1:D1");
-                ex2.negrito(2, "A" + (dataGridView2.RowCount + 1).ToString()+":D"+ (dataGridView2.RowCount + 1).ToString());
+                ex2.WriteRange(2, 1, dataGridView1.RowCount + 1, 11, 1, x1);
+                ex2.WriteRange2(2, 12, dataGridView1.RowCount + 1, 28, 1, x);
+                ex2.WriteRange(2, 1, dataGridView2.RowCount + 1, 1, 2, x3);
+                ex2.WriteRange2(2, 2, dataGridView2.RowCount + 1, 4, 2, x2);
+                ex2.AjustarColunas(1, "A", "AB");
+                ex2.AjustarColunas(2, "A", "D");
+                ex2.Negrito(1, "A1:AB1");
+                ex2.Negrito(2, "A1:D1");
+                ex2.Negrito(2, "A" + (dataGridView2.RowCount + 1).ToString()+":D"+ (dataGridView2.RowCount + 1).ToString());
                 ex2.Save();
                 ex2.Close();
                 System.Diagnostics.Process.Start(sfd.FileName);

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace processosAdministrativos.Classes
 {
-    class controlTmpMeta
+    class ControlTmpMeta
     {
         private string tmet_dia;
         private string tmet_semana;

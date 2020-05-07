@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace processosAdministrativos.Classes
 {
-    class queryDataTable
+    class QueryDataTable
     {
         public BindingSource procura(string sql)
         {
