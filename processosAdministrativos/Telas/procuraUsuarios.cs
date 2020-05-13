@@ -17,7 +17,7 @@ namespace processosAdministrativos.Telas
         {
             QueryDataTable qdt = new QueryDataTable();
 
-            string pesquisar = CorrecoesTexto(pesquisaTxt.Text);
+            string pesquisar = CorrecoesTexto(pesquisarTxt.Text);
 
             if (codigoRb.Checked)
                 dataGridView1.DataSource = qdt.procura("SELECT sen_acesso, sen_usuario, res_senha FROM senhas a left outer join restricoes b on a.sen_acesso = b.res_usuario WHERE sen_acesso like '%" + pesquisar+"%' order by sen_acesso desc");

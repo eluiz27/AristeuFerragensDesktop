@@ -192,19 +192,19 @@ namespace processosAdministrativos.Telas
         }
         class ContJust
         {
-            public string Data { get; set; }
-            public string Dia { get; set; }
-            public string Venda { get; set; }
-            public string PrecAlto { get; set; }
-            public string Falta { get; set; }
-            public string NaoTrab { get; set; }
-            public string CondPag { get; set; }
-            public string Troca { get; set; }
-            public string RetiMerc { get; set; }
-            public string Olhan { get; set; }
-            public string Quali { get; set; }
-            public int Total { get; set; }
-            public string TaxaC { get; set; }
+            public string data { get; set; }
+            public string dia { get; set; }
+            public string venda { get; set; }
+            public string precAlto { get; set; }
+            public string falta { get; set; }
+            public string naoTrab { get; set; }
+            public string condPag { get; set; }
+            public string troca { get; set; }
+            public string retiMerc { get; set; }
+            public string olhan { get; set; }
+            public string quali { get; set; }
+            public int total { get; set; }
+            public string taxaC { get; set; }
 
             public ContJust() { }
         }
@@ -270,19 +270,19 @@ namespace processosAdministrativos.Telas
                 }
                 cj.Add(new ContJust()
                 {
-                    Data = dias[i],
-                    Dia = semana[i].ToUpper(),
-                    Venda = qr.NVendasL,
-                    PrecAlto = op1,
-                    Falta = op2,
-                    NaoTrab = op3,
-                    CondPag = op4,
-                    Troca = op5,
-                    RetiMerc = op6,
-                    Olhan = op7,
-                    Quali = op8,
-                    Total = op9 + Convert.ToInt32(qr.NVendasL),
-                    TaxaC = string.Format("{0:0,0.00}", op10)
+                    data = dias[i],
+                    dia = semana[i].ToUpper(),
+                    venda = qr.NVendasL,
+                    precAlto = op1,
+                    falta = op2,
+                    naoTrab = op3,
+                    condPag = op4,
+                    troca = op5,
+                    retiMerc = op6,
+                    olhan = op7,
+                    quali = op8,
+                    total = op9 + Convert.ToInt32(qr.NVendasL),
+                    taxaC = string.Format("{0:0,0.00}", op10)
                 });
                 graficoCont.Series[0].Points.AddXY(dias[i], op1);
                 graficoCont.Series[1].Points.AddY(op2);
@@ -325,15 +325,15 @@ namespace processosAdministrativos.Telas
 
         class OpcaoFaltEst
         {
-            public string Data { get; set; }
-            public string CodProd { get; set; }
-            public string NomeProd { get; set; }
-            public string Saldo { get; set; }
-            public string Vendedor { get; set; }
-            public string Situacao { get; set; }
-            public string Marca { get; set; }
-            public string UltCompr { get; set; }
-            public string UltVend { get; set; }
+            public string data { get; set; }
+            public string codProd { get; set; }
+            public string nomeProd { get; set; }
+            public string saldo { get; set; }
+            public string vendedor { get; set; }
+            public string situacao { get; set; }
+            public string marca { get; set; }
+            public string ultCompr { get; set; }
+            public string ultVend { get; set; }
 
             public OpcaoFaltEst() { }
         }
@@ -459,15 +459,15 @@ namespace processosAdministrativos.Telas
 
                 ofe.Add(new OpcaoFaltEst()
                 {
-                    Data = dataFalt[i],
-                    CodProd = idProdFalt[i],
-                    NomeProd = nomeProdFalt[i],
-                    Saldo = saldoFalt[i],
-                    Vendedor = venddFalt[i],
-                    Marca = marcaFalt[i],
-                    Situacao = sit,
-                    UltCompr = comprFalt[i],
-                    UltVend = vendFalt[i]
+                    data = dataFalt[i],
+                    codProd = idProdFalt[i],
+                    nomeProd = nomeProdFalt[i],
+                    saldo = saldoFalt[i],
+                    vendedor = venddFalt[i],
+                    marca = marcaFalt[i],
+                    situacao = sit,
+                    ultCompr = comprFalt[i],
+                    ultVend = vendFalt[i]
                 });
             }
 
@@ -488,15 +488,15 @@ namespace processosAdministrativos.Telas
             {
                 ofe.Add(new OpcaoFaltEst()
                 {
-                    Data = "",
-                    CodProd = "",
-                    NomeProd = "",
-                    Saldo = "",
-                    Vendedor = "",
-                    Marca = "",
-                    Situacao = "",
-                    UltCompr = "",
-                    UltVend = ""
+                    data = "",
+                    codProd = "",
+                    nomeProd = "",
+                    saldo = "",
+                    vendedor = "",
+                    marca = "",
+                    situacao = "",
+                    ultCompr = "",
+                    ultVend = ""
                 });
             }
 
@@ -525,9 +525,9 @@ namespace processosAdministrativos.Telas
 
         class ProdInex
         {
-            public string Data { get; set; }
-            public string Produto { get; set; }
-            public string Vendedor { get; set; }
+            public string data { get; set; }
+            public string produto { get; set; }
+            public string vendedor { get; set; }
             public ProdInex() { }
         }
         List<ProdInex> pi = new List<ProdInex>();
@@ -550,9 +550,9 @@ namespace processosAdministrativos.Telas
             {
                 pi.Add(new ProdInex()
                 {
-                    Data = prodIne["data"].ToString(),
-                    Produto = prodIne["loe_id_produto"].ToString(),
-                    Vendedor = prodIne["vdd_nome"].ToString()
+                    data = prodIne["data"].ToString(),
+                    produto = prodIne["loe_id_produto"].ToString(),
+                    vendedor = prodIne["vdd_nome"].ToString()
                 });
                 contProdInex.Add(Convert.ToInt32(prodIne["loe_id_vendedor"]));
                 auxProIne = 1;
@@ -582,9 +582,9 @@ namespace processosAdministrativos.Telas
             {
                 pi.Add(new ProdInex()
                 {
-                    Data = "",
-                    Produto = "",
-                    Vendedor = ""
+                    data = "",
+                    produto = "",
+                    vendedor = ""
                 });
                 auxProIne = 1;
             }
@@ -596,10 +596,10 @@ namespace processosAdministrativos.Telas
 
         class PrecoElev
         {
-            public string Data { get; set; }
-            public string Produto { get; set; }
-            public string Preco { get; set; }
-            public string Vendedor { get; set; }
+            public string data { get; set; }
+            public string produto { get; set; }
+            public string preco { get; set; }
+            public string vendedor { get; set; }
             public PrecoElev() { }
         }
         List<PrecoElev> pe = new List<PrecoElev>();
@@ -620,10 +620,10 @@ namespace processosAdministrativos.Telas
             {
                 pe.Add(new PrecoElev()
                 {
-                    Data = precoEle["data"].ToString(),
-                    Produto = precoEle["itm_descricao"].ToString(),
-                    Preco = precoEle["loe_preco"].ToString(),
-                    Vendedor = precoEle["vdd_nome"].ToString()
+                    data = precoEle["data"].ToString(),
+                    produto = precoEle["itm_descricao"].ToString(),
+                    preco = precoEle["loe_preco"].ToString(),
+                    vendedor = precoEle["vdd_nome"].ToString()
                 });
                 auxPrecoElev = 1;
             }
@@ -632,10 +632,10 @@ namespace processosAdministrativos.Telas
             {
                 pe.Add(new PrecoElev()
                 {
-                    Data = "",
-                    Produto = "",
-                    Preco = "",
-                    Vendedor = ""
+                    data = "",
+                    produto = "",
+                    preco = "",
+                    vendedor = ""
                 });
                 auxPrecoElev = 1;
             }
@@ -648,10 +648,10 @@ namespace processosAdministrativos.Telas
         }
         class Outros
         {
-            public string Data { get; set; }
-            public string Coment { get; set; }
-            public string Opcao { get; set;  }
-            public string Vendedor { get; set; }
+            public string data { get; set; }
+            public string coment { get; set; }
+            public string opcao { get; set;  }
+            public string vendedor { get; set; }
             public Outros() { }
         }
         List<Outros> ou = new List<Outros>();
@@ -672,10 +672,10 @@ namespace processosAdministrativos.Telas
             {
                 ou.Add(new Outros()
                 {
-                    Data = outros["data"].ToString(),
-                    Coment = outros["loe_comentario"].ToString(),
-                    Opcao = outros["opcao_loe_descricao"].ToString(),
-                    Vendedor = outros["vdd_nome"].ToString()
+                    data = outros["data"].ToString(),
+                    coment = outros["loe_comentario"].ToString(),
+                    opcao = outros["opcao_loe_descricao"].ToString(),
+                    vendedor = outros["vdd_nome"].ToString()
                 });
                 auxOutros = 1;
             }
@@ -684,10 +684,10 @@ namespace processosAdministrativos.Telas
             {
                 ou.Add(new Outros()
                 {
-                    Data = "",
-                    Coment = "",
-                    Opcao = "",
-                    Vendedor = ""
+                    data = "",
+                    coment = "",
+                    opcao = "",
+                    vendedor = ""
                 });
                 auxOutros = 1;
             }
@@ -894,12 +894,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
+                    ofe = ofe.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
+                    ofe = ofe.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -913,12 +913,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.CodProd).ThenBy(m => m.CodProd).ToList();
+                    ofe = ofe.OrderBy(m => m.codProd).ThenBy(m => m.codProd).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.CodProd).ThenBy(m => m.CodProd).ToList();
+                    ofe = ofe.OrderByDescending(m => m.codProd).ThenBy(m => m.codProd).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -932,12 +932,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.NomeProd).ThenBy(m => m.NomeProd).ToList();
+                    ofe = ofe.OrderBy(m => m.nomeProd).ThenBy(m => m.nomeProd).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.NomeProd).ThenBy(m => m.NomeProd).ToList();
+                    ofe = ofe.OrderByDescending(m => m.nomeProd).ThenBy(m => m.nomeProd).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -951,12 +951,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.Saldo).ThenBy(m => m.Saldo).ToList();
+                    ofe = ofe.OrderBy(m => m.saldo).ThenBy(m => m.saldo).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.Saldo).ThenBy(m => m.Saldo).ToList();
+                    ofe = ofe.OrderByDescending(m => m.saldo).ThenBy(m => m.saldo).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -970,12 +970,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    ofe = ofe.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    ofe = ofe.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -989,12 +989,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.Situacao).ThenBy(m => m.Situacao).ToList();
+                    ofe = ofe.OrderBy(m => m.situacao).ThenBy(m => m.situacao).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.Situacao).ThenBy(m => m.Situacao).ToList();
+                    ofe = ofe.OrderByDescending(m => m.situacao).ThenBy(m => m.situacao).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -1008,12 +1008,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.Marca).ThenBy(m => m.Marca).ToList();
+                    ofe = ofe.OrderBy(m => m.marca).ThenBy(m => m.marca).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.Marca).ThenBy(m => m.Marca).ToList();
+                    ofe = ofe.OrderByDescending(m => m.marca).ThenBy(m => m.marca).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -1027,12 +1027,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.UltCompr).ThenBy(m => m.UltCompr).ToList();
+                    ofe = ofe.OrderBy(m => m.ultCompr).ThenBy(m => m.ultCompr).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.UltCompr).ThenBy(m => m.UltCompr).ToList();
+                    ofe = ofe.OrderByDescending(m => m.ultCompr).ThenBy(m => m.ultCompr).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -1046,12 +1046,12 @@ namespace processosAdministrativos.Telas
                 faltaEstDgv.Refresh();
                 if (aux1 == 1)
                 {
-                    ofe = ofe.OrderBy(m => m.UltVend).ThenBy(m => m.UltVend).ToList();
+                    ofe = ofe.OrderBy(m => m.ultVend).ThenBy(m => m.ultVend).ToList();
                     aux1 = 0;
                 }
                 else
                 {
-                    ofe = ofe.OrderByDescending(m => m.UltVend).ThenBy(m => m.UltVend).ToList();
+                    ofe = ofe.OrderByDescending(m => m.ultVend).ThenBy(m => m.ultVend).ToList();
                     aux1 = 1;
                 }
                 faltaEstDgv.DataSource = ofe;
@@ -1069,12 +1069,12 @@ namespace processosAdministrativos.Telas
                 prodInexDgv.Refresh();
                 if (aux2 == 1)
                 {
-                    pi = pi.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
+                    pi = pi.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
                     aux2 = 0;
                 }
                 else
                 {
-                    pi = pi.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
+                    pi = pi.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
                     aux2 = 1;
                 }
                 prodInexDgv.DataSource = pi;
@@ -1088,12 +1088,12 @@ namespace processosAdministrativos.Telas
                 prodInexDgv.Refresh();
                 if (aux2 == 1)
                 {
-                    pi = pi.OrderBy(m => m.Produto).ThenBy(m => m.Produto).ToList();
+                    pi = pi.OrderBy(m => m.produto).ThenBy(m => m.produto).ToList();
                     aux2 = 0;
                 }
                 else
                 {
-                    pi = pi.OrderByDescending(m => m.Produto).ThenBy(m => m.Produto).ToList();
+                    pi = pi.OrderByDescending(m => m.produto).ThenBy(m => m.produto).ToList();
                     aux2 = 1;
                 }
                 prodInexDgv.DataSource = pi;
@@ -1107,12 +1107,12 @@ namespace processosAdministrativos.Telas
                 prodInexDgv.Refresh();
                 if (aux2 == 1)
                 {
-                    pi = pi.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    pi = pi.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux2 = 0;
                 }
                 else
                 {
-                    pi = pi.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    pi = pi.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux2 = 1;
                 }
                 prodInexDgv.DataSource = pi;
@@ -1129,12 +1129,12 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
+                    pe = pe.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
+                    pe = pe.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
@@ -1148,12 +1148,12 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.Produto).ThenBy(m => m.Produto).ToList();
+                    pe = pe.OrderBy(m => m.produto).ThenBy(m => m.produto).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.Produto).ThenBy(m => m.Produto).ToList();
+                    pe = pe.OrderByDescending(m => m.produto).ThenBy(m => m.produto).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
@@ -1167,12 +1167,12 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.Preco).ThenBy(m => m.Preco).ToList();
+                    pe = pe.OrderBy(m => m.preco).ThenBy(m => m.preco).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.Preco).ThenBy(m => m.Preco).ToList();
+                    pe = pe.OrderByDescending(m => m.preco).ThenBy(m => m.preco).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
@@ -1186,12 +1186,12 @@ namespace processosAdministrativos.Telas
                 precoElevDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    pe = pe.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    pe = pe.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    pe = pe.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    pe = pe.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux4 = 1;
                 }
                 precoElevDgv.DataSource = pe;
@@ -1208,12 +1208,12 @@ namespace processosAdministrativos.Telas
                 outrosDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    ou = ou.OrderBy(m => m.Data).ThenBy(m => m.Data).ToList();
+                    ou = ou.OrderBy(m => m.data).ThenBy(m => m.data).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    ou = ou.OrderByDescending(m => m.Data).ThenBy(m => m.Data).ToList();
+                    ou = ou.OrderByDescending(m => m.data).ThenBy(m => m.data).ToList();
                     aux4 = 1;
                 }
                 outrosDgv.DataSource = ou;
@@ -1227,12 +1227,12 @@ namespace processosAdministrativos.Telas
                 outrosDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    ou = ou.OrderBy(m => m.Opcao).ThenBy(m => m.Opcao).ToList();
+                    ou = ou.OrderBy(m => m.opcao).ThenBy(m => m.opcao).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    ou = ou.OrderByDescending(m => m.Opcao).ThenBy(m => m.Opcao).ToList();
+                    ou = ou.OrderByDescending(m => m.opcao).ThenBy(m => m.opcao).ToList();
                     aux4 = 1;
                 }
                 outrosDgv.DataSource = ou;
@@ -1246,12 +1246,12 @@ namespace processosAdministrativos.Telas
                 outrosDgv.Refresh();
                 if (aux4 == 1)
                 {
-                    ou = ou.OrderBy(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    ou = ou.OrderBy(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux4 = 0;
                 }
                 else
                 {
-                    ou = ou.OrderByDescending(m => m.Vendedor).ThenBy(m => m.Vendedor).ToList();
+                    ou = ou.OrderByDescending(m => m.vendedor).ThenBy(m => m.vendedor).ToList();
                     aux4 = 1;
                 }
                 outrosDgv.DataSource = ou;
